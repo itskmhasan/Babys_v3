@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Fav Icon  -->
+    <link rel="shortcut icon" href="images/favicon.png" />
+    <title>KachaBazar React Next Js eCommerce Solution</title>
+
+    <link rel="stylesheet" href="style.css" type="text/css" media="all" />
+    <link
+      href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700"
+      rel="stylesheet"
+      type="text/css"
+    />
+
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div class="body-wrapper">
+      <!-- nav area -->
+      <div class="nav-wrapper">
+        <div class="logo-wrapper">
+          <h1 class="logo-title">
+            KachaBazar React Next Js eCommerce Solution
+          </h1>
+        </div>
+        <div class="nav" id="nav">
+          <div class="nav-item active">
+            <a class="main-nav-item"
+              ><i class="fas fa-cog"></i>Getting Started</a
+            >
+            <div class="sub-nav">
+              <a class="sub-nav-item active" href="#introduction"
+                >Introduction</a
+              >
+
+              <a class="sub-nav-item" href="#backend-configuration"
+                >Backend Configuration</a
+              >
+
+              <a class="sub-nav-item" href="#store-configuration"
+                >Store Configuration</a
+              >
+
+              <a class="sub-nav-item" href="#admin-configuration"
+                >Admin Configuration</a
+              >
+              <a class="sub-nav-item" href="#install-on-local-server"
+                >Run on local server</a
+              >
+
+              <a class="sub-nav-item" href="#install-on-server"
+                >Run on live Server</a
+              >
+            </div>
+          </div>
+
+          <div class="nav-item">
+            <a class="main-nav-item"
+              ><i class="fas fa-question"></i>Features and How to use?</a
+            >
+            <div class="sub-nav">
+              <a class="sub-nav-item" href="#product">Product CRUD</a>
+              <a class="sub-nav-item" href="#category">Category CRUD</a>
+              <a class="sub-nav-item" href="#attribute">Attributes CRUD</a>
+              <a class="sub-nav-item" href="#coupon">Coupon CRUD</a>
+              <a class="sub-nav-item" href="#language">Language CRUD</a>
+              <a class="sub-nav-item" href="#currency">Currency CRUD</a>
+              <a class="sub-nav-item" href="#setting">Setting CRUD</a>
+              <a class="sub-nav-item" href="#edit-profile">Edit Profile</a>
+              <a class="sub-nav-item" href="#view_store">View Store</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- content area -->
+      <div class="content-wrapper" id="content">
+        <!-- navbar -->
+        <div class="need-support">
+          <a
+            href="https://kachabazar-documentation.netlify.app/"
+            target="_blank"
+            ><i class="fa fa-bullseye"></i>Live documentation</a
+          >
+
+          <a href="https://kachabazar-preview.vercel.app/" target="_blank"
+            ><i class="fa fa-bullseye"></i>View demo</a
+          >
+          <a
+            href="https://themeforest.net/user/htmllover/portfolio"
+            target="_blank"
+            ><i class="fa fa-cloud-download"></i>Buy theme</a
+          >
+          <a href="mailto:aislam270@gmail.com"
+            ><i class="fa fa-support"></i>Need Support</a
+          >
+        </div>
+
+        <!-- Getting start -->
+        <div class="content-section" id="introduction" style="display: block">
+          <h3>Introduction</h3>
+
+          Thank you very much for choosing our application. We truly appreciate
+          and really hope that you'll enjoy our script! <br />
+          <strong
+            >If you like this script, Please support us by rating us 5 stars (<a
+              href="https://themeforest.net/user/htmllover/portfolio"
+              target="_blank"
+              >Rate us Here</a
+            >)</strong
+          >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-star"></i
+          ><i class="fa fa-star"></i><i class="fa fa-star"></i
+          ><i class="fa fa-star"></i><i class="fa fa-star"></i><br /><br />
+          <p><strong>KachaBazar</strong> - React Next Js eCommerce Solution</p>
+
+          <h3>Used Technologies</h3>
+          <ul>
+            <li>React.js</li>
+            <li>Next.js</li>
+            <li>Vite</li>
+            <li>Tailwindcss</li>
+            <li>Node.js (Express.js)</li>
+            <li>MongoDB (Mongoose)</li>
+          </ul>
+
+          <h3>User Panels</h3>
+          <ul>
+            <li>Admin Panel</li>
+            <li>Store Frontend</li>
+          </ul>
+
+          <h3>Core Features</h3>
+          This is a complete eCommerce template built with React, Next.js and
+          Tailwindcss with Rest API integration. This template is backend ready
+          and it's built with node, express, and uses MongoDB for the database.
+          We did all schema validation for saving data.
+          <h6>Here is some core feature of this project</h6>
+          <ul>
+            <li>Complete Full-Stack Project with backend integration.</li>
+            <li>Dynamic translation on all dynamic data.</li>
+            <li>Product Attributes and Combination.</li>
+            <li>Staff CRUD(Create, Read, Delete, Update).</li>
+            <li>Product CRUD(Create, Read, Delete, Update).</li>
+            <li>Category CRUD(Create, Read, Delete, Update).</li>
+            <li>Coupon CRUD(Create, Read, Delete, Update).</li>
+            <li>Setting for controlling admin and store.</li>
+            <li>Controlling customer orders.</li>
+            <li>PWA Added.</li>
+          </ul>
+
+          <h5>Need Support?</h5>
+          If you have any questions about the script, please sent a email to us
+          <strong> aislam270@gmail.com</strong>
+        </div>
+
+        <!-- backend-configuration -->
+        <div class="content-section" id="backend-configuration">
+          <h3>Installation</h3>
+          <div class="content">
+            <section class="callout-yellow">
+              <p>
+                To run react project you will need couple thing to setup first,
+                Install <strong>Node version v18.18.2</strong>. if you already
+                not installed. download from
+                <a
+                  href="https://nodejs.org/download/release/v18.18.2/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Here</a
+                >
+              </p>
+            </section>
+            <h6>NPM Packages:</h6>
+            <ul>
+              <li>After downloading the template, unzip it</li>
+              <li>Open the VS Code Terminal/System Terminal</li>
+              <li>
+                Go to the folder (backend):
+                <strong>(cd path/to/template)</strong>
+              </li>
+              <li>
+                Run: <strong>npm install</strong>, it will install all used
+                packages for this backend.
+              </li>
+              <li>Make sure that there is no error.</li>
+            </ul>
+            <p>
+              After the npm packages are installed, make sure that you have a
+              <strong> package.json</strong> file and check that you have the
+              below lines under the scripts.
+            </p>
+
+            <pre>
+        <code>
+    "scripts": {
+        "dev": "nodemon api/index.js",
+        "start": "node api/index.js",
+        "production": "NODE_ENV=production nodemon api/index.js",
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "data:import": "node script/seed.js",
+        "product": "node script/product.js"
+        },       
+                </code>
+              </pre>
+            <ol>
+              <li>
+                Rename <code class="env">.env.example</code> to
+                <code class="env">.env</code>
+              </li>
+              <li>
+                Configure your MongoDB database. Watch this video on
+                <a
+                  href="https://www.youtube.com/watch?v=jXgJyuBeb_o&ab_channel=MongoDB"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >MongoDB</a
+                >
+                . After configuring, you will find a MongoDB URI. Put that URI
+                in the <code class="env">MONGO_URI</code> variable in your
+                <code class="env">.env</code> file.
+              </li>
+              <li>
+                The <code class="env">JWT_SECRET</code> is a random value used
+                for creating a secret token. You can use any value, but make
+                sure it remains secret.
+              </li>
+              <li>
+                You need an email and password for email verification and the
+                <strong>"forget password"</strong> option. Use an email address
+                that you want to send messages from when users register or
+                request to reset their password. We used Nodemailer and the
+                default email server for this. Watch this video to create an
+                <a
+                  href="https://www.youtube.com/watch?v=J4CtP1MBtOE&list=LL&index=3&ab_channel=TonyTeachesTech"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >app password</a
+                >
+                for your email. After that, put your email in the
+                <code class="env">EMAIL_USER</code> variable and the app
+                password in the <code class="env">EMAIL_PASS</code> variable in
+                your <code class="env">.env</code> file.
+                <strong
+                  >Also, make sure you allow less secure apps to be ON and set
+                  up CAPTCHA for production environment. See this documentation
+                  for more details.
+                  <a
+                    href="https://stackoverflow.com/questions/51980436/nodemailer-throws-error-invalid-login-534-5-7-14"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >Doc</a
+                  >
+                </strong>
+              </li>
+              <li>
+                When you run on <strong>live server</strong> use
+                <strong>Admin</strong> and <strong>Store</strong> live URL for
+                <code class="env">STORE_URL</code> and
+                <code class="env">ADMIN_URL</code> variables. And When you run
+                on the local server, use
+                <code class="env">http://localhost:3000</code> and
+                <code class="env">http://localhost:4000</code>.
+              </li>
+            </ol>
+            <div>
+              <h6>
+                After configuration you <strong>.env</strong> file will look
+                like this
+              </h6>
+              <pre>
+                <code>
+    PORT=5055
+    MONGO_URI=your mongodb uri
+    JWT_SECRET=alamsfdfsdfsdfsdrafdar!@#$0dlfgjgsdfdsfdsfds
+    JWT_SECRET_FOR_VERIFY=lfjfjasjfr09ri09wrilfdjdj
+    SERVICE=gmail
+    EMAIL_USER=your email //change with your sender email
+    EMAIL_PASS=your email app password //change with your email app password
+    HOST=smtp.gmail.com
+    EMAIL_PORT=465
+    STORE_URL=http://localhost:3000
+    ADMIN_URL=http://localhost:4000
+                </code>
+                   </pre>
+
+              <h6>Importing Demo Data</h6>
+              <p>
+                Once you successfully connect with MongoDB and configure the
+                <strong>.env</strong> file, run
+                <code class="env">npm run data:import</code>. It will execute
+                the <code class="env">seed.js</code> file and import all demo
+                data into the database. Make sure to change the demo data in the
+                utils folder according to your needs. Use a real staff email for
+                testing the <strong>"forget password"</strong> option. If
+                everything is okay, the backend configuration is done, and you
+                will find all the demo data in your MongoDB database.
+              </p>
+
+              <h6>Running the Backend</h6>
+              <p>
+                Now run <code class="env">npm run dev</code> to start your
+                backend on the local server with PORT 5055 or the PORT you have
+                specified.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- store-configuration -->
+        <div class="content-section" id="store-configuration">
+          <h3>Installation</h3>
+          <div class="content">
+            <section class="callout-yellow">
+              <p>
+                As you already installed <strong>Node</strong> on you machine,
+                so no need to re-install again, Just check you installed
+                properly by <strong>node --version</strong>
+              </p>
+            </section>
+            <h6>NPM Packages:</h6>
+            <ul>
+              <li>After downloading the template, unzip it</li>
+              <li>Open the VS Code Terminal/System Terminal</li>
+              <li>
+                Go to the folder (store):
+                <strong>(cd path/to/template)</strong>
+              </li>
+              <li>
+                Run: <strong>npm install</strong>, it will install all used
+                packages for this store.
+              </li>
+              <li>Make sure that there is no error.</li>
+            </ul>
+
+            <ol>
+              <li>
+                Rename <code class="env">.env.example</code> to
+                <code class="env">.env.local</code>
+              </li>
+              <li>
+                Please watch this video for Cloudinary configuration
+                <a
+                  href="https://www.youtube.com/watch?v=gmvYb4z8LK0&ab_channel=alexcodetuts"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Cloudinary configuration</a
+                >,
+                <a
+                  href="http://https://priyal-babel.medium.com/upload-and-delete-images-with-a-react-app-using-cloudinary-api-32565d11d760"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >doc</a
+                >
+                (We used Cloudinary for profile image upload). <br />
+                <p>Get your cloud_name,api_key and api_secret</p>
+                <img src="./images/cloudinary-name.png" alt="cloudinary-name" />
+                <br />
+                <p>Get your upload preset</p>
+                <img
+                  src="./images/cloudinary-preset.png"
+                  alt="cloudinary-preset"
+                />
+              </li>
+              <li>
+                This video for google client id, watch for only creating a
+                project on <strong>google developer console</strong> from
+                <strong>18.28</strong> sec.
+                <a
+                  href="https://youtu.be/bf-vfhgWtKg?t=1108"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Google Client ID</a
+                >
+                (For google sign in), your google developer console api &
+                services Creadientals will look like this.
+                <img src="./images/googl-id.png" alt="Image description" />
+              </li>
+              <li>
+                Also need a stripe API key, for using the stripe payment option.
+                If you want this, then go to
+                <a
+                  href="https://stripe.com/docs/stripe-js/react"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >react-stripe</a
+                >
+                and create an account, get your test stripe API key, and put
+                that on the <strong>.env.local</strong> variable. But if you do
+                not add this value on the <strong>.env.local</strong> file then
+                stripe will not work, others will work fine.
+              </li>
+            </ol>
+            <div>
+              <h6>
+                After configuration you <strong>.env.local</strong> file will
+                look like this
+              </h6>
+              <pre>
+                  <code>
+NEXT_PUBLIC_STRIPE_KEY="your stripe key" //for use stripe, change with your stripe API key 
+NEXT_PUBLIC_API_BASE_URL=http://localhost:5055/api //base API URL, when run on localhost/dev server. 
+NEXT_PUBLIC_API_SOCKET_URL=http://localhost:5055 //base API SOCKET URL, when run on localhost/dev server. 
+NEXT_PUBLIC_CLOUDINARY_URL=https://api.cloudinary.com/v1_1/your-cloudinary-user-name/image/upload 
+NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET=fg1vfge //your cloudinary upload preset 
+NEXT_PUBLIC_GOOGLE_CLIENT_ID=your_google_client_id
+
+                  </code>
+                     </pre>
+
+              <h6>Running the Store</h6>
+              <p>
+                Now run <code class="env">npm run dev</code> to start your
+                backend on the local server with
+                <a href="http://localhost:3000">store</a>.
+              </p>
+              <p>
+                <strong>Note:</strong> in store all store customization data
+                showing dynamically from admin, also store customization data
+                and global setting data are stored on session storage by redux
+                as those data will not update frequently. So, whenever those
+                data update in admin, please just open store url in new tab,
+                then you will get updated store. And if you want to fetch data
+                from backend on every load then you can update your store like
+                bellow
+              </p>
+              <img src="./images/useSetting.png" alt="Image description" />
+            </div>
+          </div>
+        </div>
+
+        <!-- admin-configuration -->
+        <div class="content-section" id="admin-configuration">
+          <h3>Installation</h3>
+          <div class="content">
+            <section class="callout-yellow">
+              <p>
+                As you already installed <strong>Node</strong> on you machine,
+                so no need to re-install again, Just check you installed
+                properly by <strong>node --version</strong>
+              </p>
+              <code></code>
+            </section>
+            <h6>NPM Packages:</h6>
+            <ul>
+              <li>After downloading the template, unzip it</li>
+              <li>Open the VS Code Terminal/System Terminal</li>
+              <li>
+                Go to the folder (admin):
+                <strong>(cd path/to/template)</strong>
+              </li>
+              <li>
+                Run: <strong>npm install</strong>, it will install all used
+                packages for this admin.
+              </li>
+              <li>Make sure that there is no error.</li>
+            </ul>
+
+            <ol>
+              <li>
+                Rename <code class="env">.env.example</code> to
+                <code class="env">.env.local</code>
+              </li>
+              <li>
+                Please watch this video for Cloudinary configuration
+                <a
+                  href="https://www.youtube.com/watch?v=gmvYb4z8LK0&ab_channel=alexcodetuts"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Cloudinary configuration</a
+                >,
+                <a
+                  href="http://https://priyal-babel.medium.com/upload-and-delete-images-with-a-react-app-using-cloudinary-api-32565d11d760"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >doc</a
+                >
+                (We used Cloudinary for profile image upload). <br />
+                <p>Get your cloud_name,api_key and api_secret</p>
+                <img src="./images/cloudinary-name.png" alt="cloudinary-name" />
+                <br />
+                <p>Get your upload preset</p>
+                <img
+                  src="./images/cloudinary-preset.png"
+                  alt="cloudinary-preset"
+                />
+              </li>
+            </ol>
+            <div>
+              <h6>
+                After configuration you <strong>.env.local</strong> file will
+                look like this
+              </h6>
+              <pre>
+                    <code>
+    VITE_APP_API_BASE_URL=http://localhost:5055/api
+    VITE_APP_API_BASE_URL=http://localhost:5055
+    VITE_APP_STORE_DOMAIN=http://localhost:3000
+
+                        
+    VITE_APP_CLOUD_NAME=you cloud name
+    VITE_APP_CLOUDINARY_API_KEY=your cloudinary api key
+    VITE_APP_CLOUDINARY_API_SECRET=api secret
+    VITE_APP_CLOUDINARY_UPLOAD_PRESET=upload preset
+    VITE_APP_CLOUDINARY_URL=https://api.cloudinary.com/v1_1/you_cloud_name/image/upload
+                        
+  
+                    </code>
+                       </pre>
+
+              <h6>Running the Admin</h6>
+              <p>
+                Now run <code class="env">npm run dev</code> to start your
+                backend on the local server with
+                <a href="http://localhost:4000">admin</a>.
+              </p>
+              <h6>Getting Google Analytics Measurement ID</h6>
+              <p>
+                Go to the Google Analytics website
+                <a href="https://analytics.google.com/" target="_blank"
+                  >Google Analytics</a
+                >
+                to Create a new property for your website with adding necessary
+                information. Then you will get the Google Measurement ID, which
+                you will need to use in store setting for active google
+                analytics.
+              </p>
+              <h6>Getting Tawk Chat Keys</h6>
+              <p>
+                Go to the Tawk to website
+                <a href="https://www.tawk.to" target="_blank">Tawk Chat</a>
+                to Create a new account. Then you will get the Property ID from
+                setting and Widget ID from channel Chat Widget. Use that in your
+                store setting to active live chat in your store.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-section" id="install-on-local-server">
+          <h3>Run On Local server</h3>
+          <p>
+            To run on local server,
+            <strong>first you will need to configure</strong>
+            <strong>backend</strong>, <strong>store</strong>, and
+            <strong>admin</strong>. <br />
+            <br />
+            After properly configuration open the root folder on
+            <strong>VS code</strong> or any other code editor. split the
+            <strong>Terminal</strong> by clicking on [|] button and make into
+            three, then go to <strong>admin</strong>, <strong>store</strong> and
+            <strong>backend </strong> by <strong>cd folder_name</strong>.
+            <br />
+            And finally run <strong>npm run dev</strong> for
+            <strong>backend</strong>, <strong>admin</strong> and
+            <strong>store</strong>. <br />
+            Then admin will run on <strong>http://localhost:4100/</strong>,
+            <br />
+            store will <strong>http://localhost:3000/</strong>, <br />
+            and backend will <strong>http://localhost:5055</strong> and your
+            specified PORT.
+          </p>
+        </div>
+
+        <!-- installation -->
+        <div class="content-section" id="install-on-server">
+          <h3>Run On Live server</h3>
+          <p>
+            As a <strong>next.js</strong> project vercel is recommended for
+            deployment because If you deploy on vercel then it will
+            automatically do everything for us and there will be no need for
+            customization.
+          </p>
+          <p>
+            Here is simple guide for deploying backend, store and admin on
+            vercel:
+          </p>
+
+          <ul>
+            <li>
+              Create a
+              <a
+                href="https://github.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                >GitHub</a
+              >
+              account, go to
+              <a
+                href="https://vercel.com/dashboard"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Vercel</a
+              >
+              and sign up with that GitHub account.
+            </li>
+
+            <li class="ml-4">
+              Create three private repositories on GitHub, then push your
+              <strong>backend</strong> code in one and
+              <strong>store</strong> code in one, and
+              <strong>admin</strong> code in another repository.
+            </li>
+
+            <li>
+              Watch this
+              <a
+                href="https://www.youtube.com/watch?v=_8wkKL0LKks&ab_channel=TheNetNinja"
+                target="_blank"
+                rel="noopener noreferrer"
+                >video</a
+              >
+              deploy on vercel, do according to.
+            </li>
+            <li>
+              When you import your GitHub repository on vercel by creating a
+              project, you will see an option for Environment Variables, just
+              click on that and give you a <strong>local .env</strong> all
+              variable with the value. then click on deploy. <br />
+              <strong
+                >Note first you will need to import and deploy backend, so that
+                you can use that backend live url as store
+                (NEXT_PUBLIC_API_BASE_URL) and admin(VITE_APP_API_BASE_URL)
+                .</strong
+              >
+              <img src="./images/env_variable.png" alt="env_variable" />
+            </li>
+            <li class="text-danger">
+              After the backend is deployed successfully, you will find a URL
+              for your API route that will like this
+              <strong>https://kachabazar.vercel.app/</strong>, and now change
+              that like this <strong>https://kachabazar.vercel.app/api</strong>,
+              or <strong>https://kachabazar.vercel.app/api/products</strong>, to
+              see the products imported or not and use this as a
+              <strong>NEXT_PUBLIC_API_BASE_URL</strong> and
+              <strong>VITE_APP_API_BASE_URL</strong> when you deploy your store
+              and admin project.
+            </li>
+            <li class="text-danger">
+              Now create another two projects for store and admin. Deploy one by
+              one same as backend project and put all
+              <strong>.env.local</strong> variable
+              <strong>On Environment Variables section</strong> before clicking
+              on deploy button, then click deploy, it will take some time for
+              build and after that build, you will see you live version of store
+              and admin.
+              <!-- <strong
+                >For admin make sure you select node version 16x, only for
+                admin.</strong
+              >
+              <br />
+              <img src="./images/node-version.png" alt="node" /> -->
+            </li>
+            <br />
+            <li>
+              If you do accordingly, then everything will be okay, for now when
+              you make any changes on your local file, you just need to push
+              your code on GitHub, vercel will automatically detect those
+              changes and will redeploy your project with updated features.
+            </li>
+          </ul>
+          <p>
+            You will find many videos on youtube and also articles on google
+            about how to deploy next.js and express apps on vercel.
+          </p>
+        </div>
+
+        <!-- system logo -->
+        <div class="content-section" id="system-logo">
+          <h3>Change Logo</h3>
+          <ul>
+            <li>
+              <strong>Login to the system as Admin</strong>
+            </li>
+            <li class="ml-4">https://yourdomain.com/dashboard</li>
+
+            <li>
+              <strong>Go to Appearance > Header</strong>
+            </li>
+            <li>
+              <strong>Update the field with your changes</strong>
+            </li>
+            <li><strong>Click Save Changes</strong></li>
+          </ul>
+          <br />
+          <img src="./images/header.png" alt="" />
+        </div>
+
+        <!-- homepage -->
+        <div class="content-section" id="homepage">
+          <h3>Configure Homepage</h3>
+          <p>
+            Here you can configure all the sections of homepage of the website
+          </p>
+          <ul>
+            <li>
+              <strong>Login to the system as Admin</strong>
+            </li>
+            <li class="ml-4">https://yourdomain.com/dashboard</li>
+
+            <li>
+              <strong>Go to Appearance > Homepage</strong>
+            </li>
+            <li>
+              <strong>Update the field with your changes</strong>
+            </li>
+          </ul>
+          <br />
+          <img src="./images/home.png" alt="" />
+        </div>
+
+        <!-- admin logo -->
+        <div class="content-section" id="admin-logo">
+          <h3>Change Admin Logo</h3>
+          <ul>
+            <li>
+              <strong>Login to the system as Admin</strong>
+            </li>
+            <li class="ml-4">https://yourdomain.com/dashboard</li>
+
+            <li>
+              <strong>Go to System Settings > General Settings</strong>
+            </li>
+            <li>
+              <strong>Update the field with your changes</strong>
+            </li>
+            <li><strong>Click Save Changes</strong></li>
+          </ul>
+          <br />
+          <img src="./images/admin-logo.png" alt="" />
+        </div>
+
+        <!-- language -->
+
+        <!-- localizations -->
+        <div class="content-section" id="product">
+          <h3>Product CRUD (Create, Read, Update, Delete)</h3>
+          <p>
+            You can add with and without Combination product from here with all
+            necessary information. Also you can import and export bulk product
+            data from here. When you adding product select the language from
+            <strong>Select option</strong> on drawer right corner for adding
+            your preferred language. And you can update this data according your
+            need.
+          </p>
+          <ul>
+            <li>
+              <strong>Login to the system as Admin</strong>
+            </li>
+
+            <li>
+              <strong>Go to Catalog tab > Product</strong>
+            </li>
+            <li>
+              <strong>Open the drawer by clicking add product button</strong>
+            </li>
+            <li>
+              <strong>Then fill the information and save</strong>
+            </li>
+            <li>
+              <strong>To Edit Product click on Edit Icon</strong>
+            </li>
+            <li>
+              <strong>To Delete Product click on Delete Icon</strong>
+            </li>
+            <li>
+              <strong>To Bulk action click on Bulk action button</strong>
+            </li>
+            <li>
+              <strong
+                >To export different format by clicking on export button</strong
+              >
+            </li>
+            <li>
+              <strong
+                >To import different format by clicking on import button</strong
+              >
+            </li>
+          </ul>
+          <br />
+          <img src="./images/product.png" alt="" />
+        </div>
+        <div class="content-section" id="category">
+          <h3>Category CRUD (Create, Read, Update, Delete)</h3>
+          <p>
+            You can add multi-level parent category and child-category from here
+            with all necessary information. Also you can import and export bulk
+            data from here. When you adding product select the language from
+            <strong>Select option</strong> on drawer right corner for adding
+            your preferred language. And you can update this data according your
+            need.
+          </p>
+          <ul>
+            <li>
+              <strong>Login to the system as Admin</strong>
+            </li>
+
+            <li>
+              <strong>Go to Catalog tab > Category</strong>
+            </li>
+            <li>
+              <strong>Open the drawer by clicking add category button</strong>
+            </li>
+            <li>
+              <strong>Then fill the information and save</strong>
+            </li>
+            <li>
+              <strong>To Edit Category click on Edit Icon</strong>
+            </li>
+            <li>
+              <strong>To Delete Category click on Delete Icon</strong>
+            </li>
+            <li>
+              <strong>To Bulk action click on Bulk action button</strong>
+            </li>
+            <li>
+              <strong
+                >To export different format by clicking on export button</strong
+              >
+            </li>
+            <li>
+              <strong
+                >To import different format by clicking on import button</strong
+              >
+            </li>
+          </ul>
+          <br />
+          <img src="./images/category.png" alt="" />
+        </div>
+        <div class="content-section" id="attribute">
+          <h3>Attribute CRUD (Create, Read, Update, Delete)</h3>
+          <p>
+            You can add attribute from here with all necessary information. Also
+            you can import and export bulk data from here. When you adding
+            product select the language from
+            <strong>Select option</strong> on drawer right corner for adding
+            your preferred language. And you can update this data according your
+            need.
+          </p>
+          <ul>
+            <li>
+              <strong>Login to the system as Admin</strong>
+            </li>
+
+            <li>
+              <strong>Go to Catalog tab > Attribute</strong>
+            </li>
+            <li>
+              <strong>Open the drawer by clicking add attribute button</strong>
+            </li>
+            <li>
+              <strong>Then fill the information and save</strong>
+            </li>
+            <li>
+              <strong>To Edit Attribute click on Edit Icon</strong>
+            </li>
+            <li>
+              <strong>To Delete Attribute click on Delete Icon</strong>
+            </li>
+            <li>
+              <strong>To Bulk action click on Bulk action button</strong>
+            </li>
+            <li>
+              <strong
+                >To export different format by clicking on export button</strong
+              >
+            </li>
+            <li>
+              <strong
+                >To import different format by clicking on import button</strong
+              >
+            </li>
+          </ul>
+          <br />
+          <img src="./images/attribute.png" alt="" />
+        </div>
+        <div class="content-section" id="coupon">
+          <h3>Coupon CRUD (Create, Read, Update, Delete)</h3>
+          <p>
+            You can add coupon from here with all necessary information. Also
+            you can import and export bulk data from here. When you adding
+            product select the language from
+            <strong>Select option</strong> on drawer right corner for adding
+            your preferred language. And you can update this data according your
+            need.
+          </p>
+          <ul>
+            <li>
+              <strong>Login to the system as Admin</strong>
+            </li>
+
+            <li>
+              <strong>Go to Catalog tab > Coupon</strong>
+            </li>
+            <li>
+              <strong>Open the drawer by clicking add coupon button</strong>
+            </li>
+            <li>
+              <strong>Then fill the information and save</strong>
+            </li>
+            <li>
+              <strong>To Edit Coupon click on Edit Icon</strong>
+            </li>
+            <li>
+              <strong>To Delete Coupon click on Delete Icon</strong>
+            </li>
+            <li>
+              <strong>To Bulk action click on Bulk action button</strong>
+            </li>
+            <li>
+              <strong
+                >To export different format by clicking on export button</strong
+              >
+            </li>
+            <li>
+              <strong
+                >To import different format by clicking on import button</strong
+              >
+            </li>
+          </ul>
+          <br />
+          <img src="./images/coupon.png" alt="" />
+        </div>
+
+        <div class="content-section" id="language">
+          <h3>Language CRUD (Create, Read, Update, Delete)</h3>
+          <p>
+            You can add language from here with all necessary information. This
+            language will show in store language select drop-down, also in all
+            dynamic data adding drawer.
+          </p>
+          <ul>
+            <li>
+              <strong>Login to the system as Admin</strong>
+            </li>
+
+            <li>
+              <strong>Go to Catalog tab > Language</strong>
+            </li>
+            <li>
+              <strong>Open the drawer by clicking add language button</strong>
+            </li>
+            <li>
+              <strong>Then fill the information and save</strong>
+            </li>
+            <li>
+              <strong>To Edit Language click on Edit Icon</strong>
+            </li>
+            <li>
+              <strong>To Delete Language click on Delete Icon</strong>
+            </li>
+            <li>
+              <strong>To Bulk action click on Bulk action button</strong>
+            </li>
+          </ul>
+          <br />
+          <img src="./images/lang.png" alt="" />
+        </div>
+
+        <div class="content-section" id="currency">
+          <h3>Currency CRUD (Create, Read, Update, Delete)</h3>
+          <p>
+            You can add currency from here with all necessary information. This
+            currency will shown in setting currency select option.
+          </p>
+          <ul>
+            <li>
+              <strong>Login to the system as Admin</strong>
+            </li>
+
+            <li>
+              <strong>Go to Catalog tab > Currency</strong>
+            </li>
+            <li>
+              <strong>Open the drawer by clicking add currency button</strong>
+            </li>
+            <li>
+              <strong>Then fill the information and save</strong>
+            </li>
+            <li>
+              <strong>To Edit Currency click on Edit Icon</strong>
+            </li>
+            <li>
+              <strong>To Delete Currency click on Delete Icon</strong>
+            </li>
+            <li>
+              <strong>To Bulk action click on Bulk action button</strong>
+            </li>
+          </ul>
+          <br />
+          <img src="./images/currency.png" alt="" />
+        </div>
+        <div class="content-section" id="setting">
+          <h3>Add Setting</h3>
+          <p>
+            You can add setting from here with all necessary information. all
+            setting data will apply in admin and store. like currency, data
+            format, time zone. And other information will shown in customer
+            order invoice.
+          </p>
+          <ul>
+            <li>
+              <strong>Login to the system as Admin</strong>
+            </li>
+
+            <li>
+              <strong>Go to Setting tab</strong>
+            </li>
+
+            <li>
+              <strong>Then fill the information and save</strong>
+            </li>
+          </ul>
+          <br />
+          <img src="./images/setting.png" alt="" />
+        </div>
+        <div class="content-section" id="edit-profile">
+          <h3>Edit Profile</h3>
+          <p>
+            You can update admin/staff info from here with all necessary
+            information. Also can be update from staff drawer.
+          </p>
+          <ul>
+            <li>
+              <strong>Login to the system as Admin</strong>
+            </li>
+
+            <li>
+              <strong>Go to Catalog tab > Edit Profile</strong>
+            </li>
+
+            <li>
+              <strong>Then fill the information and save</strong>
+            </li>
+          </ul>
+          <br />
+          <img src="./images/setting.png" alt="" />
+        </div>
+        <div class="content-section" id="view_store">
+          <h3>To View store click on Online Store button on sidebar.</h3>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="assets/js/jquery.js"></script>
+    <script type="text/javascript" src="assets/js/script.js"></script>
+  </body>
+</html>
