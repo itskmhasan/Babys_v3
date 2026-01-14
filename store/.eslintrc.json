@@ -1,19 +1,8 @@
 {
   "env": { "browser": true, "node": true, "es6": true },
-  
   "extends": [
     "eslint:recommended",
-    "plugin:react/recommended"
-  ],
-  "parserOptions": {
-    "ecmaVersion": "latest",
-    "sourceType": "module"
-  },
-  "plugins": ["react"],
-  "settings": {
-    "react": {
-      "version": "detect"
-    }
-  
-}
+    "next",
+    "next/core-web-vitals"
+    ]
 }
