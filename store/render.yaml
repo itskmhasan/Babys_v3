@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: kachabazar-store
+    env: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NEXT_PUBLIC_API_BASE_URL
+        value: ${{NEXT_PUBLIC_API_BASE_URL}}
+      - key: NEXT_PUBLIC_API_SOCKET_URL
+        value: ${{NEXT_PUBLIC_API_SOCKET_URL}}
+      - key: NEXT_PUBLIC_STRIPE_KEY
+        value: ${{NEXT_PUBLIC_STRIPE_KEY}}
+      - key: NEXT_PUBLIC_CLOUDINARY_URL
+        value: ${{NEXT_PUBLIC_CLOUDINARY_URL}}
+      - key: NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET
+        value: ${{NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET}}
+      - key: NEXT_PUBLIC_STORE_DOMAIN
+        value: ${{NEXT_PUBLIC_STORE_DOMAIN}}
+      - key: NEXTAUTH_URL
+        value: ${{NEXTAUTH_URL}}
+      - key: NEXTAUTH_SECRET
+        value: ${{NEXTAUTH_SECRET}}
