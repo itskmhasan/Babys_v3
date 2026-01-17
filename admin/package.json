@@ -101,7 +101,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "test": "vitest",
-    "serve": "serve -s dist"
+    "start": "serve -s dist"
   },
   "author": "HtmlLover",
   "license": "Regular",
