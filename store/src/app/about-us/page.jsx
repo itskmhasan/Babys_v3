@@ -7,8 +7,6 @@ import PageHeader from "@components/header/PageHeader";
 import CMSkeletonTwo from "@components/preloader/CMSkeleton";
 import { getStoreCustomizationSetting } from "@services/SettingServices";
 
-export const dynamic = "force-dynamic";
-
 export const metadata = {
   title: "About Us | Kachabazar",
   description:
