@@ -7,6 +7,8 @@ import PageHeader from "@components/header/PageHeader";
 import FaqContent from "@components/faq/FaqContent";
 import { getStoreCustomizationSetting } from "@services/SettingServices";
 
+export const dynamic = "force-dynamic";
+
 export const metadata = {
   title: "FAQ | Kachabazar",
   description:
