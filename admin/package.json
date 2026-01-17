@@ -100,7 +100,8 @@
     "dev": "vite --force --port 4100",
     "build": "vite build",
     "preview": "vite preview",
-        "test": "vitest"
+    "test": "vitest",
+    "serve": "serve -s dist"
   },
   "author": "HtmlLover",
   "license": "Regular",
