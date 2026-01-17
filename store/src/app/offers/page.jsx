@@ -1,50 +1,39 @@
-"use client";
-
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 //internal imports
 import Coupon from "@components/coupon/Coupon";
 import PageHeader from "@components/header/PageHeader";
-import { baseURL, handleResponse } from "@services/CommonService";
+import { getStoreCustomizationSetting } from "@services/SettingServices";
 
-const Offers = () => {
-  const [setting, setSetting] = useState(null);
-  const [loading, setLoading] = useState(true);
+export const metadata = {
+  title: "Offers | Kachabazar",
+  description:
+    "Discover the latest offers and discounts available at Kachabazar.",
+  keywords: ["offers", "discounts", "promotions", "sales"],
+  // You can also add more advanced metadata here
+  openGraph: {
+    title: "Offers | Kachabazar",
+    description:
+      "Discover the latest offers and discounts available at Kachabazar.",
+    url: "https://kachabazar-store-nine.vercel.app/offers",
+    images: [
+      {
+        url: "https://kachabazar-store-nine.vercel.app/og-image.jpg",
+        width: 800,
+        height: 600,
+        alt: "Offers Page",
+      },
+    ],
+  },
+};
 
-  useEffect(() => {
-    const fetchSetting = async () => {
-      try {
-        const response = await fetch(`${baseURL}/setting/store/customization`, {
-          cache: "no-store",
-        });
-        const data = await handleResponse(response);
-        setSetting(data);
-      } catch (error) {
-        console.error("Error fetching settings:", error);
-        setSetting(null);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchSetting();
-  }, []);
-
-  if (loading) {
-    return (
-      <div className="dark:bg-zinc-900 min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <p className="text-gray-600 dark:text-gray-400">Loading...</p>
-        </div>
-      </div>
-    );
-  }
-
+const Offers = async () => {
+  const { storeCustomizationSetting } = await getStoreCustomizationSetting();
   return (
     <div className="dark:bg-zinc-900">
       <PageHeader
-        headerBg={setting?.offers?.header_bg}
-        title={setting?.offers?.title || "Offers"}
+        headerBg={storeCustomizationSetting?.offers?.header_bg}
+        title={storeCustomizationSetting?.offers?.title}
       />
 
       <div className="mx-auto max-w-screen-2xl px-4 py-10 lg:py-20 sm:px-10">

@@ -41,43 +41,43 @@ const Sidebar = () => {
   };
 
   const userSidebar = [
-  {
-    id: "dashboard",
-    title: showingTranslateValue(dashboard?.dashboard_title),
-    href: "/user/dashboard",
-    icon: Grid,
-  },
-  {
-    id: "orders",
-    title: showingTranslateValue(dashboard?.my_order),
-    href: "/user/my-orders",
-    icon: List,
-  },
-  {
-    id: "reviews",
-    title: "My Review",
-    href: "/user/my-reviews",
-    icon: Star,
-  },
-  {
-    id: "account",
-    title: "My Account",
-    href: "/user/my-account",
-    icon: User,
-  },
-  {
-    id: "update-profile",
-    title: showingTranslateValue(dashboard?.update_profile),
-    href: "/user/update-profile",
-    icon: Settings,
-  },
-  {
-    id: "change-password",
-    title: showingTranslateValue(dashboard?.change_password),
-    href: "/user/change-password",
-    icon: File,
-  },
-];
+    {
+      title: showingTranslateValue(dashboard?.dashboard_title),
+      href: "/user/dashboard",
+      icon: Grid,
+    },
+
+    {
+      title: showingTranslateValue(dashboard?.my_order),
+      href: "/user/my-orders",
+      icon: List,
+    },
+    {
+      title: "My Review",
+      href: "/user/my-reviews",
+      icon: Star,
+    },
+    {
+      title: "My Account",
+      href: "/user/my-account",
+      icon: User,
+    },
+    // {
+    //   title: "Shipping Address",
+    //   href: "/user/shipping-address",
+    //   icon: Home,
+    // },
+    {
+      title: showingTranslateValue(dashboard?.update_profile),
+      href: "/user/update-profile",
+      icon: Settings,
+    },
+    {
+      title: showingTranslateValue(dashboard?.change_password),
+      href: "/user/change-password",
+      icon: File,
+    },
+  ];
 
   return (
     <div className="mx-auto max-w-screen-2xl px-3 sm:px-10">
@@ -123,7 +123,7 @@ const Sidebar = () => {
           <div className="mt-1 bg-white rounded-md border border-gray-200">
             {userSidebar?.map((item) => (
               <Link
-                key={item.id}
+                key={item.title}
                 href={item.href}
                 className="flex items-center px-4 py-3 hover:bg-gray-50 border-b border-gray-100 text-sm font-medium text-gray-600 cursor-pointer"
                 onClick={() => setIsDropdownOpen(false)}
@@ -188,7 +188,7 @@ const Sidebar = () => {
               return (
                 <Link
                   href={item.href}
-                  key={item.id}
+                  key={item.title}
                   className={`inline-flex items-center rounded-md hover:bg-gray-100 py-3 px-4 text-sm font-medium w-full mb-1 transition-colors ${
                     isActive
                       ? "text-emerald-600 bg-emerald-100"
