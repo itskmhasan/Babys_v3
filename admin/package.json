@@ -5,6 +5,7 @@
   "private": true,
   "type": "module",
   "dependencies": {
+    "serve": "^14.2.0",
     "@cloudinary/react": "^1.11.2",
     "@cloudinary/url-gen": "^1.10.1",
     "@headlessui/react": "^1.7.15",
@@ -99,13 +100,12 @@
     "dev": "vite --force --port 4100",
     "build": "vite build",
     "preview": "vite preview",
-    "start": "npm run build && serve -s build -l 3000",
+    "start": "npm install --only=production && npm run build && serve -s build -l 3000",
     "test": "vitest"
   },
   "author": "HtmlLover",
   "license": "Regular",
   "devDependencies": {
-    "serve": "^14.2.0",
     "@types/react": "^18.0.37",
     "@types/react-dom": "^18.0.11",
     "@vitejs/plugin-react": "^4.3.4",
