@@ -7,7 +7,7 @@ import Image from "next/image";
 import OrderTable from "@components/order/OrderTable";
 import useUtilsFunction from "@hooks/useUtilsFunction";
 
-const Invoice = ({ data, printRef, globalSetting }) => {
+const Invoice = ({ data, printRef, globalSetting, storeCustomization }) => {
   // console.log("invoice data", data);
   const currency = globalSetting?.default_currency || "$";
 
@@ -44,12 +44,21 @@ const Invoice = ({ data, printRef, globalSetting }) => {
           <div className="lg:text-right text-left">
             <h2 className="text-lg font-semibold mt-4 lg:mt-0 md:mt-0">
               <Link href="/">
-                <Image
-                  width={110}
-                  height={40}
-                  src="/logo/logo-color.svg"
-                  alt="logo"
-                />
+                {storeCustomization?.navbar?.logo && storeCustomization.navbar.logo.trim() !== "" ? (
+                  <Image
+                    width={110}
+                    height={40}
+                    src={storeCustomization.navbar.logo}
+                    alt={globalSetting?.address || "Logo"}
+                  />
+                ) : (
+                  <Image
+                    width={110}
+                    height={40}
+                    src={globalSetting?.logo || "/logo/logo-color.svg"}
+                    alt={globalSetting?.address || "Logo"}
+                  />
+                )}
               </Link>
             </h2>
             <p className="text-sm text-gray-500">

@@ -70,8 +70,8 @@ const ProductReviews = ({ reviews }) => {
               >
                 <div className="flex-none py-6">
                   <Image
-                    src={review.user.image || "/avatar-placeholder.png"}
-                    alt={review.user.name[0]}
+                    src={review.user?.image || "/avatar-placeholder.png"}
+                    alt={review.user?.name?.[0] || "User"}
                     width={42}
                     height={42}
                     className="rounded-full"
@@ -79,7 +79,7 @@ const ProductReviews = ({ reviews }) => {
                 </div>
                 <div className="py-6 w-full">
                   <h3 className="font-medium mb-1 text-gray-900">
-                    {review?.user?.name}
+                    {review?.user?.name || "Anonymous"}
                   </h3>
                   <Rating
                     size="xs"
@@ -91,23 +91,25 @@ const ProductReviews = ({ reviews }) => {
                   </span>
 
                   <p className="text-sm text-gray-700 mt-2">{review.comment}</p>
-                  {review.images.length > 0 && (
+                  {review.images?.length > 0 && (
                     <div className="flex gap-1 flex-wrap mt-3">
-                      {review.images.map((img, idx) => (
-                        <div
-                          key={idx}
-                          className="relative w-16 h-16 cursor-pointer"
-                        >
-                          <Image
-                            src={img}
-                            alt="review image"
-                            layout="fill"
-                            objectFit="cover"
-                            className="rounded-md border"
-                            onClick={() => openZoom(review.images, idx)}
-                          />
-                        </div>
-                      ))}
+                      {review.images
+                        .filter((img) => img && img.trim() !== "")
+                        .map((img, idx) => (
+                          <div
+                            key={idx}
+                            className="relative w-16 h-16 cursor-pointer"
+                          >
+                            <Image
+                              src={img}
+                              alt="review image"
+                              width={64}
+                              height={64}
+                              className="rounded-md border object-cover"
+                              onClick={() => openZoom(review.images.filter((i) => i && i.trim() !== ""), idx)}
+                            />
+                          </div>
+                        ))}
                     </div>
                   )}
                 </div>

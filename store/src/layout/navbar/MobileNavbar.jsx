@@ -58,11 +58,19 @@ const MobileNavbar = ({ open, setOpen }) => {
 
                 <div className="flex px-2 lg:px-0">
                   <Link href="/" className="flex flex-shrink-0 items-center">
-                    <img
-                      className="h-8 w-auto"
-                      src="/logo/logo-light.svg"
-                      alt="Kachabazar"
-                    />
+                    {globalSetting?.logo && globalSetting.logo.trim() !== "" ? (
+                      <img
+                        className="h-8 w-auto"
+                        src={globalSetting.logo}
+                        alt={globalSetting?.address || "Logo"}
+                      />
+                    ) : (
+                      <img
+                        className="h-8 w-auto"
+                        src="/logo/logo-light.svg"
+                        alt="Logo"
+                      />
+                    )}
                   </Link>
                 </div>
               </div>

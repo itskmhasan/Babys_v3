@@ -44,7 +44,7 @@ const DownloadPrintButton = ({ data }) => {
         </label>
       </div>
 
-      <Invoice data={data} printRef={targetRef} globalSetting={globalSetting} />
+      <Invoice data={data} printRef={targetRef} globalSetting={globalSetting} storeCustomization={storeCustomization} />
 
       <div className="bg-white rounded-lg shadow-sm">
         <div className="bg-white p-8 rounded-b-xl">
