@@ -31,7 +31,7 @@ const generateAccessToken = (user) => {
       image: user.image,
     },
     process.env.JWT_SECRET,
-    { expiresIn: process.env.JWT_ACCESS_LIFETIME || "15m" } // short-lived
+    { expiresIn: process.env.JWT_ACCESS_LIFETIME || "24h" } // short-lived
   );
 };
 
@@ -39,7 +39,7 @@ const generateRefreshToken = (user) => {
   return jwt.sign(
     { id: user._id },
     process.env.JWT_REFRESH_SECRET,
-    { expiresIn: process.env.JWT_REFRESH_LIFETIME || "7d" } // longer-lived
+    { expiresIn: process.env.JWT_REFRESH_LIFETIME || "30d" } // longer-lived
   );
 };
 
@@ -52,7 +52,7 @@ const tokenForVerify = (user) => {
       password: user.password,
     },
     process.env.JWT_SECRET_FOR_VERIFY,
-    { expiresIn: "15m" }
+    { expiresIn: "24h" }
   );
 };
 
@@ -61,12 +61,26 @@ const isAuth = async (req, res, next) => {
   // console.log("authorization", req.headers);
   console.log(`🔍isAuth ${req.method} : ${req.originalUrl}`);
   try {
+    if (!authorization) {
+      return res.status(401).send({
+        message: "Authorization header missing",
+      });
+    }
+    
     const token = authorization.split(" ")[1];
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     req.user = decoded;
     next();
   } catch (err) {
-    console.log("error on isAuth", err);
+    console.log("error on isAuth", err.message);
+
+    // If token expired, allow frontend to refresh
+    if (err.name === "TokenExpiredError") {
+      return res.status(401).send({
+        message: "Token expired",
+        code: "TOKEN_EXPIRED",
+      });
+    }
 
     res.status(401).send({
       message: err.message,
