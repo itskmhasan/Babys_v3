@@ -36,7 +36,7 @@ const MobileFooter = ({ globalSetting, categories, categoryError }) => {
           categoryError={categoryError}
         />
       </div>
-      <footer className="sm:hidden fixed z-30 bottom-0 bg-emerald-500 flex items-center justify-between w-full h-16 px-3 sm:px-10">
+      <footer className="sm:hidden fixed z-30 bottom-0 primary-bg flex items-center justify-between w-full h-16 px-3 sm:px-10">
         <button
           aria-label="Bar"
           onClick={() => setOpenPageDrawer(true)}

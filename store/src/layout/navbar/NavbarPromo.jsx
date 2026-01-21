@@ -45,13 +45,13 @@ const NavbarPromo = ({ languages, categories, categoryError }) => {
                   <Popover as="nav" className="md:flex space-x-10 items-center">
                     {navbar?.categories_menu_status && (
                       <Popover className="relative ">
-                        <PopoverButton className="group inline-flex items-center py-2 hover:text-emerald-600 focus:outline-none">
+                        <PopoverButton className="group inline-flex items-center py-2 primary-hover focus:outline-none">
                           <span className=" text-sm font-medium">
                             {showingTranslateValue(navbar?.categories)}
                           </span>
 
                           <ChevronDownIcon
-                            className="ml-1 h-3 w-3 group-hover:text-emerald-600"
+                            className="ml-1 h-3 w-3 group-primary-hover"
                             aria-hidden="true"
                           />
                         </PopoverButton>
@@ -81,7 +81,7 @@ const NavbarPromo = ({ languages, categories, categoryError }) => {
                       <Link
                         href="/about-us"
                         onClick={() => setIsLoading(!isLoading)}
-                        className=" mx-4 py-2 text-sm font-medium hover:text-emerald-600"
+                        className=" mx-4 py-2 text-sm font-medium primary-hover"
                       >
                         {showingTranslateValue(navbar?.about_us)}
                       </Link>
@@ -91,17 +91,17 @@ const NavbarPromo = ({ languages, categories, categoryError }) => {
                       <Link
                         onClick={() => setIsLoading(!isLoading)}
                         href="/contact-us"
-                        className="mx-4 py-2 text-sm font-medium hover:text-emerald-600"
+                        className="mx-4 py-2 text-sm font-medium primary-hover"
                       >
                         {showingTranslateValue(navbar?.contact_us)}
                       </Link>
                     )}
 
                     <Popover className="relative">
-                      <PopoverButton className="group inline-flex items-center py-2 text-sm font-medium hover:text-emerald-600 focus:outline-none">
+                      <PopoverButton className="group inline-flex items-center py-2 text-sm font-medium primary-hover focus:outline-none">
                         <span>{showingTranslateValue(navbar?.pages)}</span>
                         <ChevronDownIcon
-                          className="ml-1 h-3 w-3 group-hover:text-emerald-600"
+                          className="ml-1 h-3 w-3 group-primary-hover"
                           aria-hidden="true"
                         />
                       </PopoverButton>
@@ -118,26 +118,26 @@ const NavbarPromo = ({ languages, categories, categoryError }) => {
                           <div className="rounded-lg shadow-lg overflow-y-scroll flex-grow scrollbar-hide w-full h-full">
                             <div className="relative grid gap-2 px-6 py-6">
                               {navbar?.offers_menu_status && (
-                                <span className="p-2 items-center rounded-md hover:bg-gray-50 w-full hover:text-emerald-600">
+                                <span className="p-2 items-center rounded-md hover:bg-gray-50 w-full primary-hover">
                                   <div className="w-full flex">
                                     <Gift className="my-auto h-5 w-5 text-gray-700" />
                                     <Link
                                       href="/offers"
                                       onClick={() => setIsLoading(!isLoading)}
-                                      className="relative inline-flex items-center  ml-2 py-0 rounded text-sm font-medium  hover:text-emerald-600"
+                                      className="relative inline-flex items-center  ml-2 py-0 rounded text-sm font-medium  primary-hover"
                                     >
                                       {showingTranslateValue(navbar?.offers)}
                                     </Link>
                                   </div>
                                 </span>
                               )}
-                              <span className="p-2 items-center rounded-md hover:bg-gray-50 w-full hover:text-emerald-600">
+                              <span className="p-2 items-center rounded-md hover:bg-gray-50 w-full primary-hover">
                                 <div className="w-full flex">
                                   <ShoppingBag className="my-auto h-5 w-5 text-gray-700" />
                                   <Link
                                     href="/checkout"
                                     onClick={() => setIsLoading(!isLoading)}
-                                    className="relative inline-flex items-center  ml-2 py-0 rounded text-sm font-medium  hover:text-emerald-600"
+                                    className="relative inline-flex items-center  ml-2 py-0 rounded text-sm font-medium  primary-hover"
                                   >
                                     {showingTranslateValue(navbar?.checkout)}
                                   </Link>

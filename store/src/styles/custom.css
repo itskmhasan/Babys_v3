@@ -19,6 +19,8 @@
   --popover-foreground: oklch(0.129 0.042 264.695);
   --primary: oklch(0.208 0.042 265.755);
   --primary-foreground: oklch(0.984 0.003 247.858);
+  --theme-primary: #ef7fc9;
+  --theme-primary-dark: #dd5fa8;
   --secondary: oklch(0.968 0.007 247.896);
   --secondary-foreground: oklch(0.208 0.042 265.755);
   --muted: oklch(0.968 0.007 247.896);
@@ -914,4 +916,25 @@ p:not(:last-of-type) {
 /* modal width */
 .react-responsive-modal-modal {
   width: 1800px !important;
+}
+
+/* Primary Theme Color Utilities */
+.primary-bg {
+  background-color: var(--theme-primary);
+}
+
+.primary-text {
+  color: var(--theme-primary);
+}
+
+.primary-hover:hover {
+  color: var(--theme-primary-dark);
+}
+
+.group-primary-hover:group-hover {
+  color: var(--theme-primary-dark);
+}
+
+.primary-border {
+  border-color: var(--theme-primary);
 }

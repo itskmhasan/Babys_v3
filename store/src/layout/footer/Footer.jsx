@@ -41,7 +41,7 @@ const Footer = async ({ error, storeCustomizationSetting }) => {
                 <li className="flex items-baseline">
                   <Link
                     href={`${footer?.block1_sub_link1}`}
-                    className="text-gray-600 inline-block w-full hover:text-emerald-500"
+                    className="text-gray-600 inline-block w-full primary-hover"
                   >
                     <CMSkeletonTwo
                       count={1}
@@ -55,7 +55,7 @@ const Footer = async ({ error, storeCustomizationSetting }) => {
                 <li className="flex items-baseline">
                   <Link
                     href={`${footer?.block1_sub_link2}`}
-                    className="text-gray-600 inline-block w-full hover:text-emerald-500"
+                    className="text-gray-600 inline-block w-full primary-hover"
                   >
                     <CMSkeletonTwo
                       count={1}
@@ -69,7 +69,7 @@ const Footer = async ({ error, storeCustomizationSetting }) => {
                 <li className="flex items-baseline">
                   <Link
                     href={`${footer?.block1_sub_link3}`}
-                    className="text-gray-600 inline-block w-full hover:text-emerald-500"
+                    className="text-gray-600 inline-block w-full primary-hover"
                   >
                     {showingTranslateValue(
                       storeCustomizationSetting?.footer_block_one_link_three_title
@@ -86,7 +86,7 @@ const Footer = async ({ error, storeCustomizationSetting }) => {
                 <li className="flex items-baseline">
                   <Link
                     href={`${footer?.block1_sub_link4}`}
-                    className="text-gray-600 inline-block w-full hover:text-emerald-500"
+                    className="text-gray-600 inline-block w-full primary-hover"
                   >
                     <CMSkeletonTwo
                       count={1}
@@ -372,7 +372,7 @@ const Footer = async ({ error, storeCustomizationSetting }) => {
                   <p className="text-base leading-7 font-medium block">
                     Call Us
                   </p>
-                  <h5 className="text-2xl font-bold text-emerald-500 leading-7">
+                  <h5 className="text-2xl font-bold primary-text leading-7">
                     {/* +012345-67900 */}
                     {footer?.bottom_contact}
                   </h5>
@@ -408,7 +408,7 @@ const Footer = async ({ error, storeCustomizationSetting }) => {
             href="https://themeforest.net/user/htmllover"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-emerald-500"
+            className="primary-text"
           >
             HtmlLover
           </Link>

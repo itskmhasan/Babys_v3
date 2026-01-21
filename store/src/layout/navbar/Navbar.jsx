@@ -23,7 +23,7 @@ const Navbar = async ({ globalSetting, storeCustomization }) => {
 
       <TopNavbar storeCustomization={storeCustomization} />
 
-      <header as="header" className="bg-emerald-500 shadow">
+      <header as="header" className="primary-bg shadow">
         <div className="max-w-screen-2xl mx-auto px-3 sm:px-10 lg:divide-y lg:divide-gray-200">
           <div className="relative flex h-20 justify-between">
             <div className="relative z-10 hidden sm:flex px-2 lg:px-0">
