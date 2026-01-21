@@ -35,7 +35,7 @@ const CartItem = ({ item, currency }) => {
               {item.title}
             </Link>
             <span className="text-xs text-gray-400 mb-1">
-              Item Price ${item.price}
+              Item Price BDT{item.price}
             </span>
           </div>
           <div className="ml-4 flow-root shrink-0">

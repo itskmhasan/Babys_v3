@@ -410,7 +410,7 @@ const Footer = async ({ error, storeCustomizationSetting }) => {
             rel="noopener noreferrer"
             className="primary-text"
           >
-            HtmlLover
+            Baby's
           </Link>
           , All rights reserved.
         </p>

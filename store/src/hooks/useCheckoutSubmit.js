@@ -424,7 +424,7 @@ const useCheckoutSubmit = ({ shippingAddress }) => {
 
       if (total < result[0]?.minimumAmount) {
         notifyError(
-          `Minimum ${result[0].minimumAmount} USD required for Apply this coupon!`
+          `Minimum ${result[0].minimumAmount} ${currency} required for Apply this coupon!`
         );
         return;
       } else {
