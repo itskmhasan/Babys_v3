@@ -77,7 +77,7 @@ const isAuth = async (req, res, next) => {
     // If token expired, allow frontend to refresh
     if (err.name === "TokenExpiredError") {
       return res.status(401).send({
-        message: "Token expired",
+        message: "Session expired || Login again",
         code: "TOKEN_EXPIRED",
       });
     }
