@@ -6,7 +6,7 @@ import CMSkeletonTwo from "@components/preloader/CMSkeleton";
 import { getStoreCustomizationSetting } from "@services/SettingServices";
 
 export const metadata = {
-  title: "Terms and Conditions | Babys | Best Shop for Moms and Babies",,
+  title: "Terms and Conditions | Babys | Best Shop for Moms and Babies",
   description:
     "Read our terms and conditions to understand your rights and obligations.",
   keywords: ["terms", "conditions", "user rights", "legal"],
