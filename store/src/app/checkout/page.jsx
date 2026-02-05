@@ -10,7 +10,7 @@ export const metadata = {
   keywords: ["checkout", "payment", "shipping", "order"],
   // You can also add more advanced metadata here
   openGraph: {
-    title: "Checkout | Kachabazar",
+    title: "Checkout | Babys | Best Shop for Moms and Babies",
     description:
       "Complete your purchase securely and quickly with our checkout process.",
     url: "https://kachabazar-store-nine.vercel.app/checkout",

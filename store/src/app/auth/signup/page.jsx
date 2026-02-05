@@ -34,7 +34,7 @@ const SignUp = () => {
               <div className="overflow-hidden mx-auto">
                 <div className="text-center">
                   <h2 className="text-2xl font-semibold mb-1">
-                    Welcome to Kachabazar Store
+                    Welcome to Babys | Best Shop for Moms and Babies
                   </h2>
                   <p className="text-sm text-gray-600 mt-1 mb-6">
                     Get started - it's free.

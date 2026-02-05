@@ -24,7 +24,7 @@ const DefaultSeo = () => {
         url: globalSetting?.meta_url || "https://kachabazar-store.vercel.app/",
         site_name:
           globalSetting?.meta_title ||
-          "KachaBazar - React Grocery & Organic Food Store e-commerce Template",
+          "Babys | Best Shop for Moms and Babies - e-commerce Store",
       }}
       twitter={{
         handle: "@handle",

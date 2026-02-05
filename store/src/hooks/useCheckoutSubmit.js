@@ -324,7 +324,7 @@ const useCheckoutSubmit = ({ shippingAddress }) => {
         key: storeSetting?.razorpay_id,
         amount,
         currency,
-        name: "Kachabazar Store",
+        name: "Babys | Best Shop for Moms and Babies",
         description: "This is the total cost of your purchase",
         order_id: id,
         handler: async (response) => {

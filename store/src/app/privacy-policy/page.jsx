@@ -7,13 +7,13 @@ import CMSkeletonTwo from "@components/preloader/CMSkeleton";
 import { getStoreCustomizationSetting } from "@services/SettingServices";
 
 export const metadata = {
-  title: "Privacy Policy | Kachabazar",
+  title: "Privacy Policy | Babys | Best Shop for Moms and Babies",
   description:
     "Learn about our privacy practices and how we protect your information.",
   keywords: ["privacy", "policy", "data protection", "user rights"],
   // You can also add more advanced metadata here
   openGraph: {
-    title: "Privacy Policy | Kachabazar",
+    title: "Privacy Policy | Babys | Best Shop for Moms and Babies",
     description:
       "Learn about our privacy practices and how we protect your information.",
     url: "https://kachabazar-store-nine.vercel.app/privacy-policy",
