@@ -16,7 +16,7 @@ const Uploader = ({
   setImageUrl,
   imageUrl,
   product,
-  folder = "kachabazar",
+  folder = "babys",
   targetWidth = 800, // Set default fixed width
   targetHeight = 800, // Set default fixed height
 }) => {

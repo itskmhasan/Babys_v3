@@ -433,7 +433,7 @@ export const storeCustomization = {
       de: "Kontinuierliche Umsetzung nahtloser Anforderungen für Best-of-Breed-Best Practices. Phosfluoreszierend erleichtert parallele Anwendungen mit einzigartigen Anforderungen. Plagiieren Sie proaktiv funktionalisierte Ergebnisse mit kostengünstigen Lösungen. Nutzen Sie gemeinsam webbasierte Infomediaries anstelle verschiedener Testverfahren.",
     },
     faq_six: {
-      en: "What are the benefits of using Babys | Best Shop for Moms and Babies affliate?",,
+      en: "What are the benefits of using Babys | Best Shop for Moms and Babies affliate?",
       de: "Welche Vorteile bietet die Nutzung eines Cloud Clever-Partners?",
     },
     description_six: {
