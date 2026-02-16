@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useCart } from "react-use-cart";
-import { FiHome, FiUser, FiShoppingCart, FiAlignLeft } from "react-icons/fi";
+import { FiHome, FiUser, FiShoppingCart, FiAlignLeft, FiHeart, FiActivity } from "react-icons/fi";
 
 //internal imports
 import { getUserSession } from "@lib/auth-client";
@@ -36,7 +36,7 @@ const MobileFooter = ({ globalSetting, categories, categoryError }) => {
           categoryError={categoryError}
         />
       </div>
-      <footer className="sm:hidden fixed z-30 bottom-0 primary-bg flex items-center justify-between w-full h-16 px-3 sm:px-10">
+      <footer className="sm:hidden fixed z-30 bottom-0 primary-bg flex items-center justify-between w-full h-16 px-1 sm:px-10 gap-1">
         <button
           aria-label="Bar"
           onClick={() => setOpenPageDrawer(true)}
@@ -54,6 +54,30 @@ const MobileFooter = ({ globalSetting, categories, categoryError }) => {
         >
           <FiHome className="w-6 h-6 drop-shadow-xl" />
         </Link>
+
+        {/* Pregnancy Calculator - Highlighted */}
+        <Link
+          href="/pregnancy-calculator"
+          className="flex items-center justify-center relative group"
+          aria-label="Pregnancy Calculator"
+        >
+          <div className="absolute inset-0 bg-gradient-to-r from-pink-400 to-rose-400 rounded-full blur-md opacity-75 group-hover:opacity-100 transition"></div>
+          <div className="relative bg-white rounded-full w-10 h-10 flex items-center justify-center shadow-lg">
+            <FiHeart className="w-5 h-5 text-pink-500" />
+          </div>
+        </Link>
+
+        {/* BMI Calculator 
+        <Link
+          href="/bmi-calculator"
+          className="flex items-center justify-center relative group"
+          aria-label="BMI Calculator"
+        >
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full blur-md opacity-75 group-hover:opacity-100 transition"></div>
+          <div className="relative bg-white rounded-full w-10 h-10 flex items-center justify-center shadow-lg">
+            <FiActivity className="w-5 h-5 text-blue-500" />
+          </div>
+        </Link>*/}
 
         <button
           onClick={() => setOpenCartDrawer(!openCartDrawer)}

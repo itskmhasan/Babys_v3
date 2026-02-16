@@ -104,7 +104,7 @@ const PagesDrawer = ({ open, setOpen, categories, categoryError, globalSetting }
                         )
                       }
                     >
-                      Pages
+                      Pregnancy
                     </Tab>
                   </TabList>
                 </div>
@@ -126,21 +126,52 @@ const PagesDrawer = ({ open, setOpen, categories, categoryError, globalSetting }
 
                   {/* Pages Panel */}
                   <TabPanel>
-                    <div className="space-y-6">
-                      {pages.map((page) => (
-                        <span key={page.title} className="flow-root">
-                          <div className="w-full flex pl-2">
-                            <page.icon className="my-auto w-4 h-4 text-gray-700 hover:text-gray-900 mr-2" />
-                            <Link
-                              href={page.href}
-                              onClick={() => setOpen(false)}
-                              className="block font-medium text-sm text-gray-700 hover:text-gray-900"
-                            >
-                              {page.title}
-                            </Link>
+                    <div className="space-y-4">
+                      {/* Pregnancy Calculator - Highlighted */}
+                      {pages.find(p => p.title === 'Pregnancy Calculator') && (
+                        <Link
+                          href="/pregnancy-calculator"
+                          onClick={() => setOpen(false)}
+                          className="block w-full bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white font-bold py-3 px-4 rounded-lg transition transform hover:scale-105 shadow-lg"
+                        >
+                          <div className="flex items-center justify-center gap-2">
+                            <span className="text-lg">❤️</span>
+                            <span>Pregnancy Calculator</span>
                           </div>
-                        </span>
-                      ))}
+                        </Link>
+                      )}
+
+                      {/* BMI Calculator - Highlighted */}
+                      {pages.find(p => p.title === 'BMI Calculator') && (
+                        <Link
+                          href="/bmi-calculator"
+                          onClick={() => setOpen(false)}
+                          className="block w-full bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white font-bold py-3 px-4 rounded-lg transition transform hover:scale-105 shadow-lg"
+                        >
+                          <div className="flex items-center justify-center gap-2">
+                            <span className="text-lg">⚖️</span>
+                            <span>BMI Calculator</span>
+                          </div>
+                        </Link>
+                      )}
+                      
+                      {/* Other Pages 
+                      <div className="space-y-3">
+                        {pages.filter(page => page.title !== 'Pregnancy Calculator' && page.title !== 'BMI Calculator').map((page) => (
+                          <span key={page.title} className="flow-root">
+                            <div className="w-full flex pl-2">
+                              <page.icon className="my-auto w-4 h-4 text-gray-700 hover:text-gray-900 mr-2" />
+                              <Link
+                                href={page.href}
+                                onClick={() => setOpen(false)}
+                                className="block font-medium text-sm text-gray-700 hover:text-gray-900"
+                              >
+                                {page.title}
+                              </Link>
+                            </div>
+                          </span>
+                        ))}
+                      </div>*/}
                     </div>
                   </TabPanel>
                 </TabPanels>

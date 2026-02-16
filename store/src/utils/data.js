@@ -18,6 +18,8 @@ import {
   FiPhoneIncoming,
   FiFrown,
   FiShield,
+  FiHeart,
+  FiActivity,
 } from "react-icons/fi";
 
 const pages = [
@@ -26,6 +28,16 @@ const pages = [
   //   href: '/user/dashboard',
   //   icon: FiUser,
   // },
+  {
+    title: "Pregnancy Calculator",
+    href: "/pregnancy-calculator",
+    icon: FiHeart,
+  },
+  {
+    title: "BMI Calculator",
+    href: "/bmi-calculator",
+    icon: FiActivity,
+  },
   {
     title: "Offers",
     href: "/offers",
