@@ -5,7 +5,8 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useCart } from "react-use-cart";
-import { FiHome, FiUser, FiShoppingCart, FiAlignLeft, FiHeart, FiActivity } from "react-icons/fi";
+import { FiHome, FiUser, FiShoppingCart, FiAlignLeft, FiActivity } from "react-icons/fi";
+import { MdPregnantWoman } from "react-icons/md";
 
 //internal imports
 import { getUserSession } from "@lib/auth-client";
@@ -63,7 +64,7 @@ const MobileFooter = ({ globalSetting, categories, categoryError }) => {
         >
           <div className="absolute inset-0 bg-gradient-to-r from-pink-400 to-rose-400 rounded-full blur-md opacity-75 group-hover:opacity-100 transition"></div>
           <div className="relative bg-white rounded-full w-10 h-10 flex items-center justify-center shadow-lg">
-            <FiHeart className="w-5 h-5 text-pink-500" />
+            <MdPregnantWoman className="w-5 h-5 text-pink-500" />
           </div>
         </Link>
 

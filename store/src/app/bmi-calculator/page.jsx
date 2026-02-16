@@ -84,6 +84,9 @@ export default function BMICalculator() {
       recommendations,
       heightInMeters: heightInMeters.toFixed(2),
       weightInKg: weightInKg.toFixed(1),
+      rawHeightInput: height,
+      rawWeightInput: weight,
+      rawUnit: unit,
     });
   };
 
@@ -92,6 +95,97 @@ export default function BMICalculator() {
     setWeight('');
     setUnit('metric');
     setResults(null);
+  };
+
+  // Build and download a PNG card from an SVG representation of the result
+  const downloadResultCard = () => {
+    if (!results) return;
+
+    // SVG canvas size for high-res output
+    const W = 1200;
+    const H = 800;
+
+    // compute needle position using same mapping as on-screen
+    const raw = parseFloat(results.bmi);
+    const minBMI = 12;
+    const maxBMI = 40;
+    const bmiVal = Math.max(minBMI, Math.min(maxBMI, raw));
+    const pct = (bmiVal - minBMI) / (maxBMI - minBMI);
+    const angleDeg = 180 - pct * 180;
+    const angle = (angleDeg * Math.PI) / 180;
+    const cx = 600; // center in large SVG
+    const cy = 520;
+    const len = 360;
+    const tipX = cx + len * Math.cos(angle);
+    const tipY = cy - len * Math.sin(angle);
+
+    const color = results.category === 'Underweight' ? '#3b82f6' : results.category === 'Normal Weight' ? '#22c55e' : results.category === 'Overweight' ? '#eab308' : '#ef4444';
+
+    // create SVG string (simple card with gauge + text)
+    const svg = `<?xml version="1.0" encoding="UTF-8"?>
+    <svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">
+      <rect width="100%" height="100%" fill="#f8fafc"/>
+      <g transform="translate(0,0)">
+        <rect x="60" y="60" width="1080" height="680" rx="28" fill="#fff" stroke="#e6eef8" stroke-width="2"/>
+
+        <text x="120" y="140" font-size="36" fill="#0f172a" font-weight="700">BMI Result</text>
+        <text x="120" y="190" font-size="28" fill="#475569">${results.category} · ${results.bmi} kg/m²</text>
+
+        <!-- Gauge arcs -->
+        <g transform="translate(${cx - 250},${cy - 250})">
+          <path d="M50 450 A200 200 0 0 1 120 70" fill="none" stroke="#3b82f6" stroke-width="60" stroke-linecap="round" />
+          <path d="M120 70 A200 200 0 0 1 250 30" fill="none" stroke="#22c55e" stroke-width="60" stroke-linecap="round" />
+          <path d="M250 30 A200 200 0 0 1 380 70" fill="none" stroke="#eab308" stroke-width="60" stroke-linecap="round" />
+          <path d="M380 70 A200 200 0 0 1 450 450" fill="none" stroke="#ef4444" stroke-width="60" stroke-linecap="round" />
+        </g>
+
+        <!-- Needle -->
+        <line x1="${cx}" y1="${cy}" x2="${tipX}" y2="${tipY}" stroke="${color}" stroke-width="18" stroke-linecap="round" />
+        <circle cx="${tipX}" cy="${tipY}" r="18" fill="${color}" stroke="#fff" stroke-width="4" />
+        <circle cx="${cx}" cy="${cy}" r="24" fill="#fff" stroke="#e5e7eb" stroke-width="3" />
+        <circle cx="${cx}" cy="${cy}" r="12" fill="${color}" />
+
+        <!-- Inputs summary -->
+        <g>
+          <text x="120" y="520" font-size="20" fill="#0f172a" font-weight="600">Entered</text>
+          <text x="120" y="556" font-size="18" fill="#334155">Unit: ${results.rawUnit}</text>
+          <text x="120" y="586" font-size="18" fill="#334155">Height: ${results.rawHeightInput} ${results.rawUnit === 'metric' ? 'cm' : 'ft.in'}</text>
+          <text x="120" y="616" font-size="18" fill="#334155">Weight: ${results.rawWeightInput} ${results.rawUnit === 'metric' ? 'kg' : 'lbs'}</text>
+        </g>
+
+        <!-- Recommendations small -->
+        <g>
+          <text x="700" y="520" font-size="20" fill="#0f172a" font-weight="600">Recommendations</text>
+          <text x="700" y="556" font-size="16" fill="#334155">- ${results.recommendations[0]}</text>
+          <text x="700" y="582" font-size="16" fill="#334155">- ${results.recommendations[1] || ''}</text>
+        </g>
+
+      </g>
+    </svg>`;
+
+    // convert to image then canvas to PNG
+    const svgBlob = new Blob([svg], { type: 'image/svg+xml;charset=utf-8' });
+    const url = URL.createObjectURL(svgBlob);
+    const img = new Image();
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      canvas.width = W;
+      canvas.height = H;
+      const ctx = canvas.getContext('2d');
+      ctx.fillStyle = '#f8fafc';
+      ctx.fillRect(0, 0, W, H);
+      ctx.drawImage(img, 0, 0);
+      URL.revokeObjectURL(url);
+      const png = canvas.toDataURL('image/png');
+      const a = document.createElement('a');
+      a.href = png;
+      a.download = `BMI-${results.bmi}.png`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    };
+    img.onerror = () => { URL.revokeObjectURL(url); alert('Failed to generate image'); };
+    img.src = url;
   };
 
   return (
@@ -107,90 +201,77 @@ export default function BMICalculator() {
           </p>
         </div>
 
-        {/* Input Section */}
+        {/* Input Section - redesigned with live preview */}
         {!results && (
-          <div className="bg-white rounded-2xl shadow-xl p-8 mb-12 max-w-2xl mx-auto">
-            <form onSubmit={calculateBMI}>
-              {/* Unit Selection */}
-              <div className="mb-8">
-                <label className="block text-lg font-semibold text-gray-900 mb-4">
-                  Measurement Unit
-                </label>
-                <div className="flex gap-4">
-                  <label className="flex items-center cursor-pointer">
-                    <input
-                      type="radio"
-                      name="unit"
-                      value="metric"
-                      checked={unit === 'metric'}
-                      onChange={(e) => setUnit(e.target.value)}
-                      className="w-4 h-4 text-blue-600"
-                    />
-                    <span className="ml-3 text-gray-700 font-medium">Metric (cm, kg)</span>
-                  </label>
-                  <label className="flex items-center cursor-pointer">
-                    <input
-                      type="radio"
-                      name="unit"
-                      value="imperial"
-                      checked={unit === 'imperial'}
-                      onChange={(e) => setUnit(e.target.value)}
-                      className="w-4 h-4 text-blue-600"
-                    />
-                    <span className="ml-3 text-gray-700 font-medium">Imperial (ft/in, lbs)</span>
-                  </label>
-                </div>
+          <div className="bg-white rounded-2xl shadow-xl p-6 mb-12 max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {/* Form Column */}
+              <div className="p-4">
+                <form onSubmit={calculateBMI}>
+                  <div className="mb-4">
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Measurement Unit</label>
+                    <div className="inline-flex rounded-lg bg-gray-100 p-1">
+                      <button type="button" onClick={() => setUnit('metric')} className={`px-4 py-2 rounded-lg font-medium ${unit === 'metric' ? 'bg-white shadow text-gray-900' : 'text-gray-600'}`}>
+                        Metric
+                      </button>
+                      <button type="button" onClick={() => setUnit('imperial')} className={`px-4 py-2 rounded-lg font-medium ${unit === 'imperial' ? 'bg-white shadow text-gray-900' : 'text-gray-600'}`}>
+                        Imperial
+                      </button>
+                    </div>
+                  </div>
+
+                  <div className="mb-4">
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Height {unit === 'metric' ? '(cm)' : "(ft.in)"}</label>
+                    <div className="relative">
+                      <Scale className="absolute left-3 top-3 text-blue-500 h-5 w-5" />
+                      <input type="text" value={height} onChange={(e) => setHeight(e.target.value)} placeholder={unit === 'metric' ? '170' : '5.10'} className="w-full pl-12 pr-3 py-2 border rounded-lg text-lg" />
+                    </div>
+                    <p className="text-xs text-gray-500 mt-2">For imperial use format <span className="font-medium">feet.inches</span> (e.g. 5.10 for 5'10")</p>
+                  </div>
+
+                  <div className="mb-4">
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Weight {unit === 'metric' ? '(kg)' : '(lbs)'}</label>
+                    <div className="relative">
+                      <Scale className="absolute left-3 top-3 text-blue-500 h-5 w-5" />
+                      <input type="number" step="0.1" value={weight} onChange={(e) => setWeight(e.target.value)} placeholder={unit === 'metric' ? '70' : '150'} className="w-full pl-12 pr-3 py-2 border rounded-lg text-lg" />
+                    </div>
+                  </div>
+
+                  <div className="flex gap-3">
+                    <button type="submit" className="flex-1 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-bold py-3 px-6 rounded-lg shadow">Calculate BMI</button>
+                    <button type="button" onClick={handleReset} className="px-4 py-3 rounded-lg border text-sm">Reset</button>
+                  </div>
+                </form>
               </div>
 
-              {/* Height Input */}
-              <div className="mb-6">
-                <label className="block text-lg font-semibold text-gray-900 mb-3">
-                  Height {unit === 'metric' ? '(cm)' : '(feet.inches)'}
-                </label>
-                <div className="relative">
-                  <Scale className="absolute left-4 top-4 text-blue-500 h-6 w-6" />
-                  <input
-                    type="number"
-                    step="0.1"
-                    value={height}
-                    onChange={(e) => setHeight(e.target.value)}
-                    placeholder={unit === 'metric' ? '170' : '5.10'}
-                    className="w-full pl-14 pr-4 py-3 text-lg border-2 border-gray-300 rounded-xl focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition"
-                  />
+              {/* Live Preview Column */}
+              <div className="p-4 bg-gray-50 rounded-lg">
+                <h4 className="text-lg font-semibold text-gray-800 mb-3">Preview</h4>
+                <div className="space-y-3">
+                  <div className="p-3 bg-white rounded-lg shadow-sm">
+                    <p className="text-xs text-gray-500">Entered Unit</p>
+                    <p className="font-medium">{unit === 'metric' ? 'Metric (cm, kg)' : 'Imperial (ft.in, lbs)'}</p>
+                  </div>
+                  <div className="p-3 bg-white rounded-lg shadow-sm">
+                    <p className="text-xs text-gray-500">Height Input</p>
+                    <p className="font-medium">{height || '-'}</p>
+                    <p className="text-xs text-gray-400 mt-1">{(() => {
+                      if (!height) return '';
+                      if (unit === 'metric') return `${height} cm ≈ ${(parseFloat(height)/100).toFixed(2)} m`;
+                      const parts = String(height).split('.');
+                      const ft = parseFloat(parts[0]) || 0; const inch = parseFloat(parts[1]) || 0;
+                      const cm = ((ft*12)+inch)*2.54;
+                      return `${ft} ft ${inch} in ≈ ${Math.round(cm)} cm`;
+                    })()}</p>
+                  </div>
+                  <div className="p-3 bg-white rounded-lg shadow-sm">
+                    <p className="text-xs text-gray-500">Weight Input</p>
+                    <p className="font-medium">{weight || '-'}</p>
+                    <p className="text-xs text-gray-400 mt-1">{weight ? (unit === 'metric' ? `${weight} kg` : `${weight} lbs ≈ ${ (parseFloat(weight)*0.453592).toFixed(1)} kg`) : ''}</p>
+                  </div>
                 </div>
               </div>
-
-              {/* Weight Input */}
-              <div className="mb-6">
-                <label className="block text-lg font-semibold text-gray-900 mb-3">
-                  Weight {unit === 'metric' ? '(kg)' : '(lbs)'}
-                </label>
-                <div className="relative">
-                  <Scale className="absolute left-4 top-4 text-blue-500 h-6 w-6" />
-                  <input
-                    type="number"
-                    step="0.1"
-                    value={weight}
-                    onChange={(e) => setWeight(e.target.value)}
-                    placeholder={unit === 'metric' ? '70' : '150'}
-                    className="w-full pl-14 pr-4 py-3 text-lg border-2 border-gray-300 rounded-xl focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition"
-                  />
-                </div>
-                <p className="mt-3 text-sm text-gray-600 flex items-start gap-2">
-                  <HelpCircle className="h-5 w-5 flex-shrink-0 mt-0.5 text-blue-500" />
-                  <span>Enter your accurate height and weight measurements for most accurate results.</span>
-                </p>
-              </div>
-
-              <div className="flex gap-3">
-                <button
-                  type="submit"
-                  className="flex-1 bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white font-bold py-3 px-6 rounded-xl transition transform hover:scale-105 shadow-lg"
-                >
-                  Calculate BMI
-                </button>
-              </div>
-            </form>
+            </div>
           </div>
         )}
 
@@ -201,7 +282,7 @@ export default function BMICalculator() {
             <div className="bg-gradient-to-b from-slate-50 to-white rounded-2xl shadow-2xl p-12 mb-12">
               <div className="flex flex-col items-center">
                 {/* Header */}
-                <div className="text-center mb-12">
+                <div className="text-center mb-6">
                   <p className="text-base text-gray-600 font-medium tracking-wide uppercase">Your BMI Result</p>
                   <h2 className="text-5xl font-bold text-gray-900 mt-2">
                     <span className="text-blue-600">{results.bmi}</span>
@@ -210,6 +291,26 @@ export default function BMICalculator() {
                   <p className={`text-3xl font-bold mt-4 ${results.categoryColor}`}>
                     {results.category}
                   </p>
+                </div>
+
+                {/* Entered Inputs Summary */}
+                <div className="flex justify-center mb-6">
+                  <div className="bg-white shadow rounded-lg px-6 py-3 flex items-center gap-6">
+                    <div>
+                      <p className="text-xs text-gray-500">Entered Unit</p>
+                      <p className="font-medium">{results.rawUnit === 'metric' ? 'Metric (cm, kg)' : 'Imperial (ft.in, lbs)'}</p>
+                    </div>
+                    <div>
+                      <p className="text-xs text-gray-500">Height</p>
+                      <p className="font-medium">{results.rawHeightInput} {results.rawUnit === 'metric' ? 'cm' : 'ft.in'}</p>
+                      <p className="text-xs text-gray-400">{results.heightInMeters} m</p>
+                    </div>
+                    <div>
+                      <p className="text-xs text-gray-500">Weight</p>
+                      <p className="font-medium">{results.rawWeightInput} {results.rawUnit === 'metric' ? 'kg' : 'lbs'}</p>
+                      <p className="text-xs text-gray-400">{results.weightInKg} kg</p>
+                    </div>
+                  </div>
                 </div>
 
                 {/* Gauge */}
@@ -251,14 +352,40 @@ export default function BMICalculator() {
                       strokeLinecap="round"
                     />
 
-                    {/* Center circle */}
-                    <circle cx="250" cy="250" r="70" fill="white" stroke="#e5e7eb" strokeWidth="2" />
+                    {/* Shadow/Marker for needle position */}
+                    <circle cx="250" cy="250" r="75" fill="none" stroke="#f0f0f0" strokeWidth="1" />
 
-                    {/* Needle */}
-                    <g transform={`rotate(${(parseFloat(results.bmi) - 10) * 4.5} 250 250)`}>
-                      <line x1="250" y1="250" x2="250" y2="50" stroke="#1f2937" strokeWidth="5" strokeLinecap="round" />
-                      <circle cx="250" cy="250" r="10" fill="#1f2937" />
-                    </g>
+                    {/* Needle computed endpoints (polar) to ensure exact positioning */}
+                    {(() => {
+                      // Use a tighter mapping so Overweight/Obese spread correctly visually
+                      const raw = parseFloat(results.bmi);
+                      const minBMI = 12; // left-most
+                      const maxBMI = 40; // right-most (gives better spread for 25-30)
+                      const bmiVal = Math.max(minBMI, Math.min(maxBMI, raw));
+                      const pct = (bmiVal - minBMI) / (maxBMI - minBMI);
+                      const angleDeg = 180 - pct * 180; // 180 (left) -> 0 (right)
+                      const angle = (angleDeg * Math.PI) / 180;
+                      const len = 150; // shorten needle so tip sits nicely inside arc
+                      const tipX = 250 + len * Math.cos(angle);
+                      const tipY = 250 - len * Math.sin(angle);
+                      const shadowX = 250 + (len + 6) * Math.cos(angle);
+                      const shadowY = 250 - (len + 6) * Math.sin(angle);
+                      const color = results.category === 'Underweight' ? '#3b82f6' : results.category === 'Normal Weight' ? '#22c55e' : results.category === 'Overweight' ? '#eab308' : '#ef4444';
+
+                      return (
+                        <g>
+                          {/* subtle shadow behind needle */}
+                          <line x1="250" y1="250" x2={shadowX} y2={shadowY} stroke="rgba(0,0,0,0.06)" strokeWidth="10" strokeLinecap="round" />
+                          {/* main needle */}
+                          <line x1="250" y1="250" x2={tipX} y2={tipY} stroke={color} strokeWidth="6" strokeLinecap="round" />
+                          {/* tip circle */}
+                          <circle cx={tipX} cy={tipY} r="9" fill={color} stroke="#fff" strokeWidth="2" />
+                          {/* center cap */}
+                          <circle cx="250" cy="250" r="12" fill="#fff" stroke="#e5e7eb" strokeWidth="2" />
+                          <circle cx="250" cy="250" r="7" fill={color} />
+                        </g>
+                      );
+                    })()}
 
                     {/* BMI Value in Center */}
                     <text x="250" y="265" fontSize="48" fontWeight="bold" textAnchor="middle" fill="#1f2937">

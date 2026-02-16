@@ -157,6 +157,117 @@ export default function PregnancyCalculator() {
     setResults(null);
   };
 
+  const downloadPregnancyCard = () => {
+    if (!results) return;
+    const W = 1200;
+    const H = 800;
+
+    const due = results.dueDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+    const weeks = `${results.weeksPregnant}w ${results.daysOfWeek}d`;
+    const trimester = results.trimester;
+    const babyEmoji = results.babySize?.emoji || '👶';
+    const babySize = results.babySize?.size || '';
+    const progress = `${results.progressPercentage}%`;
+
+    const svg = `<?xml version="1.0" encoding="utf-8"?>
+    <svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">
+      <rect width="100%" height="100%" fill="#fff7fb" />
+      <rect x="40" y="40" width="1120" height="720" rx="24" fill="#ffffff" stroke="#fde4ed" stroke-width="2" />
+
+      <text x="120" y="140" font-size="42" fill="#831843" font-weight="700">Pregnancy Summary</text>
+      <text x="120" y="190" font-size="28" fill="#6b2135">Due Date: ${due}</text>
+      <text x="120" y="230" font-size="24" fill="#6b2135">Gestation: ${weeks} · ${trimester} trimester</text>
+
+      <g transform="translate(700,220)">
+        <circle cx="0" cy="0" r="120" fill="#fff1f6" stroke="#ffd6e6" stroke-width="2" />
+        <text x="0" y="22" font-size="96" text-anchor="middle">${babyEmoji}</text>
+      </g>
+
+      <text x="120" y="320" font-size="22" fill="#374151">Baby size: <tspan font-weight="700">${babySize}</tspan></text>
+      <text x="120" y="360" font-size="18" fill="#374151">Progress: <tspan font-weight="700">${progress}</tspan></text>
+
+      <g transform="translate(120,420)">
+        <rect x="0" y="0" width="960" height="220" rx="14" fill="#fff" stroke="#f3e6ea" stroke-width="1" />
+        <text x="24" y="40" font-size="18" fill="#6b2135" font-weight="700">Tips</text>
+        <text x="24" y="74" font-size="14" fill="#374151">• Stay hydrated and follow prenatal care recommendations.</text>
+        <text x="24" y="100" font-size="14" fill="#374151">• Contact your healthcare provider for any concerns.</text>
+      </g>
+    </svg>`;
+
+    const blob = new Blob([svg], { type: 'image/svg+xml;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const img = new Image();
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      canvas.width = W;
+      canvas.height = H;
+      const ctx = canvas.getContext('2d');
+      ctx.fillStyle = '#fff7fb';
+      ctx.fillRect(0, 0, W, H);
+
+      const exportAndDownload = () => {
+        try { URL.revokeObjectURL(url); } catch (e) {}
+        const png = canvas.toDataURL('image/png');
+        const a = document.createElement('a');
+        a.href = png;
+        a.download = `pregnancy-summary-${results.weeksPregnant}w.png`;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+      };
+
+      // Attempt to load logo and render it as a faint watermark behind the SVG
+      const logoSrc = '/logo/Babys_3D_Bright.png';
+      const logoImg = new Image();
+      logoImg.crossOrigin = 'anonymous';
+
+      logoImg.onload = () => {
+        // draw watermark first (centered, large, low opacity)
+        const watermarkW = Math.round(W * 0.6);
+        const watermarkH = Math.round((logoImg.height / logoImg.width) * watermarkW);
+        const wx = Math.round((W - watermarkW) / 2);
+        const wy = Math.round((H - watermarkH) / 2) - 30;
+        ctx.save();
+        ctx.globalAlpha = 0.06;
+        ctx.drawImage(logoImg, wx, wy, watermarkW, watermarkH);
+        ctx.restore();
+
+        // draw the SVG on top
+        ctx.drawImage(img, 0, 0);
+
+        // draw site link at bottom center
+        try {
+          const site = 'babys.com.bd';
+          ctx.fillStyle = '#6b2135';
+          ctx.font = '20px sans-serif';
+          ctx.textAlign = 'center';
+          ctx.fillText(site, W / 2, H - 60);
+          ctx.textAlign = 'start';
+        } catch (e) {}
+
+        exportAndDownload();
+      };
+
+      logoImg.onerror = () => {
+        // fallback: just draw SVG then bottom link
+        ctx.drawImage(img, 0, 0);
+        try {
+          const site = 'babys.com.bd';
+          ctx.fillStyle = '#6b2135';
+          ctx.font = '20px sans-serif';
+          ctx.textAlign = 'center';
+          ctx.fillText(site, W / 2, H - 60);
+          ctx.textAlign = 'start';
+        } catch (e) {}
+        exportAndDownload();
+      };
+
+      logoImg.src = logoSrc;
+    };
+    img.onerror = () => { URL.revokeObjectURL(url); alert('Unable to generate image'); };
+    img.src = url;
+  };
+
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-pink-50 via-white to-pink-50">
@@ -222,12 +333,20 @@ export default function PregnancyCalculator() {
               <p className="text-xl opacity-90">
                 You are currently <span className="font-bold">{results.weeksPregnant} weeks and {results.daysOfWeek} days</span> pregnant
               </p>
-              <button
-                onClick={handleReset}
-                className="mt-6 bg-white text-pink-600 font-semibold py-2 px-6 rounded-lg hover:bg-pink-50 transition"
-              >
-                Recalculate
-              </button>
+              <div className="mt-6 flex items-center justify-center gap-4">
+                <button
+                  onClick={handleReset}
+                  className="bg-white text-pink-600 font-semibold py-2 px-6 rounded-lg hover:bg-pink-50 transition"
+                >
+                  Recalculate
+                </button>
+                <button
+                  onClick={downloadPregnancyCard}
+                  className="bg-white/90 text-pink-600 font-semibold py-2 px-6 rounded-lg hover:bg-pink-50/80 transition border"
+                >
+                  Download Card
+                </button>
+              </div>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
