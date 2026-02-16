@@ -19,7 +19,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-const PagesDrawer = ({ open, setOpen, categories, categoryError }) => {
+const PagesDrawer = ({ open, setOpen, categories, categoryError, globalSetting }) => {
   return (
     <Transition show={open} as={Fragment}>
       <Dialog as="div" className="relative z-40 lg:hidden" onClose={setOpen}>
@@ -60,11 +60,19 @@ const PagesDrawer = ({ open, setOpen, categories, categoryError }) => {
 
                 <div className="flex px-2 lg:px-0">
                   <Link href="/" className="flex flex-shrink-0 items-center">
-                    <img
-                      className="h-8 w-auto"
-                      src="/logo/logo-color.png"
-                      alt="Babys"
-                    />
+                   {globalSetting?.logo && globalSetting.logo.trim() !== "" ? (
+                      <img
+                        className="h-8 w-auto"
+                        src={globalSetting.logo}
+                        alt={globalSetting?.address || "Logo"}
+                      />
+                    ) : (
+                      <img
+                        className="h-8 w-auto"
+                        src="/logo/Babys_3D_Bright.png"
+                        alt="Babys"
+                      />
+                    )}
                   </Link>
                 </div>
               </div>
