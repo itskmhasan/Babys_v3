@@ -11,7 +11,7 @@ const addProduct = async (req, res) => {
       // productId: cname + (count + 1),
       productId: req.body.productId
         ? req.body.productId
-        : mongoose.Types.ObjectId(),
+        : new mongoose.Types.ObjectId(),
     });
 
     await newProduct.save();
