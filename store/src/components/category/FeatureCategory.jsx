@@ -1,51 +1,71 @@
 import Image from "next/image";
+import Link from "next/link";
 
 //internal import
 import CMSkeletonTwo from "@components/preloader/CMSkeleton";
 import { getShowingCategory } from "@services/CategoryService";
-import CategoryNavigateButton from "@components/category/CategoryNavigateButton";
 
 const FeatureCategory = async () => {
   const { categories, error } = await getShowingCategory();
+
+  // Vibrant color palette for categories
+  const colorGradients = [
+    "from-pink-400 to-rose-500",
+    "from-violet-400 to-purple-500",
+    "from-blue-400 to-cyan-500",
+    "from-emerald-400 to-teal-500",
+    "from-amber-400 to-orange-500",
+    "from-rose-400 to-pink-500",
+  ];
 
   return (
     <>
       {error ? (
         <CMSkeletonTwo count={10} height={20} error={error} loading={false} />
       ) : (
-        <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-6">
+        <ul className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
           {categories[0]?.children?.map((category, i) => (
             <li className="group" key={i + 1}>
-              <div className="flex w-full h-full border border-gray-100 dark:border-gray-950 shadow-sm bg-white dark:bg-zinc-900 p-4 cursor-pointer transition duration-200 ease-linear transform group-hover:shadow-lg">
-                <div className="flex items-center">
-                  <div>
+              <Link
+                href={`/search?category=${encodeURIComponent(category?.name?.en || category?.name)}&_id=${category._id}`}
+                className={`relative flex flex-col items-center justify-center w-full h-40 md:h-44 bg-gradient-to-br ${colorGradients[i % colorGradients.length]} rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 ease-out transform hover:scale-105 hover:-translate-y-2 border border-white/30 overflow-hidden cursor-pointer block`}
+              >
+                {/* Animated background blur effect */}
+                <div className="absolute inset-0 bg-white/5 backdrop-blur-sm group-hover:bg-white/10 transition-all duration-300"></div>
+                
+                {/* Content */}
+                <div className="relative z-10 flex flex-col items-center justify-center h-full px-3">
+                  <div className="mb-3">
                     {category.icon ? (
-                      <Image
-                        src={category?.icon}
-                        alt="category"
-                        width={35}
-                        height={35}
-                      />
+                      <div className="w-16 h-16 md:w-20 md:h-20 flex items-center justify-center bg-white/20 rounded-full backdrop-blur-sm group-hover:bg-white/30 transition-all">
+                        <Image
+                          src={category?.icon}
+                          alt="category"
+                          width={45}
+                          height={45}
+                          className="object-contain"
+                        />
+                      </div>
                     ) : (
-                      <Image
-                        src="https://res.cloudinary.com/ahossain/image/upload/v1655097002/placeholder_kvepfp.png"
-                        alt="category"
-                        width={35}
-                        height={35}
-                      />
+                      <div className="w-16 h-16 md:w-20 md:h-20 flex items-center justify-center bg-white/20 rounded-full backdrop-blur-sm group-hover:bg-white/30 transition-all">
+                        <Image
+                          src="https://res.cloudinary.com/ahossain/image/upload/v1655097002/placeholder_kvepfp.png"
+                          alt="category"
+                          width={45}
+                          height={45}
+                          className="object-contain"
+                        />
+                      </div>
                     )}
                   </div>
 
-                  <CategoryNavigateButton
-                    category={{
-                      ...category,
-                      name: category.name,
-                      description: category.description,
-                    }}
-                    // showingTranslateValue={showingTranslateValue}
-                  />
+                  <div className="text-center">
+                    <p className="text-white font-semibold text-sm md:text-base line-clamp-2">
+                      {category?.name?.en || category?.name}
+                    </p>
+                  </div>
                 </div>
-              </div>
+              </Link>
             </li>
           ))}
         </ul>

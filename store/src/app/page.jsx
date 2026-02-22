@@ -55,7 +55,7 @@ const Home = async () => {
           </div>
 
           {/* Banner */}
-          <div className="bg-orange-100 px-10 py-6 rounded-lg mt-6 dark:bg-slate-600">
+          <div className="bg-gradient-to-r from-slate-50 via-white to-slate-50 px-6 md:px-8 py-6 md:py-8 rounded-2xl mt-6 border border-slate-200 dark:from-slate-800 dark:via-slate-800 dark:to-slate-900 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow">
             <Banner storeCustomizationSetting={storeCustomizationSetting} />
           </div>
         </div>
@@ -63,11 +63,11 @@ const Home = async () => {
 
       {/* feature category's */}
       {storeCustomizationSetting?.home?.featured_status && (
-        <div className="bg-gray-100 dark:bg-zinc-800 lg:py-16 py-10">
+        <div className="bg-gradient-to-b from-white to-gray-50 dark:from-zinc-800 dark:to-zinc-900 lg:py-20 py-12">
           <div className="mx-auto max-w-screen-2xl px-3 sm:px-10">
-            <div className="mb-10 flex justify-center">
-              <div className="text-center w-full lg:w-2/5">
-                <h2 className="text-xl lg:text-2xl mb-2 font-semibold">
+            <div className="mb-12 flex justify-center">
+              <div className="text-center w-full lg:w-3/5 bg-gradient-to-r from-emerald-50 via-white to-teal-50 dark:from-emerald-900/20 dark:via-transparent dark:to-teal-900/20 p-8 md:p-10 rounded-2xl border border-emerald-200/50 dark:border-emerald-800/30 shadow-lg hover:shadow-xl transition-shadow">
+                <h2 className="text-3xl lg:text-4xl mb-4 font-bold bg-gradient-to-r from-emerald-600 to-teal-600 dark:from-emerald-400 dark:to-teal-400 bg-clip-text text-transparent">
                   <CMSkeletonTwo
                     count={1}
                     height={30}
@@ -76,7 +76,8 @@ const Home = async () => {
                     data={storeCustomizationSetting?.home?.feature_title}
                   />
                 </h2>
-                <p className="text-base text-gray-600 dark:text-gray-400 leading-6">
+                <div className="h-1 w-16 bg-gradient-to-r from-emerald-400 to-teal-400 mx-auto mb-6 rounded-full"></div>
+                <p className="text-base text-gray-700 dark:text-gray-300 leading-7">
                   <CMSkeletonTwo
                     count={4}
                     height={10}
@@ -99,8 +100,8 @@ const Home = async () => {
       {storeCustomizationSetting?.home?.popular_products_status && (
         <div className="bg-gray-50 dark:bg-zinc-900 lg:py-16 py-10 mx-auto max-w-screen-2xl px-3 sm:px-10">
           <div className="mb-10 flex justify-center">
-            <div className="text-center w-full lg:w-2/5">
-              <h2 className="text-xl lg:text-2xl mb-2  font-semibold">
+            <div className="text-center w-full lg:w-3/5 bg-gradient-to-r from-pink-50 via-white to-rose-50 dark:from-pink-900/20 dark:via-transparent dark:to-rose-900/20 p-8 md:p-10 rounded-2xl border border-pink-200/50 dark:border-pink-800/30 shadow-lg hover:shadow-xl transition-shadow">
+              <h2 className="text-3xl lg:text-4xl mb-4 font-bold bg-gradient-to-r from-pink-600 to-rose-600 dark:from-pink-400 dark:to-rose-400 bg-clip-text text-transparent">
                 <CMSkeletonTwo
                   count={1}
                   height={30}
@@ -109,7 +110,8 @@ const Home = async () => {
                   data={storeCustomizationSetting?.home?.popular_title}
                 />
               </h2>
-              <p className="text-base font-sans text-gray-600 dark:text-gray-400 leading-6">
+              <div className="h-1 w-16 bg-gradient-to-r from-pink-400 to-rose-400 mx-auto mb-6 rounded-full"></div>
+              <p className="text-base font-sans text-gray-700 dark:text-gray-300 leading-6">
                 <CMSkeletonTwo
                   count={5}
                   height={10}
@@ -130,7 +132,7 @@ const Home = async () => {
                   loading={false}
                 />
               ) : (
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-5 2xl:grid-cols-6 gap-2 md:gap-3 lg:gap-3">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-5 2xl:grid-cols-6 gap-2 md:gap-3 lg:gap-3">
                   {popularProducts
                     ?.slice(
                       0,
@@ -154,11 +156,9 @@ const Home = async () => {
 
       {/* promotional banner card */}
       {storeCustomizationSetting?.home?.delivery_status && (
-        <div className="block mx-auto max-w-screen-2xl">
-          <div className="mx-auto max-w-screen-2xl px-4 sm:px-10">
-            <div className="lg:p-16 p-6 bg-emerald-500 shadow-sm border text-black rounded-lg">
-              <CardTwo />
-            </div>
+        <div className="block mx-auto max-w-screen-2xl mt-10 lg:mt-16">
+          <div className="mx-auto max-w-screen-2xl px-3 sm:px-10">
+            <CardTwo />
           </div>
         </div>
       )}
@@ -171,8 +171,8 @@ const Home = async () => {
             className="bg-gray-50 dark:bg-zinc-800 lg:py-16 py-10 mx-auto max-w-screen-2xl px-3 sm:px-10"
           >
             <div className="mb-10 flex justify-center">
-              <div className="text-center w-full lg:w-2/5">
-                <h2 className="text-xl lg:text-2xl mb-2  font-semibold">
+              <div className="text-center w-full lg:w-3/5 bg-gradient-to-r from-amber-50 via-white to-orange-50 dark:from-amber-900/20 dark:via-transparent dark:to-orange-900/20 p-8 md:p-10 rounded-2xl border border-amber-200/50 dark:border-amber-800/30 shadow-lg hover:shadow-xl transition-shadow">
+                <h2 className="text-3xl lg:text-4xl mb-4 font-bold bg-gradient-to-r from-amber-600 to-orange-600 dark:from-amber-400 dark:to-orange-400 bg-clip-text text-transparent">
                   <CMSkeletonTwo
                     count={1}
                     height={30}
@@ -183,7 +183,8 @@ const Home = async () => {
                     }
                   />
                 </h2>
-                <p className="text-base font-sans text-gray-600 leading-6">
+                <div className="h-1 w-16 bg-gradient-to-r from-amber-400 to-orange-400 mx-auto mb-6 rounded-full"></div>
+                <p className="text-base font-sans text-gray-700 dark:text-gray-300 leading-6">
                   <CMSkeletonTwo
                     count={5}
                     height={20}
@@ -199,7 +200,7 @@ const Home = async () => {
             </div>
             <div className="flex">
               <div className="w-full">
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-5 2xl:grid-cols-6 gap-2 md:gap-3 lg:gap-3">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-5 2xl:grid-cols-6 gap-2 md:gap-3 lg:gap-3">
                   {discountedProducts
                     ?.slice(
                       0,

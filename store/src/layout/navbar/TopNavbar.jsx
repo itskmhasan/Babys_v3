@@ -18,10 +18,10 @@ const TopNavbar = async ({ storeCustomization }) => {
             <FiPhoneCall className="mr-2" />
             {showingTranslateValue(navbar?.help_text)}
             <a
-              href={`tel:${navbar?.phone_number || "+099949343"}`}
+              href={`tel:${navbar?.phone_number || "+8801973404971"}`}
               className="font-bold primary-text ml-1"
             >
-              {navbar?.phone_number || "+099949343"}
+              {navbar?.phone_number || "+8801973404971"}
             </a>
           </span>
 

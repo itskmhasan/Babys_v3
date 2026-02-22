@@ -44,7 +44,7 @@ const SignUp = () => {
                   action={formAction}
                   className="flex flex-col justify-center"
                 >
-                  {/* <div className="grid grid-cols-1 gap-5">
+                  { <div className="grid grid-cols-1 gap-5">
                     <div className="form-group">
                       <InputAreaTwo
                         label="Name"
@@ -93,7 +93,7 @@ const SignUp = () => {
                       </div>
                     </div>
                     <SubmitButton title={"Sign Up"} />
-                  </div> */}
+                  </div>}
                 </form>
                 <BottomNavigation
                   desc

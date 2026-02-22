@@ -247,17 +247,14 @@ const Footer = async ({ error, storeCustomizationSetting }) => {
             <div className="pb-3.5 sm:pb-0 col-span-1 md:col-span-2 lg:col-span-3">
               <Link
                 href="/"
-                className="mr-3 lg:mr-12 xl:mr-12"
+                className="mr-3 lg:mr-12 xl:mr-12 inline-block"
                 rel="noreferrer"
               >
-                <div className="relative w-32 h-10">
+                <div className="relative w-40 h-12">
                   <Image
-                    // width={110}
-                    // height={40}
-                    width="0"
-                    height="0"
-                    sizes="100vw"
-                    className="w-full h-auto"
+                    width={160}
+                    height={48}
+                    className="w-full h-auto object-contain"
                     src={footer?.block4_logo || "/logo/logo-color.svg"}
                     alt="logo"
                   />
@@ -281,9 +278,9 @@ const Footer = async ({ error, storeCustomizationSetting }) => {
         </div>
 
         <hr className="hr-line"></hr>
-
-        <div className="mx-auto max-w-screen-2xl px-4 sm:px-10 bg-gray-50 shadow-sm border border-gray-50 rounded-lg">
-          <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-3 gap-5 sm:gap-9 lg:gap-11 xl:gap-7 py-8 items-center justify-between">
+        {/* bottom footer */}
+        <div className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 rounded-xl shadow-lg border border-slate-700/50 dark:border-slate-800">
+          <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-3 gap-6 sm:gap-8 lg:gap-10 xl:gap-12 py-10 px-6 md:px-10 items-center justify-between">
             <div className="col-span-1">
               {footer?.social_links_status && (
                 <div>
@@ -292,73 +289,73 @@ const Footer = async ({ error, storeCustomizationSetting }) => {
                     footer?.social_pinterest ||
                     footer?.social_linkedin ||
                     footer?.social_whatsapp) && (
-                    <span className="text-base leading-7 font-medium block mb-2 pb-0.5">
+                    <span className="text-base leading-7 font-bold block mb-4 text-white/90">
                       Follow Us
                     </span>
                   )}
-                  <ul className="text-sm flex">
+                  <ul className="text-sm flex gap-3">
                     {footer?.social_facebook && (
-                      <li className="flex items-center mr-3 transition ease-in-out duration-500">
+                      <li className="flex items-center transition-all duration-300 hover:scale-110">
                         <Link
                           href={`${footer?.social_facebook}`}
                           aria-label="Social Link"
                           rel="noreferrer"
                           target="_blank"
-                          className="block text-center mx-auto text-gray-500 hover:text-white"
+                          className="block text-center text-gray-400 hover:text-pink-400 transition-colors rounded-full p-2 bg-white/5 hover:bg-pink-500/20"
                         >
-                          <FacebookIcon size={34} round />
+                          <FacebookIcon size={32} round />
                         </Link>
                       </li>
                     )}
                     {footer?.social_twitter && (
-                      <li className="flex items-center  mr-3 transition ease-in-out duration-500">
+                      <li className="flex items-center transition-all duration-300 hover:scale-110">
                         <Link
                           href={`${footer?.social_twitter}`}
                           aria-label="Social Link"
                           rel="noreferrer"
                           target="_blank"
-                          className="block text-center mx-auto text-gray-500 hover:text-white"
+                          className="block text-center text-gray-400 hover:text-blue-400 transition-colors rounded-full p-2 bg-white/5 hover:bg-blue-500/20"
                         >
-                          <XIcon size={34} round />
+                          <XIcon size={32} round />
                         </Link>
                       </li>
                     )}
                     {footer?.social_pinterest && (
-                      <li className="flex items-center mr-3 transition ease-in-out duration-500">
+                      <li className="flex items-center transition-all duration-300 hover:scale-110">
                         <Link
                           href={`${footer?.social_pinterest}`}
                           aria-label="Social Link"
                           rel="noreferrer"
                           target="_blank"
-                          className="block text-center mx-auto text-gray-500 hover:text-white"
+                          className="block text-center text-gray-400 hover:text-red-400 transition-colors rounded-full p-2 bg-white/5 hover:bg-red-500/20"
                         >
-                          <PinterestIcon size={34} round />
+                          <PinterestIcon size={32} round />
                         </Link>
                       </li>
                     )}
                     {footer?.social_linkedin && (
-                      <li className="flex items-center  mr-3 transition ease-in-out duration-500">
+                      <li className="flex items-center transition-all duration-300 hover:scale-110">
                         <Link
                           href={`${footer?.social_linkedin}`}
                           aria-label="Social Link"
                           rel="noreferrer"
                           target="_blank"
-                          className="block text-center mx-auto text-gray-500 hover:text-white"
+                          className="block text-center text-gray-400 hover:text-cyan-400 transition-colors rounded-full p-2 bg-white/5 hover:bg-cyan-500/20"
                         >
-                          <LinkedinIcon size={34} round />
+                          <LinkedinIcon size={32} round />
                         </Link>
                       </li>
                     )}
                     {footer?.social_whatsapp && (
-                      <li className="flex items-center  mr-3 transition ease-in-out duration-500">
+                      <li className="flex items-center transition-all duration-300 hover:scale-110">
                         <Link
                           href={`${footer?.social_whatsapp}`}
                           aria-label="Social Link"
                           rel="noreferrer"
                           target="_blank"
-                          className="block text-center mx-auto text-gray-500 hover:text-white"
+                          className="block text-center text-gray-400 hover:text-emerald-400 transition-colors rounded-full p-2 bg-white/5 hover:bg-emerald-500/20"
                         >
-                          <WhatsappIcon size={34} round />
+                          <WhatsappIcon size={32} round />
                         </Link>
                       </li>
                     )}
@@ -366,35 +363,32 @@ const Footer = async ({ error, storeCustomizationSetting }) => {
                 </div>
               )}
             </div>
-            <div className="col-span-1 text-center hidden lg:block md:block">
+            <div className="col-span-1 text-center md:border-l md:border-r border-slate-700/50">
               {footer?.bottom_contact_status && (
-                <div>
-                  <p className="text-base leading-7 font-medium block">
+                <div className="px-6">
+                  <p className="text-sm leading-5 font-medium block text-gray-400 uppercase tracking-wider mb-2">
                     Call Us
                   </p>
-                  <h5 className="text-2xl font-bold primary-text leading-7">
-                    {/* +012345-67900 */}
+                  <h5 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
                     {footer?.bottom_contact}
                   </h5>
                 </div>
               )}
             </div>
             {footer?.payment_method_status && (
-              <div className="col-span-1 hidden lg:block md:block">
-                <ul className="lg:text-right">
-                  <li className="px-1 mb-2 md:mb-0 transition hover:opacity-80 inline-flex">
-                    <Image
-                      width={274}
-                      height={85}
-                      className="w-full"
-                      src={
-                        footer?.payment_method_img ||
-                        "/payment-method/payment-logo.png"
-                      }
-                      alt="payment method"
-                    />
-                  </li>
-                </ul>
+              <div className="col-span-1 flex justify-center md:justify-end">
+                <div className="relative w-full max-w-xs">
+                  <Image
+                    width={280}
+                    height={44}
+                    className="w-full h-auto object-contain"
+                    src={
+                      footer?.payment_method_img ||
+                      "/payment-method/payment-logo.png"
+                    }
+                    alt="payment method"
+                  />
+                </div>
               </div>
             )}
           </div>
