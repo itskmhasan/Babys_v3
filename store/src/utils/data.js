@@ -135,23 +135,23 @@ const sliderData = [
 const ctaCardData = [
   {
     id: 1,
-    title: "Taste of",
-    subTitle: "Fresh & Natural",
-    image: "/cta/cta-bg-1.jpg",
+    title: "Authentic",
+    subTitle: "Baby Assocorises",
+    image: "/cta/cta-bg-1.png",
     url: "/search?category=fresh-vegetable",
   },
   {
     id: 2,
-    title: "Taste of",
-    subTitle: "Fish & Meat",
-    image: "/cta/cta-bg-2.jpg",
+    title: "Best Quality",
+    subTitle: "Mother Care Products",
+    image: "/cta/cta-bg-3.png",
     url: "/search?Category=fish--meat",
   },
   {
     id: 3,
-    title: "Taste of",
-    subTitle: "Bread & Bakery",
-    image: "/cta/cta-bg-3.jpg",
+    title: "Best Price",
+    subTitle: "Baby Clothings",
+    image: "/cta/cta-bg-2.png",
     url: "/search?Category=biscuits--cakes",
   },
 ];

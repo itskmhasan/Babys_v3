@@ -9,6 +9,8 @@ import ProductCard from "@components/product/ProductCard";
 import MainCarousel from "@components/carousel/MainCarousel";
 import CMSkeletonTwo from "@components/preloader/CMSkeleton";
 import FeatureCategory from "@components/category/FeatureCategory";
+import { getShowingCategory } from "@services/CategoryService";
+import CategoryWiseBlock from "@components/category/CategoryWiseBlock";
 import { getShowingStoreProducts } from "@services/ProductServices";
 import { getShowingAttributes } from "@services/AttributeServices";
 import {
@@ -29,6 +31,9 @@ const Home = async () => {
 
   const { globalSetting } = await getGlobalSetting();
   const currency = globalSetting?.default_currency || "$";
+
+  // fetch categories for category-wise sections
+  const { categories } = await getShowingCategory();
 
   // console.log("storeCustomizationSetting", storeCustomizationSetting);
 
@@ -160,6 +165,26 @@ const Home = async () => {
           <div className="mx-auto max-w-screen-2xl px-3 sm:px-10">
             <CardTwo />
           </div>
+        </div>
+      )}
+
+      {/* category-wise products (design pattern) */}
+      {categories?.[0]?.children?.length > 0 && (
+        <div className="mx-auto max-w-screen-2xl px-3 sm:px-10 mt-12">
+          {/** We'll show up to 3 category blocks; adjust slice as needed */}
+          {(
+            categories[0].children.slice(0, 10) || []
+          ).map((cat) => {
+            return (
+              <CategoryWiseBlock
+                key={cat._id}
+                category={cat}
+                getProductsForCategory={getShowingStoreProducts}
+                attributes={attributes}
+                currency={currency}
+              />
+            );
+          })}
         </div>
       )}
 
