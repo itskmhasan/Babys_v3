@@ -34,6 +34,10 @@ const categorySchema = new mongoose.Schema(
       type: String,
       required: false,
     },
+    bannerImage: {
+      type: String,
+      required: false,
+    },
     status: {
       type: String,
       lowercase: true,

@@ -3,13 +3,15 @@ import { Suspense } from "react";
 //internal import
 import Banner from "@components/banner/Banner";
 import CardTwo from "@components/cta-card/CardTwo";
-import OfferCard from "@components/offer/OfferCard";
 import StickyCart from "@components/cart/StickyCart";
+import OfferCard from "@components/offer/OfferCard";
 import ProductCard from "@components/product/ProductCard";
 import MainCarousel from "@components/carousel/MainCarousel";
 import CMSkeletonTwo from "@components/preloader/CMSkeleton";
 import FeatureCategory from "@components/category/FeatureCategory";
+import FirstVisitOfferPopup from "@components/offer/FirstVisitOfferPopup";
 import { getShowingCategory } from "@services/CategoryService";
+import { getShowingCoupons } from "@services/CouponServices";
 import CategoryWiseBlock from "@components/category/CategoryWiseBlock";
 import { getShowingStoreProducts } from "@services/ProductServices";
 import { getShowingAttributes } from "@services/AttributeServices";
@@ -31,6 +33,7 @@ const Home = async () => {
 
   const { globalSetting } = await getGlobalSetting();
   const currency = globalSetting?.default_currency || "$";
+  const { coupons } = await getShowingCoupons();
 
   // fetch categories for category-wise sections
   const { categories } = await getShowingCategory();
@@ -39,6 +42,12 @@ const Home = async () => {
 
   return (
     <div className="min-h-screen dark:bg-zinc-900">
+      <FirstVisitOfferPopup
+        categories={categories?.[0]?.children || []}
+        coupons={coupons || []}
+        couponTitle={storeCustomizationSetting?.home?.discount_title}
+      />
+
       {/* sticky cart section */}
       <StickyCart currency={currency} />
 

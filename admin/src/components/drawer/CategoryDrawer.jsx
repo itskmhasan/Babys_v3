@@ -33,6 +33,8 @@ const CategoryDrawer = ({ id, data }) => {
     setImageUrl,
     categoryImageUrl,
     setCategoryImageUrl,
+    categoryBannerImageUrl,
+    setCategoryBannerImageUrl,
     published,
     setPublished,
     setChecked,
@@ -222,6 +224,20 @@ const CategoryDrawer = ({ id, data }) => {
                   folder="category"
                   targetWidth={600}
                   targetHeight={600}
+                />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
+              <LabelArea label="Category Banner Image" />
+              <div className="col-span-8 sm:col-span-4">
+                <Uploader
+                  imageUrl={categoryBannerImageUrl}
+                  setImageUrl={setCategoryBannerImageUrl}
+                  folder="category"
+                  targetWidth={789}
+                  targetHeight={1887}
+                  enforceExactDimensions={true}
                 />
               </div>
             </div>

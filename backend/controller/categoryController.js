@@ -5,6 +5,7 @@ const addCategory = async (req, res) => {
     const payload = {
       ...req.body,
       image: req.body.image ?? "",
+      bannerImage: req.body.bannerImage ?? "",
     };
     const newCategory = new Category(payload);
     await newCategory.save();
@@ -27,6 +28,7 @@ const addAllCategory = async (req, res) => {
     const payload = (req.body || []).map((item) => ({
       ...item,
       image: item.image ?? "",
+      bannerImage: item.bannerImage ?? "",
     }));
 
     await Category.insertMany(payload);
@@ -113,6 +115,9 @@ const updateCategory = async (req, res) => {
       category.icon = req.body.icon;
       if (Object.prototype.hasOwnProperty.call(req.body, "image")) {
         category.image = req.body.image;
+      }
+      if (Object.prototype.hasOwnProperty.call(req.body, "bannerImage")) {
+        category.bannerImage = req.body.bannerImage;
       }
       category.status = req.body.status;
       category.parentId = req.body.parentId
@@ -257,6 +262,7 @@ const readyToParentAndChildrenCategory = (categories, parentId = null) => {
       description: cate.description,
       icon: cate.icon,
       image: cate.image,
+      bannerImage: cate.bannerImage,
       status: cate.status,
       children: readyToParentAndChildrenCategory(categories, cate._id),
     });

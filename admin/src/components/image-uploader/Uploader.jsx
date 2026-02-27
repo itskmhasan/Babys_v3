@@ -19,6 +19,7 @@ const Uploader = ({
   folder = "babys",
   targetWidth = 800, // Set default fixed width
   targetHeight = 800, // Set default fixed height
+  enforceExactDimensions = false,
 }) => {
   const [files, setFiles] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -34,8 +35,39 @@ const Uploader = ({
     maxSize: 5242880, // 5 MB in bytes
     maxFiles: globalSetting?.number_of_image_per_product || 2,
     onDrop: async (acceptedFiles) => {
+      const dimensionCheckedFiles = await Promise.all(
+        acceptedFiles.map(async (file) => {
+          if (!enforceExactDimensions) return file;
+
+          const imageElement = new Image();
+          imageElement.src = URL.createObjectURL(file);
+          await imageElement.decode();
+
+          const isValidDimension =
+            imageElement.naturalWidth === targetWidth &&
+            imageElement.naturalHeight === targetHeight;
+
+          URL.revokeObjectURL(imageElement.src);
+
+          if (!isValidDimension) {
+            notifyError(
+              `Image size must be exactly ${targetWidth} x ${targetHeight}px.`
+            );
+            return null;
+          }
+
+          return file;
+        })
+      );
+
+      const validFiles = dimensionCheckedFiles.filter(Boolean);
+      if (validFiles.length === 0) {
+        setFiles([]);
+        return;
+      }
+
       const resizedFiles = await Promise.all(
-        acceptedFiles.map((file) =>
+        validFiles.map((file) =>
           resizeImageToFixedDimensions(file, targetWidth, targetHeight)
         )
       );
@@ -200,6 +232,9 @@ const Uploader = ({
         </span>
         <p className="text-sm mt-2">{t("DragYourImage")}</p>
         <em className="text-xs text-gray-400">{t("imageFormat")}</em>
+        <p className="text-xs text-gray-500 mt-1">
+          Required size: {targetWidth} x {targetHeight}px
+        </p>
       </div>
 
       <div className="text-emerald-500">{loading && err}</div>
