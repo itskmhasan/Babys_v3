@@ -2,7 +2,11 @@ const Category = require("../models/Category");
 
 const addCategory = async (req, res) => {
   try {
-    const newCategory = new Category(req.body);
+    const payload = {
+      ...req.body,
+      image: req.body.image ?? "",
+    };
+    const newCategory = new Category(payload);
     await newCategory.save();
     res.status(200).send({
       message: "Category Added Successfully!",
@@ -20,7 +24,12 @@ const addAllCategory = async (req, res) => {
   try {
     await Category.deleteMany();
 
-    await Category.insertMany(req.body);
+    const payload = (req.body || []).map((item) => ({
+      ...item,
+      image: item.image ?? "",
+    }));
+
+    await Category.insertMany(payload);
 
     res.status(200).send({
       message: "Category Added Successfully!",
@@ -102,6 +111,9 @@ const updateCategory = async (req, res) => {
         ...req.body.description,
       };
       category.icon = req.body.icon;
+      if (Object.prototype.hasOwnProperty.call(req.body, "image")) {
+        category.image = req.body.image;
+      }
       category.status = req.body.status;
       category.parentId = req.body.parentId
         ? req.body.parentId
@@ -244,6 +256,7 @@ const readyToParentAndChildrenCategory = (categories, parentId = null) => {
       parentName: cate.parentName,
       description: cate.description,
       icon: cate.icon,
+      image: cate.image,
       status: cate.status,
       children: readyToParentAndChildrenCategory(categories, cate._id),
     });

@@ -46,9 +46,9 @@ const CategoryWiseBlock = async ({
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-start">
           <div className="flex items-center justify-center bg-gradient-to-br from-emerald-50 to-teal-50 rounded-xl p-4 h-64">
             <div className="w-full h-full flex items-center justify-center">
-              {category?.icon ? (
+              {category?.image ? (
                 <Image
-                  src={category.icon}
+                  src={category.image}
                   alt={category?.name?.en || "category"}
                   width={260}
                   height={260}

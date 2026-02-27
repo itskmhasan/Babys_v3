@@ -110,7 +110,11 @@ const Uploader = ({
         setError("Uploading....");
 
         const name = file.name.replaceAll(/\s/g, "");
-        const public_id = name?.substring(0, name.lastIndexOf("."));
+        const baseName = name?.substring(0, name.lastIndexOf("."));
+        const uniqueSuffix = `${Date.now()}_${Math.random()
+          .toString(36)
+          .slice(2, 8)}`;
+        const public_id = `${baseName}_${uniqueSuffix}`;
 
         const formData = new FormData();
         formData.append("file", file);
