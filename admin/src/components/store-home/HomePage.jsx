@@ -37,6 +37,12 @@ const HomePage = ({
   setSliderImageFour,
   sliderImageFive,
   setSliderImageFive,
+  miniCarouselImageOne,
+  setMiniCarouselImageOne,
+  miniCarouselImageTwo,
+  setMiniCarouselImageTwo,
+  miniCarouselImageThree,
+  setMiniCarouselImageThree,
   placeholderImage,
   setPlaceHolderImage,
   quickSectionImage,
@@ -913,6 +919,56 @@ const HomePage = ({
                 </TabPanel>
               </Tabs>
             </TabsComponent>
+
+            <div className="inline-flex md:text-base text-sm mt-8 mb-3 text-gray-500 dark:text-gray-400 relative">
+              <strong>Mini Carousel</strong>
+            </div>
+            <hr className="mb-4" />
+
+            <div className="grid md:grid-cols-5 sm:grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-3">
+              <label className="block md:text-sm md:col-span-1 sm:col-span-2 text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1">
+                Mini Carousel Image 1
+              </label>
+              <div className="sm:col-span-4">
+                <Uploader
+                  imageUrl={miniCarouselImageOne}
+                  setImageUrl={setMiniCarouselImageOne}
+                  targetWidth={450}
+                  targetHeight={400}
+                  enforceExactDimensions={true}
+                />
+              </div>
+            </div>
+
+            <div className="grid md:grid-cols-5 sm:grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-3">
+              <label className="block md:text-sm md:col-span-1 sm:col-span-2 text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1">
+                Mini Carousel Image 2
+              </label>
+              <div className="sm:col-span-4">
+                <Uploader
+                  imageUrl={miniCarouselImageTwo}
+                  setImageUrl={setMiniCarouselImageTwo}
+                  targetWidth={450}
+                  targetHeight={400}
+                  enforceExactDimensions={true}
+                />
+              </div>
+            </div>
+
+            <div className="grid md:grid-cols-5 sm:grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-3">
+              <label className="block md:text-sm md:col-span-1 sm:col-span-2 text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1">
+                Mini Carousel Image 3
+              </label>
+              <div className="sm:col-span-4">
+                <Uploader
+                  imageUrl={miniCarouselImageThree}
+                  setImageUrl={setMiniCarouselImageThree}
+                  targetWidth={450}
+                  targetHeight={400}
+                  enforceExactDimensions={true}
+                />
+              </div>
+            </div>
           </div>
         </div>
 

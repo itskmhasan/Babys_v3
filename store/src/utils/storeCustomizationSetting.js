@@ -535,6 +535,12 @@ export const storeCustomization = {
       de: "Jetzt einkaufen",
     },
     five_link: "/search?category=fish-meat",
+    mini_img_one:
+      "https://res.cloudinary.com/ahossain/image/upload/v1697688491/settings/slider-2_o6aezc.jpg",
+    mini_img_two:
+      "https://res.cloudinary.com/ahossain/image/upload/v1697688492/settings/slider-3_iw4nnf.jpg",
+    mini_img_three:
+      "https://res.cloudinary.com/ahossain/image/upload/v1697688491/settings/slider-1_rl8qdc.jpg",
   },
   checkout: {
     personal_details: {

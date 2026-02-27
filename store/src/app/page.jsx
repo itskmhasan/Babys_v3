@@ -5,7 +5,7 @@ import { unstable_noStore as noStore } from "next/cache";
 import Banner from "@components/banner/Banner";
 import CardTwo from "@components/cta-card/CardTwo";
 import StickyCart from "@components/cart/StickyCart";
-import OfferCard from "@components/offer/OfferCard";
+import MiniOfferCarousel from "@components/offer/MiniOfferCarousel";
 import ProductCard from "@components/product/ProductCard";
 import MainCarousel from "@components/carousel/MainCarousel";
 import CMSkeletonTwo from "@components/preloader/CMSkeleton";
@@ -58,15 +58,15 @@ const Home = async () => {
         <div className="mx-auto py-5 max-w-screen-2xl px-3 sm:px-10">
           <div className="flex w-full">
             {/* Home page main carousel */}
-            <div className="flex-shrink-0 xl:pr-6 lg:block w-full lg:w-3/5">
+            <div className="flex-shrink-0 xl:pr-6 lg:block w-full lg:w-2/3">
               <Suspense fallback={<p>Loading carousel...</p>}>
                 <MainCarousel />
               </Suspense>
             </div>
-            {/* Coupon Offer Card */}
-            <div className="w-full hidden lg:flex ">
-              <Suspense fallback={<p>Loading coupons...</p>}>
-                <OfferCard />
+            {/* mini carousel */}
+            <div className="hidden lg:flex lg:w-1/3">
+              <Suspense fallback={<p>Loading mini carousel...</p>}>
+                <MiniOfferCarousel slider={storeCustomizationSetting?.slider} />
               </Suspense>
             </div>
           </div>
@@ -80,7 +80,7 @@ const Home = async () => {
 
       {/* feature category's */}
       {storeCustomizationSetting?.home?.featured_status && (
-        <div className="bg-gradient-to-b from-white to-gray-50 dark:from-zinc-800 dark:to-zinc-900 lg:py-20 py-12">
+        <div className="bg-gradient-to-b from-white to-gray-50 dark:from-zinc-800 dark:to-zinc-900 lg:py-20 py-12 border-y-4 border-transparent bg-clip-padding [border-image:linear-gradient(90deg,#ec4899,#a855f7,#06b6d4)_1] shadow-[0_0_0_1px_rgba(236,72,153,0.2)]">
           <div className="mx-auto max-w-screen-2xl px-3 sm:px-10">
             <div className="mb-12 flex justify-center">
               <div className="text-center w-full lg:w-3/5 bg-gradient-to-r from-emerald-50 via-white to-teal-50 dark:from-emerald-900/20 dark:via-transparent dark:to-teal-900/20 p-8 md:p-10 rounded-2xl border border-emerald-200/50 dark:border-emerald-800/30 shadow-lg hover:shadow-xl transition-shadow">

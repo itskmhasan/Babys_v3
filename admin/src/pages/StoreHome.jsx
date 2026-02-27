@@ -56,6 +56,12 @@ const StoreHome = () => {
     setSliderImageFour,
     sliderImageFive,
     setSliderImageFive,
+    miniCarouselImageOne,
+    setMiniCarouselImageOne,
+    miniCarouselImageTwo,
+    setMiniCarouselImageTwo,
+    miniCarouselImageThree,
+    setMiniCarouselImageThree,
     placeholderImage,
     setPlaceHolderImage,
     quickSectionImage,
@@ -482,6 +488,12 @@ const StoreHome = () => {
                   setSliderImageFour={setSliderImageFour}
                   sliderImageFive={sliderImageFive}
                   setSliderImageFive={setSliderImageFive}
+                  miniCarouselImageOne={miniCarouselImageOne}
+                  setMiniCarouselImageOne={setMiniCarouselImageOne}
+                  miniCarouselImageTwo={miniCarouselImageTwo}
+                  setMiniCarouselImageTwo={setMiniCarouselImageTwo}
+                  miniCarouselImageThree={miniCarouselImageThree}
+                  setMiniCarouselImageThree={setMiniCarouselImageThree}
                   placeholderImage={placeholderImage}
                   setPlaceHolderImage={setPlaceHolderImage}
                   quickSectionImage={quickSectionImage}

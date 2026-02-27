@@ -103,6 +103,9 @@ const useStoreHomeSubmit = () => {
   const [sliderImageThree, setSliderImageThree] = useState("");
   const [sliderImageFour, setSliderImageFour] = useState("");
   const [sliderImageFive, setSliderImageFive] = useState("");
+  const [miniCarouselImageOne, setMiniCarouselImageOne] = useState("");
+  const [miniCarouselImageTwo, setMiniCarouselImageTwo] = useState("");
+  const [miniCarouselImageThree, setMiniCarouselImageThree] = useState("");
   const [placeholderImage, setPlaceHolderImage] = useState("");
   const [quickSectionImage, setQuickSectionImage] = useState("");
   const [ourFounderOneImage, setOurFounderOneImage] = useState("");
@@ -702,6 +705,9 @@ const useStoreHomeSubmit = () => {
               [language]: data.slider_button_name_five || "",
             }),
             five_link: data.slider_button_link_five,
+            mini_img_one: miniCarouselImageOne,
+            mini_img_two: miniCarouselImageTwo,
+            mini_img_three: miniCarouselImageThree,
           },
 
           checkout: {
@@ -1265,6 +1271,9 @@ const useStoreHomeSubmit = () => {
           setSliderImageThree(res?.slider?.third_img);
           setSliderImageFour(res?.slider?.four_img);
           setSliderImageFive(res?.slider?.five_img);
+          setMiniCarouselImageOne(res?.slider?.mini_img_one || "");
+          setMiniCarouselImageTwo(res?.slider?.mini_img_two || "");
+          setMiniCarouselImageThree(res?.slider?.mini_img_three || "");
           setLeftRightArrow(res?.slider?.left_right_arrow);
           setBottomDots(res?.slider?.bottom_dots);
           setBothSliderOption(res?.slider?.both_slider);
@@ -1997,6 +2006,12 @@ const useStoreHomeSubmit = () => {
     setSliderImageFour,
     sliderImageFive,
     setSliderImageFive,
+    miniCarouselImageOne,
+    setMiniCarouselImageOne,
+    miniCarouselImageTwo,
+    setMiniCarouselImageTwo,
+    miniCarouselImageThree,
+    setMiniCarouselImageThree,
     placeholderImage,
     setPlaceHolderImage,
     quickSectionImage,
