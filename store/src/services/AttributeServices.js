@@ -3,8 +3,7 @@ import { baseURL, handleResponse } from "@services/CommonService";
 const getShowingAttributes = async () => {
   try {
     const response = await fetch(`${baseURL}/attributes/show`, {
-      // cache: "force-cache",
-      next: { revalidate: 300 }, // revalidate every 5 minutes
+      cache: "no-store",
     });
 
     const attributes = await handleResponse(response);

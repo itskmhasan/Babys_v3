@@ -3,8 +3,7 @@ import { baseURL, handleResponse } from "@services/CommonService";
 const getStoreCustomizationSetting = async () => {
   try {
     const response = await fetch(`${baseURL}/setting/store/customization`, {
-      // cache: "force-cache", //if you want to no cache then comment this line, this setup will only re-call the api on hard reload after first call
-      next: { revalidate: 900 }, // revalidate every 15 minutes
+      cache: "no-store",
     });
 
     const storeCustomizationSetting = await handleResponse(response);
@@ -19,8 +18,7 @@ const getStoreCustomizationSetting = async () => {
 const getGlobalSetting = async () => {
   try {
     const response = await fetch(`${baseURL}/setting/global`, {
-      // cache: "force-cache", //if you want to no cache then comment this line, this setup will only re-call the api on hard reload after first call
-      next: { revalidate: 300 }, // revalidate every 5 minutes
+      cache: "no-store",
     });
 
     const globalSetting = await handleResponse(response);
@@ -34,8 +32,7 @@ const getGlobalSetting = async () => {
 const getShowingLanguage = async () => {
   try {
     const response = await fetch(`${baseURL}/language/show`, {
-      // cache: "force-cache", //if you want to no cache then comment this line, this setup will only re-call the api on hard reload after first call
-      next: { revalidate: 120 }, // revalidate every 2 minutes
+      cache: "no-store",
     });
     const languages = await handleResponse(response);
     // console.log("res", response.headers);
@@ -48,8 +45,7 @@ const getShowingLanguage = async () => {
 const getStoreSetting = async () => {
   try {
     const response = await fetch(`${baseURL}/setting/store-setting`, {
-      // cache: "force-cache", //if you want to no cache then comment this line, this setup will only re-call the api on hard reload after first call
-      next: { revalidate: 300 }, // revalidate every 5 minutes
+      cache: "no-store",
     });
 
     const storeSetting = await handleResponse(response);
@@ -64,8 +60,7 @@ const getStoreSetting = async () => {
 const getStoreSecretKeys = async () => {
   try {
     const response = await fetch(`${baseURL}/setting/store-setting/keys`, {
-      // cache: "force-cache", //if you want to no cache then comment this line, this setup will only re-call the api on hard reload after first call
-      next: { revalidate: 120 }, // revalidate every 2 minutes
+      cache: "no-store",
     });
 
     const storeSetting = await handleResponse(response);
@@ -80,8 +75,7 @@ const getStoreSecretKeys = async () => {
 const getStoreSeoSetting = async () => {
   try {
     const response = await fetch(`${baseURL}/setting/store-setting/seo`, {
-      // cache: "force-cache", //if you want to no cache then comment this line, this setup will only re-call the api on hard reload after first call
-      next: { revalidate: 300 }, // revalidate every 5 minutes
+      cache: "no-store",
     });
 
     const seoSetting = await handleResponse(response);

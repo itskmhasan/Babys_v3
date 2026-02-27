@@ -10,11 +10,7 @@ const getShowingStoreProducts = async ({
     const response = await fetch(
       `${baseURL}/products/store?category=${category}&title=${title}&slug=${slug}`,
       {
-        // cache: "no-cache",
-        next: {
-          revalidate: 60,
-          tags: ["store_products"],
-        },
+        cache: "no-store",
       }
     );
 

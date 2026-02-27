@@ -261,6 +261,7 @@ const Footer = async ({ error, storeCustomizationSetting }) => {
                 </div>
               </Link>
               <p className="leading-7 font-sans text-sm text-gray-600 mt-3">
+                <br></br>
                 <CMSkeletonTwo
                   count={1}
                   height={10}

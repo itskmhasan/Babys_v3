@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+import { unstable_noStore as noStore } from "next/cache";
 
 //internal import
 import Banner from "@components/banner/Banner";
@@ -22,6 +23,8 @@ import {
 import DiscountedCard from "@components/product/DiscountedCard";
 
 const Home = async () => {
+  noStore();
+
   const { attributes } = await getShowingAttributes();
   const { storeCustomizationSetting, error: storeCustomizationError } =
     await getStoreCustomizationSetting();
