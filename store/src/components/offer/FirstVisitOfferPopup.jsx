@@ -40,8 +40,8 @@ const FirstVisitOfferPopup = ({
   };
 
   return (
-    <div className="fixed inset-0 z-[120] bg-black/60 flex items-center justify-center p-4">
-      <div className="relative w-full max-w-4xl bg-white rounded-2xl shadow-2xl overflow-hidden">
+    <div className="fixed inset-0 z-[120] bg-black/60 flex items-center justify-center p-2 sm:p-4">
+      <div className="relative w-full max-w-[92vw] sm:max-w-4xl max-h-[88vh] sm:max-h-none bg-white rounded-2xl shadow-2xl overflow-y-auto sm:overflow-hidden">
         <button
           type="button"
           onClick={handleClose}
@@ -51,25 +51,25 @@ const FirstVisitOfferPopup = ({
           ×
         </button>
 
-        <div className="p-3 sm:p-4">
+        <div className="p-2.5 sm:p-4">
           {firstCoupon && (
-            <div className="mb-3 sm:mb-4 rounded-xl border border-orange-200 bg-orange-50 px-3 sm:px-4 py-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+            <div className="mb-2.5 sm:mb-4 rounded-xl border border-orange-200 bg-orange-50 px-2.5 sm:px-4 py-2.5 sm:py-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
               <div>
                 <p className="text-xs uppercase tracking-wide text-orange-700 font-semibold">
                   {couponHeading}
                 </p>
-                <p className="text-sm sm:text-base font-bold text-slate-900 mt-1">
+                <p className="text-xs sm:text-base font-bold text-slate-900 mt-1">
                   {firstCoupon?.title?.en || firstCoupon?.title || "Limited Offer"}
                 </p>
               </div>
               <div className="flex items-center gap-2 sm:gap-3">
-                <span className="px-3 py-1.5 rounded-lg border border-dashed border-orange-400 bg-white text-orange-600 font-extrabold text-sm sm:text-base">
+                <span className="px-2.5 sm:px-3 py-1 rounded-lg border border-dashed border-orange-400 bg-white text-orange-600 font-extrabold text-xs sm:text-base">
                   {firstCoupon?.couponCode || "SAVE20"}
                 </span>
                 <Link
                   href="/"
                   onClick={handleClose}
-                  className="inline-flex px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg bg-rose-500 text-white font-bold text-sm sm:text-base"
+                  className="inline-flex px-2.5 sm:px-4 py-1 sm:py-2 rounded-lg bg-rose-500 text-white font-bold text-xs sm:text-base"
                 >
                   SHOP NOW ›
                 </Link>
@@ -78,7 +78,7 @@ const FirstVisitOfferPopup = ({
           )}
 
           <Link href={hero.href} onClick={handleClose} className="block group">
-            <div className="relative w-full h-44 sm:h-56 lg:h-64 rounded-xl overflow-hidden">
+            <div className="relative w-full h-36 sm:h-56 lg:h-64 rounded-xl overflow-hidden">
               <Image
                 src={hero.image}
                 alt={hero.title}
@@ -87,8 +87,8 @@ const FirstVisitOfferPopup = ({
                 className="object-cover group-hover:scale-105 transition-transform duration-500"
               />
               <div className="absolute inset-0 bg-black/35" />
-              <div className="absolute inset-0 flex items-center justify-between p-4 sm:p-6">
-                <h3 className="text-white text-2xl sm:text-4xl font-extrabold uppercase tracking-wide">
+              <div className="absolute inset-0 flex items-center justify-between p-3 sm:p-6">
+                <h3 className="text-white text-lg sm:text-4xl font-extrabold uppercase tracking-wide">
                   {hero.title}
                 </h3>
                 <span className="hidden sm:inline-flex px-5 py-2.5 rounded-xl bg-rose-500 text-white font-bold text-xl">
@@ -98,7 +98,7 @@ const FirstVisitOfferPopup = ({
             </div>
           </Link>
 
-          <div className="mt-3 sm:mt-4 grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3">
+          <div className="mt-2.5 sm:mt-4 grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3">
             {gridItems.map((item) => (
               <Link
                 key={item._id}
@@ -106,7 +106,7 @@ const FirstVisitOfferPopup = ({
                 onClick={handleClose}
                 className="group border border-slate-200 rounded-xl overflow-hidden bg-white"
               >
-                <div className="relative h-28 sm:h-36">
+                <div className="relative h-24 sm:h-36">
                   <Image
                     src={item.image}
                     alt={item.title}
@@ -115,8 +115,8 @@ const FirstVisitOfferPopup = ({
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
-                <div className="px-3 py-2 text-center bg-orange-50">
-                  <span className="text-lg font-semibold text-slate-900">{item.title} ›</span>
+                <div className="px-2.5 sm:px-3 py-1.5 sm:py-2 text-center bg-orange-50">
+                  <span className="text-sm sm:text-lg font-semibold text-slate-900">{item.title} ›</span>
                 </div>
               </Link>
             ))}

@@ -15,10 +15,21 @@ import {
 
 import { SettingProvider } from "@context/SettingContext";
 
-export const metadata = {
-  title: "Babys | Best Shop for Moms and Babies - e-commerce Store",
-  description: "Babys - Best Shop for Moms and Babies. Premium products for mothers and babies with fast delivery and special offers.",
-};
+export async function generateMetadata() {
+  const { storeCustomizationSetting } = await getStoreCustomizationSetting();
+  const favicon = storeCustomizationSetting?.seo?.favicon || "/favicon.png";
+
+  return {
+    title: "Babys | Best Shop for Moms and Babies - e-commerce Store",
+    description:
+      "Babys - Best Shop for Moms and Babies. Premium products for mothers and babies with fast delivery and special offers.",
+    icons: {
+      icon: [{ url: favicon }],
+      shortcut: [{ url: favicon }],
+      apple: [{ url: favicon }],
+    },
+  };
+}
 
 export default async function RootLayout({ children }) {
   const { globalSetting } = await getGlobalSetting();

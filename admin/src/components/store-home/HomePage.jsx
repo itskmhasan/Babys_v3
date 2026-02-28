@@ -489,7 +489,7 @@ const HomePage = ({
                         imageUrl={sliderImage}
                         setImageUrl={setSliderImage}
                         targetWidth={950}
-                        targetHeight={400}
+                        targetHeight={633}
                       />
                     </div>
                   </div>
@@ -572,7 +572,7 @@ const HomePage = ({
                         imageUrl={sliderImageTwo}
                         setImageUrl={setSliderImageTwo}
                         targetWidth={950}
-                        targetHeight={400}
+                        targetHeight={633}
                       />
                     </div>
                   </div>
@@ -651,7 +651,7 @@ const HomePage = ({
                         imageUrl={sliderImageThree}
                         setImageUrl={setSliderImageThree}
                         targetWidth={950}
-                        targetHeight={400}
+                        targetHeight={633}
                       />
                     </div>
                   </div>
@@ -730,7 +730,7 @@ const HomePage = ({
                         imageUrl={sliderImageFour}
                         setImageUrl={setSliderImageFour}
                         targetWidth={950}
-                        targetHeight={400}
+                        targetHeight={633}
                       />
                     </div>
                   </div>
@@ -808,7 +808,7 @@ const HomePage = ({
                         imageUrl={sliderImageFive}
                         setImageUrl={setSliderImageFive}
                         targetWidth={950}
-                        targetHeight={400}
+                        targetHeight={633}
                       />
                     </div>
                   </div>
@@ -934,7 +934,7 @@ const HomePage = ({
                   imageUrl={miniCarouselImageOne}
                   setImageUrl={setMiniCarouselImageOne}
                   targetWidth={450}
-                  targetHeight={400}
+                  targetHeight={633}
                   enforceExactDimensions={true}
                 />
               </div>
@@ -949,7 +949,7 @@ const HomePage = ({
                   imageUrl={miniCarouselImageTwo}
                   setImageUrl={setMiniCarouselImageTwo}
                   targetWidth={450}
-                  targetHeight={400}
+                  targetHeight={633}
                   enforceExactDimensions={true}
                 />
               </div>
@@ -964,7 +964,7 @@ const HomePage = ({
                   imageUrl={miniCarouselImageThree}
                   setImageUrl={setMiniCarouselImageThree}
                   targetWidth={450}
-                  targetHeight={400}
+                  targetHeight={633}
                   enforceExactDimensions={true}
                 />
               </div>

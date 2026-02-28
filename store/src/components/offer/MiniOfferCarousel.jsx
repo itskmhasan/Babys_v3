@@ -19,8 +19,8 @@ const MiniOfferCarousel = ({ slider = {} }) => {
   if (images.length === 0) return null;
 
   return (
-    <div className="w-full max-w-[450px] ml-auto group dark:bg-zinc-900">
-      <div className="bg-gray-50 dark:bg-slate-600 h-full border-2 border-orange-500 transition duration-150 ease-linear shadow overflow-hidden">
+    <div className="w-full group dark:bg-zinc-900">
+      <div className="bg-gray-50 dark:bg-slate-600 h-full transition duration-150 ease-linear shadow overflow-hidden rounded-r-2xl">
         <Swiper
           spaceBetween={10}
           centeredSlides={true}
@@ -35,12 +35,12 @@ const MiniOfferCarousel = ({ slider = {} }) => {
         >
           {images.map((image, index) => (
             <SwiperSlide key={`${image}-${index}`} className="h-auto">
-              <div className="relative w-full aspect-[9/8]">
+              <div className="relative w-full aspect-[3/4]">
                 <Image
                   src={image || FALLBACK}
                   alt={`Mini carousel ${index + 1}`}
                   fill
-                  sizes="(max-width: 1024px) 100vw, 450px"
+                  sizes="(max-width: 1024px) 100vw, (max-width: 1280px) 34vw, 32vw"
                   quality={100}
                   className="object-cover"
                 />

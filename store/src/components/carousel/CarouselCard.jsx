@@ -42,7 +42,7 @@ const CarouselCard = ({ storeCustomizationSetting, sliderData }) => {
           <div className="text-sm text-gray-600 hover:text-emerald-dark dark:bg-zinc-900">
             <Image
               width={950}
-              height={400}
+              height={633}
               src={item.image}
               alt={item.title}
               className="object-cover"

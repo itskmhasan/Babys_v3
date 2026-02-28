@@ -56,9 +56,9 @@ const Home = async () => {
 
       <div className="bg-white dark:bg-zinc-900">
         <div className="mx-auto py-5 max-w-screen-2xl px-3 sm:px-10">
-          <div className="flex w-full">
+          <div className="flex w-full lg:gap-2 xl:gap-3">
             {/* Home page main carousel */}
-            <div className="flex-shrink-0 xl:pr-6 lg:block w-full lg:w-2/3">
+            <div className="flex-shrink-0 lg:block w-full lg:w-2/3">
               <Suspense fallback={<p>Loading carousel...</p>}>
                 <MainCarousel />
               </Suspense>
