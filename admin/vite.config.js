@@ -49,7 +49,6 @@ export default defineConfig({
         "src/assets/img/*.png",
         "src/assets/img/*.jepg",
         "src/assets/img/*.webp",
-        "favicon.png",
         "favicon.ico",
       ],
       manifest: {
@@ -66,9 +65,9 @@ export default defineConfig({
           "Babys | Best Shop for Moms and Babies - Admin Dashboard",
         icons: [
           {
-            src: "/favicon.png",
-            sizes: "192x192",
-            type: "image/png",
+            src: "favicon.ico",
+            sizes: "48x48",
+            type: "image/x-icon",
           },
           {
             src: "/icon-192x192.png",
