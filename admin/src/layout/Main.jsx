@@ -3,9 +3,13 @@ import useGetCData from "@/hooks/useGetCData";
 import NotFoundPage from "@/components/common/NotFoundPage";
 
 const Main = ({ children }) => {
-  const { path, accessList } = useGetCData();
+  const { path, accessList, role } = useGetCData();
+  const privilegedRoles = ["admin", "super admin"];
+  const hasPrivilegedRole = privilegedRoles.includes(
+    String(role || "").toLowerCase()
+  );
 
-  if (!accessList?.includes(path)) {
+  if (!hasPrivilegedRole && !accessList?.includes(path)) {
     return <NotFoundPage />;
   }
   return (

@@ -15,10 +15,16 @@ const ForgetPassword = lazy(() => import("@/pages/ForgotPassword"));
 const ResetPassword = lazy(() => import("@/pages/ResetPassword"));
 
 const App = () => {
+  const configuredBasePath = import.meta.env.VITE_APP_BASE_PATH || "";
+  const routerBasePath =
+    configuredBasePath === "/"
+      ? ""
+      : configuredBasePath.replace(/\/+$/, "");
+
   return (
     <>
       <ToastContainer />
-      <Router>
+      <Router basename={routerBasePath}>
         <AccessibleNavigationAnnouncer />
         <Switch>
           <Route path="/login" component={Login} />

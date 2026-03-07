@@ -13,6 +13,13 @@ const useLoginSubmit = () => {
   const { dispatch } = useContext(AdminContext);
   const history = useHistory();
   const location = useLocation();
+  const isHttps =
+    typeof window !== "undefined" && window.location.protocol === "https:";
+  const cookieOptions = {
+    expires: 0.5,
+    sameSite: isHttps ? "None" : "Lax",
+    secure: isHttps,
+  };
   const {
     register,
     control,
@@ -22,7 +29,6 @@ const useLoginSubmit = () => {
 
   const onSubmit = async ({ name, email, verifyEmail, password, role }) => {
     setLoading(true);
-    const cookieTimeOut = 0.5;
 
     try {
       if (location.pathname === "/login") {
@@ -31,11 +37,7 @@ const useLoginSubmit = () => {
         if (res) {
           notifySuccess("Login Success!");
           dispatch({ type: "USER_LOGIN", payload: res });
-          Cookies.set("adminInfo", JSON.stringify(res), {
-            expires: cookieTimeOut,
-            sameSite: "None",
-            secure: true,
-          });
+          Cookies.set("adminInfo", JSON.stringify(res), cookieOptions);
           history.replace("/dashboard");
         }
       }
@@ -51,11 +53,7 @@ const useLoginSubmit = () => {
         if (res) {
           notifySuccess("Register Success!");
           dispatch({ type: "USER_LOGIN", payload: res });
-          Cookies.set("adminInfo", JSON.stringify(res), {
-            expires: cookieTimeOut,
-            sameSite: "None",
-            secure: true,
-          });
+          Cookies.set("adminInfo", JSON.stringify(res), cookieOptions);
           history.replace("/");
         }
       }

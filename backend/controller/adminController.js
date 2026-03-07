@@ -66,6 +66,7 @@ const loginAdmin = async (req, res) => {
         phone: admin.phone,
         email: admin.email,
         image: admin.image,
+        role: admin.role,
         iv,
         data,
       });
@@ -220,6 +221,7 @@ const updateStaff = async (req, res) => {
         name: updatedAdmin.name,
         email: updatedAdmin.email,
         image: updatedAdmin.image,
+        role: updatedAdmin.role,
         data,
         iv,
       });

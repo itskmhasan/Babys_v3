@@ -2,7 +2,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useRef } from "react";
 import { IoChevronBackOutline, IoChevronForward } from "react-icons/io5";
-import { Navigation } from "swiper";
+import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -32,10 +32,14 @@ const CategoryCarousel = ({ categories }) => {
     <>
       <Swiper
         onInit={(swiper) => {
-          swiper.params.navigation.prevEl = prevRef.current;
-          swiper.params.navigation.nextEl = nextRef.current;
-          swiper.navigation.init();
-          swiper.navigation.update();
+          if (swiper?.params?.navigation) {
+            swiper.params.navigation.prevEl = prevRef.current;
+            swiper.params.navigation.nextEl = nextRef.current;
+          }
+          if (swiper?.navigation?.init && swiper?.navigation?.update) {
+            swiper.navigation.init();
+            swiper.navigation.update();
+          }
         }}
         spaceBetween={8}
         navigation={true}

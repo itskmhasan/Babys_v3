@@ -90,7 +90,7 @@ const useGetCData = () => {
   // console.log("adminInfo", adminInfo, "accessList", accessList);
 
   return {
-    role,
+    role: role || adminInfo?.role,
     path,
     accessList,
   };

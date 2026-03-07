@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { NavLink, Route } from "react-router-dom";
 import Cookies from "js-cookie";
 import { useTranslation } from "react-i18next";
@@ -19,14 +19,20 @@ const SidebarContent = () => {
   const { t } = useTranslation();
   const { theme } = useTheme();
   const { dispatch } = useContext(AdminContext);
-  const { accessList } = useGetCData();
+  const { accessList, role } = useGetCData();
+  const privilegedRoles = ["admin", "super admin"];
+  const hasPrivilegedRole = privilegedRoles.includes(
+    String(role || "").toLowerCase()
+  );
 
   const handleLogOut = () => {
     dispatch({ type: "USER_LOGOUT" });
     Cookies.remove("adminInfo");
   };
 
-  const updatedSidebar = sidebar
+  const updatedSidebar = hasPrivilegedRole
+    ? sidebar
+    : sidebar
     .map((route) => {
       // Filter sub-routes if they exist
       if (route.routes) {
