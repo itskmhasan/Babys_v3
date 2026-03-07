@@ -29,7 +29,7 @@ const Navbar = async ({ globalSetting, storeCustomization }) => {
             <div className="relative z-10 hidden sm:flex px-2 lg:px-0">
               <Link href="/" className="flex flex-shrink-0 items-center">
                 <img
-                  className="h-8 w-auto"
+                  className="h-[54px] w-[124px] object-contain"
                   src={
                     storeCustomization?.navbar?.logo ||
                     globalSetting?.logo ||

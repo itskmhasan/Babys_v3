@@ -198,8 +198,9 @@ const HomePage = ({
                 <Uploader
                   imageUrl={headerLogo}
                   setImageUrl={setHeaderLogo}
-                  targetWidth={87}
-                  targetHeight={25}
+                  targetWidth={124}
+                  targetHeight={54}
+                  enforceExactDimensions={true}
                 />
               </div>
             </div>

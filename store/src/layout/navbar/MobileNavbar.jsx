@@ -60,13 +60,13 @@ const MobileNavbar = ({ open, setOpen }) => {
                   <Link href="/" className="flex flex-shrink-0 items-center">
                     {globalSetting?.logo && globalSetting.logo.trim() !== "" ? (
                       <img
-                        className="h-8 w-auto"
+                        className="h-[54px] w-[124px] object-contain"
                         src={globalSetting.logo}
                         alt={globalSetting?.address || "Logo"}
                       />
                     ) : (
                       <img
-                        className="h-8 w-auto"
+                        className="h-[54px] w-[124px] object-contain"
                         src="/logo/logo-light.svg"
                         alt="Logo"
                       />
