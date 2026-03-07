@@ -19,7 +19,10 @@ import { navData } from "@utils/data";
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
-const MobileNavbar = ({ open, setOpen }) => {
+const MobileNavbar = ({ open, setOpen, globalSetting }) => {
+  const hasValidLogo =
+    typeof globalSetting?.logo === "string" && globalSetting.logo.trim() !== "";
+
   return (
     <Transition show={open} as={Fragment}>
       <Dialog as="div" className="relative z-40 lg:hidden" onClose={setOpen}>
@@ -58,7 +61,7 @@ const MobileNavbar = ({ open, setOpen }) => {
 
                 <div className="flex px-2 lg:px-0">
                   <Link href="/" className="flex flex-shrink-0 items-center">
-                    {globalSetting?.logo && globalSetting.logo.trim() !== "" ? (
+                    {hasValidLogo ? (
                       <img
                         className="h-[54px] w-[124px] object-contain"
                         src={globalSetting.logo}

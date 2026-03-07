@@ -2,7 +2,7 @@ import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useRef } from "react";
 import { IoChevronBackOutline, IoChevronForward } from "react-icons/io5"; // requires a loader
-import { Navigation } from "swiper/modules";
+import { Navigation } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
