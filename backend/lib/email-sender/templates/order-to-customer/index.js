@@ -1,4 +1,10 @@
 const customerInvoiceEmailBody = (option) => {
+  const companyName = option?.company_name || "Babys";
+  const companyLogo =
+    option?.company_logo ||
+    "https://dummyimage.com/80x80/ffffff/ffffff.png&text=.";
+  const money = (amount) => `${option?.currency || ""}${Number(amount || 0).toFixed(2)}`;
+
   return `<html
   xmlns='http://www.w3.org/1999/xhtml'
   xmlns:v='urn:schemas-microsoft-com:vml'
@@ -6,7 +12,7 @@ const customerInvoiceEmailBody = (option) => {
 >
 
   <head>
-    <title>Kachabazar</title>
+    <title>${companyName}</title>
     <!--[if !mso]><!-->
     <meta http-equiv='X-UA-Compatible' content='IE=edge' />
     <!--<![endif]-->
@@ -104,7 +110,7 @@ const customerInvoiceEmailBody = (option) => {
                                           <img
                                             alt
                                             height='auto'
-                                            src='https://res.cloudinary.com/ahossain/image/upload/v1676296566/Kachabazar%20files/cc_v8jite.png'
+                                            src='${companyLogo}'
                                             style='border:0;display:block;outline:none;text-decoration:none;height:auto;width:80px;font-size:13px;padding-bottom:30px;'
                                             width='80'
                                             height='80'
@@ -381,9 +387,7 @@ const customerInvoiceEmailBody = (option) => {
                                     id='common_table'
                                     style='padding: 2px 4px; text-align:end'
                                   >
-                                    ${option.currency}${(
-                                      item.price * item.quantity
-                                    ).toFixed(2)}
+                                    ${money(item.price * item.quantity)}
                                   </td>
 
                                 </tr>`;
@@ -446,17 +450,17 @@ const customerInvoiceEmailBody = (option) => {
                       <tr>
 
                         <td style='padding: 2px 4px;text-align:justify; font-size:13px;'>
-                          ${option.currency}${option.subTotal.toFixed(2)}
+                          ${money(option.subTotal)}
                         </td>
                   
                         <td style='padding: 2px 4px;text-align:justify; font-size:13px;'>
-                        ${option.currency}${option.shipping.toFixed(2)}
+                        ${money(option.shipping)}
                       </td>
                         <td style='padding: 2px 4px;text-align:justify; font-size:13px;'>
-                          ${option.currency}${option.discount.toFixed(2)}
+                          ${money(option.discount)}
                         </td>
                         <td style='padding: 2px 4px;text-align:justify;color:red ; font-size:13px;'>
-                          ${option.currency}${option.total.toFixed(2)}
+                          ${money(option.total)}
                         </td>
 
                       </tr>
@@ -548,7 +552,7 @@ const customerInvoiceEmailBody = (option) => {
                                                         You are receiving this
                                                         email because you
                                                         registered with
-                                                        Kachabazar and agreed
+                                                        ${companyName} and agreed
                                                         to receive emails from
                                                         us regarding new
                                                         features, events and
@@ -556,7 +560,7 @@ const customerInvoiceEmailBody = (option) => {
                                                         <p
                                                           style="font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:11px;font-weight:400;line-height:16px;text-align:center;color:#303030;"
                                                         >
-                                                          &copy; Kachabazar,
+                                                          &copy; ${companyName},
                                                           All Rights Reserved.</p></div>
                                                     </td>
                                                   </tr>

@@ -284,6 +284,7 @@ const sendEmailInvoiceToCustomer = async (req, res) => {
       shipping: req.body.shippingCost,
       currency: req.body.company_info.currency,
       company_name: req.body.company_info.company,
+      company_logo: req.body.company_info.logo,
       company_address: req.body.company_info.address,
       company_phone: req.body.company_info.phone,
       company_email: req.body.company_info.email,
@@ -291,15 +292,17 @@ const sendEmailInvoiceToCustomer = async (req, res) => {
       vat_number: req.body?.company_info?.vat_number,
       name: user?.name,
       email: user?.email,
-      phone: user?.phone,
+      phone: user?.phone || user?.contact,
       address: user?.address,
       cart: req.body.cart,
     };
 
     const body = {
-      from: req.body.company_info?.from_email || "sales@kachabazar.com",
+      from: req.body.company_info?.from_email || "sales@babys.com",
       to: user.email,
-      subject: `Your Order - ${req.body.invoice} at ${req.body.company_info.company}`,
+      subject: `Your Order - ${req.body.invoice} at ${
+        req.body.company_info.company || "Babys"
+      }`,
       html: customerInvoiceEmailBody(option),
       attachments: [
         {

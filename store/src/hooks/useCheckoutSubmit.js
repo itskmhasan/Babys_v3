@@ -221,6 +221,7 @@ const useCheckoutSubmit = ({ shippingAddress }) => {
           currency: currency,
           vat_number: globalSetting?.vat_number,
           company: globalSetting?.company_name,
+          logo: globalSetting?.logo,
           address: globalSetting?.address,
           phone: globalSetting?.contact,
           email: globalSetting?.email,

@@ -1,23 +1,40 @@
-const fs = require("fs");
 const PDFDocument = require("pdfkit");
 const fetch = require("node-fetch");
 
 const handleCreateInvoice = async (invoice, path) => {
   const pdfBuffer = await new Promise((resolve) => {
     let doc = new PDFDocument({ size: "A4", margin: 50 });
+    const hasRemoteLogo =
+      typeof invoice?.company_info?.logo === "string" &&
+      invoice.company_info.logo.trim() !== "";
 
     // doc.text('hello world', 100, 50);
     // doc.end();
-    generateHeader(doc, invoice);
-    generateCustomerInformation(doc, invoice);
-    generateInvoiceTable(doc, invoice);
+    if (hasRemoteLogo) {
+      getImage(doc, invoice)
+        .then((logoBuffer) => {
+          generateHeader(doc, invoice, logoBuffer);
+          generateCustomerInformation(doc, invoice);
+          generateInvoiceTable(doc, invoice);
+          doc.end();
+        })
+        .catch(() => {
+          generateHeader(doc, invoice, null);
+          generateCustomerInformation(doc, invoice);
+          generateInvoiceTable(doc, invoice);
+          doc.end();
+        });
+    } else {
+      generateHeader(doc, invoice, null);
+      generateCustomerInformation(doc, invoice);
+      generateInvoiceTable(doc, invoice);
+      doc.end();
+    }
     // generateFooter(doc);
 
     // console.log('doc', doc);
 
     // doc.pipe(fs.createWriteStream(`invoices/${invoice.invoice}.pdf`));
-
-    doc.end();
 
     //Finalize document and convert to buffer array
     let buffers = [];
@@ -41,16 +58,11 @@ const handleCreateInvoice = async (invoice, path) => {
 const getImage = async (doc, invoice) => {
   const res = await fetch(invoice.company_info.logo, { encoding: null });
   const imageBuffer = await res.buffer();
-  const img = new Buffer.from(imageBuffer, "base64");
-  doc.image(img, (doc.page.width - 525) / 2, doc.y, {
-    align: "center",
-    width: 40,
-  });
-  // console.log('logo >>>>>', img);
+  const img = Buffer.from(imageBuffer);
   return img;
 };
 
-const generateHeader = (doc, invoice) => {
+const generateHeader = (doc, invoice, logoSource) => {
   // const logo = getImage(doc, invoice);
   // console.log('logooooo>>>', logo);
 
@@ -67,9 +79,6 @@ const generateHeader = (doc, invoice) => {
     .text("VAT Number :", 50, 85)
     .text(invoice?.company_info?.vat_number, 120, 85)
 
-    .image("logo.png", doc.page.width - 90, doc.y - 75, {
-      width: 40,
-    })
     // .fillColor('#4C4F54')
     .fontSize(12)
     .font("Helvetica-Bold")
@@ -81,6 +90,12 @@ const generateHeader = (doc, invoice) => {
     .text(invoice?.company_info?.email, 200, 95, { align: "right" })
     .text(invoice?.company_info?.website, 200, 108, { align: "right" })
     .moveDown();
+
+  if (logoSource) {
+    doc.image(logoSource, doc.page.width - 90, 50, {
+      width: 40,
+    });
+  }
 };
 
 function generateCustomerInformation(doc, invoice) {
@@ -153,7 +168,7 @@ function generateInvoiceTable(doc, invoice) {
   for (i = 0; i < invoice.cart.length; i++) {
     const item = invoice.cart[i];
     const position = invoiceTableTop + (i + 1) * 30;
-    total = item.price * item.quantity;
+    const total = item.price * item.quantity;
     generateTableRow(
       doc,
       position,
@@ -271,8 +286,24 @@ function generateHr(doc, y) {
 }
 
 function formatCurrency(curr, cents) {
-  // console.log('formatCurrency', curr + '' + cents);
-  return curr + "" + Number(cents).toFixed(2);
+  const printableCurrency = normalizeCurrency(curr);
+  return `${printableCurrency}${Number(cents || 0).toFixed(2)}`;
+}
+
+function normalizeCurrency(curr) {
+  const raw = String(curr || "").trim();
+
+  if (!raw) {
+    return "$";
+  }
+
+  // PDF built-in fonts can corrupt some unicode symbols (e.g., Bangla Taka sign),
+  // so map known symbols to ASCII-safe text.
+  if (raw === "৳") {
+    return "BDT ";
+  }
+
+  return raw;
 }
 
 function formatDate(date) {
