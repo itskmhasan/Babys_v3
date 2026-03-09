@@ -1,5 +1,6 @@
 //internal imports
 import React from "react";
+import Script from "next/script";
 import "@styles/custom.css";
 import Providers from "./provider";
 import Navbar from "@layout/navbar/Navbar";
@@ -7,6 +8,7 @@ import Footer from "@layout/footer/Footer";
 import FooterTop from "@layout/footer/FooterTop";
 import MobileFooter from "@layout/footer/MobileFooter";
 import FeatureCard from "@components/feature-card/FeatureCard";
+import GoogleTagPageView from "@components/analytics/GoogleTagPageView";
 import {
   getStoreSetting,
   getGlobalSetting,
@@ -35,6 +37,11 @@ export default async function RootLayout({ children }) {
   const { globalSetting } = await getGlobalSetting();
   const { storeSetting } = await getStoreSetting();
 
+  const googleTagId =
+    storeSetting?.google_analytic_status && storeSetting?.google_analytic_key
+      ? storeSetting.google_analytic_key
+      : process.env.NEXT_PUBLIC_GOOGLE_TAG_ID;
+
   // Fetch all customization data at once (adjust your API to return full data)
   const { storeCustomizationSetting, error } =
     await getStoreCustomizationSetting();
@@ -45,6 +52,24 @@ export default async function RootLayout({ children }) {
         suppressHydrationWarning
         className="bg-white antialiased dark:bg-zinc-900"
       >
+        {googleTagId ? (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${googleTagId}`}
+              strategy="afterInteractive"
+            />
+            <Script id="google-tag-init" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                window.gtag = gtag;
+                gtag('js', new Date());
+                gtag('config', '${googleTagId}');
+              `}
+            </Script>
+            <GoogleTagPageView tagId={googleTagId} />
+          </>
+        ) : null}
         <div>
           <SettingProvider
             initialGlobalSetting={globalSetting}
