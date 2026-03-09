@@ -1,7 +1,6 @@
 require("dotenv").config();
 const crypto = require("crypto");
 const jwt = require("jsonwebtoken");
-const Admin = require("../models/Admin");
 
 const signInToken = (user) => {
   return jwt.sign(
@@ -51,6 +50,7 @@ const tokenForVerify = (user) => {
       _id: user._id,
       name: user.name,
       email: user.email,
+      phone: user.phone,
       password: user.password,
     },
     process.env.JWT_SECRET_FOR_VERIFY,
@@ -90,16 +90,33 @@ const isAuth = async (req, res, next) => {
   }
 };
 
-const isAdmin = async (req, res, next) => {
-  const admin = await Admin.findOne({ role: "Admin" });
-  if (admin) {
-    next();
-  } else {
-    res.status(401).send({
-      message: "User is not Admin",
-    });
-  }
+const hasAnyRole = (userRole, roles = []) => {
+  const normalizedUserRole = String(userRole || "").toLowerCase().trim();
+  return roles
+    .map((role) => String(role || "").toLowerCase().trim())
+    .includes(normalizedUserRole);
 };
+
+const requireRoles = (...roles) => {
+  return (req, res, next) => {
+    if (!req.user) {
+      return res.status(401).send({
+        message: "Unauthorized",
+      });
+    }
+
+    if (!hasAnyRole(req.user.role, roles)) {
+      return res.status(403).send({
+        message: "Forbidden",
+      });
+    }
+
+    next();
+  };
+};
+
+const isAdmin = requireRoles("admin", "super admin");
+const isSuperAdmin = requireRoles("super admin");
 
 const secretKey = process.env.ENCRYPT_PASSWORD;
 
@@ -127,6 +144,8 @@ const handleEncryptData = (data) => {
 module.exports = {
   isAuth,
   isAdmin,
+  isSuperAdmin,
+  requireRoles,
   signInToken,
   tokenForVerify,
   handleEncryptData,

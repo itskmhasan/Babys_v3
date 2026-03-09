@@ -1,6 +1,41 @@
 const PDFDocument = require("pdfkit");
 const fetch = require("node-fetch");
 
+const isPrivateOrLocalHost = (hostname) => {
+  const host = String(hostname || "").toLowerCase();
+
+  if (!host) return true;
+  if (host === "localhost" || host === "::1") return true;
+  if (host.endsWith(".local")) return true;
+
+  if (host.startsWith("127.")) return true;
+  if (host.startsWith("10.")) return true;
+  if (host.startsWith("192.168.")) return true;
+  if (host.startsWith("169.254.")) return true;
+  if (host.startsWith("fc") || host.startsWith("fd") || host.startsWith("fe80:")) return true;
+
+  if (host.startsWith("172.")) {
+    const secondOctet = Number(host.split(".")[1]);
+    if (secondOctet >= 16 && secondOctet <= 31) {
+      return true;
+    }
+  }
+
+  return false;
+};
+
+const isSafeRemoteUrl = (rawUrl) => {
+  try {
+    const parsed = new URL(String(rawUrl || ""));
+    const isHttp = parsed.protocol === "http:" || parsed.protocol === "https:";
+    if (!isHttp) return false;
+
+    return !isPrivateOrLocalHost(parsed.hostname);
+  } catch (error) {
+    return false;
+  }
+};
+
 const handleCreateInvoice = async (invoice, path) => {
   const pdfBuffer = await new Promise((resolve) => {
     let doc = new PDFDocument({ size: "A4", margin: 50 });
@@ -56,7 +91,13 @@ const handleCreateInvoice = async (invoice, path) => {
 };
 
 const getImage = async (doc, invoice) => {
-  const res = await fetch(invoice.company_info.logo, { encoding: null });
+  const logoUrl = invoice?.company_info?.logo;
+
+  if (!isSafeRemoteUrl(logoUrl)) {
+    throw new Error("Unsafe logo URL");
+  }
+
+  const res = await fetch(logoUrl, { encoding: null });
   const imageBuffer = await res.buffer();
   const img = Buffer.from(imageBuffer);
   return img;

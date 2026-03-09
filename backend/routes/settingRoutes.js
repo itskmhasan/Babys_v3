@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const { isAuth, isAdmin, isSuperAdmin } = require("../config/auth");
 const {
   addGlobalSetting,
   getGlobalSetting,
@@ -18,20 +19,20 @@ const {
  */
 router
   .route("/global")
-  .post(addGlobalSetting) // POST /global
+  .post(isAuth, isAdmin, addGlobalSetting) // POST /global
   .get(getGlobalSetting) // GET /global
-  .put(updateGlobalSetting); // PUT /global
+  .put(isAuth, isAdmin, updateGlobalSetting); // PUT /global
 
 /**
  * Store Settings
  */
 router
   .route("/store-setting")
-  .post(addStoreSetting) // POST /store-setting
+  .post(isAuth, isAdmin, addStoreSetting) // POST /store-setting
   .get(getStoreSetting) // GET /store-setting
-  .put(updateStoreSetting); // PUT /store-setting
+  .put(isAuth, isAdmin, updateStoreSetting); // PUT /store-setting
 
-router.get("/store-setting/keys", getStoreSecretKeys); // GET /store-setting/keys
+router.get("/store-setting/keys", isAuth, isSuperAdmin, getStoreSecretKeys); // GET /store-setting/keys
 router.get("/store-setting/seo", getStoreSeoSetting); // GET /store-setting/seo
 
 /**
@@ -39,8 +40,8 @@ router.get("/store-setting/seo", getStoreSeoSetting); // GET /store-setting/seo
  */
 router
   .route("/store/customization")
-  .post(addStoreCustomizationSetting) // POST /store/customization
+  .post(isAuth, isAdmin, addStoreCustomizationSetting) // POST /store/customization
   .get(getStoreCustomizationSetting) // GET /store/customization
-  .put(updateStoreCustomizationSetting); // PUT /store/customization
+  .put(isAuth, isAdmin, updateStoreCustomizationSetting); // PUT /store/customization
 
 module.exports = router;

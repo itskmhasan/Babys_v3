@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const { isAuth, isAdmin, isSuperAdmin } = require("../config/auth");
 
 const {
   registerAdmin,
@@ -20,7 +21,7 @@ const { passwordVerificationLimit } = require("../lib/email-sender/sender");
  * Admin Authentication
  */
 // Register admin/staff
-router.post("/register", registerAdmin);
+router.post("/register", isAuth, isSuperAdmin, registerAdmin);
 // Admin login
 router.post("/login", loginAdmin);
 // Forget password
@@ -32,16 +33,16 @@ router.put("/reset-password", resetPassword);
  * Staff Management
  */
 // Add a staff
-router.post("/add", addStaff);
+router.post("/add", isAuth, isAdmin, addStaff);
 // Get all staff
-router.get("/", getAllStaff);
+router.get("/", isAuth, isAdmin, getAllStaff);
 // Get a single staff by ID (changed to GET from POST)
-router.get("/:id", getStaffById);
+router.get("/:id", isAuth, isAdmin, getStaffById);
 // Update a staff by ID
-router.put("/:id", updateStaff);
+router.put("/:id", isAuth, isAdmin, updateStaff);
 // Update staff status by ID
-router.put("/update-status/:id", updatedStatus);
+router.put("/update-status/:id", isAuth, isAdmin, updatedStatus);
 // Delete a staff by ID
-router.delete("/:id", deleteStaff);
+router.delete("/:id", isAuth, isAdmin, deleteStaff);
 
 module.exports = router;

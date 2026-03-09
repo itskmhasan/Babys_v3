@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const Category = require("../models/Category");
 const Review = require("../models/Review");
 const { languageCodes } = require("../utils/data");
+const { buildSafeRegex, toBoundedInt } = require("../lib/query-security");
 
 const addProduct = async (req, res) => {
   try {
@@ -57,9 +58,10 @@ const getAllProducts = async (req, res) => {
 
   let queryObject = {};
   let sortObject = {};
-  if (title) {
+  const safeTitleRegex = buildSafeRegex(title, "i", 80);
+  if (safeTitleRegex) {
     const titleQueries = languageCodes.map((lang) => ({
-      [`title.${lang}`]: { $regex: `${title}`, $options: "i" },
+      [`title.${lang}`]: safeTitleRegex,
     }));
     queryObject.$or = titleQueries;
   }
@@ -98,8 +100,8 @@ const getAllProducts = async (req, res) => {
     queryObject.categories = category;
   }
 
-  const pages = Number(page);
-  const limits = Number(limit);
+  const pages = toBoundedInt(page, 1, 1, 100000);
+  const limits = toBoundedInt(limit, 20, 1, 100);
   const skip = (pages - 1) * limits;
 
   try {
@@ -283,15 +285,17 @@ const getShowingStoreProducts = async (req, res) => {
       };
     }
 
-    if (title) {
+    const safeStoreTitleRegex = buildSafeRegex(title, "i", 80);
+    if (safeStoreTitleRegex) {
       const titleQueries = languageCodes.map((lang) => ({
-        [`title.${lang}`]: { $regex: `${title}`, $options: "i" },
+        [`title.${lang}`]: safeStoreTitleRegex,
       }));
 
       queryObject.$or = titleQueries;
     }
-    if (slug) {
-      queryObject.slug = { $regex: slug, $options: "i" };
+    const safeSlugRegex = buildSafeRegex(slug, "i", 80);
+    if (safeSlugRegex) {
+      queryObject.slug = safeSlugRegex;
     }
 
     let products = [];

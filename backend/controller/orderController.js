@@ -1,4 +1,5 @@
 const Order = require("../models/Order");
+const { buildSafeRegex, toBoundedInt } = require("../lib/query-security");
 
 const getAllOrders = async (req, res) => {
   const {
@@ -19,7 +20,8 @@ const getAllOrders = async (req, res) => {
   //  day count
   let date = new Date();
   const today = date.toString();
-  date.setDate(date.getDate() - Number(day));
+  const dayRange = toBoundedInt(day, 0, 0, 365);
+  date.setDate(date.getDate() - dayRange);
   const dateTime = date.toString();
 
   const beforeToday = new Date();
@@ -43,19 +45,21 @@ const getAllOrders = async (req, res) => {
     ];
   }
 
-  if (customerName) {
+  const safeCustomerNameRegex = buildSafeRegex(customerName, "i", 80);
+  if (safeCustomerNameRegex) {
     queryObject.$or = [
-      { "user_info.name": { $regex: `${customerName}`, $options: "i" } },
-      { invoice: { $regex: `${customerName}`, $options: "i" } },
+      { "user_info.name": safeCustomerNameRegex },
+      { invoice: safeCustomerNameRegex },
     ];
   }
 
-  if (day) {
+  if (dayRange) {
     queryObject.createdAt = { $gte: dateTime, $lte: today };
   }
 
-  if (status) {
-    queryObject.status = { $regex: `${status}`, $options: "i" };
+  const safeStatusRegex = buildSafeRegex(status, "i", 30);
+  if (safeStatusRegex) {
+    queryObject.status = safeStatusRegex;
   }
 
   if (startDate && endDate) {
@@ -64,12 +68,13 @@ const getAllOrders = async (req, res) => {
       $lt: endDate,
     };
   }
-  if (method) {
-    queryObject.paymentMethod = { $regex: `${method}`, $options: "i" };
+  const safeMethodRegex = buildSafeRegex(method, "i", 30);
+  if (safeMethodRegex) {
+    queryObject.paymentMethod = safeMethodRegex;
   }
 
-  const pages = Number(page) || 1;
-  const limits = Number(limit);
+  const pages = toBoundedInt(page, 1, 1, 100000);
+  const limits = toBoundedInt(limit, 20, 1, 100);
   const skip = (pages - 1) * limits;
 
   try {

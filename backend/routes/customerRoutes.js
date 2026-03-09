@@ -1,10 +1,12 @@
 const express = require("express");
 const router = express.Router();
+const { isAuth, isAdmin } = require("../config/auth");
 const {
   loginCustomer,
   refreshToken,
   registerCustomer,
   verifyPhoneNumber,
+  confirmPhoneVerification,
   signUpWithOauthProvider,
   checkEmailAvailability,
   verifyEmailAddress,
@@ -35,18 +37,23 @@ router.get("/check-email", checkEmailAvailability);
 
 //verify phone number
 router.post("/verify-phone", phoneVerificationLimit, verifyPhoneNumber);
+router.post(
+  "/verify-phone/confirm",
+  phoneVerificationLimit,
+  confirmPhoneVerification
+);
 
 // shipping address send to array
-router.post("/shipping/address/:id", addShippingAddress);
+router.post("/shipping/address/:id", isAuth, addShippingAddress);
 
 // get all shipping address
-router.get("/shipping/address/:id", getShippingAddress);
+router.get("/shipping/address/:id", isAuth, getShippingAddress);
 
 // shipping address update
-router.put("/shipping/address/:userId/:shippingId", updateShippingAddress);
+router.put("/shipping/address/:userId/:shippingId", isAuth, updateShippingAddress);
 
 // shipping address delete
-router.delete("/shipping/address/:userId/:shippingId", deleteShippingAddress);
+router.delete("/shipping/address/:userId/:shippingId", isAuth, deleteShippingAddress);
 
 //register a user
 router.post("/register/:token", registerCustomer);
@@ -67,21 +74,21 @@ router.put("/forget-password", passwordVerificationLimit, forgetPassword);
 router.put("/reset-password", resetPassword);
 
 //change password
-router.post("/change-password", changePassword);
+router.post("/change-password", isAuth, changePassword);
 
 //add all users
-router.post("/add/all", addAllCustomers);
+router.post("/add/all", isAuth, isAdmin, addAllCustomers);
 
 //get all user
-router.get("/", getAllCustomers);
+router.get("/", isAuth, isAdmin, getAllCustomers);
 
 //get a user
-router.get("/:id", getCustomerById);
+router.get("/:id", isAuth, getCustomerById);
 
 //update a user
-router.put("/:id", updateCustomer);
+router.put("/:id", isAuth, updateCustomer);
 
 //delete a user
-router.delete("/:id", deleteCustomer);
+router.delete("/:id", isAuth, isAdmin, deleteCustomer);
 
 module.exports = router;

@@ -1,7 +1,9 @@
 require("dotenv").config();
 const bcrypt = require("bcryptjs");
+const crypto = require("crypto");
 const jwt = require("jsonwebtoken");
 const Customer = require("../models/Customer");
+const PhoneVerification = require("../models/PhoneVerification");
 const {
   tokenForVerify,
   generateAccessToken,
@@ -15,6 +17,45 @@ const {
   forgetPasswordEmailBody,
 } = require("../lib/email-sender/templates/forget-password");
 const { sendVerificationCode } = require("../lib/phone-verification/sender");
+
+const isPrivilegedRole = (role) => {
+  const normalizedRole = String(role || "").toLowerCase().trim();
+  return normalizedRole === "admin" || normalizedRole === "super admin";
+};
+
+const canAccessCustomer = (req, customerId) => {
+  if (isPrivilegedRole(req?.user?.role)) return true;
+  return String(req?.user?._id || "") === String(customerId || "");
+};
+
+const OTP_EXP_MINUTES = 10;
+const OTP_MAX_ATTEMPTS = 5;
+
+const hashOtp = (otpCode) =>
+  crypto
+    .createHash("sha256")
+    .update(`${String(otpCode || "")}:${process.env.JWT_SECRET_FOR_VERIFY || "otp-secret"}`)
+    .digest("hex");
+
+const normalizePhone = (phone) => String(phone || "").trim();
+
+const isValidPhoneNumber = (phone) => /^\+?[1-9]\d{7,14}$/.test(phone);
+
+const createPhoneVerificationToken = (phone) => {
+  return jwt.sign(
+    { phone, purpose: "phone_verification" },
+    process.env.JWT_SECRET_FOR_VERIFY,
+    { expiresIn: "30m" }
+  );
+};
+
+const verifyPhoneVerificationToken = (token, expectedPhone) => {
+  const decoded = jwt.verify(token, process.env.JWT_SECRET_FOR_VERIFY);
+  return (
+    decoded?.purpose === "phone_verification" &&
+    String(decoded?.phone || "") === String(expectedPhone || "")
+  );
+};
 
 const verifyEmailAddress = async (req, res) => {
   const isAdded = await Customer.findOne({ email: req.body.email });
@@ -78,7 +119,7 @@ const checkEmailAvailability = async (req, res) => {
 };
 
 const verifyPhoneNumber = async (req, res) => {
-  const phoneNumber = req.body.phone;
+  const phoneNumber = normalizePhone(req.body.phone);
 
   // console.log("verifyPhoneNumber", phoneNumber);
 
@@ -86,6 +127,12 @@ const verifyPhoneNumber = async (req, res) => {
   if (!phoneNumber) {
     return res.status(400).send({
       message: "Phone number is required.",
+    });
+  }
+
+  if (!isValidPhoneNumber(phoneNumber)) {
+    return res.status(400).send({
+      message: "Invalid phone number format.",
     });
   }
 
@@ -107,10 +154,25 @@ const verifyPhoneNumber = async (req, res) => {
       });
     }
 
-    // Generate a random 6-digit verification code
+    // Generate and persist a one-time code (hashed).
     const verificationCode = Math.floor(
       100000 + Math.random() * 900000
     ).toString();
+
+    const expiresAt = new Date(Date.now() + OTP_EXP_MINUTES * 60 * 1000);
+
+    const verificationDoc = await PhoneVerification.findOneAndUpdate(
+      { phone: phoneNumber },
+      {
+        $set: {
+          codeHash: hashOtp(verificationCode),
+          expiresAt,
+          attempts: 0,
+          verified: false,
+        },
+      },
+      { upsert: true, new: true }
+    );
 
     // Send verification code via SMS
     const sent = await sendVerificationCode(phoneNumber, verificationCode);
@@ -122,7 +184,11 @@ const verifyPhoneNumber = async (req, res) => {
     }
 
     const message = "Please check your phone for the verification code!";
-    return res.send({ message });
+    return res.send({
+      message,
+      verificationId: verificationDoc._id,
+      expiresIn: OTP_EXP_MINUTES * 60,
+    });
   } catch (err) {
     console.error("Error during phone verification:", err);
     res.status(500).send({
@@ -131,11 +197,98 @@ const verifyPhoneNumber = async (req, res) => {
   }
 };
 
+const confirmPhoneVerification = async (req, res) => {
+  try {
+    const phone = normalizePhone(req.body.phone);
+    const otp = String(req.body.otp || "").trim();
+    const verificationId = String(req.body.verificationId || "").trim();
+
+    if (!phone || !otp || !verificationId) {
+      return res.status(400).send({
+        message: "phone, otp and verificationId are required.",
+      });
+    }
+
+    const verification = await PhoneVerification.findOne({
+      _id: verificationId,
+      phone,
+    });
+
+    if (!verification) {
+      return res.status(404).send({ message: "Verification record not found." });
+    }
+
+    if (verification.verified) {
+      const token = createPhoneVerificationToken(phone);
+      return res.send({
+        message: "Phone already verified.",
+        phoneVerificationToken: token,
+      });
+    }
+
+    if (verification.expiresAt < new Date()) {
+      return res.status(410).send({ message: "Verification code expired." });
+    }
+
+    if (verification.attempts >= OTP_MAX_ATTEMPTS) {
+      return res.status(429).send({ message: "Too many invalid attempts." });
+    }
+
+    const isValidCode = verification.codeHash === hashOtp(otp);
+
+    if (!isValidCode) {
+      verification.attempts += 1;
+      await verification.save();
+      return res.status(401).send({ message: "Invalid verification code." });
+    }
+
+    verification.verified = true;
+    await verification.save();
+
+    const phoneVerificationToken = createPhoneVerificationToken(phone);
+
+    return res.send({
+      message: "Phone number verified successfully.",
+      phoneVerificationToken,
+    });
+  } catch (err) {
+    return res.status(500).send({ message: err.message });
+  }
+};
+
 const registerCustomer = async (req, res) => {
   const token = req.params.token;
 
   try {
-    const { name, email, password } = jwt.decode(token);
+    const { name, email, password, phone } = jwt.decode(token);
+
+    if (phone) {
+      const phoneVerificationToken = String(
+        req.body.phoneVerificationToken || ""
+      ).trim();
+
+      if (!phoneVerificationToken) {
+        return res.status(400).send({
+          message: "Phone verification is required before registration.",
+        });
+      }
+
+      let isValidPhoneToken = false;
+      try {
+        isValidPhoneToken = verifyPhoneVerificationToken(
+          phoneVerificationToken,
+          normalizePhone(phone)
+        );
+      } catch (err) {
+        isValidPhoneToken = false;
+      }
+
+      if (!isValidPhoneToken) {
+        return res.status(401).send({
+          message: "Invalid or expired phone verification token.",
+        });
+      }
+    }
 
     // Check if the user is already registered
     const isAdded = await Customer.findOne({ email });
@@ -177,6 +330,7 @@ const registerCustomer = async (req, res) => {
             const newUser = new Customer({
               name,
               email,
+              phone,
               password: bcrypt.hashSync(password),
             });
 
@@ -340,7 +494,21 @@ const resetPassword = async (req, res) => {
 const changePassword = async (req, res) => {
   try {
     // console.log("changePassword", req.body);
-    const customer = await Customer.findOne({ email: req.body.email });
+    const requestedEmail = String(req.body.email || "").toLowerCase().trim();
+
+    if (!isPrivilegedRole(req?.user?.role)) {
+      const signedInEmail = String(req?.user?.email || "").toLowerCase().trim();
+      if (!requestedEmail || requestedEmail !== signedInEmail) {
+        return res.status(403).send({ message: "Forbidden" });
+      }
+    }
+
+    const customer = await Customer.findOne({ email: requestedEmail });
+
+    if (!customer) {
+      return res.status(404).send({ message: "Customer not found!" });
+    }
+
     if (!customer.password) {
       return res.status(403).send({
         message:
@@ -411,6 +579,10 @@ const getAllCustomers = async (req, res) => {
 
 const getCustomerById = async (req, res) => {
   try {
+    if (!canAccessCustomer(req, req.params.id)) {
+      return res.status(403).send({ message: "Forbidden" });
+    }
+
     const customer = await Customer.findById(req.params.id);
     res.send(customer);
   } catch (err) {
@@ -425,6 +597,10 @@ const addShippingAddress = async (req, res) => {
   try {
     const customerId = req.params.id;
     const newShippingAddress = req.body;
+
+    if (!canAccessCustomer(req, customerId)) {
+      return res.status(403).send({ message: "Forbidden" });
+    }
 
     // console.log("customerId", customerId);
 
@@ -458,6 +634,11 @@ const addShippingAddress = async (req, res) => {
 const getShippingAddress = async (req, res) => {
   try {
     const customerId = req.params.id;
+
+    if (!canAccessCustomer(req, customerId)) {
+      return res.status(403).send({ message: "Forbidden" });
+    }
+
     // const addressId = req.query.id;
 
     // console.log("getShippingAddress", customerId);
@@ -492,17 +673,22 @@ const getShippingAddress = async (req, res) => {
 
 const updateShippingAddress = async (req, res) => {
   try {
-    const activeDB = req.activeDB;
+    const { userId } = req.params;
 
-    const Customer = activeDB.model("Customer", CustomerModel);
-    const customer = await Customer.findById(req.params.id);
-
-    if (customer) {
-      customer.shippingAddress.push(req.body);
-
-      await customer.save();
-      res.send({ message: "Success" });
+    if (!canAccessCustomer(req, userId)) {
+      return res.status(403).send({ message: "Forbidden" });
     }
+
+    const updated = await Customer.updateOne(
+      { _id: userId },
+      { $set: { shippingAddress: req.body } }
+    );
+
+    if (updated.matchedCount === 0) {
+      return res.status(404).send({ message: "Customer not found." });
+    }
+
+    res.send({ message: "Shipping address updated successfully." });
   } catch (err) {
     res.status(500).send({
       message: err.message,
@@ -512,10 +698,12 @@ const updateShippingAddress = async (req, res) => {
 
 const deleteShippingAddress = async (req, res) => {
   try {
-    const activeDB = req.activeDB;
     const { userId, shippingId } = req.params;
 
-    const Customer = activeDB.model("Customer", CustomerModel);
+    if (!canAccessCustomer(req, userId)) {
+      return res.status(403).send({ message: "Forbidden" });
+    }
+
     await Customer.updateOne(
       { _id: userId },
       {
@@ -535,6 +723,10 @@ const deleteShippingAddress = async (req, res) => {
 
 const updateCustomer = async (req, res) => {
   try {
+    if (!canAccessCustomer(req, req.params.id)) {
+      return res.status(403).send({ message: "Forbidden" });
+    }
+
     const { name, email, address, phone, image } = req.body;
 
     const customer = await Customer.findById(req.params.id);
@@ -596,6 +788,7 @@ module.exports = {
   loginCustomer,
   refreshToken,
   verifyPhoneNumber,
+  confirmPhoneVerification,
   registerCustomer,
   addAllCustomers,
   signUpWithOauthProvider,

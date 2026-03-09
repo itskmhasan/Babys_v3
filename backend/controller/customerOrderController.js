@@ -250,6 +250,15 @@ const getOrderById = async (req, res) => {
   try {
     // console.log("getOrderById");
     const order = await Order.findById(req.params.id);
+
+    if (!order) {
+      return res.status(404).send({ message: "Order not found" });
+    }
+
+    if (String(order.user) !== String(req.user._id)) {
+      return res.status(403).send({ message: "Forbidden" });
+    }
+
     res.send(order);
   } catch (err) {
     res.status(500).send({

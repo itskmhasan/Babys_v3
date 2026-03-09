@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const helmet = require("helmet");
+const rateLimit = require("express-rate-limit");
 // const path = require("path");
 // const http = require("http");
 // const { Server } = require("socket.io");
@@ -34,10 +35,21 @@ const app = express();
 // app.enable('trust proxy');
 app.set("trust proxy", 1);
 
+const globalApiLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: Number(process.env.API_RATE_LIMIT_MAX || 600),
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: {
+    message: "Too many requests. Please try again later.",
+  },
+});
+
 app.use(express.json({ limit: "4mb" }));
 app.use(helmet());
 app.options("*", cors()); // include before other routes
 app.use(cors());
+app.use(globalApiLimiter);
 
 //root route
 app.get("/", (req, res) => {
@@ -59,7 +71,7 @@ app.use("/v1/notification/", isAuth, notificationRoutes);
 
 //if you not use admin dashboard then these two route will not needed.
 app.use("/v1/admin/", adminRoutes);
-app.use("/v1/orders/", isAuth, orderRoutes);
+app.use("/v1/orders/", isAuth, isAdmin, orderRoutes);
 
 // Use express's default error handling middleware
 app.use((err, req, res, next) => {
