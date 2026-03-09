@@ -22,7 +22,6 @@ const phoneVerificationSchema = new mongoose.Schema(
     expiresAt: {
       type: Date,
       required: true,
-      index: true,
     },
   },
   {
