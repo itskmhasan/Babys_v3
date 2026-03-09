@@ -33,6 +33,9 @@ const AboutUs = async ({}) => {
   const { storeCustomizationSetting, error } =
     await getStoreCustomizationSetting();
   const about_us = storeCustomizationSetting?.about_us;
+  const isEnabled = (value) =>
+    value === true || value === 1 || value === "1" || value === "true";
+  const showFounderSection = isEnabled(about_us?.founder_status);
   // console.log("about_us", about_us);
 
   return (
@@ -159,136 +162,138 @@ const AboutUs = async ({}) => {
             />
           </div>
         </div>
-        <div className="bg-gray-50 dark:bg-zinc-900 lg:py-20 py-10">
-          <div className="max-w-screen-2xl mx-auto px-3 sm:px-10">
-            <div className="relative flex flex-col sm:flex-row sm:items-end justify-between mb-8">
-              <div className="max-w-2xl">
-                <h3 className="text-xl lg:text-3xl mb-2 font-semibold">
-                  <CMSkeletonTwo
-                    count={1}
-                    height={50}
-                    error={error}
-                    loading={false}
-                    data={about_us?.founder_title}
+        {showFounderSection ? (
+          <div className="bg-gray-50 dark:bg-zinc-900 lg:py-20 py-10">
+            <div className="max-w-screen-2xl mx-auto px-3 sm:px-10">
+              <div className="relative flex flex-col sm:flex-row sm:items-end justify-between mb-8">
+                <div className="max-w-2xl">
+                  <h3 className="text-xl lg:text-3xl mb-2 font-semibold">
+                    <CMSkeletonTwo
+                      count={1}
+                      height={50}
+                      error={error}
+                      loading={false}
+                      data={about_us?.founder_title}
+                    />
+                  </h3>
+                  <p className="mt-2 md:mt-3 font-normal block text-base">
+                    <CMSkeletonTwo
+                      count={3}
+                      height={20}
+                      error={error}
+                      loading={false}
+                      data={about_us?.founder_description}
+                    />
+                  </p>
+                </div>
+              </div>
+              <div className="grid sm:grid-cols-2 gap-x-5 gap-y-8 lg:grid-cols-6 xl:gap-x-8">
+                <div className="max-w-sm">
+                  <Image
+                    width={420}
+                    height={420}
+                    src={about_us?.founder_one_img || "/team/team-1.jpg"}
+                    alt="team-1"
+                    className="block rounded-lg"
                   />
-                </h3>
-                <p className="mt-2 md:mt-3 font-normal block text-base">
-                  <CMSkeletonTwo
-                    count={3}
-                    height={20}
-                    error={error}
-                    loading={false}
-                    data={about_us?.founder_description}
+                  <div className="py-4">
+                    <h5 className="text-lg font-semibold ">
+                      {showingTranslateValue(about_us?.founder_one_name)}
+                    </h5>
+                    <span className="opacity-75 text-sm">
+                      {showingTranslateValue(about_us?.founder_one_sub)}
+                    </span>
+                  </div>
+                </div>
+                <div className="max-w-sm">
+                  <Image
+                    width={420}
+                    height={420}
+                    src={about_us?.founder_two_img || "/team/team-2.jpg"}
+                    alt="team-2"
+                    className="block rounded-lg"
                   />
-                </p>
-              </div>
-            </div>
-            <div className="grid sm:grid-cols-2 gap-x-5 gap-y-8 lg:grid-cols-6 xl:gap-x-8">
-              <div className="max-w-sm">
-                <Image
-                  width={420}
-                  height={420}
-                  src={about_us?.founder_one_img || "/team/team-1.jpg"}
-                  alt="team-1"
-                  className="block rounded-lg"
-                />
-                <div className="py-4">
-                  <h5 className="text-lg font-semibold ">
-                    {showingTranslateValue(about_us?.founder_one_name)}
-                  </h5>
-                  <span className="opacity-75 text-sm">
-                    {showingTranslateValue(about_us?.founder_one_sub)}
-                  </span>
+                  <div className="py-4">
+                    <h5 className="text-lg font-semibold ">
+                      {showingTranslateValue(about_us?.founder_two_name)}
+                    </h5>
+                    <span className="opacity-75 text-sm">
+                      {showingTranslateValue(about_us?.founder_two_sub)}
+                    </span>
+                  </div>
                 </div>
-              </div>
-              <div className="max-w-sm">
-                <Image
-                  width={420}
-                  height={420}
-                  src={about_us?.founder_two_img || "/team/team-2.jpg"}
-                  alt="team-2"
-                  className="block rounded-lg"
-                />
-                <div className="py-4">
-                  <h5 className="text-lg font-semibold ">
-                    {showingTranslateValue(about_us?.founder_two_name)}
-                  </h5>
-                  <span className="opacity-75 text-sm">
-                    {showingTranslateValue(about_us?.founder_two_sub)}
-                  </span>
+                <div className="max-w-sm">
+                  <Image
+                    width={420}
+                    height={420}
+                    src={about_us?.founder_three_img || "/team/team-3.jpg"}
+                    alt="team-3"
+                    className="block rounded-lg"
+                  />
+                  <div className="py-4">
+                    <h5 className="text-lg font-semibold ">
+                      {showingTranslateValue(about_us?.founder_three_name)}
+                    </h5>
+                    <span className="opacity-75 text-sm">
+                      {showingTranslateValue(about_us?.founder_three_sub)}
+                    </span>
+                  </div>
                 </div>
-              </div>
-              <div className="max-w-sm">
-                <Image
-                  width={420}
-                  height={420}
-                  src={about_us?.founder_three_img || "/team/team-3.jpg"}
-                  alt="team-3"
-                  className="block rounded-lg"
-                />
-                <div className="py-4">
-                  <h5 className="text-lg font-semibold ">
-                    {showingTranslateValue(about_us?.founder_three_name)}
-                  </h5>
-                  <span className="opacity-75 text-sm">
-                    {showingTranslateValue(about_us?.founder_three_sub)}
-                  </span>
+                <div className="max-w-sm">
+                  <Image
+                    width={420}
+                    height={420}
+                    src={about_us?.founder_four_img || "/team/team-4.jpg"}
+                    alt="team-4"
+                    className="block rounded-lg"
+                  />
+                  <div className="py-4">
+                    <h5 className="text-lg font-semibold ">
+                      {showingTranslateValue(about_us?.founder_four_name)}
+                    </h5>
+                    <span className="opacity-75 text-sm">
+                      {showingTranslateValue(about_us?.founder_four_sub)}
+                    </span>
+                  </div>
                 </div>
-              </div>
-              <div className="max-w-sm">
-                <Image
-                  width={420}
-                  height={420}
-                  src={about_us?.founder_four_img || "/team/team-4.jpg"}
-                  alt="team-4"
-                  className="block rounded-lg"
-                />
-                <div className="py-4">
-                  <h5 className="text-lg font-semibold ">
-                    {showingTranslateValue(about_us?.founder_four_name)}
-                  </h5>
-                  <span className="opacity-75 text-sm">
-                    {showingTranslateValue(about_us?.founder_four_sub)}
-                  </span>
+                <div className="max-w-sm">
+                  <Image
+                    width={420}
+                    height={420}
+                    src={about_us?.founder_five_img || "/team/team-5.jpg"}
+                    alt="team-5"
+                    className="block rounded-lg"
+                  />
+                  <div className="py-4">
+                    <h5 className="text-lg font-semibold ">
+                      {showingTranslateValue(about_us?.founder_five_name)}
+                    </h5>
+                    <span className="opacity-75 text-sm">
+                      {showingTranslateValue(about_us?.founder_five_sub)}
+                    </span>
+                  </div>
                 </div>
-              </div>
-              <div className="max-w-sm">
-                <Image
-                  width={420}
-                  height={420}
-                  src={about_us?.founder_five_img || "/team/team-5.jpg"}
-                  alt="team-5"
-                  className="block rounded-lg"
-                />
-                <div className="py-4">
-                  <h5 className="text-lg font-semibold ">
-                    {showingTranslateValue(about_us?.founder_five_name)}
-                  </h5>
-                  <span className="opacity-75 text-sm">
-                    {showingTranslateValue(about_us?.founder_five_sub)}
-                  </span>
-                </div>
-              </div>
-              <div className="max-w-sm">
-                <Image
-                  width={420}
-                  height={420}
-                  src={about_us?.founder_six_img || "/team/team-6.jpg"}
-                  alt="team-6"
-                  className="block rounded-lg"
-                />
-                <div className="py-4">
-                  <h5 className="text-lg font-semibold">
-                    {showingTranslateValue(about_us?.founder_six_name)}
-                  </h5>
-                  <span className="opacity-75 text-sm">
-                    {showingTranslateValue(about_us?.founder_six_sub)}
-                  </span>
+                <div className="max-w-sm">
+                  <Image
+                    width={420}
+                    height={420}
+                    src={about_us?.founder_six_img || "/team/team-6.jpg"}
+                    alt="team-6"
+                    className="block rounded-lg"
+                  />
+                  <div className="py-4">
+                    <h5 className="text-lg font-semibold">
+                      {showingTranslateValue(about_us?.founder_six_name)}
+                    </h5>
+                    <span className="opacity-75 text-sm">
+                      {showingTranslateValue(about_us?.founder_six_sub)}
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        ) : null}
       </div>
     </div>
   );

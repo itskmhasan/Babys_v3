@@ -17,7 +17,12 @@ import { Button } from "@components/ui/button";
 const Login = () => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
-  const redirectUrl = useSearchParams().get("redirectUrl") || "/user/dashboard";
+  const rawRedirectUrl = useSearchParams().get("redirectUrl");
+  const redirectUrl = rawRedirectUrl
+    ? rawRedirectUrl.startsWith("/")
+      ? rawRedirectUrl
+      : `/${rawRedirectUrl}`
+    : "/user/dashboard";
   const {
     register,
     handleSubmit,
@@ -48,22 +53,24 @@ const Login = () => {
 
   return (
     <>
-      <div className="mx-auto max-w-screen-2xl px-3 sm:px-10">
-        <div className="py-4 flex flex-col lg:flex-row w-full">
-          <div className="w-full sm:p-5 lg:p-8">
-            <div className="mx-auto text-left text-black dark:bg-gray-200 justify-center rounded-md w-full max-w-lg px-4 py-8 sm:p-10 overflow-hidden align-middle transition-all transform bg-white shadow-xl rounded-2x">
-              <div className="overflow-hidden mx-auto">
-                <div className="text-center">
-                  <h2 className="text-3xl font-bold">Login</h2>
-                  <p className="text-sm md:text-base text-gray-500 mt-1 mb-4">
+      <section className="bg-gradient-to-b from-slate-50 via-zinc-50 to-teal-50/40">
+        <div className="mx-auto max-w-screen-2xl px-4 sm:px-10">
+          <div className="flex min-h-[calc(100vh-7rem)] items-center justify-center py-8 sm:py-12">
+            <div className="w-full max-w-lg rounded-2xl border border-slate-200/70 bg-white/95 px-5 py-8 shadow-[0_25px_60px_-35px_rgba(15,23,42,0.45)] backdrop-blur sm:px-10 sm:py-10">
+              <div className="mx-auto overflow-hidden text-left">
+                <div className="mb-7 text-center">
+                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-teal-700">
+                    Babys Store
+                  </p>
+                  <h2 className="mt-2 text-3xl font-semibold tracking-tight text-slate-900">
+                    Welcome Back
+                  </h2>
+                  <p className="mt-2 text-sm text-slate-500">
                     Login with your email and password
                   </p>
                 </div>
-                <form
-                  onSubmit={handleSubmit(submitHandler)}
-                  className="flex flex-col justify-center"
-                >
-                  <div className="grid grid-cols-1 gap-5">
+                <form onSubmit={handleSubmit(submitHandler)} className="flex flex-col">
+                  <div className="grid grid-cols-1 gap-4">
                     <div className="form-group">
                       <InputArea
                         register={register}
@@ -101,10 +108,9 @@ const Login = () => {
                     </div>
                     <Button
                       disabled={loading}
-                      variant="create"
+                      className="mt-1 h-11 bg-slate-900 text-white hover:bg-slate-800"
                       isLoading={loading}
                       type="submit"
-                      // className="w-full text-center py-3 rounded bg-emerald-500 text-white hover:bg-emerald-600 transition-all focus:outline-none my-1"
                     >
                       {loading ? "Loading" : "Login"}
                     </Button>
@@ -120,7 +126,7 @@ const Login = () => {
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </>
   );
 };

@@ -6,6 +6,7 @@ const {
   registerCustomer,
   verifyPhoneNumber,
   signUpWithOauthProvider,
+  checkEmailAvailability,
   verifyEmailAddress,
   forgetPassword,
   changePassword,
@@ -28,6 +29,9 @@ const {
 
 //verify email
 router.post("/verify-email", emailVerificationLimit, verifyEmailAddress);
+
+// check email availability for signup
+router.get("/check-email", checkEmailAvailability);
 
 //verify phone number
 router.post("/verify-phone", phoneVerificationLimit, verifyPhoneNumber);

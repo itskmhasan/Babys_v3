@@ -43,6 +43,40 @@ const verifyEmailAddress = async (req, res) => {
   }
 };
 
+const checkEmailAvailability = async (req, res) => {
+  try {
+    const email = String(req.query.email || "")
+      .trim()
+      .toLowerCase();
+
+    if (!email) {
+      return res.status(400).send({
+        available: false,
+        message: "Email is required.",
+      });
+    }
+
+    const existingCustomer = await Customer.findOne({ email });
+
+    if (existingCustomer) {
+      return res.send({
+        available: false,
+        message: "This email is already registered. Please use a different email.",
+      });
+    }
+
+    return res.send({
+      available: true,
+      message: "Email is available.",
+    });
+  } catch (err) {
+    return res.status(500).send({
+      available: false,
+      message: err.message,
+    });
+  }
+};
+
 const verifyPhoneNumber = async (req, res) => {
   const phoneNumber = req.body.phone;
 
@@ -565,6 +599,7 @@ module.exports = {
   registerCustomer,
   addAllCustomers,
   signUpWithOauthProvider,
+  checkEmailAvailability,
   verifyEmailAddress,
   forgetPassword,
   changePassword,

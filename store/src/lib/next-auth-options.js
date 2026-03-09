@@ -43,21 +43,41 @@ async function refreshAccessToken(token) {
 export const getDynamicAuthOptions = async () => {
   const { storeSetting } = await getStoreSecretKeys();
 
+  const isEnabled = (value) =>
+    value === true || value === 1 || value === "1" || value === "true";
+
   // console.log("storeSetting::::", storeSetting);
 
-  const providers = [
-    Google({
-      clientId: storeSetting?.google_id || "",
-      clientSecret: storeSetting?.google_secret || "",
-    }),
-    GitHub({
-      clientId: storeSetting?.github_id || "",
-      clientSecret: storeSetting?.github_secret || "",
-    }),
-    Facebook({
-      clientId: storeSetting?.facebook_id || "",
-      clientSecret: storeSetting?.facebook_secret || "",
-    }),
+  const providers = [];
+
+  if (isEnabled(storeSetting?.google_login_status)) {
+    providers.push(
+      Google({
+        clientId: storeSetting?.google_id || "",
+        clientSecret: storeSetting?.google_secret || "",
+      })
+    );
+  }
+
+  if (isEnabled(storeSetting?.github_login_status)) {
+    providers.push(
+      GitHub({
+        clientId: storeSetting?.github_id || "",
+        clientSecret: storeSetting?.github_secret || "",
+      })
+    );
+  }
+
+  if (isEnabled(storeSetting?.facebook_login_status)) {
+    providers.push(
+      Facebook({
+        clientId: storeSetting?.facebook_id || "",
+        clientSecret: storeSetting?.facebook_secret || "",
+      })
+    );
+  }
+
+  providers.push(
     Credentials({
       name: "Credentials",
       credentials: {
@@ -71,8 +91,8 @@ export const getDynamicAuthOptions = async () => {
         }
         return userInfo;
       },
-    }),
-  ];
+    })
+  );
 
   const authOptions = {
     providers,

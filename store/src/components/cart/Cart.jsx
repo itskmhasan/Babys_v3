@@ -6,7 +6,6 @@ import { IoBagCheckOutline, IoClose, IoBagHandle } from "react-icons/io5";
 
 //internal import
 import CartItem from "@components/cart/CartItem";
-import { getUserSession } from "@lib/auth-client";
 import { FiShoppingCart } from "react-icons/fi";
 import Link from "next/link";
 import Image from "next/image";
@@ -15,23 +14,13 @@ const Cart = ({ setOpen, currency }) => {
   const router = useRouter();
   const { isEmpty, items, cartTotal } = useCart();
 
-  const userInfo = getUserSession();
-
   const handleCheckout = () => {
     if (items?.length <= 0) {
       setOpen(false);
     } else {
-      if (!userInfo) {
-        // console.log("userInfo::", userInfo, "history");
-
-        // Redirect to login page with returnUrl query parameter
-        // router.push(`/auth/login?redirectUrl=checkout`, { scroll: true });
-        // setOpen(false);
-        router.push(`/auth/login`, { scroll: true });
-      } else {
-        router.push("/checkout");
-        setOpen(false);
-      }
+      // Middleware performs the authoritative auth check.
+      router.push("/checkout");
+      setOpen(false);
     }
   };
 

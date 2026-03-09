@@ -17,7 +17,6 @@ import Label from "@components/form/Label";
 import Error from "@components/form/Error";
 import CartItem from "@components/cart/CartItem";
 import InputArea from "@components/form/InputArea";
-import InputShipping from "@components/form/InputShipping";
 import InputPayment from "@components/form/InputPayment";
 import useCheckoutSubmit from "@hooks/useCheckoutSubmit";
 import { Input } from "@components/ui/input";
@@ -28,6 +27,9 @@ const CheckoutForm = ({ shippingAddress, hasShippingAddress }) => {
   const { t } = useTranslation();
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
+
+  const isGatewayEnabled = (value) =>
+    value === true || value === 1 || value === "1" || value === "true";
 
   const {
     error,
@@ -45,10 +47,12 @@ const CheckoutForm = ({ shippingAddress, hasShippingAddress }) => {
     setShowCard,
     handleSubmit,
     submitHandler,
-    handleShippingCost,
     handleCouponCode,
     discountAmount,
     shippingCost,
+    selectedShippingName,
+    shippingOne,
+    shippingTwo,
     isCheckoutSubmit,
     useExistingAddress,
     isCouponAvailable,
@@ -59,6 +63,10 @@ const CheckoutForm = ({ shippingAddress, hasShippingAddress }) => {
     handleDefaultShippingAddress,
   } = useCheckoutSubmit({ shippingAddress });
   const checkout = storeCustomization?.checkout;
+  const codEnabled = isGatewayEnabled(storeSetting?.cod_status);
+  const stripeEnabled = isGatewayEnabled(storeSetting?.stripe_status);
+  const razorpayEnabled = isGatewayEnabled(storeSetting?.razorpay_status);
+  const hasAnyGatewayEnabled = codEnabled || stripeEnabled || razorpayEnabled;
   if (!mounted) return null; // or a skeleton loader
 
   return (
@@ -184,33 +192,50 @@ const CheckoutForm = ({ shippingAddress, hasShippingAddress }) => {
               <Label label={showingTranslateValue(checkout?.shipping_cost)} />
               <div className="grid grid-cols-6 gap-6">
                 <div className="col-span-6 sm:col-span-3">
-                  <InputShipping
-                    currency={currency}
-                    register={register}
-                    handleShippingCost={handleShippingCost}
-                    name={showingTranslateValue(checkout?.shipping_name_two)}
-                    description={showingTranslateValue(
-                      checkout?.shipping_one_desc
-                    )}
-                    value={Number(checkout?.shipping_one_cost) || 60}
-                  />
-                  <Error errorMessage={errors.shippingOption} />
+                  <div
+                    className={`rounded-md border p-3 ${
+                      selectedShippingName === shippingOne.name
+                        ? "border-emerald-400 bg-emerald-50"
+                        : "border-gray-200 bg-white"
+                    }`}
+                  >
+                    <p className="text-sm font-semibold text-gray-700">{shippingOne.name}</p>
+                    <p className="mt-1 text-xs text-gray-500">{shippingOne.description}</p>
+                    <p className="mt-2 text-sm font-semibold text-gray-800">
+                      {currency}
+                      {Number(shippingOne.cost).toFixed(2)}
+                    </p>
+                  </div>
                 </div>
 
                 <div className="col-span-6 sm:col-span-3">
-                  <InputShipping
-                    currency={currency}
-                    register={register}
-                    handleShippingCost={handleShippingCost}
-                    name={showingTranslateValue(checkout?.shipping_name_two)}
-                    description={showingTranslateValue(
-                      checkout?.shipping_two_desc
-                    )}
-                    value={Number(checkout?.shipping_two_cost) || 20}
-                  />
-                  <Error errorMessage={errors.shippingOption} />
+                  <div
+                    className={`rounded-md border p-3 ${
+                      selectedShippingName === shippingTwo.name
+                        ? "border-emerald-400 bg-emerald-50"
+                        : "border-gray-200 bg-white"
+                    }`}
+                  >
+                    <p className="text-sm font-semibold text-gray-700">{shippingTwo.name}</p>
+                    <p className="mt-1 text-xs text-gray-500">{shippingTwo.description}</p>
+                    <p className="mt-2 text-sm font-semibold text-gray-800">
+                      {currency}
+                      {Number(shippingTwo.cost).toFixed(2)}
+                    </p>
+                  </div>
                 </div>
               </div>
+              <p className="mt-2 text-xs text-gray-500">
+                Shipping is selected automatically: city "Dhaka" uses {shippingOne.name};
+                all other cities use {shippingTwo.name}.
+              </p>
+              <input
+                type="hidden"
+                {...register("shippingOption", {
+                  required: "Shipping Option is required!",
+                })}
+              />
+              <Error errorMessage={errors.shippingOption} />
             </div>
 
             <div className="form-group mt-12">
@@ -224,7 +249,7 @@ const CheckoutForm = ({ shippingAddress, hasShippingAddress }) => {
                 </div>
               )}
               <div className="grid sm:grid-cols-3 grid-cols-1 gap-4">
-                {storeSetting?.cod_status && (
+                {codEnabled && (
                   <div className="">
                     <InputPayment
                       setShowCard={setShowCard}
@@ -237,7 +262,7 @@ const CheckoutForm = ({ shippingAddress, hasShippingAddress }) => {
                   </div>
                 )}
 
-                {storeSetting?.stripe_status && (
+                {stripeEnabled && (
                   <div className="">
                     <InputPayment
                       setShowCard={setShowCard}
@@ -250,19 +275,24 @@ const CheckoutForm = ({ shippingAddress, hasShippingAddress }) => {
                   </div>
                 )}
 
-                {/* {storeSetting?.razorpay_status && ( */}
-                <div className="">
-                  <InputPayment
-                    setShowCard={setShowCard}
-                    register={register}
-                    name="RazorPay"
-                    value="RazorPay"
-                    Icon={ImCreditCard}
-                  />
-                  <Error errorMessage={errors.paymentMethod} />
-                </div>
-                {/* )} */}
+                {razorpayEnabled && (
+                  <div className="">
+                    <InputPayment
+                      setShowCard={setShowCard}
+                      register={register}
+                      name="RazorPay"
+                      value="RazorPay"
+                      Icon={ImCreditCard}
+                    />
+                    <Error errorMessage={errors.paymentMethod} />
+                  </div>
+                )}
               </div>
+              {!hasAnyGatewayEnabled ? (
+                <p className="mt-3 text-sm text-rose-600">
+                  No payment gateway is enabled right now. Please contact support.
+                </p>
+              ) : null}
             </div>
 
             <div className="grid grid-cols-6 gap-4 lg:gap-6 mt-10">
@@ -284,7 +314,12 @@ const CheckoutForm = ({ shippingAddress, hasShippingAddress }) => {
                 <Button
                   type="submit"
                   variant="create"
-                  disabled={isEmpty || !stripe || isCheckoutSubmit}
+                  disabled={
+                    isEmpty ||
+                    isCheckoutSubmit ||
+                    !hasAnyGatewayEnabled ||
+                    (showCard && !stripe)
+                  }
                   isLoading={isCheckoutSubmit}
                   className="w-full h-10 rounded-sm"
                 >

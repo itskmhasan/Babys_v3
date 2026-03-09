@@ -11,6 +11,8 @@ const InputAreaTwo = ({
   autocomplete,
   placeholder,
   readOnly,
+  onBlur,
+  onChange,
 }) => {
   return (
     <>
@@ -27,6 +29,8 @@ const InputAreaTwo = ({
           type={type}
           name={name}
           readOnly={readOnly}
+          onBlur={onBlur}
+          onChange={onChange}
           // disabled={readOnly} // Add disabled attribute if readOnly is true
           defaultValue={defaultValue}
           placeholder={placeholder}

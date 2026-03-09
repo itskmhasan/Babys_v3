@@ -62,8 +62,26 @@ const useCheckoutSubmit = ({ shippingAddress }) => {
     register,
     handleSubmit,
     setValue,
+    watch,
     formState: { errors },
   } = useForm();
+
+  const checkout = storeCustomization?.checkout;
+  const watchedCity = watch("city");
+  const selectedShippingName = watch("shippingOption");
+
+  const shippingOne = {
+    name: showingTranslateValue(checkout?.shipping_name_one) || "Shipping One",
+    description: showingTranslateValue(checkout?.shipping_one_desc) || "Inside Dhaka",
+    cost: Number(checkout?.shipping_one_cost) || 60,
+  };
+
+  const shippingTwo = {
+    name: showingTranslateValue(checkout?.shipping_name_two) || "Shipping Two",
+    description:
+      showingTranslateValue(checkout?.shipping_two_desc) || "Outside Dhaka",
+    cost: Number(checkout?.shipping_two_cost) || 20,
+  };
 
   useEffect(() => {
     if (Cookies.get("couponInfo")) {
@@ -75,6 +93,18 @@ const useCheckoutSubmit = ({ shippingAddress }) => {
     }
     setValue("email", userInfo?.email);
   }, [isCouponApplied]);
+
+  useEffect(() => {
+    const city = String(watchedCity || "").trim().toLowerCase();
+    const isDhaka = city.includes("dhaka");
+    const selectedShipping = isDhaka ? shippingOne : shippingTwo;
+
+    setShippingCost(selectedShipping.cost);
+    setValue("shippingOption", selectedShipping.name, {
+      shouldValidate: true,
+      shouldDirty: true,
+    });
+  }, [watchedCity, checkout]);
 
   //remove coupon if total value less then minimum amount of coupon
   useEffect(() => {
@@ -460,6 +490,9 @@ const useCheckoutSubmit = ({ shippingAddress }) => {
     discountPercentage,
     discountAmount,
     shippingCost,
+    selectedShippingName,
+    shippingOne,
+    shippingTwo,
     isCheckoutSubmit,
     isCouponApplied,
     useExistingAddress,

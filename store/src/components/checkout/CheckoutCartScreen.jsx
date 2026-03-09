@@ -5,7 +5,7 @@ import { IoAlertCircleOutline, IoReturnUpBackOutline } from "react-icons/io5";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import Image from "next/image";
-import { getUserSession } from "@lib/auth-client";
+import { useRouter } from "next/navigation";
 
 //internal import
 
@@ -17,7 +17,7 @@ import { Input } from "@components/ui/input";
 import { Button } from "@components/ui/button";
 
 const CheckoutCartScreen = () => {
-  const userInfo = getUserSession();
+  const router = useRouter();
   const { storeCustomization } = useSetting();
   const { showingTranslateValue } = useUtilsFunction();
 
@@ -38,18 +38,10 @@ const CheckoutCartScreen = () => {
 
   const handleCheckout = () => {
     if (items?.length <= 0) {
-      closeCartDrawer();
+      return;
     } else {
-      if (!userInfo) {
-        // console.log("userInfo::", userInfo, "history");
-
-        // Redirect to login page with returnUrl query parameter
-        router.push(`/auth/login?redirectUrl=checkout`);
-        closeCartDrawer();
-      } else {
-        router.push("/checkout");
-        closeCartDrawer();
-      }
+      // Middleware handles redirect to login if user is not authenticated.
+      router.push("/checkout");
     }
   };
 

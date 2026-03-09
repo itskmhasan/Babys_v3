@@ -4,6 +4,7 @@ import { NextResponse } from "next/server";
 const locales = ["en", "en-US", "es", "fr", "nl-NL"];
 const defaultLocale = "en";
 const protectedRoutes = ["/user", "/order", "/checkout"];
+const guestOnlyRoutes = ["/auth/login", "/auth/signup", "/login", "/register"];
 
 export async function middleware(request) {
   const { pathname } = request.nextUrl;
@@ -32,15 +33,36 @@ export async function middleware(request) {
     pathAfterLocale.startsWith(route)
   );
 
+  const isGuestOnly = guestOnlyRoutes.some(
+    (route) => pathAfterLocale === route || pathAfterLocale.startsWith(`${route}/`)
+  );
+
+  const requestedRedirect = request.nextUrl.searchParams.get("redirectUrl");
+  const safeRedirect = requestedRedirect
+    ? requestedRedirect.startsWith("/")
+      ? requestedRedirect
+      : `/${requestedRedirect}`
+    : null;
+
+  const token = await getToken({ req: request });
+  const legacyAuthCookie = request.cookies.get("_userInfo")?.value;
+  const isAuthenticated = !!token || !!legacyAuthCookie;
+
+  if (isGuestOnly && isAuthenticated) {
+    return NextResponse.redirect(
+      new URL(safeRedirect || `/user/dashboard`, request.url)
+    );
+  }
+
   // Skip auth check for login/register routes
   if (isProtected && !pathAfterLocale.startsWith("/auth")) {
-    const userInfo = await getToken({ req: request });
+    if (!isAuthenticated) {
+      const loginUrl = new URL(`/auth/login`, request.url);
+      loginUrl.searchParams.set("redirectUrl", pathAfterLocale);
 
-    // console.log("userInfo:", userInfo);
-    if (!userInfo) {
       return NextResponse.redirect(
         // new URL(`/${currentLocale}/auth/login`, request.url)
-        new URL(`/auth/login`, request.url)
+        loginUrl
       );
     }
   }
