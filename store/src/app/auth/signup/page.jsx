@@ -18,12 +18,10 @@ const SignUp = () => {
   const [state, formAction] = useActionState(verifyEmailAddress, undefined);
 
   useEffect(() => {
-    // console.log("state error 1st", state);
     if (state?.error) {
-      // console.log("state error", state);
       notifyError(state?.error);
     }
-  });
+  }, [state?.error]);
 
   return (
     <>
@@ -44,6 +42,12 @@ const SignUp = () => {
                   action={formAction}
                   className="flex flex-col justify-center"
                 >
+                  <ShowToast success={state?.user?.message} error={state?.error} />
+                  {state?.user?.message && (
+                    <p className="mb-4 rounded-md bg-emerald-50 px-3 py-2 text-sm text-emerald-700">
+                      {state.user.message}
+                    </p>
+                  )}
                   { <div className="grid grid-cols-1 gap-5">
                     <div className="form-group">
                       <InputAreaTwo

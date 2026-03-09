@@ -1,4 +1,9 @@
 const customerRegisterBody = (option) => {
+  const storeUrl = (process.env.STORE_URL || "https://babys.com.bd").replace(
+    /\/$/,
+    ""
+  );
+
   return `
 <html
   xmlns="http://www.w3.org/1999/xhtml"
@@ -7,7 +12,7 @@ const customerRegisterBody = (option) => {
 >
 
   <head>
-    <title>Kachabazar</title>
+    <title>Babys</title>
     <!--[if !mso]><!-->
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <!--<![endif]-->
@@ -204,25 +209,25 @@ const customerRegisterBody = (option) => {
                           >
                             <!--start email_template -->
                             <h2>Hello ${option.name}</h2>
-                            <p>Verify your email address to complete the signup and login into your <strong>KachaBazar</strong> account.
+                            <p>Verify your email address to complete signup and login into your <strong>Babys</strong> account.
                             </p>
 
                             <p style="margin-bottom:30px;"> <p>This link will expire in <strong> 15 minute</strong>.</p>
 
         <p style="margin-bottom:20px;">Click this link for active your account</p></p>
 
-                             <a href=${process.env.STORE_URL}/auth/email-verification/${option.token} style="background:#22c55e;color:white;border:1px solid #22c55e; padding: 10px 15px; border-radius: 4px; text-decoration:none;">Verify Account</a>
+                             <a href=${storeUrl}/auth/email-verification/${option.token} style="background:#22c55e;color:white;border:1px solid #22c55e; padding: 10px 15px; border-radius: 4px; text-decoration:none;">Verify Account</a>
 
                             <p style="margin-top: 35px;">If you did not initiate
                               this request, please contact us immediately at
-                              support@kachabazar.com</p>
+                              ${process.env.EMAIL_USER || "support@babys.com.bd"}</p>
 
                             <p
                               style="margin:0px auto; margin-top:40px; text-align:center;"
                             >Thank you
                               <h4
                                 style="margin:1px; margin-bottom:0px; text-align:center;"
-                              >KachaBazar Team</h4></p>
+                              >Babys Team</h4></p>
 
                             <!--end email_template -->
                           </div>
@@ -346,7 +351,7 @@ const customerRegisterBody = (option) => {
                                                       >
                                                         You are receiving this
                                                         email because you
-                                                        registered with KachaBazar
+                                                        registered with Babys
                                                         and agreed to receive
                                                         emails from us regarding
                                                         new features, events and
@@ -354,7 +359,7 @@ const customerRegisterBody = (option) => {
                                                         <p
                                                           style="font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:11px;font-weight:400;line-height:16px;text-align:center;color:#303030;"
                                                         >
-                                                          &copy; KachaBazar, All
+                                                          &copy; Babys, All
                                                           Rights Reserved.</p></div>
                                                     </td>
                                                   </tr>

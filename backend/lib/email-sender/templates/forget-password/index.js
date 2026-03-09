@@ -1,4 +1,9 @@
 const forgetPasswordEmailBody = (option) => {
+  const storeUrl = (process.env.STORE_URL || "https://babys.com.bd").replace(
+    /\/$/,
+    ""
+  );
+
   return `
 <html
   xmlns="http://www.w3.org/1999/xhtml"
@@ -7,7 +12,7 @@ const forgetPasswordEmailBody = (option) => {
 >
 
   <head>
-    <title>Kachabazar</title>
+    <title>Babys</title>
     <!--[if !mso]><!-->
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <!--<![endif]-->
@@ -206,7 +211,7 @@ const forgetPasswordEmailBody = (option) => {
                             <h2>Hello ${option.email}</h2>
                             <p>A request has been received to change the
                               password for your
-                              <strong>Kachabazar</strong>
+                              <strong>Babys</strong>
                               account.
                             </p>
 
@@ -217,20 +222,20 @@ const forgetPasswordEmailBody = (option) => {
                               reset your password</p>
 
                             <a
-                            href=${process.env.STORE_URL}/auth/forget-password/${option.token}
+                            href=${storeUrl}/auth/forget-password/${option.token}
                               style="background:#22c55e;color:white;border:1px solid #22c55e; padding: 10px 15px; border-radius: 4px; text-decoration:none;"
                             >Reset Password </a>
 
                             <p style="margin-top: 50px;">If you did not initiate
                               this request, please contact us immediately at
-                              support@kachabazar.com</p>
+                              ${process.env.EMAIL_USER || "support@babys.com.bd"}</p>
 
                             <p
                               style="margin:0px auto; padding-bottom:0px; text-align:center;"
                             >Thank you
                               <h4
                                 style="margin:1px; text-align:center;padding-bottom:0px;"
-                              >Kachabazar Team</h4></p>
+                              >Babys Team</h4></p>
 
                             <!--end email_template -->
                           </div>
@@ -354,7 +359,7 @@ const forgetPasswordEmailBody = (option) => {
                                                       >
                                                         You are receiving this
                                                         email because you
-                                                        registered with Kachabazar
+                                                        registered with Babys
                                                         and agreed to receive
                                                         emails from us regarding
                                                         new features, events and
@@ -362,7 +367,7 @@ const forgetPasswordEmailBody = (option) => {
                                                         <p
                                                           style="font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:11px;font-weight:400;line-height:16px;text-align:center;color:#303030;"
                                                         >
-                                                          &copy; Kachabazar, All
+                                                          &copy; Babys, All
                                                           Rights Reserved.</p></div>
                                                     </td>
                                                   </tr>
