@@ -33,6 +33,11 @@ const registerCustomer = async (token) => {
   try {
     const response = await fetch(`${baseURL}/customer/register/${token}`, {
       cache: "no-cache",
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
     });
 
     const user = await handleResponse(response);
@@ -61,29 +66,41 @@ const signUpWithOauthProvider = async ({ name, email, image }) => {
     return { error: error.message };
   }
 };
-const forgetPassword = async () => {
+const forgetPassword = async (email) => {
   try {
     const response = await fetch(`${baseURL}/customer/forget-password`, {
       cache: "no-cache",
+      method: "PUT",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email }),
     });
 
-    const user = await handleResponse(response);
-    return { user, error: null };
+    const res = await handleResponse(response);
+    return { res, error: null };
   } catch (error) {
-    return { user: [], error: error.message };
+    return { error: error.message };
   }
 };
 
-const resetPassword = async () => {
+const resetPassword = async ({ token, newPassword }) => {
   try {
     const response = await fetch(`${baseURL}/customer/reset-password`, {
       cache: "no-cache",
+      method: "PUT",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ token, newPassword }),
     });
 
-    const user = await handleResponse(response);
-    return { user, error: null };
+    const res = await handleResponse(response);
+    return { res, error: null };
   } catch (error) {
-    return { user: [], error: error.message };
+    return { error: error.message };
   }
 };
 

@@ -51,7 +51,6 @@ const Login = () => {
                   <div className="grid grid-cols-1 gap-5">
                     <div className="form-group">
                       <InputAreaTwo
-                        defaultValue="justin@gmail.com"
                         label="Email"
                         name="email"
                         type="email"
@@ -63,7 +62,6 @@ const Login = () => {
                     </div>
                     <div className="form-group">
                       <InputAreaTwo
-                        defaultValue="12345678"
                         label="Password"
                         name="password"
                         type="password"

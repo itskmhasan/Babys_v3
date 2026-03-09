@@ -39,16 +39,30 @@ const Login = () => {
               <h1 className="mb-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
                 Admin Login
               </h1>
-              <form onSubmit={handleSubmit(onSubmit)}>
+              <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
+                {/* Decoy fields reduce aggressive browser autofill on real inputs. */}
+                <input
+                  type="text"
+                  name="fake-username"
+                  autoComplete="username"
+                  className="hidden"
+                  tabIndex={-1}
+                />
+                <input
+                  type="password"
+                  name="fake-password"
+                  autoComplete="new-password"
+                  className="hidden"
+                  tabIndex={-1}
+                />
                 <LabelArea label="Email" />
                 <InputArea
                   required
                   register={register}
-                  defaultValue="admin@gmail.com"
                   label="Email"
                   name="email"
                   type="email"
-                  autoComplete="username"
+                  autoComplete="off"
                   placeholder="admin@example.com"
                 />
                 <Error errorName={errors.email} />
@@ -59,11 +73,10 @@ const Login = () => {
                 <InputArea
                   required
                   register={register}
-                  defaultValue="12345678"
                   label="Password"
                   name="password"
                   type="password"
-                  autoComplete="current-password"
+                  autoComplete="new-password"
                   placeholder="********"
                 />
                 <Error errorName={errors.password} />
@@ -86,12 +99,6 @@ const Login = () => {
                   to="/forgot-password"
                 >
                   {t("ForgotPassword")}
-                </Link>
-                <Link
-                  className="text-sm font-medium text-emerald-500 dark:text-emerald-400 hover:underline"
-                  to="/signup"
-                >
-                  {t("CreateAccountTitle")}
                 </Link>
               </div>
             </div>
