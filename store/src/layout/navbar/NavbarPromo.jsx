@@ -80,6 +80,15 @@ const NavbarPromo = ({ languages, categories, categoryError }) => {
                     )}
                     <Link
                       onClick={() => setIsLoading(!isLoading)}
+                      href="/shop"
+                      className="mx-2 inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white text-sm font-bold rounded-lg transition transform hover:scale-105 shadow-md"
+                    >
+                      <ShoppingBag className="w-4 h-4" />
+                      Shop
+                    </Link>
+
+                    <Link
+                      onClick={() => setIsLoading(!isLoading)}
                       href="/pregnancy-calculator"
                       className="mx-2 inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white text-sm font-bold rounded-lg transition transform hover:scale-105 shadow-md"
                     >

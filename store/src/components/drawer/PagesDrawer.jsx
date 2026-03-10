@@ -114,6 +114,17 @@ const PagesDrawer = ({ open, setOpen, categories, categoryError, globalSetting }
                   {/* Category Panel */}
                   <TabPanel>
                     <div className="space-y-6">
+                      <Link
+                        href="/shop"
+                        onClick={() => setOpen(false)}
+                        className="block w-full bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white font-bold py-3 px-4 rounded-lg transition transform hover:scale-105 shadow-lg"
+                      >
+                        <div className="flex items-center justify-center gap-2">
+                          <span className="text-lg">🛍️</span>
+                          <span>Shop</span>
+                        </div>
+                      </Link>
+
                       <div className="rounded-md overflow-y-auto max-h-[65vh] scrollbar-hide">
                         <Category
                           categories={categories}

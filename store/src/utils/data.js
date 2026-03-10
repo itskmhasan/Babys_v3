@@ -29,6 +29,11 @@ const pages = [
   //   icon: FiUser,
   // },
   {
+    title: "Shop",
+    href: "/shop",
+    icon: FiShoppingBag,
+  },
+  {
     title: "Pregnancy Calculator",
     href: "/pregnancy-calculator",
     icon: FiHeart,
@@ -296,6 +301,7 @@ const navData = {
   ],
   pages: [
     { name: "Pages", href: "#" },
+    { name: "Shop", href: "/shop" },
     { name: "Offers", href: "/offers" },
   ],
 };

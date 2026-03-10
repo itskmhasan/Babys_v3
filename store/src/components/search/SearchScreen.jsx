@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import dynamic from "next/dynamic";
+import Link from "next/link";
 
 //internal import
 import useFilter from "@hooks/useFilter";
@@ -11,12 +12,40 @@ import ProductCard from "@components/product/ProductCard";
 import CategoryCarousel from "@components/carousel/CategoryCarousel";
 import { Button } from "@components/ui/button";
 
-const SearchScreen = ({ products, attributes, categories, currency }) => {
+const SearchScreen = ({
+  products,
+  attributes,
+  categories,
+  currency,
+  showAll = false,
+  pagination,
+}) => {
   const [visibleProduct, setVisibleProduct] = useState(18);
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
 
   const { setSortedField, productData } = useFilter(products);
+  const safeProducts = Array.isArray(productData) ? productData : [];
+  const paginationEnabled = Boolean(pagination?.enabled);
+  const currentPage = pagination?.currentPage || 1;
+  const totalPages = pagination?.totalPages || 1;
+  const totalItems = paginationEnabled
+    ? pagination?.totalItems || 0
+    : safeProducts.length;
+
+  const productList = paginationEnabled
+    ? safeProducts
+    : showAll
+      ? safeProducts
+      : safeProducts.slice(0, visibleProduct);
+
+  const pageNumbers = Array.from(
+    { length: totalPages },
+    (_, index) => index + 1
+  ).filter((page) => Math.abs(page - currentPage) <= 2);
+
+  const buildPageLink = (page) => `${pagination?.basePath || "/shop"}?page=${page}`;
+
   if (!mounted) return null; // or a skeleton loader
 
   return (
@@ -30,7 +59,7 @@ const SearchScreen = ({ products, attributes, categories, currency }) => {
             <div className="relative">
               <CategoryCarousel categories={categories} />
             </div>
-            {productData?.length === 0 ? (
+            {safeProducts.length === 0 ? (
               <div className="mx-auto p-5 my-5">
                 <Image
                   className="my-4 mx-auto"
@@ -46,7 +75,7 @@ const SearchScreen = ({ products, attributes, categories, currency }) => {
             ) : (
               <div className="flex justify-between my-3 bg-orange-100 border border-gray-100 rounded p-3">
                 <h6 className="text-sm">
-                  Total <span className="font-bold">{productData?.length}</span>{" "}
+                  Total <span className="font-bold">{totalItems}</span>{" "}
                   Items Found
                 </h6>
                 <span className="text-sm">
@@ -69,7 +98,7 @@ const SearchScreen = ({ products, attributes, categories, currency }) => {
             )}
 
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-6 gap-2 md:gap-3 lg:gap-3">
-              {productData?.slice(0, visibleProduct).map((product, i) => (
+              {productList.map((product, i) => (
                 <ProductCard
                   key={i + 1}
                   product={product}
@@ -79,7 +108,7 @@ const SearchScreen = ({ products, attributes, categories, currency }) => {
               ))}
             </div>
 
-            {productData?.length > visibleProduct && (
+            {!showAll && !paginationEnabled && safeProducts.length > visibleProduct && (
               <Button
                 onClick={() => setVisibleProduct((pre) => pre + 10)}
                 variant="create"
@@ -87,6 +116,48 @@ const SearchScreen = ({ products, attributes, categories, currency }) => {
               >
                 Load More
               </Button>
+            )}
+
+            {paginationEnabled && totalPages > 1 && (
+              <div className="mt-8 flex items-center justify-center gap-2 flex-wrap">
+                <Link
+                  href={buildPageLink(Math.max(1, currentPage - 1))}
+                  aria-disabled={currentPage === 1}
+                  className={`px-3 py-2 rounded border text-sm ${
+                    currentPage === 1
+                      ? "pointer-events-none opacity-50 border-gray-200 text-gray-400"
+                      : "border-gray-300 text-gray-700 hover:bg-gray-50"
+                  }`}
+                >
+                  Prev
+                </Link>
+
+                {pageNumbers.map((page) => (
+                  <Link
+                    key={page}
+                    href={buildPageLink(page)}
+                    className={`px-3 py-2 rounded border text-sm ${
+                      page === currentPage
+                        ? "bg-emerald-500 border-emerald-500 text-white"
+                        : "border-gray-300 text-gray-700 hover:bg-gray-50"
+                    }`}
+                  >
+                    {page}
+                  </Link>
+                ))}
+
+                <Link
+                  href={buildPageLink(Math.min(totalPages, currentPage + 1))}
+                  aria-disabled={currentPage === totalPages}
+                  className={`px-3 py-2 rounded border text-sm ${
+                    currentPage === totalPages
+                      ? "pointer-events-none opacity-50 border-gray-200 text-gray-400"
+                      : "border-gray-300 text-gray-700 hover:bg-gray-50"
+                  }`}
+                >
+                  Next
+                </Link>
+              </div>
             )}
           </div>
         </div>

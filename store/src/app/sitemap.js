@@ -15,6 +15,7 @@ const publicRoutes = [
   "/bmi-calculator",
   "/pregnancy-calculator",
   "/search",
+  "/shop",
 ];
 
 export default async function sitemap() {
