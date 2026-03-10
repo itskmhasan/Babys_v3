@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { CardElement } from "@stripe/react-stripe-js";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import {
   IoReturnUpBackOutline,
   IoArrowForward,
@@ -24,6 +25,7 @@ import { Button } from "@components/ui/button";
 import SwitchToggle from "@components/form/SwitchToggle";
 
 const CheckoutForm = ({ shippingAddress, hasShippingAddress }) => {
+  const router = useRouter();
   const { t } = useTranslation();
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
@@ -67,7 +69,15 @@ const CheckoutForm = ({ shippingAddress, hasShippingAddress }) => {
   const stripeEnabled = isGatewayEnabled(storeSetting?.stripe_status);
   const razorpayEnabled = isGatewayEnabled(storeSetting?.razorpay_status);
   const hasAnyGatewayEnabled = codEnabled || stripeEnabled || razorpayEnabled;
+
+  useEffect(() => {
+    if (mounted && isEmpty) {
+      router.replace("/shop");
+    }
+  }, [mounted, isEmpty, router]);
+
   if (!mounted) return null; // or a skeleton loader
+  if (isEmpty) return null;
 
   return (
     <div className="py-10 lg:py-12 px-0 2xl:max-w-screen-2xl w-full xl:max-w-screen-xl flex flex-col md:flex-row lg:flex-row">
