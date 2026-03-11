@@ -4,7 +4,6 @@ import { Input } from "@components/ui/input";
 import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
-import { baseURL, handleResponse } from "@services/CommonService";
 
 const SearchInput = () => {
   const router = useRouter();
@@ -12,24 +11,11 @@ const SearchInput = () => {
   const [suggestions, setSuggestions] = useState({ products: [], categories: [], brands: [] });
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
-  const categoriesRef = useRef([]);
   const containerRef = useRef(null);
   const debounceRef = useRef(null);
+  const searchAbortRef = useRef(null);
 
   useEffect(() => {
-    // Fetch categories once and keep locally for fast filtering
-    (async () => {
-      try {
-        const res = await fetch(`${baseURL}/categories/all`);
-        if (res.ok) {
-          const data = await res.json();
-          categoriesRef.current = data || [];
-        }
-      } catch (err) {
-        // ignore
-      }
-    })();
-
     const handleClickOutside = (e) => {
       if (containerRef.current && !containerRef.current.contains(e.target)) {
         setOpen(false);
@@ -52,34 +38,33 @@ const SearchInput = () => {
     setLoading(true);
     debounceRef.current = setTimeout(async () => {
       try {
-        // products
+        if (searchAbortRef.current) {
+          searchAbortRef.current.abort();
+        }
+        const controller = new AbortController();
+        searchAbortRef.current = controller;
+
         const q = encodeURIComponent(searchText.trim());
-        const prodRes = await fetch(`${baseURL}/products?title=${q}&page=1&limit=6`);
-        let products = [];
-        if (prodRes.ok) products = (await prodRes.json()).products || [];
-
-        // categories (filter locally)
-        const catMatches = categoriesRef.current
-          .filter((c) => {
-            const name = c?.name?.en || c?.name || "";
-            return name.toLowerCase().includes(searchText.toLowerCase());
-          })
-          .slice(0, 6);
-
-        // brands: collect unique tags from product suggestions
-        const brandsSet = new Set();
-        products.forEach((p) => {
-          if (Array.isArray(p.tag)) {
-            p.tag.forEach((tg) => {
-              if (typeof tg === "string" && tg.trim()) brandsSet.add(tg.trim());
-            });
-          }
+        const response = await fetch(`/api/search-suggestions?q=${q}`, {
+          signal: controller.signal,
+          cache: "no-store",
         });
 
-        const brands = Array.from(brandsSet).slice(0, 6);
+        const data = response.ok
+          ? await response.json()
+          : { products: [], categories: [], brands: [] };
 
-        setSuggestions({ products, categories: catMatches, brands });
-        setOpen(true);
+        const nextSuggestions = {
+          products: data?.products || [],
+          categories: data?.categories || [],
+          brands: data?.brands || [],
+        };
+        setSuggestions(nextSuggestions);
+        setOpen(
+          nextSuggestions.products.length > 0 ||
+            nextSuggestions.categories.length > 0 ||
+            nextSuggestions.brands.length > 0
+        );
       } catch (err) {
         setSuggestions({ products: [], categories: [], brands: [] });
       } finally {
@@ -87,7 +72,12 @@ const SearchInput = () => {
       }
     }, 300);
 
-    return () => clearTimeout(debounceRef.current);
+    return () => {
+      clearTimeout(debounceRef.current);
+      if (searchAbortRef.current) {
+        searchAbortRef.current.abort();
+      }
+    };
   }, [searchText]);
 
   const handleSearch = (e) => {
@@ -132,10 +122,23 @@ const SearchInput = () => {
           <Input
             onChange={(e) => setSearchText(e.target.value)}
             value={searchText}
+            autoComplete="off"
+            autoCorrect="off"
+            autoCapitalize="none"
+            spellCheck={false}
+            inputMode="search"
             className="form-input w-full pl-5 appearance-none transition ease-in-out text-sm text-gray-700 font-sans rounded-md h-9 duration-200 bg-white focus:ring-0 outline-none border-none focus:outline-none"
             placeholder="Search for products (e.g. bibs, diapers, strollers)"
             onFocus={() => {
-              if (searchText && searchText.length >= 2 && suggestions.products.length) setOpen(true);
+              if (
+                searchText &&
+                searchText.length >= 2 &&
+                (suggestions.products.length > 0 ||
+                  suggestions.categories.length > 0 ||
+                  suggestions.brands.length > 0)
+              ) {
+                setOpen(true);
+              }
             }}
           />
         </label>

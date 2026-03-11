@@ -4,7 +4,7 @@ import CheckoutForm from "@components/checkout/CheckoutForm";
 import { getShippingAddress } from "@services/CustomerServices";
 
 export const metadata = {
-  title: "Checkout | Kachabazar",
+  title: "Checkout | Babys",
   description:
     "Complete your purchase securely and quickly with our checkout process.",
   keywords: ["checkout", "payment", "shipping", "order"],
@@ -13,10 +13,10 @@ export const metadata = {
     title: "Checkout | Babys | Best Shop for Moms and Babies",
     description:
       "Complete your purchase securely and quickly with our checkout process.",
-    url: "https://kachabazar-store-nine.vercel.app/checkout",
+    url: "https://babys.com.bd/checkout",
     images: [
       {
-        url: "https://kachabazar-store-nine.vercel.app/og-image.jpg",
+        url: "https://babys.com.bd/og-image.jpg",
         width: 800,
         height: 600,
         alt: "Checkout Page",

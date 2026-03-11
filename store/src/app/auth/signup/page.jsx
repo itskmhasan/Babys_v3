@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { FiLock, FiMail, FiUser } from "react-icons/fi";
-import { useActionState, useEffect, useMemo, useState } from "react";
+import { useActionState, useEffect, useMemo, useRef, useState } from "react";
 
 //internal import
 import Error from "@components/form/Error";
@@ -23,6 +23,10 @@ const SignUp = () => {
   const [emailError, setEmailError] = useState("");
   const [isCheckingEmail, setIsCheckingEmail] = useState(false);
   const [allowSubmit, setAllowSubmit] = useState(false);
+  const emailCheckTimerRef = useRef(null);
+  const emailCheckAbortRef = useRef(null);
+  const latestEmailRequestIdRef = useRef(0);
+  const emailAvailabilityCacheRef = useRef(new Map());
 
   const passwordStrength = useMemo(() => {
     let score = 0;
@@ -54,6 +58,22 @@ const SignUp = () => {
     }
   }, [state?.error]);
 
+  useEffect(() => {
+    return () => {
+      if (emailCheckTimerRef.current) {
+        clearTimeout(emailCheckTimerRef.current);
+      }
+      if (emailCheckAbortRef.current) {
+        emailCheckAbortRef.current.abort();
+      }
+    };
+  }, []);
+
+  const isValidEmailFormat = (value) => {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailPattern.test(value);
+  };
+
   const handleFormInput = (event) => {
     const target = event.target;
     if (!target?.name) return;
@@ -82,31 +102,80 @@ const SignUp = () => {
     }
   };
 
-  const checkEmailAvailability = async (email) => {
+  const checkEmailAvailability = async (
+    email,
+    { suppressNetworkError = true, requireValue = false } = {}
+  ) => {
     const emailValue = String(email || "").trim().toLowerCase();
 
     if (!emailValue) {
-      setEmailError("Email is required.");
+      if (requireValue) {
+        setEmailError("Email is required.");
+      } else {
+        setEmailError("");
+      }
       return { available: false };
     }
 
+    if (!isValidEmailFormat(emailValue)) {
+      setEmailError("Please enter a valid email address.");
+      return { available: false };
+    }
+
+    if (emailAvailabilityCacheRef.current.has(emailValue)) {
+      const isAvailable = emailAvailabilityCacheRef.current.get(emailValue);
+      if (isAvailable) {
+        setEmailError("");
+      } else {
+        setEmailError(
+          "This email is already registered. Please use a different email."
+        );
+      }
+      return { available: isAvailable };
+    }
+
     try {
+      if (emailCheckAbortRef.current) {
+        emailCheckAbortRef.current.abort();
+      }
+
+      const controller = new AbortController();
+      emailCheckAbortRef.current = controller;
+
+      const requestId = ++latestEmailRequestIdRef.current;
       setIsCheckingEmail(true);
+
+      const timeoutId = setTimeout(() => {
+        controller.abort();
+      }, 5000);
+
       const response = await fetch(
         `${baseURL}/customer/check-email?email=${encodeURIComponent(emailValue)}`,
         {
           cache: "no-cache",
+          signal: controller.signal,
         }
       );
+
+      clearTimeout(timeoutId);
+
+      if (requestId !== latestEmailRequestIdRef.current) {
+        return { available: false };
+      }
 
       const data = await response.json();
 
       if (!response.ok) {
+        if (suppressNetworkError) {
+          setEmailError("");
+          return { available: true };
+        }
         setEmailError(data?.message || "Could not validate email right now.");
         return { available: false };
       }
 
       if (!data?.available) {
+        emailAvailabilityCacheRef.current.set(emailValue, false);
         setEmailError(
           data?.message ||
             "This email is already registered. Please use a different email."
@@ -114,14 +183,42 @@ const SignUp = () => {
         return { available: false };
       }
 
+      emailAvailabilityCacheRef.current.set(emailValue, true);
       setEmailError("");
       return { available: true };
     } catch {
+      if (suppressNetworkError) {
+        setEmailError("");
+        return { available: true };
+      }
       setEmailError("Could not validate email right now. Please try again.");
       return { available: false };
     } finally {
       setIsCheckingEmail(false);
     }
+  };
+
+  const handleEmailInputChange = (event) => {
+    const email = event.target.value;
+
+    if (emailError) {
+      setEmailError("");
+    }
+    setAllowSubmit(false);
+
+    if (emailCheckTimerRef.current) {
+      clearTimeout(emailCheckTimerRef.current);
+    }
+
+    const emailValue = String(email || "").trim().toLowerCase();
+    if (!emailValue || !isValidEmailFormat(emailValue)) {
+      setIsCheckingEmail(false);
+      return;
+    }
+
+    emailCheckTimerRef.current = setTimeout(() => {
+      checkEmailAvailability(emailValue, { suppressNetworkError: true });
+    }, 450);
   };
 
   const handleBeforeSubmit = async (event) => {
@@ -141,7 +238,10 @@ const SignUp = () => {
       return;
     }
 
-    const emailResult = await checkEmailAvailability(email);
+    const emailResult = await checkEmailAvailability(email, {
+      suppressNetworkError: true,
+      requireValue: true,
+    });
     if (!emailResult.available) {
       return;
     }
@@ -159,7 +259,7 @@ const SignUp = () => {
               <div className="mx-auto overflow-hidden text-left">
                 <div className="mb-7 rounded-xl border border-cyan-100 bg-gradient-to-r from-cyan-50 to-amber-50 px-4 py-4 text-center">
                   <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-800">
-                    Babys Community
+                    Babys Store
                   </p>
                   <h2 className="mt-2 text-3xl font-semibold tracking-tight text-slate-900">
                     Create Your Account
@@ -200,7 +300,12 @@ const SignUp = () => {
                         type="email"
                         placeholder="Email"
                         Icon={FiMail}
-                        onBlur={(event) => checkEmailAvailability(event.target.value)}
+                        onChange={handleEmailInputChange}
+                        onBlur={(event) =>
+                          checkEmailAvailability(event.target.value, {
+                            suppressNetworkError: true,
+                          })
+                        }
                       />
                       <Error errorName={state?.errors?.email?.join(" ")} />
                       {isCheckingEmail ? (
