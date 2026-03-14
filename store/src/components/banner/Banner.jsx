@@ -4,8 +4,38 @@ import React from "react";
 //internal import
 import { showingTranslateValue } from "@lib/translate";
 
+const FALLBACK_SHOP_LINK = "/shop";
+const LEGACY_IRRELEVANT_CATEGORY_SLUGS = [
+  "breakfast",
+  "milk-dairy",
+  "fish-meat",
+  "fruits-vegetable",
+  "fresh-vegetable",
+  "drinks",
+  "beauty-health",
+  "biscuits",
+  "cakes",
+];
+
+const getSafePromotionLink = (rawLink) => {
+  const link = String(rawLink || "").trim();
+  if (!link) return FALLBACK_SHOP_LINK;
+
+  const lower = link.toLowerCase();
+  const hasLegacyCategory = LEGACY_IRRELEVANT_CATEGORY_SLUGS.some((slug) =>
+    lower.includes(`category=${slug}`)
+  );
+
+  if (hasLegacyCategory) {
+    return FALLBACK_SHOP_LINK;
+  }
+
+  return link.startsWith("/") ? link : `/${link}`;
+};
+
 const Banner = async ({ storeCustomizationSetting }) => {
   const home = storeCustomizationSetting?.home;
+  const promotionLink = getSafePromotionLink(home?.promotion_button_link);
 
   return (
     <>
@@ -30,7 +60,7 @@ const Banner = async ({ storeCustomizationSetting }) => {
         {/* Button Section */}
         <div className="flex-shrink-0">
           <Link
-            href={`${home?.promotion_button_link}`}
+            href={promotionLink}
             className="inline-flex items-center gap-2 px-5 md:px-7 py-2.5 md:py-3 bg-gradient-to-r from-violet-500 via-pink-500 to-rose-500 text-white font-semibold rounded-full hover:shadow-lg hover:scale-105 transition-all duration-300 ease-in-out whitespace-nowrap text-sm md:text-base"
           >
             {showingTranslateValue(home?.promotion_button_name)}

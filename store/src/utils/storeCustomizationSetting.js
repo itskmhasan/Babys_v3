@@ -90,7 +90,7 @@ export const storeCustomization = {
       en: "Shop Now",
       de: "Jetzt einkaufen",
     },
-    promotion_button_link: "/search?category=breakfast",
+    promotion_button_link: "/shop",
     feature_title: {
       en: "Featured Categories",
       de: "Beliebte Kategorien",
@@ -475,7 +475,7 @@ export const storeCustomization = {
       en: "Shop Now",
       de: "Jetzt einkaufen",
     },
-    first_link: "/search?category=milk-dairy",
+    first_link: "/shop",
     second_img:
       "https://res.cloudinary.com/ahossain/image/upload/v1697688491/settings/slider-2_o6aezc.jpg",
     second_title: {
@@ -490,7 +490,7 @@ export const storeCustomization = {
       en: "Shop Now",
       de: "Jetzt einkaufen",
     },
-    second_link: "/search?category=fish-meat",
+    second_link: "/shop",
     third_img:
       "https://res.cloudinary.com/ahossain/image/upload/v1697688492/settings/slider-3_iw4nnf.jpg",
     third_title: {
@@ -505,7 +505,7 @@ export const storeCustomization = {
       en: "Shop Now",
       de: "Jetzt einkaufen",
     },
-    third_link: "/search?category=fruits-vegetable",
+    third_link: "/shop",
     four_img: "https://i.postimg.cc/rscqZJNz/slider-1.webp",
     four_title: {
       en: "The Best Quality Products Guaranteed!",
@@ -519,7 +519,7 @@ export const storeCustomization = {
       en: "Shop Now",
       de: "Jetzt einkaufen",
     },
-    four_link: "/search?category=fruits-vegetable",
+    four_link: "/shop",
     five_img:
       "https://res.cloudinary.com/ahossain/image/upload/v1697688491/settings/slider-2_o6aezc.jpg",
     five_title: {
@@ -534,7 +534,7 @@ export const storeCustomization = {
       en: "Shop Now",
       de: "Jetzt einkaufen",
     },
-    five_link: "/search?category=fish-meat",
+    five_link: "/shop",
     mini_img_one:
       "https://res.cloudinary.com/ahossain/image/upload/v1697688491/settings/slider-2_o6aezc.jpg",
     mini_img_two:
@@ -782,22 +782,22 @@ export const storeCustomization = {
       en: "Fish & Meat",
       de: "Fisch Fleisch",
     },
-    block2_sub_link1: "/search?category=fish-meat",
+    block2_sub_link1: "/shop",
     block2_sub_title2: {
       en: "Soft Drink",
       de: "Erfrischungsgetränk",
     },
-    block2_sub_link2: "/search?category=drinks",
+    block2_sub_link2: "/shop",
     block2_sub_title3: {
       en: "Milk & Dairy",
       de: "Milch und Milchprodukte",
     },
-    block2_sub_link3: "/search?category=milk-dairy",
+    block2_sub_link3: "/shop",
     block2_sub_title4: {
       en: "Beauty & Health",
       de: "Schönheit und Gesundheit",
     },
-    block2_sub_link4: "/search?category=beauty-health",
+    block2_sub_link4: "/shop",
     block3_title: {
       en: "My Account",
       de: "Mein Konto",
