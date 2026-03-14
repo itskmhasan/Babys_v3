@@ -6,6 +6,7 @@ import Link from "next/link";
 
 const PLACEHOLDER_IMAGE =
   "https://res.cloudinary.com/ahossain/image/upload/v1655097002/placeholder_kvepfp.png";
+const FIRST_VISIT_POPUP_KEY = "store_first_visit_popup_seen";
 
 const FirstVisitOfferPopup = ({
   categories = [],
@@ -15,7 +16,16 @@ const FirstVisitOfferPopup = ({
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    setIsOpen(true);
+    try {
+      const hasSeenPopup = window.localStorage.getItem(FIRST_VISIT_POPUP_KEY);
+      if (!hasSeenPopup) {
+        setIsOpen(true);
+        window.localStorage.setItem(FIRST_VISIT_POPUP_KEY, "true");
+      }
+    } catch {
+      // Fallback when storage is blocked: keep existing behavior.
+      setIsOpen(true);
+    }
   }, []);
 
   const normalizedCategories = useMemo(() => {
