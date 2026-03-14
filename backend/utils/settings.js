@@ -785,15 +785,20 @@ const setting = [
         },
         block1_sub_link2: "/contact-us",
         block1_sub_title3: {
-          en: "Careers",
-          de: "Karriere",
+          en: "Pregnancy Calculator",
+          de: "Schwangerschaftsrechner",
         },
-        block1_sub_link3: "#",
+        block1_sub_link3: "/pregnancy-calculator",
         block1_sub_title4: {
-          en: "Latest News",
-          de: "Neueste Nachrichten",
+          en: "BMI Calculator",
+          de: "BMI-Rechner",
         },
-        block1_sub_link4: "#",
+        block1_sub_link4: "/bmi-calculator",
+        block1_sub_title5: {
+          en: "Sitemap",
+          de: "Sitemap",
+        },
+        block1_sub_link5: "/site-map",
         block2_title: {
           en: "Latest News",
           de: "Neueste Nachrichten",
