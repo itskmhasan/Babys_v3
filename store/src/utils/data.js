@@ -143,21 +143,21 @@ const ctaCardData = [
     title: "Authentic",
     subTitle: "Baby Assocorises",
     image: "/cta/cta-bg-1.png",
-    url: "/search?category=fresh-vegetable",
+    url: "/",
   },
   {
     id: 2,
     title: "Best Quality",
     subTitle: "Mother Care Products",
     image: "/cta/cta-bg-3.png",
-    url: "/search?Category=fish--meat",
+    url: "/",
   },
   {
     id: 3,
     title: "Best Price",
     subTitle: "Baby Clothings",
     image: "/cta/cta-bg-2.png",
-    url: "/search?Category=biscuits--cakes",
+    url: "/",
   },
 ];
 

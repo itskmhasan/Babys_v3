@@ -77,6 +77,13 @@ const Footer = async ({ error, storeCustomizationSetting }) => {
                     <CMSkeletonTwo count={1} height={10} loading={false} data={footer?.block1_sub_title4} />
                   </Link>
                 </li>
+                {footer?.block1_sub_title5 && footer?.block1_sub_link5 && (
+                  <li>
+                    <Link href={`${footer?.block1_sub_link5}`} className="hover:text-gray-600">
+                      <CMSkeletonTwo count={1} height={10} loading={false} data={footer?.block1_sub_title5} />
+                    </Link>
+                  </li>
+                )}
               </ul>
             </div>
           )}

@@ -12,6 +12,7 @@ const publicRoutes = [
   "/faq",
   "/privacy-policy",
   "/terms-and-conditions",
+  "/site-map",
   "/bmi-calculator",
   "/pregnancy-calculator",
   "/search",
