@@ -12,21 +12,57 @@ import {
 } from "../ui/table";
 import { Card } from "../ui/card";
 
+const DEFAULT_INVOICE_LOGO = "https://babys.com.bd/logo/Babys_3D_Bright.png";
+const INVOICE_CURRENCY = "BDT ";
+
 const InvoiceForPrint = ({ data, printRef, globalSetting }) => {
   const { t } = useTranslation();
 
-  const currency = globalSetting?.default_currency || "$";
+  const currency = INVOICE_CURRENCY;
+  const receiptLogo =
+    data?.company_info?.logo || globalSetting?.logo || DEFAULT_INVOICE_LOGO;
+
+  const renderShippingSticker = (orderData) => (
+    <Card
+      className="mb-3"
+      style={{
+        border: "2px solid #f59e0b",
+        backgroundColor: "#fff7ed",
+      }}
+    >
+      <div className="px-3 py-2">
+        <p className="text-[11px] uppercase tracking-wide font-bold text-amber-800">
+          {t("ShippingAddress")} - Sticker
+        </p>
+        <p className="text-xs font-semibold text-gray-900 mt-1">
+          {orderData?.user_info?.name || "N/A"}
+        </p>
+        <p className="text-xs text-gray-800">
+          {orderData?.user_info?.contact || orderData?.user_info?.phone || "N/A"}
+        </p>
+        <p className="text-xs text-gray-900 font-semibold leading-4 mt-1">
+          {orderData?.user_info?.address || "N/A"}
+        </p>
+        <p className="text-xs text-gray-800">
+          {orderData?.user_info?.city || ""}
+          {orderData?.user_info?.city ? ", " : ""}
+          {orderData?.user_info?.country || ""}
+          {orderData?.user_info?.zipCode ? ` - ${orderData.user_info.zipCode}` : ""}
+        </p>
+      </div>
+    </Card>
+  );
 
   return (
     <div ref={printRef} className="p-4">
       {Array.isArray(data) ? (
         data?.map((or, i) => (
           <div className="mb-8" key={i + 1}>
-            {globalSetting?.logo && (
+            {receiptLogo && (
               <img
                 className="flex mx-auto"
                 size="large"
-                src={globalSetting?.logo}
+                src={receiptLogo}
                 alt=""
                 width={50}
               />
@@ -51,6 +87,8 @@ const InvoiceForPrint = ({ data, printRef, globalSetting }) => {
                 {globalSetting?.email}
               </Card>
             </div>
+
+            {renderShippingSticker(or)}
 
             <TableContainer className="my-4 rounded-b-lg">
               <Table>
@@ -259,11 +297,11 @@ const InvoiceForPrint = ({ data, printRef, globalSetting }) => {
         ))
       ) : (
         <Fragment>
-          {globalSetting?.logo && (
+          {receiptLogo && (
             <img
               className="flex mx-auto"
               size="large"
-              src={globalSetting?.logo}
+              src={receiptLogo}
               alt=""
               width={50}
             />
@@ -288,6 +326,8 @@ const InvoiceForPrint = ({ data, printRef, globalSetting }) => {
               {globalSetting?.email}
             </Card>
           </div>
+
+          {renderShippingSticker(data)}
 
           <TableContainer className="my-4 rounded-b-lg">
             <Table>

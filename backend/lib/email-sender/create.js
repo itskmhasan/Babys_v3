@@ -1,5 +1,9 @@
 const PDFDocument = require("pdfkit");
 const fetch = require("node-fetch");
+const DEFAULT_INVOICE_LOGO =
+  process.env.INVOICE_LOGO_URL ||
+  "https://babys.com.bd/logo/Babys_3D_Bright.png";
+const INVOICE_CURRENCY = "BDT ";
 
 const isPrivateOrLocalHost = (hostname) => {
   const host = String(hostname || "").toLowerCase();
@@ -39,30 +43,40 @@ const isSafeRemoteUrl = (rawUrl) => {
 const handleCreateInvoice = async (invoice, path) => {
   const pdfBuffer = await new Promise((resolve) => {
     let doc = new PDFDocument({ size: "A4", margin: 50 });
-    const hasRemoteLogo =
+    const logoUrl =
       typeof invoice?.company_info?.logo === "string" &&
-      invoice.company_info.logo.trim() !== "";
+      invoice.company_info.logo.trim() !== ""
+        ? invoice.company_info.logo.trim()
+        : DEFAULT_INVOICE_LOGO;
+    const hasRemoteLogo = isSafeRemoteUrl(logoUrl);
+    const invoiceWithLogo = {
+      ...invoice,
+      company_info: {
+        ...(invoice?.company_info || {}),
+        logo: logoUrl,
+      },
+    };
 
     // doc.text('hello world', 100, 50);
     // doc.end();
     if (hasRemoteLogo) {
-      getImage(doc, invoice)
+      getImage(doc, invoiceWithLogo)
         .then((logoBuffer) => {
-          generateHeader(doc, invoice, logoBuffer);
-          generateCustomerInformation(doc, invoice);
-          generateInvoiceTable(doc, invoice);
+          generateHeader(doc, invoiceWithLogo, logoBuffer);
+          generateCustomerInformation(doc, invoiceWithLogo);
+          generateInvoiceTable(doc, invoiceWithLogo);
           doc.end();
         })
         .catch(() => {
-          generateHeader(doc, invoice, null);
-          generateCustomerInformation(doc, invoice);
-          generateInvoiceTable(doc, invoice);
+          generateHeader(doc, invoiceWithLogo, null);
+          generateCustomerInformation(doc, invoiceWithLogo);
+          generateInvoiceTable(doc, invoiceWithLogo);
           doc.end();
         });
     } else {
-      generateHeader(doc, invoice, null);
-      generateCustomerInformation(doc, invoice);
-      generateInvoiceTable(doc, invoice);
+      generateHeader(doc, invoiceWithLogo, null);
+      generateCustomerInformation(doc, invoiceWithLogo);
+      generateInvoiceTable(doc, invoiceWithLogo);
       doc.end();
     }
     // generateFooter(doc);
@@ -165,8 +179,14 @@ function generateCustomerInformation(doc, invoice) {
     .fontSize(10)
     .text(invoice.user_info.name, 200, 155, { align: "right" })
     .text(invoice.user_info.email, 200, 170, { align: "right" })
-    .text(invoice?.user_info?.phone, 200, 200, { align: "right" })
-    .text(invoice?.user_info?.address, 200, 185, { align: "right" });
+    .text(invoice?.user_info?.phone || invoice?.user_info?.contact || "", 200, 185, { align: "right" })
+    .text(invoice?.user_info?.address, 200, 200, { align: "right" })
+    .text(
+      `${invoice?.user_info?.city || ""} ${invoice?.user_info?.country || ""} ${invoice?.user_info?.zipCode || ""}`.trim(),
+      200,
+      215,
+      { align: "right" }
+    );
 
   // doc
   //   .fontSize(10)
@@ -332,19 +352,7 @@ function formatCurrency(curr, cents) {
 }
 
 function normalizeCurrency(curr) {
-  const raw = String(curr || "").trim();
-
-  if (!raw) {
-    return "$";
-  }
-
-  // PDF built-in fonts can corrupt some unicode symbols (e.g., Bangla Taka sign),
-  // so map known symbols to ASCII-safe text.
-  if (raw === "৳") {
-    return "BDT ";
-  }
-
-  return raw;
+  return INVOICE_CURRENCY;
 }
 
 function formatDate(date) {

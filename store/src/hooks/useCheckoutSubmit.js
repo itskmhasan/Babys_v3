@@ -23,7 +23,10 @@ import {
 import { getUserSession } from "@lib/auth-client";
 import { useSetting } from "@context/SettingContext";
 import useUtilsFunction from "./useUtilsFunction";
-import { addShippingAddress } from "@services/ServerActionServices";
+import { saveCheckoutShippingAddress } from "@services/ServerActionServices";
+
+const DEFAULT_INVOICE_LOGO = "https://babys.com.bd/logo/Babys_3D_Bright.png";
+const INVOICE_CURRENCY = "BDT ";
 
 const useCheckoutSubmit = ({ shippingAddress }) => {
   const { dispatch } = useContext(UserContext);
@@ -39,7 +42,9 @@ const useCheckoutSubmit = ({ shippingAddress }) => {
   const [isCheckoutSubmit, setIsCheckoutSubmit] = useState(false);
   const [isCouponApplied, setIsCouponApplied] = useState(false);
   const [useExistingAddress, setUseExistingAddress] = useState(false);
+  const [saveAsDefaultAddress, setSaveAsDefaultAddress] = useState(false);
   const [isCouponAvailable, setIsCouponAvailable] = useState(false);
+  const [isOrderConfirmed, setIsOrderConfirmed] = useState(false);
 
   const router = useRouter();
   const stripe = useStripe();
@@ -52,7 +57,7 @@ const useCheckoutSubmit = ({ shippingAddress }) => {
   const { globalSetting, storeSetting, storeCustomization } = useSetting();
   const { showDateFormat, showingTranslateValue } = useUtilsFunction();
 
-  const currency = globalSetting?.default_currency || "$";
+  const currency = globalSetting?.default_currency || "BDT ";
 
   // console.log("storeSetting", storeSetting);
 
@@ -154,7 +159,7 @@ const useCheckoutSubmit = ({ shippingAddress }) => {
         contact: data.contact,
         email: data.email,
         address: data.address,
-        country: data.country,
+        country: "Bangladesh",
         city: data.city,
         zipCode: data.zipCode,
       };
@@ -171,12 +176,15 @@ const useCheckoutSubmit = ({ shippingAddress }) => {
         total: total,
       };
 
-      await addShippingAddress({
-        userId: userInfo?.id,
-        shippingAddressData: {
-          ...userDetails,
-        },
-      });
+      if (saveAsDefaultAddress && userInfo?.id && userInfo?.token) {
+        await saveCheckoutShippingAddress({
+          userId: userInfo.id,
+          token: userInfo.token,
+          shippingAddressData: {
+            ...userDetails,
+          },
+        });
+      }
 
       // Handle payment based on method
       switch (data.paymentMethod) {
@@ -218,10 +226,10 @@ const useCheckoutSubmit = ({ shippingAddress }) => {
         ...orderResponse,
         date: showDateFormat(orderResponse.createdAt),
         company_info: {
-          currency: currency,
+          currency: INVOICE_CURRENCY,
           vat_number: globalSetting?.vat_number,
           company: globalSetting?.company_name,
-          logo: globalSetting?.logo,
+          logo: globalSetting?.logo || DEFAULT_INVOICE_LOGO,
           address: globalSetting?.address,
           phone: globalSetting?.contact,
           email: globalSetting?.email,
@@ -247,6 +255,7 @@ const useCheckoutSubmit = ({ shippingAddress }) => {
       const { notification, error } = await addNotification(notificationInfo);
 
       // Proceed with order success
+      setIsOrderConfirmed(true);
       router.push(`/order/${orderResponse?._id}`);
       notifySuccess(
         "Your Order Confirmed! The invoice will be emailed to you shortly."
@@ -414,7 +423,6 @@ const useCheckoutSubmit = ({ shippingAddress }) => {
       setValue("contact", address.contact);
       setValue("email", address.email);
       setValue("city", address.city);
-      setValue("country", address.country);
       setValue("zipCode", address.zipCode);
     } else {
       setValue("firstName");
@@ -423,9 +431,12 @@ const useCheckoutSubmit = ({ shippingAddress }) => {
       setValue("contact");
       // setValue("email");
       setValue("city");
-      setValue("country");
       setValue("zipCode");
     }
+  };
+
+  const handleSaveAsDefaultAddress = (value) => {
+    setSaveAsDefaultAddress(value);
   };
   const handleCouponCode = async (e) => {
     e.preventDefault();
@@ -495,14 +506,17 @@ const useCheckoutSubmit = ({ shippingAddress }) => {
     shippingOne,
     shippingTwo,
     isCheckoutSubmit,
+    isOrderConfirmed,
     isCouponApplied,
     useExistingAddress,
+    saveAsDefaultAddress,
     isCouponAvailable,
     globalSetting,
     storeSetting,
     storeCustomization,
     showingTranslateValue,
     handleDefaultShippingAddress,
+    handleSaveAsDefaultAddress,
   };
 };
 

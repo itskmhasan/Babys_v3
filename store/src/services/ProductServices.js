@@ -1,4 +1,14 @@
-import { baseURL, handleResponse } from "@services/CommonService";
+import {
+  baseURL,
+  handleResponse,
+  fetchWithRetry,
+  PUBLIC_FETCH_OPTIONS,
+} from "@services/CommonService";
+
+const PRODUCT_FETCH_OPTIONS = {
+  ...PUBLIC_FETCH_OPTIONS,
+  next: { revalidate: 60 },
+};
 
 const getShowingStoreProducts = async ({
   category = "",
@@ -7,11 +17,9 @@ const getShowingStoreProducts = async ({
 }) => {
   try {
     // console.log("slug::", slug);
-    const response = await fetch(
+    const response = await fetchWithRetry(
       `${baseURL}/products/store?category=${category}&title=${title}&slug=${slug}`,
-      {
-        cache: "no-store",
-      }
+      PRODUCT_FETCH_OPTIONS
     );
 
     const products = await handleResponse(response);
@@ -37,9 +45,10 @@ const getShowingStoreProducts = async ({
 
 const getShowingProducts = async () => {
   try {
-    const response = await fetch(`${baseURL}/products/show`, {
-      cache: "no-store",
-    });
+    const response = await fetchWithRetry(
+      `${baseURL}/products/show`,
+      PRODUCT_FETCH_OPTIONS
+    );
 
     const products = await handleResponse(response);
 
@@ -57,11 +66,9 @@ const getShowingProducts = async () => {
 
 const getShowingProductsPaginated = async ({ page = 1, limit = 48 }) => {
   try {
-    const response = await fetch(
+    const response = await fetchWithRetry(
       `${baseURL}/products?price=published&page=${page}&limit=${limit}`,
-      {
-        cache: "no-store",
-      }
+      PRODUCT_FETCH_OPTIONS
     );
 
     const data = await handleResponse(response);

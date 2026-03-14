@@ -35,11 +35,30 @@ const app = express();
 // app.enable('trust proxy');
 app.set("trust proxy", 1);
 
+const isTrustedInternalIp = (ip = "") => {
+  const normalizedIp = String(ip || "")
+    .replace(/^::ffff:/, "")
+    .trim();
+
+  if (!normalizedIp) return false;
+  if (normalizedIp === "127.0.0.1" || normalizedIp === "::1") return true;
+  if (normalizedIp.startsWith("10.")) return true;
+  if (normalizedIp.startsWith("192.168.")) return true;
+
+  if (normalizedIp.startsWith("172.")) {
+    const secondOctet = Number(normalizedIp.split(".")[1]);
+    return secondOctet >= 16 && secondOctet <= 31;
+  }
+
+  return false;
+};
+
 const globalApiLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: Number(process.env.API_RATE_LIMIT_MAX || 600),
   standardHeaders: true,
   legacyHeaders: false,
+  skip: (req) => isTrustedInternalIp(req.ip),
   message: {
     message: "Too many requests. Please try again later.",
   },

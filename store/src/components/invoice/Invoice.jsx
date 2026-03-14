@@ -7,9 +7,12 @@ import Image from "next/image";
 import OrderTable from "@components/order/OrderTable";
 import useUtilsFunction from "@hooks/useUtilsFunction";
 
+const DEFAULT_INVOICE_LOGO = "https://babys.com.bd/logo/Babys_3D_Bright.png";
+const INVOICE_CURRENCY = "BDT ";
+
 const Invoice = ({ data, printRef, globalSetting, storeCustomization }) => {
   // console.log("invoice data", data);
-  const currency = globalSetting?.default_currency || "$";
+  const currency = INVOICE_CURRENCY;
 
   const { getNumberTwo } = useUtilsFunction();
 
@@ -55,7 +58,7 @@ const Invoice = ({ data, printRef, globalSetting, storeCustomization }) => {
                   <Image
                     width={110}
                     height={40}
-                    src={globalSetting?.logo || "/logo/logo-color.svg"}
+                    src={globalSetting?.logo || DEFAULT_INVOICE_LOGO}
                     alt={globalSetting?.address || "Logo"}
                   />
                 )}
@@ -97,7 +100,7 @@ const Invoice = ({ data, printRef, globalSetting, storeCustomization }) => {
               <br />
               {data?.user_info?.address}
               <br />
-              {data?.city} {data?.country} {data?.zipCode}
+              {data?.user_info?.city} {data?.user_info?.country} {data?.user_info?.zipCode}
             </span>
           </div>
         </div>

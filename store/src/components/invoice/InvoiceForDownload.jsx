@@ -77,10 +77,14 @@ const styles = StyleSheet.create({
   col5: { width: "15%" },
 });
 
+const INVOICE_CURRENCY = "BDT ";
+
 const InvoicePDF = ({ data, globalSetting }) => {
-  const currency = globalSetting?.default_currency || "$";
+  const currency = INVOICE_CURRENCY;
   const getNumberTwo = (num) => (!num ? "0.00" : Number(num).toFixed(2));
   const currentDate = dayjs().format("MMMM D, YYYY");
+  const invoiceLogo =
+    globalSetting?.logo || "https://babys.com.bd/logo/Babys_3D_Bright.png";
 
   return (
     <Document>
@@ -105,9 +109,7 @@ const InvoicePDF = ({ data, globalSetting }) => {
           </View>
 
           <View style={tw("text-right")}>
-            {globalSetting?.logo && (
-              <Image src={globalSetting.logo} style={tw("w-36 h-12 mb-2")} />
-            )}
+            <Image src={invoiceLogo} style={tw("w-36 h-12 mb-2")} />
             <Text style={tw("font-bold")}>
               {globalSetting?.company_name || "Company Name"}
             </Text>
@@ -142,7 +144,7 @@ const InvoicePDF = ({ data, globalSetting }) => {
               {data?.user_info?.address || "No address provided"}
             </Text>
             <Text style={tw("text-sm text-gray-600")}>
-              {data?.city} {data?.country} {data?.zipCode}
+              {data?.user_info?.city} {data?.user_info?.country} {data?.user_info?.zipCode}
             </Text>
           </View>
 

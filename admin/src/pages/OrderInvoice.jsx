@@ -14,7 +14,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { useTheme } from "@/context/ThemeContext";
 import { useTranslation } from "react-i18next";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 
@@ -27,17 +26,17 @@ import { AdminContext } from "@/context/AdminContext";
 import OrderServices from "@/services/OrderServices";
 import Invoice from "@/components/invoice/Invoice";
 import Loading from "@/components/preloader/Loading";
-import logoDark from "@/assets/img/logo/logo-dark.svg";
-import logoLight from "@/assets/img/logo/logo-color.svg";
 import PageTitle from "@/components/Typography/PageTitle";
 import spinnerLoadingImage from "@/assets/img/spinner.gif";
 import useUtilsFunction from "@/hooks/useUtilsFunction";
 import useDisableForDemo from "@/hooks/useDisableForDemo";
 import InvoiceForDownload from "@/components/invoice/InvoiceForDownload";
 
+const DEFAULT_INVOICE_LOGO = "https://babys.com.bd/logo/Babys_3D_Bright.png";
+const INVOICE_CURRENCY = "BDT ";
+
 const OrderInvoice = () => {
   const { t } = useTranslation();
-  const { theme } = useTheme();
   const { id } = useParams();
   const printRef = useRef();
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -51,8 +50,8 @@ const OrderInvoice = () => {
 
   // console.log("data", data);
 
-  const { currency, globalSetting, showDateFormat, getNumberTwo } =
-    useUtilsFunction();
+  const { globalSetting, showDateFormat, getNumberTwo } = useUtilsFunction();
+  const invoiceLogo = globalSetting?.logo || DEFAULT_INVOICE_LOGO;
 
   const handlePrint = useReactToPrint({
     contentRef: printRef,
@@ -72,9 +71,10 @@ const OrderInvoice = () => {
         ...inv,
         date: showDateFormat(inv.createdAt),
         company_info: {
-          currency: currency,
+          currency: INVOICE_CURRENCY,
           vat_number: globalSetting?.vat_number,
           company: globalSetting?.company_name,
+          logo: globalSetting?.logo || DEFAULT_INVOICE_LOGO,
           address: globalSetting?.address,
           phone: globalSetting?.contact,
           email: globalSetting?.email,
@@ -121,11 +121,7 @@ const OrderInvoice = () => {
               </h1>
               <div className="lg:text-right text-left">
                 <h2 className="lg:flex lg:justify-end text-lg font-serif font-semibold mt-4 lg:mt-0 lg:ml-0 md:mt-0">
-                  {theme === "dark" ? (
-                    <img src={logoDark} alt="babys" width="110" />
-                  ) : (
-                    <img src={logoLight} alt="babys" width="110" />
-                  )}
+                  <img src={invoiceLogo} alt="babys" width="110" />
                 </h2>
                 <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">
                   {globalSetting?.address} <br />
@@ -193,7 +189,7 @@ const OrderInvoice = () => {
                 </TableHeader>
                 <Invoice
                   data={data}
-                  currency={currency}
+                  currency={INVOICE_CURRENCY}
                   getNumberTwo={getNumberTwo}
                 />
               </Table>
@@ -217,7 +213,7 @@ const OrderInvoice = () => {
                   {t("ShippingCost")}
                 </span>
                 <span className="text-sm text-gray-500 dark:text-gray-400 font-semibold font-serif block">
-                  {currency}
+                  {INVOICE_CURRENCY}
                   {getNumberTwo(data.shippingCost)}
                 </span>
               </div>
@@ -226,7 +222,7 @@ const OrderInvoice = () => {
                   {t("InvoiceDicount")}
                 </span>
                 <span className="text-sm text-gray-500 dark:text-gray-400 font-semibold font-serif block">
-                  {currency}
+                  {INVOICE_CURRENCY}
                   {getNumberTwo(data.discount)}
                 </span>
               </div>
@@ -235,7 +231,7 @@ const OrderInvoice = () => {
                   {t("InvoiceTotalAmount")}
                 </span>
                 <span className="text-xl font-serif font-bold text-red-500 dark:text-emerald-500 block">
-                  {currency}
+                  {INVOICE_CURRENCY}
                   {getNumberTwo(data.total)}
                 </span>
               </div>

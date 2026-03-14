@@ -2,13 +2,10 @@
 
 import useUtilsFunction from "@hooks/useUtilsFunction";
 import CarouselCard from "@components/carousel/CarouselCard";
-import { getStoreCustomizationSetting } from "@services/SettingServices";
 import { showingTranslateValue } from "@lib/translate";
 
-const MainCarousel = async () => {
+const MainCarousel = async ({ storeCustomizationSetting }) => {
   const { showingUrl, showingImage } = useUtilsFunction();
-
-  const { storeCustomizationSetting } = await getStoreCustomizationSetting();
   const slider = storeCustomizationSetting?.slider;
 
   const sliderData = [

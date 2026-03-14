@@ -9,6 +9,7 @@
     "production": "NODE_ENV=production nodemon api/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "data:import": "node script/seed.js",
+    "data:export:safe": "node script/export-safe-seeds.js",
     "product": "node script/product.js",
     "generate-password": "node script/script.js",
     "generate-reviews": "node script/reviews.js"

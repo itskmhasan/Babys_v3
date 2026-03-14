@@ -4,12 +4,9 @@ import Link from "next/link";
 
 //internal import
 import CMSkeletonTwo from "@components/preloader/CMSkeleton";
-import { getStoreCustomizationSetting } from "@services/SettingServices";
 import { showingTranslateValue } from "@lib/translate";
 
-const CardTwo = async ({}) => {
-  const { storeCustomizationSetting, error } =
-    await getStoreCustomizationSetting();
+const CardTwo = async ({ storeCustomizationSetting }) => {
   const home = storeCustomizationSetting?.home;
   return (
     <div className="w-full bg-gradient-to-r from-emerald-50 via-white to-emerald-50 shadow-md lg:px-10 lg:py-8 p-6 md:p-8 rounded-2xl border border-emerald-200 dark:from-slate-800 dark:via-slate-900 dark:to-slate-800 dark:border-slate-700">
@@ -19,7 +16,6 @@ const CardTwo = async ({}) => {
             <CMSkeletonTwo
               count={1}
               height={16}
-              error={error}
               loading={false}
               data={home?.quick_delivery_subtitle}
             />
@@ -28,7 +24,6 @@ const CardTwo = async ({}) => {
             <CMSkeletonTwo
               count={1}
               height={32}
-              error={error}
               loading={false}
               data={home?.quick_delivery_title}
             />
@@ -37,7 +32,6 @@ const CardTwo = async ({}) => {
             <CMSkeletonTwo
               count={3}
               height={18}
-              error={error}
               loading={false}
               data={home?.quick_delivery_description}
             />

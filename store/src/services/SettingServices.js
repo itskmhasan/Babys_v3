@@ -1,10 +1,16 @@
-import { baseURL, handleResponse } from "@services/CommonService";
+import {
+  baseURL,
+  handleResponse,
+  fetchWithRetry,
+  PUBLIC_FETCH_OPTIONS,
+} from "@services/CommonService";
 
 const getStoreCustomizationSetting = async () => {
   try {
-    const response = await fetch(`${baseURL}/setting/store/customization`, {
-      cache: "no-store",
-    });
+    const response = await fetchWithRetry(
+      `${baseURL}/setting/store/customization`,
+      PUBLIC_FETCH_OPTIONS
+    );
 
     const storeCustomizationSetting = await handleResponse(response);
     // await new Promise((resolve) => setTimeout(resolve, 15000));
@@ -17,9 +23,10 @@ const getStoreCustomizationSetting = async () => {
 
 const getGlobalSetting = async () => {
   try {
-    const response = await fetch(`${baseURL}/setting/global`, {
-      cache: "no-store",
-    });
+    const response = await fetchWithRetry(
+      `${baseURL}/setting/global`,
+      PUBLIC_FETCH_OPTIONS
+    );
 
     const globalSetting = await handleResponse(response);
 
@@ -31,9 +38,10 @@ const getGlobalSetting = async () => {
 
 const getShowingLanguage = async () => {
   try {
-    const response = await fetch(`${baseURL}/language/show`, {
-      cache: "no-store",
-    });
+    const response = await fetchWithRetry(
+      `${baseURL}/language/show`,
+      PUBLIC_FETCH_OPTIONS
+    );
     const languages = await handleResponse(response);
     // console.log("res", response.headers);
     return { languages };
@@ -44,9 +52,10 @@ const getShowingLanguage = async () => {
 
 const getStoreSetting = async () => {
   try {
-    const response = await fetch(`${baseURL}/setting/store-setting`, {
-      cache: "no-store",
-    });
+    const response = await fetchWithRetry(
+      `${baseURL}/setting/store-setting`,
+      PUBLIC_FETCH_OPTIONS
+    );
 
     const storeSetting = await handleResponse(response);
     // console.log("storeSetting", storeSetting);
@@ -59,9 +68,10 @@ const getStoreSetting = async () => {
 
 const getStoreSecretKeys = async () => {
   try {
-    const response = await fetch(`${baseURL}/setting/store-setting/keys`, {
-      cache: "no-store",
-    });
+    const response = await fetchWithRetry(
+      `${baseURL}/setting/store-setting/keys`,
+      PUBLIC_FETCH_OPTIONS
+    );
 
     const storeSetting = await handleResponse(response);
     // console.log("storeSetting:::>>>", storeSetting);
@@ -74,9 +84,10 @@ const getStoreSecretKeys = async () => {
 
 const getStoreSeoSetting = async () => {
   try {
-    const response = await fetch(`${baseURL}/setting/store-setting/seo`, {
-      cache: "no-store",
-    });
+    const response = await fetchWithRetry(
+      `${baseURL}/setting/store-setting/seo`,
+      PUBLIC_FETCH_OPTIONS
+    );
 
     const seoSetting = await handleResponse(response);
 

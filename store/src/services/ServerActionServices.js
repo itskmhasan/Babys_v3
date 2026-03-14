@@ -262,6 +262,28 @@ const addShippingAddress = async (userInfo, currentState, formState) => {
   }
 };
 
+const saveCheckoutShippingAddress = async ({ userId, token, shippingAddressData }) => {
+  try {
+    if (!userId || !token || !shippingAddressData) {
+      return { error: "Missing required shipping address data." };
+    }
+
+    const response = await fetch(`${baseURL}/customer/shipping/address/${userId}`, {
+      cache: "no-cache",
+      method: "POST",
+      headers: getHeaders({ token }),
+      body: JSON.stringify(shippingAddressData),
+    });
+
+    await handleResponse(response);
+    revalidatePath("/checkout");
+
+    return { success: "Shipping address saved successfully!" };
+  } catch (error) {
+    return { error: error.message };
+  }
+};
+
 export {
   loginCustomer,
   handleLogin,
@@ -269,4 +291,5 @@ export {
   changePassword,
   updateCustomer,
   addShippingAddress,
+  saveCheckoutShippingAddress,
 };

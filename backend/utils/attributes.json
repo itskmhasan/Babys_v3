@@ -1,9 +1,34 @@
 [
   {
+    "_id": "63f34946d3639309840ca336",
+    "title": {
+      "en": "Gift Wrap"
+    },
+    "name": {
+      "en": "Gift Wrap"
+    },
+    "variants": [
+      {
+        "name": {
+          "en": "Yes"
+        },
+        "status": "show",
+        "_id": "63f34946d3639309840ca337"
+      },
+      {
+        "name": {
+          "en": "No"
+        },
+        "status": "show",
+        "_id": "63f34946d3639309840ca338"
+      }
+    ],
+    "option": "checkbox",
+    "type": "extra",
+    "status": "show"
+  },
+  {
     "_id": "63f078f54b86ed26b05281b2",
-    "type": "attribute",
-    "extraType": "multiple",
-    "status": "show",
     "title": {
       "en": "Color"
     },
@@ -12,34 +37,33 @@
     },
     "variants": [
       {
-        "status": "show",
-        "_id": "63f078f54b86ed26b05281b3",
         "name": {
           "en": "Red"
-        }
+        },
+        "status": "show",
+        "_id": "63f078f54b86ed26b05281b3"
       },
       {
-        "status": "show",
-        "_id": "63f078f54b86ed26b05281b4",
         "name": {
           "en": "Green"
-        }
+        },
+        "status": "show",
+        "_id": "63f078f54b86ed26b05281b4"
       },
       {
-        "status": "show",
-        "_id": "63f078f54b86ed26b05281b5",
         "name": {
           "en": "Blue"
-        }
+        },
+        "status": "show",
+        "_id": "63f078f54b86ed26b05281b5"
       }
     ],
-    "option": "dropdown"
+    "option": "dropdown",
+    "type": "attribute",
+    "status": "show"
   },
   {
     "_id": "63f078f54b86ed26b05281b6",
-    "type": "attribute",
-    "extraType": "multiple",
-    "status": "show",
     "title": {
       "en": "Size"
     },
@@ -48,63 +72,33 @@
     },
     "variants": [
       {
-        "status": "show",
-        "_id": "63f078f54b86ed26b05281b7",
         "name": {
           "en": "Small"
-        }
+        },
+        "status": "show",
+        "_id": "63f078f54b86ed26b05281b7"
       },
       {
-        "status": "show",
-        "_id": "63f078f54b86ed26b05281b8",
         "name": {
           "en": "Medium"
-        }
+        },
+        "status": "show",
+        "_id": "63f078f54b86ed26b05281b8"
       },
       {
-        "status": "show",
-        "_id": "63f078f54b86ed26b05281b9",
         "name": {
           "en": "Large"
-        }
+        },
+        "status": "show",
+        "_id": "63f078f54b86ed26b05281b9"
       }
     ],
-    "option": "radio"
-  },
-  {
-    "_id": "63f34946d3639309840ca336",
-    "type": "extra",
-    "extraType": "multiple",
-    "status": "show",
-    "title": {
-      "en": "Gift Wrap"
-    },
-    "name": {
-      "en": "Gift Wrap"
-    },
-    "variants": [
-      {
-        "status": "show",
-        "_id": "63f34946d3639309840ca337",
-        "name": {
-          "en": "Yes"
-        }
-      },
-      {
-        "status": "show",
-        "_id": "63f34946d3639309840ca338",
-        "name": {
-          "en": "No"
-        }
-      }
-    ],
-    "option": "checkbox"
+    "option": "radio",
+    "type": "attribute",
+    "status": "show"
   },
   {
     "_id": "63f34983d3639309840ca64a",
-    "type": "extra",
-    "extraType": "multiple",
-    "status": "show",
     "title": {
       "en": "Package"
     },
@@ -113,27 +107,29 @@
     },
     "variants": [
       {
-        "status": "show",
-        "_id": "63f34983d3639309840ca64b",
         "name": {
           "en": "Plastic"
-        }
+        },
+        "status": "show",
+        "_id": "63f34983d3639309840ca64b"
       },
       {
-        "status": "show",
-        "_id": "63f34983d3639309840ca64c",
         "name": {
           "en": "Jar"
-        }
+        },
+        "status": "show",
+        "_id": "63f34983d3639309840ca64c"
       },
       {
-        "status": "show",
-        "_id": "63f34983d3639309840ca64d",
         "name": {
           "en": "Eco Friendly"
-        }
+        },
+        "status": "show",
+        "_id": "63f34983d3639309840ca64d"
       }
     ],
-    "option": "checkbox"
+    "option": "checkbox",
+    "type": "extra",
+    "status": "show"
   }
 ]

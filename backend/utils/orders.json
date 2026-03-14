@@ -1,24 +1,80 @@
-[{
-  "_id": {
-    "$oid": "6439797cdea55c3033776d3a"
-  },
-  "cart": [
-    {
-      "prices": {
-        "discount": 0,
-        "originalPrice": 189.74,
-        "price": 189.74
-      },
-      "categories": [
-        "632ab2864d87ff2494210a8a",
-        "63f07c074b86ed26b0528bd3"
-      ],
-      "image": "https://i.ibb.co/4Pfnj7x/Huggies-Diaper-Dry-S-Up-To-7-Kg-36-Pcs.jpg",
-      "tag": [
-        "[\"baby care\",\"baby accessories\"]"
-      ],
-      "variants": [
-        {
+[
+  {
+    "_id": "6439797cdea55c3033776d3a",
+    "cart": [
+      {
+        "prices": {
+          "discount": 0,
+          "originalPrice": 189.74,
+          "price": 189.74
+        },
+        "categories": [
+          "632ab2864d87ff2494210a8a",
+          "63f07c074b86ed26b0528bd3"
+        ],
+        "image": "https://i.ibb.co/4Pfnj7x/Huggies-Diaper-Dry-S-Up-To-7-Kg-36-Pcs.jpg",
+        "tag": [
+          "[\"baby care\",\"baby accessories\"]"
+        ],
+        "variants": [
+          {
+            "63f078f54b86ed26b05281b2": "63f078f54b86ed26b05281b3",
+            "63f078f54b86ed26b05281b6": "63f078f54b86ed26b05281b7",
+            "price": 189.74,
+            "originalPrice": "189.74",
+            "quantity": 1141,
+            "discount": "0.00",
+            "productId": "639dc0f5c2fce72b697282e0-0",
+            "barcode": "",
+            "image": "https://i.ibb.co/4Pfnj7x/Huggies-Diaper-Dry-S-Up-To-7-Kg-36-Pcs.jpg",
+            "sku": ""
+          },
+          {
+            "63f078f54b86ed26b05281b2": "63f078f54b86ed26b05281b3",
+            "63f078f54b86ed26b05281b6": "63f078f54b86ed26b05281b8",
+            "price": 192.74,
+            "originalPrice": "192.74",
+            "quantity": 1142,
+            "discount": "0.00",
+            "productId": "639dc0f5c2fce72b697282e0-1",
+            "barcode": "",
+            "image": "https://i.ibb.co/4Pfnj7x/Huggies-Diaper-Dry-S-Up-To-7-Kg-36-Pcs.jpg"
+          },
+          {
+            "63f078f54b86ed26b05281b2": "63f078f54b86ed26b05281b3",
+            "63f078f54b86ed26b05281b6": "63f078f54b86ed26b05281b9",
+            "price": 194.74,
+            "originalPrice": "194.74",
+            "quantity": 1143,
+            "discount": "0.00",
+            "productId": "639dc0f5c2fce72b697282e0-2",
+            "barcode": "",
+            "image": "https://i.ibb.co/4Pfnj7x/Huggies-Diaper-Dry-S-Up-To-7-Kg-36-Pcs.jpg"
+          }
+        ],
+        "status": "show",
+        "_id": "643970cde58a401b6c62c750",
+        "slug": "huggies-diaper",
+        "sku": "",
+        "barcode": "",
+        "productId": "639dc0f5c2fce72b697282e0",
+        "title": "Huggies Diaper-Red,Small",
+        "description": {
+          "en": "Baby Products are products intended to be used on infants and category under the age of three. Baby products are specially formulated to be mild and non-irritating and use ingredients that are selected for these properties. Baby products include baby shampoos and baby lotions, oils, powders and creams."
+        },
+        "category": {
+          "_id": "63f07c074b86ed26b0528bd3",
+          "name": {
+            "en": "Toys Kids"
+          }
+        },
+        "stock": 3426,
+        "isCombination": true,
+        "__v": 0,
+        "createdAt": "2023-04-14T15:27:09.572Z",
+        "updatedAt": "2023-04-14T15:27:09.572Z",
+        "id": "643970cde58a401b6c62c750-63f078f54b86ed26b05281b3-63f078f54b86ed26b05281b7",
+        "variant": {
           "63f078f54b86ed26b05281b2": "63f078f54b86ed26b05281b3",
           "63f078f54b86ed26b05281b6": "63f078f54b86ed26b05281b7",
           "price": 189.74,
@@ -30,465 +86,292 @@
           "image": "https://i.ibb.co/4Pfnj7x/Huggies-Diaper-Dry-S-Up-To-7-Kg-36-Pcs.jpg",
           "sku": ""
         },
-        {
-          "63f078f54b86ed26b05281b2": "63f078f54b86ed26b05281b3",
-          "63f078f54b86ed26b05281b6": "63f078f54b86ed26b05281b8",
-          "price": 192.74,
-          "originalPrice": "192.74",
-          "quantity": 1142,
-          "discount": "0.00",
-          "productId": "639dc0f5c2fce72b697282e0-1",
-          "barcode": "",
-          "image": "https://i.ibb.co/4Pfnj7x/Huggies-Diaper-Dry-S-Up-To-7-Kg-36-Pcs.jpg"
-        },
-        {
-          "63f078f54b86ed26b05281b2": "63f078f54b86ed26b05281b3",
-          "63f078f54b86ed26b05281b6": "63f078f54b86ed26b05281b9",
-          "price": 194.74,
-          "originalPrice": "194.74",
-          "quantity": 1143,
-          "discount": "0.00",
-          "productId": "639dc0f5c2fce72b697282e0-2",
-          "barcode": "",
-          "image": "https://i.ibb.co/4Pfnj7x/Huggies-Diaper-Dry-S-Up-To-7-Kg-36-Pcs.jpg"
-        }
-      ],
-      "status": "show",
-      "_id": "643970cde58a401b6c62c750",
-      "slug": "huggies-diaper",
-      "sku": "",
-      "barcode": "",
-      "productId": "639dc0f5c2fce72b697282e0",
-      "title": "Huggies Diaper-Red,Small",
-      "description": {
-        "en": "Baby Products are products intended to be used on infants and category under the age of three. Baby products are specially formulated to be mild and non-irritating and use ingredients that are selected for these properties. Baby products include baby shampoos and baby lotions, oils, powders and creams."
-      },
-      "category": {
-        "_id": "63f07c074b86ed26b0528bd3",
-        "name": {
-          "en": "Toys Kids"
-        }
-      },
-      "stock": 3426,
-      "isCombination": true,
-      "__v": 0,
-      "createdAt": "2023-04-14T15:27:09.572Z",
-      "updatedAt": "2023-04-14T15:27:09.572Z",
-      "id": "643970cde58a401b6c62c750-63f078f54b86ed26b05281b3-63f078f54b86ed26b05281b7",
-      "variant": {
-        "63f078f54b86ed26b05281b2": "63f078f54b86ed26b05281b3",
-        "63f078f54b86ed26b05281b6": "63f078f54b86ed26b05281b7",
         "price": 189.74,
-        "originalPrice": "189.74",
-        "quantity": 1141,
-        "discount": "0.00",
-        "productId": "639dc0f5c2fce72b697282e0-0",
-        "barcode": "",
-        "image": "https://i.ibb.co/4Pfnj7x/Huggies-Diaper-Dry-S-Up-To-7-Kg-36-Pcs.jpg",
-        "sku": ""
+        "originalPrice": 189.74,
+        "quantity": 3,
+        "itemTotal": 569.22
       },
-      "price": 189.74,
-      "originalPrice": 189.74,
-      "quantity": 3,
-      "itemTotal": 569.22
-    },
-    {
-      "prices": {
-        "discount": 0,
-        "originalPrice": 112.72,
-        "price": 112.72
-      },
-      "categories": [
-        "62d2bbd22e63b40520194f1b",
-        "632aca2b4d87ff2494210be8",
-        "632aca374d87ff2494210bf0",
-        "632aca3d4d87ff2494210bf8",
-        "632aca454d87ff2494210c00",
-        "632aca594d87ff2494210c10"
-      ],
-      "image": [
-        "https://i.postimg.cc/ZRynchJY/Green-Leaf-Lettuce-each.jpg"
-      ],
-      "tag": [
-        "[\"lettuce\",\"fresh vegetable\"]"
-      ],
-      "variants": [],
-      "status": "show",
-      "_id": "643970cde58a401b6c62c74e",
-      "slug": "green-leaf-lettuce",
-      "sku": "",
-      "barcode": "",
-      "productId": "",
-      "title": "Green Leaf Lettuce",
-      "description": {
-        "en": "Most fresh vegetables are low in calories and have a water content in excess of 70 percent, with only about 3.5 percent protein and less than 1 percent fat. ... The root vegetables include beets, carrots, radishes, sweet potatoes, and turnips. Stem vegetables include asparagus and kohlrabi."
-      },
-      "category": {
-        "_id": "632aca374d87ff2494210bf0",
-        "name": {
-          "en": "Fresh Vegetable"
-        }
-      },
-      "stock": 463,
-      "isCombination": false,
-      "__v": 0,
-      "createdAt": "2023-04-14T15:27:09.572Z",
-      "updatedAt": "2023-04-14T15:27:09.572Z",
-      "id": "643970cde58a401b6c62c74e",
-      "variant": {
-        "discount": 0,
-        "originalPrice": 112.72,
-        "price": 112.72
-      },
-      "price": 112.72,
-      "originalPrice": 112.72,
-      "quantity": 3,
-      "itemTotal": 338.15999999999997
-    },
-    {
-      "prices": {
-        "discount": 0,
-        "originalPrice": 7.07,
-        "price": 7.07
-      },
-      "categories": [
-        "632aca2b4d87ff2494210be8",
-        "632aca3d4d87ff2494210bf8",
-        "632aca374d87ff2494210bf0",
-        "632aca454d87ff2494210c00",
-        "632aca594d87ff2494210c10",
-        "62d2bbd22e63b40520194f1b"
-      ],
-      "image": [
-        "https://i.postimg.cc/Z5yQ47YB/Rainbow-Chard-Package-per-lb.jpg",
-        "https://i.postimg.cc/Z5yQ47YB/Rainbow-Chard-Package-per-lb.jpg",
-        "https://i.postimg.cc/Z5yQ47YB/Rainbow-Chard-Package-per-lb.jpg"
-      ],
-      "tag": [
-        "[\"fresh fruits\",\"fruits\",\"vegetable\"]"
-      ],
-      "variants": [],
-      "status": "show",
-      "_id": "643970cde58a401b6c62c74d",
-      "slug": "rainbow-chard",
-      "sku": "",
-      "barcode": "",
-      "productId": "",
-      "title": "Rainbow Chard",
-      "description": {
-        "en": "Most fresh vegetables are low in calories and have a water content in excess of 70 percent, with only about 3.5 percent protein and less than 1 percent fat. ... The root vegetables include beets, carrots, radishes, sweet potatoes, and turnips. Stem vegetables include asparagus and kohlrabi."
-      },
-      "category": {
-        "_id": "632aca374d87ff2494210bf0",
-        "name": {
-          "en": "Fresh Vegetable"
-        }
-      },
-      "stock": 472,
-      "isCombination": false,
-      "__v": 0,
-      "createdAt": "2023-04-14T15:27:09.572Z",
-      "updatedAt": "2023-04-14T15:27:09.572Z",
-      "id": "643970cde58a401b6c62c74d",
-      "variant": {
-        "discount": 0,
-        "originalPrice": 7.07,
-        "price": 7.07
-      },
-      "price": 7.07,
-      "originalPrice": 7.07,
-      "quantity": 3,
-      "itemTotal": 21.21
-    },
-    {
-      "prices": {
-        "discount": 0,
-        "originalPrice": 48.12,
-        "price": 48.12
-      },
-      "categories": [
-        "632aca2b4d87ff2494210be8",
-        "632aca3d4d87ff2494210bf8",
-        "632aca374d87ff2494210bf0",
-        "632aca454d87ff2494210c00",
-        "632aca594d87ff2494210c10",
-        "62d2bbd22e63b40520194f1b"
-      ],
-      "image": [
-        "https://i.postimg.cc/MTPyNwQC/Clementine-5ct.jpg"
-      ],
-      "tag": [
-        "[\"fresh fruits\",\"fruits\",\"vegetable\"]"
-      ],
-      "variants": [],
-      "status": "show",
-      "_id": "643970cde58a401b6c62c74c",
-      "slug": "clementine",
-      "sku": "",
-      "barcode": "",
-      "productId": "",
-      "title": "Clementine",
-      "description": {
-        "en": "In a botanical sense, a fruit is the fleshy or dry ripened ovary of a flowering plant, enclosing the seed or seeds. Apricots, bananas, and grapes, as well as bean pods, corn grains, tomatoes, cucumbers, and (in their shells) acorns and almonds, are all technically fruits."
-      },
-      "category": {
-        "_id": "632aca454d87ff2494210c00",
-        "name": {
-          "en": "Fresh Fruits"
-        }
-      },
-      "stock": 451,
-      "isCombination": false,
-      "__v": 0,
-      "createdAt": "2023-04-14T15:27:09.572Z",
-      "updatedAt": "2023-04-14T15:27:09.572Z",
-      "id": "643970cde58a401b6c62c74c",
-      "variant": {
-        "discount": 0,
-        "originalPrice": 48.12,
-        "price": 48.12
-      },
-      "price": 48.12,
-      "originalPrice": 48.12,
-      "quantity": 4,
-      "itemTotal": 192.48
-    }
-  ],
-  "discount": 0,
-  "user_info": {
-    "name": "Mo Salah",
-    "contact": "01957930032",
-    "email": "mosalah@gmail.com",
-    "address": "Egypt",
-    "country": "Egypt",
-    "city": "Egypt",
-    "zipCode": "2030"
-  },
-  "shippingOption": "FedEx",
-  "paymentMethod": "Cash",
-  "status": "Delivered",
-  "subTotal": 1121.07,
-  "shippingCost": 60,
-  "total": 1181.07,
-  "user": {
-    "$oid": "6439713c1d8869133e8881f6"
-  },
-  "invoice": 10001,
-  "__v": 0,
-  "createdAt": {
-    "$date": "2023-04-13T16:04:12.781Z"
-  },
-  "updatedAt": {
-    "$date": "2023-04-13T16:05:51.111Z"
-  }
-},{
-  "_id": {
-    "$oid": "643a870e1b35690008f94f90"
-  },
-  "cart": [
-    {
-      "prices": {
-        "price": 79.24,
-        "originalPrice": 79.24,
-        "discount": 0
-      },
-      "categories": [
-        "632ab2864d87ff2494210a8a",
-        "632ab2b64d87ff2494210aa7",
-        "632ab2c34d87ff2494210ab2",
-        "632ab2d54d87ff2494210ac0",
-        "632ab2df4d87ff2494210ac8",
-        "632ab2f04d87ff2494210ad0",
-        "632ab2f84d87ff2494210ad8",
-        "632ab2fd4d87ff2494210ae0",
-        "632ab3044d87ff2494210ae8"
-      ],
-      "image": "https://i.ibb.co/Lt144XM/Nivea-Cr-me-Care-Soap-75g.jpg",
-      "tag": [
-        "[\"bath\",\"soap\"]"
-      ],
-      "variants": [
-        {
-          "63f078f54b86ed26b05281b2": "63f078f54b86ed26b05281b3",
-          "643a862ca54e9700082034b3": "643a862ca54e9700082034b4",
-          "originalPrice": 79.24,
-          "price": 79.24,
-          "quantity": 179,
+      {
+        "prices": {
           "discount": 0,
-          "productId": "639dc0f5c2fce72b697282d7-0",
-          "barcode": "",
-          "sku": "",
-          "image": "https://i.ibb.co/Lt144XM/Nivea-Cr-me-Care-Soap-75g.jpg"
+          "originalPrice": 112.72,
+          "price": 112.72
         },
-        {
-          "63f078f54b86ed26b05281b2": "63f078f54b86ed26b05281b4",
-          "643a862ca54e9700082034b3": "643a862ca54e9700082034b4",
-          "originalPrice": 79.24,
-          "price": 79.24,
-          "quantity": 179,
-          "discount": 0,
-          "productId": "639dc0f5c2fce72b697282d7-1",
-          "barcode": "",
-          "sku": "",
-          "image": "https://i.ibb.co/Lt144XM/Nivea-Cr-me-Care-Soap-75g.jpg"
-        },
-        {
-          "63f078f54b86ed26b05281b2": "63f078f54b86ed26b05281b3",
-          "643a862ca54e9700082034b3": "643a862ca54e9700082034b5",
-          "originalPrice": 79.24,
-          "price": 79.24,
-          "quantity": 179,
-          "discount": 0,
-          "productId": "639dc0f5c2fce72b697282d7-2",
-          "barcode": "",
-          "sku": "",
-          "image": "https://i.ibb.co/Lt144XM/Nivea-Cr-me-Care-Soap-75g.jpg"
-        },
-        {
-          "63f078f54b86ed26b05281b2": "63f078f54b86ed26b05281b4",
-          "643a862ca54e9700082034b3": "643a862ca54e9700082034b5",
-          "originalPrice": 79.24,
-          "price": 79.24,
-          "quantity": 179,
-          "discount": 0,
-          "productId": "639dc0f5c2fce72b697282d7-3",
-          "barcode": "",
-          "sku": "",
-          "image": "https://i.ibb.co/Lt144XM/Nivea-Cr-me-Care-Soap-75g.jpg"
-        }
-      ],
-      "status": "show",
-      "_id": "643970cde58a401b6c62c623",
-      "slug": "nivea-soap",
-      "sku": "",
-      "barcode": "",
-      "productId": "639dc0f5c2fce72b697282d7",
-      "title": "Nivea Soap-Green,",
-      "description": {
-        "en": "bathroom accessories are items specifically designed for use in a bathroom, such as soap dishes, towel racks, etc. bathroom accessories accessories typically have durable, decorative finishes.",
-        "es": ""
-      },
-      "category": {
-        "_id": "632ab3044d87ff2494210ae8",
-        "name": {
-          "en": "Bath"
-        }
-      },
-      "stock": 716,
-      "isCombination": true,
-      "__v": 1,
-      "createdAt": "2023-04-14T15:27:09.564Z",
-      "updatedAt": "2023-04-15T11:12:06.368Z",
-      "id": "643970cde58a401b6c62c623-63f078f54b86ed26b05281b4-643a862ca54e9700082034b5",
-      "variant": {
-        "63f078f54b86ed26b05281b2": "63f078f54b86ed26b05281b4",
-        "643a862ca54e9700082034b3": "643a862ca54e9700082034b5",
-        "originalPrice": 79.24,
-        "price": 79.24,
-        "quantity": 179,
-        "discount": 0,
-        "productId": "639dc0f5c2fce72b697282d7-3",
-        "barcode": "",
+        "categories": [
+          "62d2bbd22e63b40520194f1b",
+          "632aca2b4d87ff2494210be8",
+          "632aca374d87ff2494210bf0",
+          "632aca3d4d87ff2494210bf8",
+          "632aca454d87ff2494210c00",
+          "632aca594d87ff2494210c10"
+        ],
+        "image": [
+          "https://i.postimg.cc/ZRynchJY/Green-Leaf-Lettuce-each.jpg"
+        ],
+        "tag": [
+          "[\"lettuce\",\"fresh vegetable\"]"
+        ],
+        "variants": [],
+        "status": "show",
+        "_id": "643970cde58a401b6c62c74e",
+        "slug": "green-leaf-lettuce",
         "sku": "",
-        "image": "https://i.ibb.co/Lt144XM/Nivea-Cr-me-Care-Soap-75g.jpg"
+        "barcode": "",
+        "productId": "",
+        "title": "Green Leaf Lettuce",
+        "description": {
+          "en": "Most fresh vegetables are low in calories and have a water content in excess of 70 percent, with only about 3.5 percent protein and less than 1 percent fat. ... The root vegetables include beets, carrots, radishes, sweet potatoes, and turnips. Stem vegetables include asparagus and kohlrabi."
+        },
+        "category": {
+          "_id": "632aca374d87ff2494210bf0",
+          "name": {
+            "en": "Fresh Vegetable"
+          }
+        },
+        "stock": 463,
+        "isCombination": false,
+        "__v": 0,
+        "createdAt": "2023-04-14T15:27:09.572Z",
+        "updatedAt": "2023-04-14T15:27:09.572Z",
+        "id": "643970cde58a401b6c62c74e",
+        "variant": {
+          "discount": 0,
+          "originalPrice": 112.72,
+          "price": 112.72
+        },
+        "price": 112.72,
+        "originalPrice": 112.72,
+        "quantity": 3,
+        "itemTotal": 338.15999999999997
       },
-      "price": 79.24,
-      "originalPrice": 79.24,
-      "quantity": 1,
-      "itemTotal": 79.24
-    }
-  ],
-  "discount": 0,
-  "user_info": {
-    "name": "John Doe",
-    "contact": "+345664446",
-    "email": "email@address.es",
-    "address": "Boulevard, 5",
-    "country": "España",
-    "city": "Los Angeles",
-    "zipCode": "1808"
-  },
-  "shippingOption": "FedEx",
-  "paymentMethod": "Cash",
-  "status": "Delivered",
-  "subTotal": 79.24,
-  "shippingCost": 60,
-  "total": 139.24,
-  "user": {
-    "$oid": "6439713c1d8869133e8881e9"
-  },
-  "createdAt": {
-    "$date": "2023-04-14T11:14:22.926Z"
-  },
-  "updatedAt": {
-    "$date": "2023-04-14T05:03:40.753Z"
-  },
-  "invoice": 10002,
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "643a888e59101c0008a73158"
-  },
-  "cart": [
-    {
-      "prices": {
-        "price": 79.24,
-        "originalPrice": 79.24,
-        "discount": 0
+      {
+        "prices": {
+          "discount": 0,
+          "originalPrice": 7.07,
+          "price": 7.07
+        },
+        "categories": [
+          "632aca2b4d87ff2494210be8",
+          "632aca3d4d87ff2494210bf8",
+          "632aca374d87ff2494210bf0",
+          "632aca454d87ff2494210c00",
+          "632aca594d87ff2494210c10",
+          "62d2bbd22e63b40520194f1b"
+        ],
+        "image": [
+          "https://i.postimg.cc/Z5yQ47YB/Rainbow-Chard-Package-per-lb.jpg",
+          "https://i.postimg.cc/Z5yQ47YB/Rainbow-Chard-Package-per-lb.jpg",
+          "https://i.postimg.cc/Z5yQ47YB/Rainbow-Chard-Package-per-lb.jpg"
+        ],
+        "tag": [
+          "[\"fresh fruits\",\"fruits\",\"vegetable\"]"
+        ],
+        "variants": [],
+        "status": "show",
+        "_id": "643970cde58a401b6c62c74d",
+        "slug": "rainbow-chard",
+        "sku": "",
+        "barcode": "",
+        "productId": "",
+        "title": "Rainbow Chard",
+        "description": {
+          "en": "Most fresh vegetables are low in calories and have a water content in excess of 70 percent, with only about 3.5 percent protein and less than 1 percent fat. ... The root vegetables include beets, carrots, radishes, sweet potatoes, and turnips. Stem vegetables include asparagus and kohlrabi."
+        },
+        "category": {
+          "_id": "632aca374d87ff2494210bf0",
+          "name": {
+            "en": "Fresh Vegetable"
+          }
+        },
+        "stock": 472,
+        "isCombination": false,
+        "__v": 0,
+        "createdAt": "2023-04-14T15:27:09.572Z",
+        "updatedAt": "2023-04-14T15:27:09.572Z",
+        "id": "643970cde58a401b6c62c74d",
+        "variant": {
+          "discount": 0,
+          "originalPrice": 7.07,
+          "price": 7.07
+        },
+        "price": 7.07,
+        "originalPrice": 7.07,
+        "quantity": 3,
+        "itemTotal": 21.21
       },
-      "categories": [
-        "632ab2864d87ff2494210a8a",
-        "632ab2b64d87ff2494210aa7",
-        "632ab2c34d87ff2494210ab2",
-        "632ab2d54d87ff2494210ac0",
-        "632ab2df4d87ff2494210ac8",
-        "632ab2f04d87ff2494210ad0",
-        "632ab2f84d87ff2494210ad8",
-        "632ab2fd4d87ff2494210ae0",
-        "632ab3044d87ff2494210ae8"
-      ],
-      "image": "https://i.ibb.co/Lt144XM/Nivea-Cr-me-Care-Soap-75g.jpg",
-      "tag": [
-        "[\"bath\",\"soap\"]"
-      ],
-      "variants": [
-        {
-          "63f078f54b86ed26b05281b2": "63f078f54b86ed26b05281b3",
-          "643a862ca54e9700082034b3": "643a862ca54e9700082034b4",
-          "originalPrice": 79.24,
-          "price": 79.24,
-          "quantity": 179,
+      {
+        "prices": {
           "discount": 0,
-          "productId": "639dc0f5c2fce72b697282d7-0",
-          "barcode": "",
-          "sku": "",
-          "image": "https://i.ibb.co/Lt144XM/Nivea-Cr-me-Care-Soap-75g.jpg"
+          "originalPrice": 48.12,
+          "price": 48.12
         },
-        {
-          "63f078f54b86ed26b05281b2": "63f078f54b86ed26b05281b4",
-          "643a862ca54e9700082034b3": "643a862ca54e9700082034b4",
-          "originalPrice": 79.24,
-          "price": 79.24,
-          "quantity": 179,
+        "categories": [
+          "632aca2b4d87ff2494210be8",
+          "632aca3d4d87ff2494210bf8",
+          "632aca374d87ff2494210bf0",
+          "632aca454d87ff2494210c00",
+          "632aca594d87ff2494210c10",
+          "62d2bbd22e63b40520194f1b"
+        ],
+        "image": [
+          "https://i.postimg.cc/MTPyNwQC/Clementine-5ct.jpg"
+        ],
+        "tag": [
+          "[\"fresh fruits\",\"fruits\",\"vegetable\"]"
+        ],
+        "variants": [],
+        "status": "show",
+        "_id": "643970cde58a401b6c62c74c",
+        "slug": "clementine",
+        "sku": "",
+        "barcode": "",
+        "productId": "",
+        "title": "Clementine",
+        "description": {
+          "en": "In a botanical sense, a fruit is the fleshy or dry ripened ovary of a flowering plant, enclosing the seed or seeds. Apricots, bananas, and grapes, as well as bean pods, corn grains, tomatoes, cucumbers, and (in their shells) acorns and almonds, are all technically fruits."
+        },
+        "category": {
+          "_id": "632aca454d87ff2494210c00",
+          "name": {
+            "en": "Fresh Fruits"
+          }
+        },
+        "stock": 451,
+        "isCombination": false,
+        "__v": 0,
+        "createdAt": "2023-04-14T15:27:09.572Z",
+        "updatedAt": "2023-04-14T15:27:09.572Z",
+        "id": "643970cde58a401b6c62c74c",
+        "variant": {
           "discount": 0,
-          "productId": "639dc0f5c2fce72b697282d7-1",
-          "barcode": "",
-          "sku": "",
-          "image": "https://i.ibb.co/Lt144XM/Nivea-Cr-me-Care-Soap-75g.jpg"
+          "originalPrice": 48.12,
+          "price": 48.12
         },
-        {
-          "63f078f54b86ed26b05281b2": "63f078f54b86ed26b05281b3",
-          "643a862ca54e9700082034b3": "643a862ca54e9700082034b5",
-          "originalPrice": 79.24,
+        "price": 48.12,
+        "originalPrice": 48.12,
+        "quantity": 4,
+        "itemTotal": 192.48
+      }
+    ],
+    "discount": 0,
+    "user_info": {
+      "name": "Demo Customer 1",
+      "contact": "+88019000001",
+      "email": "order1@example.com",
+      "address": "Demo Address 1, Dhaka",
+      "country": "Bangladesh",
+      "city": "Dhaka",
+      "zipCode": "1200"
+    },
+    "shippingOption": "FedEx",
+    "paymentMethod": "Cash",
+    "status": "Delivered",
+    "subTotal": 1121.07,
+    "shippingCost": 60,
+    "total": 1181.07,
+    "user": "6439713c1d8869133e8881f6",
+    "invoice": 10001
+  },
+  {
+    "_id": "643a888e59101c0008a73158",
+    "cart": [
+      {
+        "prices": {
           "price": 79.24,
-          "quantity": 179,
-          "discount": 0,
-          "productId": "639dc0f5c2fce72b697282d7-2",
-          "barcode": "",
-          "sku": "",
-          "image": "https://i.ibb.co/Lt144XM/Nivea-Cr-me-Care-Soap-75g.jpg"
+          "originalPrice": 79.24,
+          "discount": 0
         },
-        {
+        "categories": [
+          "632ab2864d87ff2494210a8a",
+          "632ab2b64d87ff2494210aa7",
+          "632ab2c34d87ff2494210ab2",
+          "632ab2d54d87ff2494210ac0",
+          "632ab2df4d87ff2494210ac8",
+          "632ab2f04d87ff2494210ad0",
+          "632ab2f84d87ff2494210ad8",
+          "632ab2fd4d87ff2494210ae0",
+          "632ab3044d87ff2494210ae8"
+        ],
+        "image": "https://i.ibb.co/Lt144XM/Nivea-Cr-me-Care-Soap-75g.jpg",
+        "tag": [
+          "[\"bath\",\"soap\"]"
+        ],
+        "variants": [
+          {
+            "63f078f54b86ed26b05281b2": "63f078f54b86ed26b05281b3",
+            "643a862ca54e9700082034b3": "643a862ca54e9700082034b4",
+            "originalPrice": 79.24,
+            "price": 79.24,
+            "quantity": 179,
+            "discount": 0,
+            "productId": "639dc0f5c2fce72b697282d7-0",
+            "barcode": "",
+            "sku": "",
+            "image": "https://i.ibb.co/Lt144XM/Nivea-Cr-me-Care-Soap-75g.jpg"
+          },
+          {
+            "63f078f54b86ed26b05281b2": "63f078f54b86ed26b05281b4",
+            "643a862ca54e9700082034b3": "643a862ca54e9700082034b4",
+            "originalPrice": 79.24,
+            "price": 79.24,
+            "quantity": 179,
+            "discount": 0,
+            "productId": "639dc0f5c2fce72b697282d7-1",
+            "barcode": "",
+            "sku": "",
+            "image": "https://i.ibb.co/Lt144XM/Nivea-Cr-me-Care-Soap-75g.jpg"
+          },
+          {
+            "63f078f54b86ed26b05281b2": "63f078f54b86ed26b05281b3",
+            "643a862ca54e9700082034b3": "643a862ca54e9700082034b5",
+            "originalPrice": 79.24,
+            "price": 79.24,
+            "quantity": 179,
+            "discount": 0,
+            "productId": "639dc0f5c2fce72b697282d7-2",
+            "barcode": "",
+            "sku": "",
+            "image": "https://i.ibb.co/Lt144XM/Nivea-Cr-me-Care-Soap-75g.jpg"
+          },
+          {
+            "63f078f54b86ed26b05281b2": "63f078f54b86ed26b05281b4",
+            "643a862ca54e9700082034b3": "643a862ca54e9700082034b5",
+            "originalPrice": 79.24,
+            "price": 79.24,
+            "quantity": 178,
+            "discount": 0,
+            "productId": "639dc0f5c2fce72b697282d7-3",
+            "barcode": "",
+            "sku": "",
+            "image": "https://i.ibb.co/Lt144XM/Nivea-Cr-me-Care-Soap-75g.jpg"
+          }
+        ],
+        "status": "show",
+        "_id": "643970cde58a401b6c62c623",
+        "slug": "nivea-soap",
+        "sku": "",
+        "barcode": "",
+        "productId": "639dc0f5c2fce72b697282d7",
+        "title": "Nivea Soap-Green,A304",
+        "description": {
+          "en": "bathroom accessories are items specifically designed for use in a bathroom, such as soap dishes, towel racks, etc. bathroom accessories accessories typically have durable, decorative finishes.",
+          "es": "",
+          "de": ""
+        },
+        "category": {
+          "_id": "632ab3044d87ff2494210ae8",
+          "name": {
+            "en": "Bath"
+          }
+        },
+        "stock": 715,
+        "isCombination": true,
+        "__v": 1,
+        "createdAt": "2023-04-14T15:27:09.564Z",
+        "updatedAt": "2023-04-15T11:19:30.619Z",
+        "sales": 1,
+        "id": "643970cde58a401b6c62c623-63f078f54b86ed26b05281b4-643a862ca54e9700082034b5",
+        "variant": {
           "63f078f54b86ed26b05281b2": "63f078f54b86ed26b05281b4",
           "643a862ca54e9700082034b3": "643a862ca54e9700082034b5",
           "originalPrice": 79.24,
@@ -499,243 +382,297 @@
           "barcode": "",
           "sku": "",
           "image": "https://i.ibb.co/Lt144XM/Nivea-Cr-me-Care-Soap-75g.jpg"
-        }
-      ],
-      "status": "show",
-      "_id": "643970cde58a401b6c62c623",
-      "slug": "nivea-soap",
-      "sku": "",
-      "barcode": "",
-      "productId": "639dc0f5c2fce72b697282d7",
-      "title": "Nivea Soap-Green,A304",
-      "description": {
-        "en": "bathroom accessories are items specifically designed for use in a bathroom, such as soap dishes, towel racks, etc. bathroom accessories accessories typically have durable, decorative finishes.",
-        "es": "",
-        "de": ""
-      },
-      "category": {
-        "_id": "632ab3044d87ff2494210ae8",
-        "name": {
-          "en": "Bath"
-        }
-      },
-      "stock": 715,
-      "isCombination": true,
-      "__v": 1,
-      "createdAt": "2023-04-14T15:27:09.564Z",
-      "updatedAt": "2023-04-15T11:19:30.619Z",
-      "sales": 1,
-      "id": "643970cde58a401b6c62c623-63f078f54b86ed26b05281b4-643a862ca54e9700082034b5",
-      "variant": {
-        "63f078f54b86ed26b05281b2": "63f078f54b86ed26b05281b4",
-        "643a862ca54e9700082034b3": "643a862ca54e9700082034b5",
-        "originalPrice": 79.24,
+        },
         "price": 79.24,
-        "quantity": 178,
-        "discount": 0,
-        "productId": "639dc0f5c2fce72b697282d7-3",
-        "barcode": "",
+        "originalPrice": 79.24,
+        "quantity": 1,
+        "itemTotal": 79.24
+      }
+    ],
+    "discount": 0,
+    "user_info": {
+      "name": "Demo Customer 2",
+      "contact": "+88019000002",
+      "email": "order2@example.com",
+      "address": "Demo Address 2, Dhaka",
+      "country": "Bangladesh",
+      "city": "Dhaka",
+      "zipCode": "1200"
+    },
+    "shippingOption": "FedEx",
+    "paymentMethod": "Cash",
+    "status": "Delivered",
+    "subTotal": 79.24,
+    "shippingCost": 60,
+    "total": 139.24,
+    "user": "6439713c1d8869133e8881e9",
+    "invoice": 10003
+  },
+  {
+    "_id": "643a870e1b35690008f94f90",
+    "cart": [
+      {
+        "prices": {
+          "price": 79.24,
+          "originalPrice": 79.24,
+          "discount": 0
+        },
+        "categories": [
+          "632ab2864d87ff2494210a8a",
+          "632ab2b64d87ff2494210aa7",
+          "632ab2c34d87ff2494210ab2",
+          "632ab2d54d87ff2494210ac0",
+          "632ab2df4d87ff2494210ac8",
+          "632ab2f04d87ff2494210ad0",
+          "632ab2f84d87ff2494210ad8",
+          "632ab2fd4d87ff2494210ae0",
+          "632ab3044d87ff2494210ae8"
+        ],
+        "image": "https://i.ibb.co/Lt144XM/Nivea-Cr-me-Care-Soap-75g.jpg",
+        "tag": [
+          "[\"bath\",\"soap\"]"
+        ],
+        "variants": [
+          {
+            "63f078f54b86ed26b05281b2": "63f078f54b86ed26b05281b3",
+            "643a862ca54e9700082034b3": "643a862ca54e9700082034b4",
+            "originalPrice": 79.24,
+            "price": 79.24,
+            "quantity": 179,
+            "discount": 0,
+            "productId": "639dc0f5c2fce72b697282d7-0",
+            "barcode": "",
+            "sku": "",
+            "image": "https://i.ibb.co/Lt144XM/Nivea-Cr-me-Care-Soap-75g.jpg"
+          },
+          {
+            "63f078f54b86ed26b05281b2": "63f078f54b86ed26b05281b4",
+            "643a862ca54e9700082034b3": "643a862ca54e9700082034b4",
+            "originalPrice": 79.24,
+            "price": 79.24,
+            "quantity": 179,
+            "discount": 0,
+            "productId": "639dc0f5c2fce72b697282d7-1",
+            "barcode": "",
+            "sku": "",
+            "image": "https://i.ibb.co/Lt144XM/Nivea-Cr-me-Care-Soap-75g.jpg"
+          },
+          {
+            "63f078f54b86ed26b05281b2": "63f078f54b86ed26b05281b3",
+            "643a862ca54e9700082034b3": "643a862ca54e9700082034b5",
+            "originalPrice": 79.24,
+            "price": 79.24,
+            "quantity": 179,
+            "discount": 0,
+            "productId": "639dc0f5c2fce72b697282d7-2",
+            "barcode": "",
+            "sku": "",
+            "image": "https://i.ibb.co/Lt144XM/Nivea-Cr-me-Care-Soap-75g.jpg"
+          },
+          {
+            "63f078f54b86ed26b05281b2": "63f078f54b86ed26b05281b4",
+            "643a862ca54e9700082034b3": "643a862ca54e9700082034b5",
+            "originalPrice": 79.24,
+            "price": 79.24,
+            "quantity": 179,
+            "discount": 0,
+            "productId": "639dc0f5c2fce72b697282d7-3",
+            "barcode": "",
+            "sku": "",
+            "image": "https://i.ibb.co/Lt144XM/Nivea-Cr-me-Care-Soap-75g.jpg"
+          }
+        ],
+        "status": "show",
+        "_id": "643970cde58a401b6c62c623",
+        "slug": "nivea-soap",
         "sku": "",
-        "image": "https://i.ibb.co/Lt144XM/Nivea-Cr-me-Care-Soap-75g.jpg"
-      },
-      "price": 79.24,
-      "originalPrice": 79.24,
-      "quantity": 1,
-      "itemTotal": 79.24
-    }
-  ],
-  "discount": 0,
-  "user_info": {
-    "name": "John Doe",
-    "contact": "+345664446",
-    "email": "email@address.es",
-    "address": "Boulevard, 5",
-    "country": "España",
-    "city": "Los Angeles",
-    "zipCode": "1808"
-  },
-  "shippingOption": "FedEx",
-  "paymentMethod": "Cash",
-  "status": "Delivered",
-  "subTotal": 79.24,
-  "shippingCost": 60,
-  "total": 139.24,
-  "user": {
-    "$oid": "6439713c1d8869133e8881e9"
-  },
-  "createdAt": {
-    "$date": "2023-04-15T11:20:46.944Z"
-  },
-  "updatedAt": {
-    "$date": "2023-04-15T11:21:17.388Z"
-  },
-  "invoice": 10003,
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "643b820695705e0008499525"
-  },
-  "cart": [
-    {
-      "prices": {
-        "discount": 0,
-        "originalPrice": 112.72,
-        "price": 112.72
-      },
-      "categories": [
-        "62d2bbd22e63b40520194f1b",
-        "632aca2b4d87ff2494210be8",
-        "632aca374d87ff2494210bf0",
-        "632aca3d4d87ff2494210bf8",
-        "632aca454d87ff2494210c00",
-        "632aca594d87ff2494210c10"
-      ],
-      "image": [
-        "https://i.postimg.cc/ZRynchJY/Green-Leaf-Lettuce-each.jpg"
-      ],
-      "tag": [
-        "[\"lettuce\",\"fresh vegetable\"]"
-      ],
-      "variants": [],
-      "status": "show",
-      "_id": "643970cde58a401b6c62c74e",
-      "slug": "green-leaf-lettuce",
-      "sku": "",
-      "barcode": "",
-      "productId": "",
-      "title": "Green Leaf Lettuce",
-      "description": {
-        "en": "Most fresh vegetables are low in calories and have a water content in excess of 70 percent, with only about 3.5 percent protein and less than 1 percent fat. ... The root vegetables include beets, carrots, radishes, sweet potatoes, and turnips. Stem vegetables include asparagus and kohlrabi."
-      },
-      "category": {
-        "_id": "632aca374d87ff2494210bf0",
-        "name": {
-          "en": "Fresh Vegetable"
-        }
-      },
-      "stock": 460,
-      "isCombination": false,
-      "__v": 0,
-      "createdAt": "2023-04-14T15:27:09.572Z",
-      "updatedAt": "2023-04-14T16:00:34.736Z",
-      "sales": 3,
-      "id": "643970cde58a401b6c62c74e",
-      "variant": {
-        "discount": 0,
-        "originalPrice": 112.72,
-        "price": 112.72
-      },
-      "price": 112.72,
-      "originalPrice": 112.72,
-      "quantity": 4,
-      "itemTotal": 450.88
-    },
-    {
-      "prices": {
-        "discount": 0,
-        "originalPrice": 189.74,
-        "price": 189.74
-      },
-      "categories": [
-        "632ab2864d87ff2494210a8a",
-        "63f07c074b86ed26b0528bd3"
-      ],
-      "image": "https://i.ibb.co/4Pfnj7x/Huggies-Diaper-Dry-S-Up-To-7-Kg-36-Pcs.jpg",
-      "tag": [
-        "[\"baby care\",\"baby accessories\"]"
-      ],
-      "variants": [
-        {
-          "63f078f54b86ed26b05281b2": "63f078f54b86ed26b05281b3",
-          "63f078f54b86ed26b05281b6": "63f078f54b86ed26b05281b7",
-          "price": 189.74,
-          "originalPrice": "189.74",
-          "quantity": 1138,
-          "discount": "0.00",
-          "productId": "639dc0f5c2fce72b697282e0-0",
-          "barcode": "",
-          "image": "https://i.ibb.co/4Pfnj7x/Huggies-Diaper-Dry-S-Up-To-7-Kg-36-Pcs.jpg",
-          "sku": ""
-        },
-        {
-          "63f078f54b86ed26b05281b2": "63f078f54b86ed26b05281b3",
-          "63f078f54b86ed26b05281b6": "63f078f54b86ed26b05281b8",
-          "price": 192.74,
-          "originalPrice": "192.74",
-          "quantity": 1142,
-          "discount": "0.00",
-          "productId": "639dc0f5c2fce72b697282e0-1",
-          "barcode": "",
-          "image": "https://i.ibb.co/4Pfnj7x/Huggies-Diaper-Dry-S-Up-To-7-Kg-36-Pcs.jpg"
-        },
-        {
-          "63f078f54b86ed26b05281b2": "63f078f54b86ed26b05281b3",
-          "63f078f54b86ed26b05281b6": "63f078f54b86ed26b05281b9",
-          "price": 194.74,
-          "originalPrice": "194.74",
-          "quantity": 1143,
-          "discount": "0.00",
-          "productId": "639dc0f5c2fce72b697282e0-2",
-          "barcode": "",
-          "image": "https://i.ibb.co/4Pfnj7x/Huggies-Diaper-Dry-S-Up-To-7-Kg-36-Pcs.jpg"
-        }
-      ],
-      "status": "show",
-      "_id": "643970cde58a401b6c62c750",
-      "slug": "huggies-diaper",
-      "sku": "",
-      "barcode": "",
-      "productId": "639dc0f5c2fce72b697282e0",
-      "title": "Huggies Diaper-Red,Small",
-      "description": {
-        "en": "Baby Products are products intended to be used on infants and category under the age of three. Baby products are specially formulated to be mild and non-irritating and use ingredients that are selected for these properties. Baby products include baby shampoos and baby lotions, oils, powders and creams."
-      },
-      "category": {
-        "_id": "63f07c074b86ed26b0528bd3",
-        "name": {
-          "en": "Toys Kids"
-        }
-      },
-      "stock": 3423,
-      "isCombination": true,
-      "__v": 0,
-      "createdAt": "2023-04-14T15:27:09.572Z",
-      "updatedAt": "2023-04-14T16:00:34.735Z",
-      "sales": 3,
-      "id": "643970cde58a401b6c62c750-63f078f54b86ed26b05281b3-63f078f54b86ed26b05281b7",
-      "variant": {
-        "63f078f54b86ed26b05281b2": "63f078f54b86ed26b05281b3",
-        "63f078f54b86ed26b05281b6": "63f078f54b86ed26b05281b7",
-        "price": 189.74,
-        "originalPrice": "189.74",
-        "quantity": 1138,
-        "discount": "0.00",
-        "productId": "639dc0f5c2fce72b697282e0-0",
         "barcode": "",
+        "productId": "639dc0f5c2fce72b697282d7",
+        "title": "Nivea Soap-Green,",
+        "description": {
+          "en": "bathroom accessories are items specifically designed for use in a bathroom, such as soap dishes, towel racks, etc. bathroom accessories accessories typically have durable, decorative finishes.",
+          "es": ""
+        },
+        "category": {
+          "_id": "632ab3044d87ff2494210ae8",
+          "name": {
+            "en": "Bath"
+          }
+        },
+        "stock": 716,
+        "isCombination": true,
+        "__v": 1,
+        "createdAt": "2023-04-14T15:27:09.564Z",
+        "updatedAt": "2023-04-15T11:12:06.368Z",
+        "id": "643970cde58a401b6c62c623-63f078f54b86ed26b05281b4-643a862ca54e9700082034b5",
+        "variant": {
+          "63f078f54b86ed26b05281b2": "63f078f54b86ed26b05281b4",
+          "643a862ca54e9700082034b3": "643a862ca54e9700082034b5",
+          "originalPrice": 79.24,
+          "price": 79.24,
+          "quantity": 179,
+          "discount": 0,
+          "productId": "639dc0f5c2fce72b697282d7-3",
+          "barcode": "",
+          "sku": "",
+          "image": "https://i.ibb.co/Lt144XM/Nivea-Cr-me-Care-Soap-75g.jpg"
+        },
+        "price": 79.24,
+        "originalPrice": 79.24,
+        "quantity": 1,
+        "itemTotal": 79.24
+      }
+    ],
+    "discount": 0,
+    "user_info": {
+      "name": "Demo Customer 3",
+      "contact": "+88019000003",
+      "email": "order3@example.com",
+      "address": "Demo Address 3, Dhaka",
+      "country": "Bangladesh",
+      "city": "Dhaka",
+      "zipCode": "1200"
+    },
+    "shippingOption": "FedEx",
+    "paymentMethod": "Cash",
+    "status": "Delivered",
+    "subTotal": 79.24,
+    "shippingCost": 60,
+    "total": 139.24,
+    "user": "6439713c1d8869133e8881e9",
+    "invoice": 10002
+  },
+  {
+    "_id": "643b820695705e0008499525",
+    "cart": [
+      {
+        "prices": {
+          "discount": 0,
+          "originalPrice": 112.72,
+          "price": 112.72
+        },
+        "categories": [
+          "62d2bbd22e63b40520194f1b",
+          "632aca2b4d87ff2494210be8",
+          "632aca374d87ff2494210bf0",
+          "632aca3d4d87ff2494210bf8",
+          "632aca454d87ff2494210c00",
+          "632aca594d87ff2494210c10"
+        ],
+        "image": [
+          "https://i.postimg.cc/ZRynchJY/Green-Leaf-Lettuce-each.jpg"
+        ],
+        "tag": [
+          "[\"lettuce\",\"fresh vegetable\"]"
+        ],
+        "variants": [],
+        "status": "show",
+        "_id": "643970cde58a401b6c62c74e",
+        "slug": "green-leaf-lettuce",
+        "sku": "",
+        "barcode": "",
+        "productId": "",
+        "title": "Green Leaf Lettuce",
+        "description": {
+          "en": "Most fresh vegetables are low in calories and have a water content in excess of 70 percent, with only about 3.5 percent protein and less than 1 percent fat. ... The root vegetables include beets, carrots, radishes, sweet potatoes, and turnips. Stem vegetables include asparagus and kohlrabi."
+        },
+        "category": {
+          "_id": "632aca374d87ff2494210bf0",
+          "name": {
+            "en": "Fresh Vegetable"
+          }
+        },
+        "stock": 460,
+        "isCombination": false,
+        "__v": 0,
+        "createdAt": "2023-04-14T15:27:09.572Z",
+        "updatedAt": "2023-04-14T16:00:34.736Z",
+        "sales": 3,
+        "id": "643970cde58a401b6c62c74e",
+        "variant": {
+          "discount": 0,
+          "originalPrice": 112.72,
+          "price": 112.72
+        },
+        "price": 112.72,
+        "originalPrice": 112.72,
+        "quantity": 4,
+        "itemTotal": 450.88
+      },
+      {
+        "prices": {
+          "discount": 0,
+          "originalPrice": 189.74,
+          "price": 189.74
+        },
+        "categories": [
+          "632ab2864d87ff2494210a8a",
+          "63f07c074b86ed26b0528bd3"
+        ],
         "image": "https://i.ibb.co/4Pfnj7x/Huggies-Diaper-Dry-S-Up-To-7-Kg-36-Pcs.jpg",
-        "sku": ""
-      },
-      "price": 189.74,
-      "originalPrice": 189.74,
-      "quantity": 2,
-      "itemTotal": 379.48
-    },
-    {
-      "prices": {
-        "discount": 0,
-        "originalPrice": 189.74,
-        "price": 189.74
-      },
-      "categories": [
-        "632ab2864d87ff2494210a8a",
-        "63f07c074b86ed26b0528bd3"
-      ],
-      "image": "https://i.ibb.co/4Pfnj7x/Huggies-Diaper-Dry-S-Up-To-7-Kg-36-Pcs.jpg",
-      "tag": [
-        "[\"baby care\",\"baby accessories\"]"
-      ],
-      "variants": [
-        {
+        "tag": [
+          "[\"baby care\",\"baby accessories\"]"
+        ],
+        "variants": [
+          {
+            "63f078f54b86ed26b05281b2": "63f078f54b86ed26b05281b3",
+            "63f078f54b86ed26b05281b6": "63f078f54b86ed26b05281b7",
+            "price": 189.74,
+            "originalPrice": "189.74",
+            "quantity": 1138,
+            "discount": "0.00",
+            "productId": "639dc0f5c2fce72b697282e0-0",
+            "barcode": "",
+            "image": "https://i.ibb.co/4Pfnj7x/Huggies-Diaper-Dry-S-Up-To-7-Kg-36-Pcs.jpg",
+            "sku": ""
+          },
+          {
+            "63f078f54b86ed26b05281b2": "63f078f54b86ed26b05281b3",
+            "63f078f54b86ed26b05281b6": "63f078f54b86ed26b05281b8",
+            "price": 192.74,
+            "originalPrice": "192.74",
+            "quantity": 1142,
+            "discount": "0.00",
+            "productId": "639dc0f5c2fce72b697282e0-1",
+            "barcode": "",
+            "image": "https://i.ibb.co/4Pfnj7x/Huggies-Diaper-Dry-S-Up-To-7-Kg-36-Pcs.jpg"
+          },
+          {
+            "63f078f54b86ed26b05281b2": "63f078f54b86ed26b05281b3",
+            "63f078f54b86ed26b05281b6": "63f078f54b86ed26b05281b9",
+            "price": 194.74,
+            "originalPrice": "194.74",
+            "quantity": 1143,
+            "discount": "0.00",
+            "productId": "639dc0f5c2fce72b697282e0-2",
+            "barcode": "",
+            "image": "https://i.ibb.co/4Pfnj7x/Huggies-Diaper-Dry-S-Up-To-7-Kg-36-Pcs.jpg"
+          }
+        ],
+        "status": "show",
+        "_id": "643970cde58a401b6c62c750",
+        "slug": "huggies-diaper",
+        "sku": "",
+        "barcode": "",
+        "productId": "639dc0f5c2fce72b697282e0",
+        "title": "Huggies Diaper-Red,Small",
+        "description": {
+          "en": "Baby Products are products intended to be used on infants and category under the age of three. Baby products are specially formulated to be mild and non-irritating and use ingredients that are selected for these properties. Baby products include baby shampoos and baby lotions, oils, powders and creams."
+        },
+        "category": {
+          "_id": "63f07c074b86ed26b0528bd3",
+          "name": {
+            "en": "Toys Kids"
+          }
+        },
+        "stock": 3423,
+        "isCombination": true,
+        "__v": 0,
+        "createdAt": "2023-04-14T15:27:09.572Z",
+        "updatedAt": "2023-04-14T16:00:34.735Z",
+        "sales": 3,
+        "id": "643970cde58a401b6c62c750-63f078f54b86ed26b05281b3-63f078f54b86ed26b05281b7",
+        "variant": {
           "63f078f54b86ed26b05281b2": "63f078f54b86ed26b05281b3",
           "63f078f54b86ed26b05281b6": "63f078f54b86ed26b05281b7",
           "price": 189.74,
@@ -747,18 +684,85 @@
           "image": "https://i.ibb.co/4Pfnj7x/Huggies-Diaper-Dry-S-Up-To-7-Kg-36-Pcs.jpg",
           "sku": ""
         },
-        {
-          "63f078f54b86ed26b05281b2": "63f078f54b86ed26b05281b3",
-          "63f078f54b86ed26b05281b6": "63f078f54b86ed26b05281b8",
-          "price": 192.74,
-          "originalPrice": "192.74",
-          "quantity": 1142,
-          "discount": "0.00",
-          "productId": "639dc0f5c2fce72b697282e0-1",
-          "barcode": "",
-          "image": "https://i.ibb.co/4Pfnj7x/Huggies-Diaper-Dry-S-Up-To-7-Kg-36-Pcs.jpg"
+        "price": 189.74,
+        "originalPrice": 189.74,
+        "quantity": 2,
+        "itemTotal": 379.48
+      },
+      {
+        "prices": {
+          "discount": 0,
+          "originalPrice": 189.74,
+          "price": 189.74
         },
-        {
+        "categories": [
+          "632ab2864d87ff2494210a8a",
+          "63f07c074b86ed26b0528bd3"
+        ],
+        "image": "https://i.ibb.co/4Pfnj7x/Huggies-Diaper-Dry-S-Up-To-7-Kg-36-Pcs.jpg",
+        "tag": [
+          "[\"baby care\",\"baby accessories\"]"
+        ],
+        "variants": [
+          {
+            "63f078f54b86ed26b05281b2": "63f078f54b86ed26b05281b3",
+            "63f078f54b86ed26b05281b6": "63f078f54b86ed26b05281b7",
+            "price": 189.74,
+            "originalPrice": "189.74",
+            "quantity": 1138,
+            "discount": "0.00",
+            "productId": "639dc0f5c2fce72b697282e0-0",
+            "barcode": "",
+            "image": "https://i.ibb.co/4Pfnj7x/Huggies-Diaper-Dry-S-Up-To-7-Kg-36-Pcs.jpg",
+            "sku": ""
+          },
+          {
+            "63f078f54b86ed26b05281b2": "63f078f54b86ed26b05281b3",
+            "63f078f54b86ed26b05281b6": "63f078f54b86ed26b05281b8",
+            "price": 192.74,
+            "originalPrice": "192.74",
+            "quantity": 1142,
+            "discount": "0.00",
+            "productId": "639dc0f5c2fce72b697282e0-1",
+            "barcode": "",
+            "image": "https://i.ibb.co/4Pfnj7x/Huggies-Diaper-Dry-S-Up-To-7-Kg-36-Pcs.jpg"
+          },
+          {
+            "63f078f54b86ed26b05281b2": "63f078f54b86ed26b05281b3",
+            "63f078f54b86ed26b05281b6": "63f078f54b86ed26b05281b9",
+            "price": 194.74,
+            "originalPrice": "194.74",
+            "quantity": 1143,
+            "discount": "0.00",
+            "productId": "639dc0f5c2fce72b697282e0-2",
+            "barcode": "",
+            "image": "https://i.ibb.co/4Pfnj7x/Huggies-Diaper-Dry-S-Up-To-7-Kg-36-Pcs.jpg"
+          }
+        ],
+        "status": "show",
+        "_id": "643970cde58a401b6c62c750",
+        "slug": "huggies-diaper",
+        "sku": "",
+        "barcode": "",
+        "productId": "639dc0f5c2fce72b697282e0",
+        "title": "Huggies Diaper-Red,Large",
+        "description": {
+          "en": "Baby Products are products intended to be used on infants and category under the age of three. Baby products are specially formulated to be mild and non-irritating and use ingredients that are selected for these properties. Baby products include baby shampoos and baby lotions, oils, powders and creams."
+        },
+        "category": {
+          "_id": "63f07c074b86ed26b0528bd3",
+          "name": {
+            "en": "Toys Kids"
+          }
+        },
+        "stock": 3423,
+        "isCombination": true,
+        "__v": 0,
+        "createdAt": "2023-04-14T15:27:09.572Z",
+        "updatedAt": "2023-04-14T16:00:34.735Z",
+        "sales": 3,
+        "id": "643970cde58a401b6c62c750-63f078f54b86ed26b05281b3-63f078f54b86ed26b05281b9",
+        "variant": {
           "63f078f54b86ed26b05281b2": "63f078f54b86ed26b05281b3",
           "63f078f54b86ed26b05281b6": "63f078f54b86ed26b05281b9",
           "price": 194.74,
@@ -768,75 +772,86 @@
           "productId": "639dc0f5c2fce72b697282e0-2",
           "barcode": "",
           "image": "https://i.ibb.co/4Pfnj7x/Huggies-Diaper-Dry-S-Up-To-7-Kg-36-Pcs.jpg"
-        }
-      ],
-      "status": "show",
-      "_id": "643970cde58a401b6c62c750",
-      "slug": "huggies-diaper",
-      "sku": "",
-      "barcode": "",
-      "productId": "639dc0f5c2fce72b697282e0",
-      "title": "Huggies Diaper-Red,Large",
-      "description": {
-        "en": "Baby Products are products intended to be used on infants and category under the age of three. Baby products are specially formulated to be mild and non-irritating and use ingredients that are selected for these properties. Baby products include baby shampoos and baby lotions, oils, powders and creams."
-      },
-      "category": {
-        "_id": "63f07c074b86ed26b0528bd3",
-        "name": {
-          "en": "Toys Kids"
-        }
-      },
-      "stock": 3423,
-      "isCombination": true,
-      "__v": 0,
-      "createdAt": "2023-04-14T15:27:09.572Z",
-      "updatedAt": "2023-04-14T16:00:34.735Z",
-      "sales": 3,
-      "id": "643970cde58a401b6c62c750-63f078f54b86ed26b05281b3-63f078f54b86ed26b05281b9",
-      "variant": {
-        "63f078f54b86ed26b05281b2": "63f078f54b86ed26b05281b3",
-        "63f078f54b86ed26b05281b6": "63f078f54b86ed26b05281b9",
+        },
         "price": 194.74,
-        "originalPrice": "194.74",
-        "quantity": 1143,
-        "discount": "0.00",
-        "productId": "639dc0f5c2fce72b697282e0-2",
-        "barcode": "",
-        "image": "https://i.ibb.co/4Pfnj7x/Huggies-Diaper-Dry-S-Up-To-7-Kg-36-Pcs.jpg"
+        "originalPrice": 194.74,
+        "quantity": 1,
+        "itemTotal": 194.74
       },
-      "price": 194.74,
-      "originalPrice": 194.74,
-      "quantity": 1,
-      "itemTotal": 194.74
-    },
-    {
-      "prices": {
-        "discount": 0,
-        "originalPrice": 189.74,
-        "price": 189.74
-      },
-      "categories": [
-        "632ab2864d87ff2494210a8a",
-        "63f07c074b86ed26b0528bd3"
-      ],
-      "image": "https://i.ibb.co/4Pfnj7x/Huggies-Diaper-Dry-S-Up-To-7-Kg-36-Pcs.jpg",
-      "tag": [
-        "[\"baby care\",\"baby accessories\"]"
-      ],
-      "variants": [
-        {
-          "63f078f54b86ed26b05281b2": "63f078f54b86ed26b05281b3",
-          "63f078f54b86ed26b05281b6": "63f078f54b86ed26b05281b7",
-          "price": 189.74,
-          "originalPrice": "189.74",
-          "quantity": 1138,
-          "discount": "0.00",
-          "productId": "639dc0f5c2fce72b697282e0-0",
-          "barcode": "",
-          "image": "https://i.ibb.co/4Pfnj7x/Huggies-Diaper-Dry-S-Up-To-7-Kg-36-Pcs.jpg",
-          "sku": ""
+      {
+        "prices": {
+          "discount": 0,
+          "originalPrice": 189.74,
+          "price": 189.74
         },
-        {
+        "categories": [
+          "632ab2864d87ff2494210a8a",
+          "63f07c074b86ed26b0528bd3"
+        ],
+        "image": "https://i.ibb.co/4Pfnj7x/Huggies-Diaper-Dry-S-Up-To-7-Kg-36-Pcs.jpg",
+        "tag": [
+          "[\"baby care\",\"baby accessories\"]"
+        ],
+        "variants": [
+          {
+            "63f078f54b86ed26b05281b2": "63f078f54b86ed26b05281b3",
+            "63f078f54b86ed26b05281b6": "63f078f54b86ed26b05281b7",
+            "price": 189.74,
+            "originalPrice": "189.74",
+            "quantity": 1138,
+            "discount": "0.00",
+            "productId": "639dc0f5c2fce72b697282e0-0",
+            "barcode": "",
+            "image": "https://i.ibb.co/4Pfnj7x/Huggies-Diaper-Dry-S-Up-To-7-Kg-36-Pcs.jpg",
+            "sku": ""
+          },
+          {
+            "63f078f54b86ed26b05281b2": "63f078f54b86ed26b05281b3",
+            "63f078f54b86ed26b05281b6": "63f078f54b86ed26b05281b8",
+            "price": 192.74,
+            "originalPrice": "192.74",
+            "quantity": 1142,
+            "discount": "0.00",
+            "productId": "639dc0f5c2fce72b697282e0-1",
+            "barcode": "",
+            "image": "https://i.ibb.co/4Pfnj7x/Huggies-Diaper-Dry-S-Up-To-7-Kg-36-Pcs.jpg"
+          },
+          {
+            "63f078f54b86ed26b05281b2": "63f078f54b86ed26b05281b3",
+            "63f078f54b86ed26b05281b6": "63f078f54b86ed26b05281b9",
+            "price": 194.74,
+            "originalPrice": "194.74",
+            "quantity": 1143,
+            "discount": "0.00",
+            "productId": "639dc0f5c2fce72b697282e0-2",
+            "barcode": "",
+            "image": "https://i.ibb.co/4Pfnj7x/Huggies-Diaper-Dry-S-Up-To-7-Kg-36-Pcs.jpg"
+          }
+        ],
+        "status": "show",
+        "_id": "643970cde58a401b6c62c750",
+        "slug": "huggies-diaper",
+        "sku": "",
+        "barcode": "",
+        "productId": "639dc0f5c2fce72b697282e0",
+        "title": "Huggies Diaper-Red,Medium",
+        "description": {
+          "en": "Baby Products are products intended to be used on infants and category under the age of three. Baby products are specially formulated to be mild and non-irritating and use ingredients that are selected for these properties. Baby products include baby shampoos and baby lotions, oils, powders and creams."
+        },
+        "category": {
+          "_id": "63f07c074b86ed26b0528bd3",
+          "name": {
+            "en": "Toys Kids"
+          }
+        },
+        "stock": 3423,
+        "isCombination": true,
+        "__v": 0,
+        "createdAt": "2023-04-14T15:27:09.572Z",
+        "updatedAt": "2023-04-14T16:00:34.735Z",
+        "sales": 3,
+        "id": "643970cde58a401b6c62c750-63f078f54b86ed26b05281b3-63f078f54b86ed26b05281b8",
+        "variant": {
           "63f078f54b86ed26b05281b2": "63f078f54b86ed26b05281b3",
           "63f078f54b86ed26b05281b6": "63f078f54b86ed26b05281b8",
           "price": 192.74,
@@ -847,74 +862,150 @@
           "barcode": "",
           "image": "https://i.ibb.co/4Pfnj7x/Huggies-Diaper-Dry-S-Up-To-7-Kg-36-Pcs.jpg"
         },
-        {
-          "63f078f54b86ed26b05281b2": "63f078f54b86ed26b05281b3",
-          "63f078f54b86ed26b05281b6": "63f078f54b86ed26b05281b9",
-          "price": 194.74,
-          "originalPrice": "194.74",
-          "quantity": 1143,
-          "discount": "0.00",
-          "productId": "639dc0f5c2fce72b697282e0-2",
-          "barcode": "",
-          "image": "https://i.ibb.co/4Pfnj7x/Huggies-Diaper-Dry-S-Up-To-7-Kg-36-Pcs.jpg"
-        }
-      ],
-      "status": "show",
-      "_id": "643970cde58a401b6c62c750",
-      "slug": "huggies-diaper",
-      "sku": "",
-      "barcode": "",
-      "productId": "639dc0f5c2fce72b697282e0",
-      "title": "Huggies Diaper-Red,Medium",
-      "description": {
-        "en": "Baby Products are products intended to be used on infants and category under the age of three. Baby products are specially formulated to be mild and non-irritating and use ingredients that are selected for these properties. Baby products include baby shampoos and baby lotions, oils, powders and creams."
-      },
-      "category": {
-        "_id": "63f07c074b86ed26b0528bd3",
-        "name": {
-          "en": "Toys Kids"
-        }
-      },
-      "stock": 3423,
-      "isCombination": true,
-      "__v": 0,
-      "createdAt": "2023-04-14T15:27:09.572Z",
-      "updatedAt": "2023-04-14T16:00:34.735Z",
-      "sales": 3,
-      "id": "643970cde58a401b6c62c750-63f078f54b86ed26b05281b3-63f078f54b86ed26b05281b8",
-      "variant": {
-        "63f078f54b86ed26b05281b2": "63f078f54b86ed26b05281b3",
-        "63f078f54b86ed26b05281b6": "63f078f54b86ed26b05281b8",
         "price": 192.74,
-        "originalPrice": "192.74",
-        "quantity": 1142,
-        "discount": "0.00",
-        "productId": "639dc0f5c2fce72b697282e0-1",
+        "originalPrice": 192.74,
+        "quantity": 1,
+        "itemTotal": 192.74
+      },
+      {
+        "prices": {
+          "discount": 0,
+          "originalPrice": 174.97,
+          "price": 174.97
+        },
+        "categories": [
+          "632ab2864d87ff2494210a8a",
+          "632ab2c34d87ff2494210ab2",
+          "632ab2f04d87ff2494210ad0"
+        ],
+        "image": "https://i.ibb.co/9g7vDQJ/Himalaya-Baby-Powder-100g.jpg",
+        "tag": [
+          "[\"baby care\",\"baby accessories\"]"
+        ],
+        "variants": [
+          {
+            "63f078f54b86ed26b05281b2": "63f078f54b86ed26b05281b3",
+            "63f078f54b86ed26b05281b6": "63f078f54b86ed26b05281b7",
+            "price": 174.97,
+            "originalPrice": "174.97",
+            "quantity": 608,
+            "discount": "0.00",
+            "productId": "639dc0f5c2fce72b697282e1-0",
+            "barcode": "",
+            "image": "https://i.ibb.co/9g7vDQJ/Himalaya-Baby-Powder-100g.jpg"
+          },
+          {
+            "63f078f54b86ed26b05281b2": "63f078f54b86ed26b05281b4",
+            "63f078f54b86ed26b05281b6": "63f078f54b86ed26b05281b7",
+            "price": 174.97,
+            "originalPrice": "174.97",
+            "quantity": 608,
+            "discount": "0.00",
+            "productId": "639dc0f5c2fce72b697282e1-1",
+            "barcode": "",
+            "image": "https://i.ibb.co/9g7vDQJ/Himalaya-Baby-Powder-100g.jpg"
+          },
+          {
+            "63f078f54b86ed26b05281b2": "63f078f54b86ed26b05281b5",
+            "63f078f54b86ed26b05281b6": "63f078f54b86ed26b05281b7",
+            "price": 174.97,
+            "originalPrice": "174.97",
+            "quantity": 608,
+            "discount": "0.00",
+            "productId": "639dc0f5c2fce72b697282e1-2",
+            "barcode": "",
+            "image": "https://i.ibb.co/9g7vDQJ/Himalaya-Baby-Powder-100g.jpg"
+          },
+          {
+            "63f078f54b86ed26b05281b2": "63f078f54b86ed26b05281b3",
+            "63f078f54b86ed26b05281b6": "63f078f54b86ed26b05281b8",
+            "price": 174.97,
+            "originalPrice": "174.97",
+            "quantity": 608,
+            "discount": "0.00",
+            "productId": "639dc0f5c2fce72b697282e1-3",
+            "barcode": "",
+            "image": "https://i.ibb.co/9g7vDQJ/Himalaya-Baby-Powder-100g.jpg"
+          },
+          {
+            "63f078f54b86ed26b05281b2": "63f078f54b86ed26b05281b4",
+            "63f078f54b86ed26b05281b6": "63f078f54b86ed26b05281b8",
+            "price": 174.97,
+            "originalPrice": "174.97",
+            "quantity": 608,
+            "discount": "0.00",
+            "productId": "639dc0f5c2fce72b697282e1-4",
+            "barcode": "",
+            "image": "https://i.ibb.co/9g7vDQJ/Himalaya-Baby-Powder-100g.jpg"
+          },
+          {
+            "63f078f54b86ed26b05281b2": "63f078f54b86ed26b05281b5",
+            "63f078f54b86ed26b05281b6": "63f078f54b86ed26b05281b8",
+            "price": 174.97,
+            "originalPrice": "174.97",
+            "quantity": 608,
+            "discount": "0.00",
+            "productId": "639dc0f5c2fce72b697282e1-5",
+            "barcode": "",
+            "image": "https://i.ibb.co/9g7vDQJ/Himalaya-Baby-Powder-100g.jpg"
+          },
+          {
+            "63f078f54b86ed26b05281b2": "63f078f54b86ed26b05281b3",
+            "63f078f54b86ed26b05281b6": "63f078f54b86ed26b05281b9",
+            "price": 174.97,
+            "originalPrice": "174.97",
+            "quantity": 608,
+            "discount": "0.00",
+            "productId": "639dc0f5c2fce72b697282e1-6",
+            "barcode": "",
+            "image": "https://i.ibb.co/9g7vDQJ/Himalaya-Baby-Powder-100g.jpg"
+          },
+          {
+            "63f078f54b86ed26b05281b2": "63f078f54b86ed26b05281b4",
+            "63f078f54b86ed26b05281b6": "63f078f54b86ed26b05281b9",
+            "price": 174.97,
+            "originalPrice": "174.97",
+            "quantity": 608,
+            "discount": "0.00",
+            "productId": "639dc0f5c2fce72b697282e1-7",
+            "barcode": "",
+            "image": "https://i.ibb.co/9g7vDQJ/Himalaya-Baby-Powder-100g.jpg"
+          },
+          {
+            "63f078f54b86ed26b05281b2": "63f078f54b86ed26b05281b5",
+            "63f078f54b86ed26b05281b6": "63f078f54b86ed26b05281b9",
+            "price": 174.97,
+            "originalPrice": "174.97",
+            "quantity": 608,
+            "discount": "0.00",
+            "productId": "639dc0f5c2fce72b697282e1-8",
+            "barcode": "",
+            "image": "https://i.ibb.co/9g7vDQJ/Himalaya-Baby-Powder-100g.jpg"
+          }
+        ],
+        "status": "show",
+        "_id": "643970cde58a401b6c62c74f",
+        "slug": "himalaya-powder",
+        "sku": "",
         "barcode": "",
-        "image": "https://i.ibb.co/4Pfnj7x/Huggies-Diaper-Dry-S-Up-To-7-Kg-36-Pcs.jpg"
-      },
-      "price": 192.74,
-      "originalPrice": 192.74,
-      "quantity": 1,
-      "itemTotal": 192.74
-    },
-    {
-      "prices": {
-        "discount": 0,
-        "originalPrice": 174.97,
-        "price": 174.97
-      },
-      "categories": [
-        "632ab2864d87ff2494210a8a",
-        "632ab2c34d87ff2494210ab2",
-        "632ab2f04d87ff2494210ad0"
-      ],
-      "image": "https://i.ibb.co/9g7vDQJ/Himalaya-Baby-Powder-100g.jpg",
-      "tag": [
-        "[\"baby care\",\"baby accessories\"]"
-      ],
-      "variants": [
-        {
+        "productId": "639dc0f5c2fce72b697282e1",
+        "title": "Himalaya Powder-Red,Small",
+        "description": {
+          "en": "Baby Products are products intended to be used on infants and category under the age of three. Baby products are specially formulated to be mild and non-irritating and use ingredients that are selected for these properties. Baby products include baby shampoos and baby lotions, oils, powders and creams."
+        },
+        "category": {
+          "_id": "632ab2f04d87ff2494210ad0",
+          "name": {
+            "en": "Skin Care"
+          }
+        },
+        "stock": 5472,
+        "isCombination": true,
+        "__v": 0,
+        "createdAt": "2023-04-14T15:27:09.572Z",
+        "updatedAt": "2023-04-14T15:27:09.572Z",
+        "id": "643970cde58a401b6c62c74f-63f078f54b86ed26b05281b3-63f078f54b86ed26b05281b7",
+        "variant": {
           "63f078f54b86ed26b05281b2": "63f078f54b86ed26b05281b3",
           "63f078f54b86ed26b05281b6": "63f078f54b86ed26b05281b7",
           "price": 174.97,
@@ -925,260 +1016,2787 @@
           "barcode": "",
           "image": "https://i.ibb.co/9g7vDQJ/Himalaya-Baby-Powder-100g.jpg"
         },
-        {
-          "63f078f54b86ed26b05281b2": "63f078f54b86ed26b05281b4",
-          "63f078f54b86ed26b05281b6": "63f078f54b86ed26b05281b7",
-          "price": 174.97,
-          "originalPrice": "174.97",
-          "quantity": 608,
-          "discount": "0.00",
-          "productId": "639dc0f5c2fce72b697282e1-1",
-          "barcode": "",
-          "image": "https://i.ibb.co/9g7vDQJ/Himalaya-Baby-Powder-100g.jpg"
-        },
-        {
-          "63f078f54b86ed26b05281b2": "63f078f54b86ed26b05281b5",
-          "63f078f54b86ed26b05281b6": "63f078f54b86ed26b05281b7",
-          "price": 174.97,
-          "originalPrice": "174.97",
-          "quantity": 608,
-          "discount": "0.00",
-          "productId": "639dc0f5c2fce72b697282e1-2",
-          "barcode": "",
-          "image": "https://i.ibb.co/9g7vDQJ/Himalaya-Baby-Powder-100g.jpg"
-        },
-        {
-          "63f078f54b86ed26b05281b2": "63f078f54b86ed26b05281b3",
-          "63f078f54b86ed26b05281b6": "63f078f54b86ed26b05281b8",
-          "price": 174.97,
-          "originalPrice": "174.97",
-          "quantity": 608,
-          "discount": "0.00",
-          "productId": "639dc0f5c2fce72b697282e1-3",
-          "barcode": "",
-          "image": "https://i.ibb.co/9g7vDQJ/Himalaya-Baby-Powder-100g.jpg"
-        },
-        {
-          "63f078f54b86ed26b05281b2": "63f078f54b86ed26b05281b4",
-          "63f078f54b86ed26b05281b6": "63f078f54b86ed26b05281b8",
-          "price": 174.97,
-          "originalPrice": "174.97",
-          "quantity": 608,
-          "discount": "0.00",
-          "productId": "639dc0f5c2fce72b697282e1-4",
-          "barcode": "",
-          "image": "https://i.ibb.co/9g7vDQJ/Himalaya-Baby-Powder-100g.jpg"
-        },
-        {
-          "63f078f54b86ed26b05281b2": "63f078f54b86ed26b05281b5",
-          "63f078f54b86ed26b05281b6": "63f078f54b86ed26b05281b8",
-          "price": 174.97,
-          "originalPrice": "174.97",
-          "quantity": 608,
-          "discount": "0.00",
-          "productId": "639dc0f5c2fce72b697282e1-5",
-          "barcode": "",
-          "image": "https://i.ibb.co/9g7vDQJ/Himalaya-Baby-Powder-100g.jpg"
-        },
-        {
-          "63f078f54b86ed26b05281b2": "63f078f54b86ed26b05281b3",
-          "63f078f54b86ed26b05281b6": "63f078f54b86ed26b05281b9",
-          "price": 174.97,
-          "originalPrice": "174.97",
-          "quantity": 608,
-          "discount": "0.00",
-          "productId": "639dc0f5c2fce72b697282e1-6",
-          "barcode": "",
-          "image": "https://i.ibb.co/9g7vDQJ/Himalaya-Baby-Powder-100g.jpg"
-        },
-        {
-          "63f078f54b86ed26b05281b2": "63f078f54b86ed26b05281b4",
-          "63f078f54b86ed26b05281b6": "63f078f54b86ed26b05281b9",
-          "price": 174.97,
-          "originalPrice": "174.97",
-          "quantity": 608,
-          "discount": "0.00",
-          "productId": "639dc0f5c2fce72b697282e1-7",
-          "barcode": "",
-          "image": "https://i.ibb.co/9g7vDQJ/Himalaya-Baby-Powder-100g.jpg"
-        },
-        {
-          "63f078f54b86ed26b05281b2": "63f078f54b86ed26b05281b5",
-          "63f078f54b86ed26b05281b6": "63f078f54b86ed26b05281b9",
-          "price": 174.97,
-          "originalPrice": "174.97",
-          "quantity": 608,
-          "discount": "0.00",
-          "productId": "639dc0f5c2fce72b697282e1-8",
-          "barcode": "",
-          "image": "https://i.ibb.co/9g7vDQJ/Himalaya-Baby-Powder-100g.jpg"
-        }
-      ],
-      "status": "show",
-      "_id": "643970cde58a401b6c62c74f",
-      "slug": "himalaya-powder",
-      "sku": "",
-      "barcode": "",
-      "productId": "639dc0f5c2fce72b697282e1",
-      "title": "Himalaya Powder-Red,Small",
-      "description": {
-        "en": "Baby Products are products intended to be used on infants and category under the age of three. Baby products are specially formulated to be mild and non-irritating and use ingredients that are selected for these properties. Baby products include baby shampoos and baby lotions, oils, powders and creams."
-      },
-      "category": {
-        "_id": "632ab2f04d87ff2494210ad0",
-        "name": {
-          "en": "Skin Care"
-        }
-      },
-      "stock": 5472,
-      "isCombination": true,
-      "__v": 0,
-      "createdAt": "2023-04-14T15:27:09.572Z",
-      "updatedAt": "2023-04-14T15:27:09.572Z",
-      "id": "643970cde58a401b6c62c74f-63f078f54b86ed26b05281b3-63f078f54b86ed26b05281b7",
-      "variant": {
-        "63f078f54b86ed26b05281b2": "63f078f54b86ed26b05281b3",
-        "63f078f54b86ed26b05281b6": "63f078f54b86ed26b05281b7",
         "price": 174.97,
-        "originalPrice": "174.97",
-        "quantity": 608,
-        "discount": "0.00",
-        "productId": "639dc0f5c2fce72b697282e1-0",
+        "originalPrice": 174.97,
+        "quantity": 2,
+        "itemTotal": 349.94
+      },
+      {
+        "prices": {
+          "discount": 0,
+          "originalPrice": 211.96,
+          "price": 211.96
+        },
+        "categories": [
+          "632aca2b4d87ff2494210be8",
+          "632aca3d4d87ff2494210bf8",
+          "632aca374d87ff2494210bf0",
+          "632aca454d87ff2494210c00",
+          "632aca594d87ff2494210c10",
+          "62d2bbd22e63b40520194f1b"
+        ],
+        "image": [
+          "https://i.postimg.cc/L8L3XGcP/Blackberries-1-25-qt.jpg"
+        ],
+        "tag": [
+          "[\"fresh fruits\",\"fruits\",\"vegetable\"]"
+        ],
+        "variants": [],
+        "status": "show",
+        "_id": "643970cde58a401b6c62c749",
+        "slug": "blueberry",
+        "sku": "",
         "barcode": "",
-        "image": "https://i.ibb.co/9g7vDQJ/Himalaya-Baby-Powder-100g.jpg"
-      },
-      "price": 174.97,
-      "originalPrice": 174.97,
-      "quantity": 2,
-      "itemTotal": 349.94
-    },
-    {
-      "prices": {
-        "discount": 0,
+        "productId": "",
+        "title": "Blueberry",
+        "description": {
+          "en": "In a botanical sense, a fruit is the fleshy or dry ripened ovary of a flowering plant, enclosing the seed or seeds. Apricots, bananas, and grapes, as well as bean pods, corn grains, tomatoes, cucumbers, and (in their shells) acorns and almonds, are all technically fruits."
+        },
+        "category": {
+          "_id": "632aca454d87ff2494210c00",
+          "name": {
+            "en": "Fresh Fruits"
+          }
+        },
+        "stock": 201,
+        "isCombination": false,
+        "__v": 0,
+        "createdAt": "2023-04-14T15:27:09.572Z",
+        "updatedAt": "2023-04-14T15:27:09.572Z",
+        "id": "643970cde58a401b6c62c749",
+        "variant": {
+          "discount": 0,
+          "originalPrice": 211.96,
+          "price": 211.96
+        },
+        "price": 211.96,
         "originalPrice": 211.96,
-        "price": 211.96
+        "quantity": 3,
+        "itemTotal": 635.88
       },
-      "categories": [
-        "632aca2b4d87ff2494210be8",
-        "632aca3d4d87ff2494210bf8",
-        "632aca374d87ff2494210bf0",
-        "632aca454d87ff2494210c00",
-        "632aca594d87ff2494210c10",
-        "62d2bbd22e63b40520194f1b"
-      ],
-      "image": [
-        "https://i.postimg.cc/L8L3XGcP/Blackberries-1-25-qt.jpg"
-      ],
-      "tag": [
-        "[\"fresh fruits\",\"fruits\",\"vegetable\"]"
-      ],
-      "variants": [],
-      "status": "show",
-      "_id": "643970cde58a401b6c62c749",
-      "slug": "blueberry",
-      "sku": "",
-      "barcode": "",
-      "productId": "",
-      "title": "Blueberry",
-      "description": {
-        "en": "In a botanical sense, a fruit is the fleshy or dry ripened ovary of a flowering plant, enclosing the seed or seeds. Apricots, bananas, and grapes, as well as bean pods, corn grains, tomatoes, cucumbers, and (in their shells) acorns and almonds, are all technically fruits."
-      },
-      "category": {
-        "_id": "632aca454d87ff2494210c00",
-        "name": {
-          "en": "Fresh Fruits"
-        }
-      },
-      "stock": 201,
-      "isCombination": false,
-      "__v": 0,
-      "createdAt": "2023-04-14T15:27:09.572Z",
-      "updatedAt": "2023-04-14T15:27:09.572Z",
-      "id": "643970cde58a401b6c62c749",
-      "variant": {
-        "discount": 0,
-        "originalPrice": 211.96,
-        "price": 211.96
-      },
-      "price": 211.96,
-      "originalPrice": 211.96,
-      "quantity": 3,
-      "itemTotal": 635.88
-    },
-    {
-      "prices": {
-        "discount": 0,
+      {
+        "prices": {
+          "discount": 0,
+          "originalPrice": 71.18,
+          "price": 71.18
+        },
+        "categories": [
+          "632aca2b4d87ff2494210be8",
+          "632aca3d4d87ff2494210bf8",
+          "632aca374d87ff2494210bf0",
+          "632aca454d87ff2494210c00",
+          "632aca594d87ff2494210c10",
+          "62d2bbd22e63b40520194f1b"
+        ],
+        "image": [
+          "https://i.postimg.cc/cJL8fjK6/Ahold-Acorn-Squash-1ct.jpg"
+        ],
+        "tag": [
+          "[\"fresh fruits\",\"fruits\",\"vegetable\"]"
+        ],
+        "variants": [],
+        "status": "show",
+        "_id": "643970cde58a401b6c62c741",
+        "slug": "ahold-acorn-squash",
+        "sku": "",
+        "barcode": "",
+        "productId": "",
+        "title": "Ahold Acorn Squash",
+        "description": {
+          "en": "Most fresh vegetables are low in calories and have a water content in excess of 70 percent, with only about 3.5 percent protein and less than 1 percent fat. ... The root vegetables include beets, carrots, radishes, sweet potatoes, and turnips. Stem vegetables include asparagus and kohlrabi."
+        },
+        "category": {
+          "_id": "632aca374d87ff2494210bf0",
+          "name": {
+            "en": "Fresh Vegetable"
+          }
+        },
+        "stock": 767,
+        "isCombination": false,
+        "__v": 0,
+        "createdAt": "2023-04-14T15:27:09.571Z",
+        "updatedAt": "2023-04-14T15:27:09.571Z",
+        "id": "643970cde58a401b6c62c741",
+        "price": 71.18,
         "originalPrice": 71.18,
-        "price": 71.18
+        "quantity": 3,
+        "itemTotal": 213.54000000000002
+      }
+    ],
+    "discount": 0,
+    "user_info": {
+      "name": "Demo Customer 4",
+      "contact": "+88019000004",
+      "email": "order4@example.com",
+      "address": "Demo Address 4, Dhaka",
+      "country": "Bangladesh",
+      "city": "Dhaka",
+      "zipCode": "1200"
+    },
+    "shippingOption": "FedEx",
+    "paymentMethod": "Cash",
+    "status": "Delivered",
+    "subTotal": 2417.2,
+    "shippingCost": 60,
+    "total": 2477.2,
+    "user": "6439713c1d8869133e8881e9",
+    "invoice": 10004
+  },
+  {
+    "_id": "6966849d78fe21ca3aa2cb53",
+    "user": "6439713c1d8869133e8881e9",
+    "invoice": 10005,
+    "cart": [
+      {
+        "prices": {
+          "originalPrice": 61,
+          "price": 50,
+          "discount": 11
+        },
+        "_id": "644500c2839a5e0c2f5c179a",
+        "productId": "644500c2839a5e0c2f5c179a",
+        "sku": "",
+        "barcode": "",
+        "title": "Pomelo",
+        "category": {
+          "_id": "632ab1e04d87ff2494210a6a",
+          "name": {
+            "en": "Jam & Jelly"
+          }
+        },
+        "image": [
+          "https://res.cloudinary.com/ahossain/image/upload/v1738773665/product/jambura-pomelo-1-pcs-removebg-preview.png"
+        ],
+        "stock": 1,
+        "tag": [
+          "[\"organic food\",\"guava-jelly\"]"
+        ],
+        "isCombination": false,
+        "average_rating": 0,
+        "total_reviews": 0,
+        "status": "show",
+        "createdAt": "2023-04-23T09:56:18.441Z",
+        "updatedAt": "2023-04-23T09:58:53.878Z",
+        "__v": 0,
+        "id": "644500c2839a5e0c2f5c179a",
+        "variant": {
+          "originalPrice": 61,
+          "price": 50,
+          "discount": 11
+        },
+        "price": 50,
+        "originalPrice": 61,
+        "quantity": 1,
+        "itemTotal": 50
+      }
+    ],
+    "user_info": {
+      "name": "Demo Customer 5",
+      "email": "order5@example.com",
+      "contact": "+88019000005",
+      "address": "Demo Address 5, Dhaka",
+      "city": "Dhaka",
+      "country": "Bangladesh",
+      "zipCode": "1200"
+    },
+    "subTotal": 50,
+    "shippingCost": 60,
+    "discount": 0,
+    "total": 110,
+    "shippingOption": "UPS",
+    "paymentMethod": "Cash",
+    "status": "delivered"
+  },
+  {
+    "_id": "696e42630b9e1c39fa8dae3e",
+    "user": "6439713c1d8869133e8881e9",
+    "invoice": 10006,
+    "cart": [
+      {
+        "prices": {
+          "originalPrice": 30.78,
+          "price": 30.78,
+          "discount": 0
+        },
+        "_id": "644500c2839a5e0c2f5c17b4",
+        "productId": "644500c2839a5e0c2f5c17b4",
+        "sku": "",
+        "barcode": "",
+        "title": "Babies Spoon Feeder-Green",
+        "slug": "babies-spoon-feeder",
+        "category": {
+          "_id": "63f12afdcc480f0454f475dd",
+          "name": {
+            "en": "Baby Food"
+          }
+        },
+        "image": "https://res.cloudinary.com/dlr7mzrne/image/upload/v1768832763/product/Silicone_Feeder.webp",
+        "stock": 2154,
+        "sales": 28,
+        "tag": [
+          "[\"fresh fruits\",\"fruits\",\"vegetable\"]"
+        ],
+        "isCombination": true,
+        "average_rating": 2.857142857142857,
+        "total_reviews": 7,
+        "status": "show",
+        "createdAt": "2023-04-23T09:56:18.442Z",
+        "updatedAt": "2026-01-19T14:29:49.583Z",
+        "__v": 3,
+        "id": "644500c2839a5e0c2f5c17b4-63f078f54b86ed26b05281b4",
+        "variant": {
+          "63f078f54b86ed26b05281b2": "63f078f54b86ed26b05281b4",
+          "originalPrice": "30.78",
+          "price": "30.78",
+          "quantity": 718,
+          "discount": "0.00",
+          "productId": "644500c2839a5e0c2f5c17b4-1",
+          "barcode": "",
+          "sku": "",
+          "image": "https://res.cloudinary.com/dlr7mzrne/image/upload/v1768832763/product/Silicone_Feeder.webp"
+        },
+        "price": 30.78,
+        "originalPrice": 30.78,
+        "quantity": 1,
+        "itemTotal": 30.78
+      }
+    ],
+    "user_info": {
+      "name": "Demo Customer 6",
+      "email": "order6@example.com",
+      "contact": "+88019000006",
+      "address": "Demo Address 6, Dhaka",
+      "city": "Dhaka",
+      "country": "Bangladesh",
+      "zipCode": "1200"
+    },
+    "subTotal": 30.78,
+    "shippingCost": 60,
+    "discount": 0,
+    "total": 90.78,
+    "shippingOption": "UPS",
+    "paymentMethod": "Cash",
+    "status": "delivered"
+  },
+  {
+    "_id": "6970f872608ea5d1bba4e617",
+    "user": "6439713c1d8869133e8881e9",
+    "invoice": 10007,
+    "cart": [
+      {
+        "prices": {
+          "originalPrice": 133.67,
+          "price": 133.67,
+          "discount": 0
+        },
+        "_id": "644500c2839a5e0c2f5c1728",
+        "productId": "",
+        "sku": "",
+        "barcode": "",
+        "title": "Natures Alchemy Rosewood",
+        "category": {
+          "_id": "632ac99d4d87ff2494210b64",
+          "name": {
+            "en": "Air Freshener"
+          }
+        },
+        "image": [
+          "https://res.cloudinary.com/ahossain/image/upload/v1738822391/product/Natures-Alchemy-Essential-Oil-100-Pure-Rosewood-0-5oz-removebg-preview%281%29.png"
+        ],
+        "stock": 50,
+        "tag": [
+          "[\"air freshener\"]"
+        ],
+        "isCombination": false,
+        "average_rating": 0,
+        "total_reviews": 0,
+        "status": "show",
+        "createdAt": "2023-04-23T09:56:18.438Z",
+        "updatedAt": "2023-04-23T09:56:18.438Z",
+        "__v": 0,
+        "id": "644500c2839a5e0c2f5c1728",
+        "variant": {
+          "originalPrice": 133.67,
+          "price": 133.67,
+          "discount": 0
+        },
+        "price": 133.67,
+        "originalPrice": 133.67,
+        "quantity": 1,
+        "itemTotal": 133.67
       },
-      "categories": [
-        "632aca2b4d87ff2494210be8",
-        "632aca3d4d87ff2494210bf8",
-        "632aca374d87ff2494210bf0",
-        "632aca454d87ff2494210c00",
-        "632aca594d87ff2494210c10",
-        "62d2bbd22e63b40520194f1b"
-      ],
-      "image": [
-        "https://i.postimg.cc/cJL8fjK6/Ahold-Acorn-Squash-1ct.jpg"
-      ],
-      "tag": [
-        "[\"fresh fruits\",\"fruits\",\"vegetable\"]"
-      ],
-      "variants": [],
-      "status": "show",
-      "_id": "643970cde58a401b6c62c741",
-      "slug": "ahold-acorn-squash",
-      "sku": "",
-      "barcode": "",
-      "productId": "",
-      "title": "Ahold Acorn Squash",
-      "description": {
-        "en": "Most fresh vegetables are low in calories and have a water content in excess of 70 percent, with only about 3.5 percent protein and less than 1 percent fat. ... The root vegetables include beets, carrots, radishes, sweet potatoes, and turnips. Stem vegetables include asparagus and kohlrabi."
+      {
+        "prices": {
+          "originalPrice": 77.63,
+          "price": 77.63,
+          "discount": 0
+        },
+        "_id": "644500c2839a5e0c2f5c1729",
+        "productId": "",
+        "sku": "",
+        "barcode": "",
+        "title": "Glade Automatic Spray",
+        "category": {
+          "_id": "632ac99d4d87ff2494210b64",
+          "name": {
+            "en": "Air Freshener"
+          }
+        },
+        "image": [
+          "https://res.cloudinary.com/ahossain/image/upload/v1738822319/product/Glade-Clear-Springs-Sense-Spray-Motion-Sensor-Automatic-Spray-1ct-removebg-preview.png"
+        ],
+        "stock": 125,
+        "tag": [
+          "[\"air freshener\"]"
+        ],
+        "isCombination": false,
+        "average_rating": 0,
+        "total_reviews": 0,
+        "status": "show",
+        "createdAt": "2023-04-23T09:56:18.438Z",
+        "updatedAt": "2023-04-23T09:56:18.438Z",
+        "__v": 0,
+        "id": "644500c2839a5e0c2f5c1729",
+        "variant": {
+          "originalPrice": 77.63,
+          "price": 77.63,
+          "discount": 0
+        },
+        "price": 77.63,
+        "originalPrice": 77.63,
+        "quantity": 1,
+        "itemTotal": 77.63
+      }
+    ],
+    "user_info": {
+      "name": "Demo Customer 7",
+      "email": "order7@example.com",
+      "contact": "+88019000007",
+      "address": "Demo Address 7, Dhaka",
+      "city": "Dhaka",
+      "country": "Bangladesh",
+      "zipCode": "1200"
+    },
+    "subTotal": 211.29999999999998,
+    "shippingCost": 60,
+    "discount": 21.13,
+    "total": 250.17000000000002,
+    "shippingOption": "UPS",
+    "paymentMethod": "Cash",
+    "status": "processing"
+  },
+  {
+    "_id": "69af13c84f29a969ea2adfc3",
+    "user": "69aefa820415c443adea038d",
+    "invoice": 10008,
+    "cart": [
+      {
+        "prices": {
+          "originalPrice": 550,
+          "price": 500,
+          "discount": 50
+        },
+        "_id": "699966cec23ada0972b8e413",
+        "productId": "699966cec23ada0972b8e412",
+        "sku": "babys_354849",
+        "barcode": "",
+        "title": "Canvas Casual Shoes for First Walkers Newborn Baby | Girls | Boys",
+        "category": {
+          "_id": "632aca2b4d87ff2494210be8",
+          "name": {
+            "en": "Boy Fashion"
+          }
+        },
+        "image": [
+          "https://res.cloudinary.com/dlr7mzrne/image/upload/v1771660973/product/Canvas_Casual_ShoesToothbrush.webp"
+        ],
+        "stock": 9,
+        "tag": [
+          "[]"
+        ],
+        "isCombination": false,
+        "average_rating": 0,
+        "total_reviews": 0,
+        "status": "show",
+        "createdAt": "2026-02-21T08:03:26.814Z",
+        "updatedAt": "2026-02-21T08:03:26.814Z",
+        "__v": 0,
+        "id": "699966cec23ada0972b8e413",
+        "variant": {
+          "originalPrice": 550,
+          "price": 500,
+          "discount": 50
+        },
+        "price": 500,
+        "originalPrice": 550,
+        "quantity": 1,
+        "itemTotal": 500
       },
-      "category": {
-        "_id": "632aca374d87ff2494210bf0",
-        "name": {
-          "en": "Fresh Vegetable"
-        }
+      {
+        "prices": {
+          "originalPrice": 250,
+          "price": 220,
+          "discount": 30
+        },
+        "_id": "69995e2bc23ada0972b8e366",
+        "productId": "69995e2bc23ada0972b8e365",
+        "sku": "",
+        "barcode": "",
+        "title": "Baby Boy/Girl Bibs Waterproof Long Sleeve Mickey Minnie Bibs",
+        "slug": "baby-boy-girl-bibs-waterproof-long-sleeve-mickey-minnie-bibs",
+        "category": {
+          "_id": "632aca6d4d87ff2494210c24",
+          "name": {
+            "en": "Baby care"
+          }
+        },
+        "image": "https://res.cloudinary.com/dlr7mzrne/image/upload/v1771658755/product/Feeding_Bibs.webp",
+        "stock": 50,
+        "tag": [
+          "[]"
+        ],
+        "isCombination": false,
+        "average_rating": 0,
+        "total_reviews": 0,
+        "status": "show",
+        "createdAt": "2026-02-21T07:26:35.763Z",
+        "updatedAt": "2026-02-21T07:30:32.545Z",
+        "__v": 1,
+        "id": "69995e2bc23ada0972b8e366",
+        "price": 220,
+        "originalPrice": 250,
+        "quantity": 1,
+        "itemTotal": 220
+      }
+    ],
+    "user_info": {
+      "name": "Demo Customer 8",
+      "email": "order8@example.com",
+      "contact": "+88019000008",
+      "address": "Demo Address 8, Dhaka",
+      "city": "Dhaka",
+      "country": "Bangladesh",
+      "zipCode": "1200"
+    },
+    "subTotal": 720,
+    "shippingCost": 80,
+    "discount": 0,
+    "total": 800,
+    "shippingOption": "Inside Dhaka",
+    "paymentMethod": "Cash",
+    "status": "delivered"
+  },
+  {
+    "_id": "69af15d56e61448718f81afd",
+    "user": "69aefa820415c443adea038d",
+    "invoice": 10009,
+    "cart": [
+      {
+        "prices": {
+          "originalPrice": 380,
+          "price": 330,
+          "discount": 50
+        },
+        "_id": "69996c76c23ada0972b8e4d2",
+        "productId": "69996c76c23ada0972b8e4d1",
+        "sku": "",
+        "barcode": "",
+        "title": "Baby Food Feeding Suction Bowl With Spoon",
+        "category": {
+          "_id": "632aca0b4d87ff2494210bc4",
+          "name": {
+            "en": "Feeding"
+          }
+        },
+        "image": [
+          "https://res.cloudinary.com/dlr7mzrne/image/upload/v1771662433/product/Baby_Food_Feeding.webp"
+        ],
+        "stock": 20,
+        "tag": [
+          "[]"
+        ],
+        "isCombination": false,
+        "average_rating": 0,
+        "total_reviews": 0,
+        "status": "show",
+        "createdAt": "2026-02-21T08:27:34.162Z",
+        "updatedAt": "2026-02-21T08:27:34.162Z",
+        "__v": 0,
+        "id": "69996c76c23ada0972b8e4d2",
+        "variant": {
+          "originalPrice": 380,
+          "price": 330,
+          "discount": 50
+        },
+        "price": 330,
+        "originalPrice": 380,
+        "quantity": 1,
+        "itemTotal": 330
       },
-      "stock": 767,
-      "isCombination": false,
-      "__v": 0,
-      "createdAt": "2023-04-14T15:27:09.571Z",
-      "updatedAt": "2023-04-14T15:27:09.571Z",
-      "id": "643970cde58a401b6c62c741",
-      "price": 71.18,
-      "originalPrice": 71.18,
-      "quantity": 3,
-      "itemTotal": 213.54000000000002
-    }
-  ],
-  "discount": 0,
-  "user_info": {
-    "name": "Sadio Mane",
-    "contact": "01957930034",
-    "email": "sadio@gmail.com",
-    "address": "Bambali, Sédhiou, Senegal",
-    "country": "Senegal",
-    "city": "Sédhiou",
-    "zipCode": "12354"
+      {
+        "prices": {
+          "originalPrice": 200,
+          "price": 195.01,
+          "discount": 4.990000000000009
+        },
+        "_id": "69996c53c23ada0972b8e4c1",
+        "productId": "69996c53c23ada0972b8e4c0",
+        "sku": "",
+        "barcode": "",
+        "title": "Baby Kids Milk | Fruit Bite | Safe Feeding Pacifier",
+        "category": {
+          "_id": "632aca0b4d87ff2494210bc4",
+          "name": {
+            "en": "Feeding"
+          }
+        },
+        "image": [
+          "https://res.cloudinary.com/dlr7mzrne/image/upload/v1771662418/product/Feeding_Pacifier.webp"
+        ],
+        "stock": 15,
+        "tag": [
+          "[]"
+        ],
+        "isCombination": false,
+        "average_rating": 0,
+        "total_reviews": 0,
+        "status": "show",
+        "createdAt": "2026-02-21T08:26:59.445Z",
+        "updatedAt": "2026-02-21T08:26:59.445Z",
+        "__v": 0,
+        "id": "69996c53c23ada0972b8e4c1",
+        "variant": {
+          "originalPrice": 200,
+          "price": 195.01,
+          "discount": 4.990000000000009
+        },
+        "price": 195.01,
+        "originalPrice": 200,
+        "quantity": 1,
+        "itemTotal": 195.01
+      }
+    ],
+    "user_info": {
+      "name": "Demo Customer 9",
+      "email": "order9@example.com",
+      "contact": "+88019000009",
+      "address": "Demo Address 9, Dhaka",
+      "city": "Dhaka",
+      "country": "Bangladesh",
+      "zipCode": "1200"
+    },
+    "subTotal": 525.01,
+    "shippingCost": 80,
+    "discount": 0,
+    "total": 605.01,
+    "shippingOption": "Inside Dhaka",
+    "paymentMethod": "Cash",
+    "status": "pending"
   },
-  "shippingOption": "FedEx",
-  "paymentMethod": "Cash",
-  "status": "Delivered",
-  "subTotal": 2417.2,
-  "shippingCost": 60,
-  "total": 2477.2,
-  "user": {
-    "$oid": "6439713c1d8869133e8881e9"
+  {
+    "_id": "69af3534ed9245cbe6ed7d5d",
+    "user": "69af077f55e9c79a176bdcc4",
+    "invoice": 10010,
+    "cart": [
+      {
+        "prices": {
+          "originalPrice": 550,
+          "price": 500,
+          "discount": 50
+        },
+        "_id": "699966cec23ada0972b8e413",
+        "productId": "699966cec23ada0972b8e412",
+        "sku": "babys_354849",
+        "barcode": "",
+        "title": "Canvas Casual Shoes for First Walkers Newborn Baby | Girls | Boys",
+        "category": {
+          "_id": "632aca2b4d87ff2494210be8",
+          "name": {
+            "en": "Boy Fashion"
+          }
+        },
+        "image": [
+          "https://res.cloudinary.com/dlr7mzrne/image/upload/v1771660973/product/Canvas_Casual_ShoesToothbrush.webp"
+        ],
+        "stock": 8,
+        "tag": [
+          "[]"
+        ],
+        "isCombination": false,
+        "average_rating": 0,
+        "total_reviews": 0,
+        "status": "show",
+        "createdAt": "2026-02-21T08:03:26.814Z",
+        "updatedAt": "2026-03-09T18:39:04.645Z",
+        "__v": 0,
+        "sales": 1,
+        "id": "699966cec23ada0972b8e413",
+        "variant": {
+          "originalPrice": 550,
+          "price": 500,
+          "discount": 50
+        },
+        "price": 500,
+        "originalPrice": 550,
+        "quantity": 1,
+        "itemTotal": 500
+      },
+      {
+        "prices": {
+          "originalPrice": 380,
+          "price": 330,
+          "discount": 50
+        },
+        "_id": "69996c76c23ada0972b8e4d2",
+        "productId": "69996c76c23ada0972b8e4d1",
+        "sku": "",
+        "barcode": "",
+        "title": "Baby Food Feeding Suction Bowl With Spoon",
+        "category": {
+          "_id": "632aca0b4d87ff2494210bc4",
+          "name": {
+            "en": "Feeding"
+          }
+        },
+        "image": [
+          "https://res.cloudinary.com/dlr7mzrne/image/upload/v1771662433/product/Baby_Food_Feeding.webp"
+        ],
+        "stock": 19,
+        "tag": [
+          "[]"
+        ],
+        "isCombination": false,
+        "average_rating": 0,
+        "total_reviews": 0,
+        "status": "show",
+        "createdAt": "2026-02-21T08:27:34.162Z",
+        "updatedAt": "2026-03-09T18:47:49.850Z",
+        "__v": 0,
+        "sales": 1,
+        "id": "69996c76c23ada0972b8e4d2",
+        "variant": {
+          "originalPrice": 380,
+          "price": 330,
+          "discount": 50
+        },
+        "price": 330,
+        "originalPrice": 380,
+        "quantity": 1,
+        "itemTotal": 330
+      }
+    ],
+    "user_info": {
+      "name": "Demo Customer 10",
+      "email": "order10@example.com",
+      "contact": "+88019000010",
+      "address": "Demo Address 10, Dhaka",
+      "city": "Dhaka",
+      "country": "Bangladesh",
+      "zipCode": "1200"
+    },
+    "subTotal": 830,
+    "shippingCost": 80,
+    "discount": 0,
+    "total": 910,
+    "shippingOption": "Inside Dhaka",
+    "paymentMethod": "Cash",
+    "status": "pending"
   },
-  "createdAt": {
-    "$date": "2023-04-16T05:05:10.247Z"
+  {
+    "_id": "69b2700eed9245cbe6eec3cb",
+    "user": "69b265a2ed9245cbe6eebf5d",
+    "invoice": 10011,
+    "cart": [
+      {
+        "prices": {
+          "originalPrice": 380,
+          "price": 330,
+          "discount": 50
+        },
+        "_id": "69996c76c23ada0972b8e4d2",
+        "productId": "69996c76c23ada0972b8e4d1",
+        "sku": "",
+        "barcode": "",
+        "title": "Baby Food Feeding Suction Bowl With Spoon",
+        "slug": "baby-food-feeding-suction-bowl-with-spoon",
+        "category": {
+          "_id": "632aca0b4d87ff2494210bc4",
+          "name": {
+            "en": "Feeding"
+          }
+        },
+        "image": "https://res.cloudinary.com/dlr7mzrne/image/upload/v1771662433/product/Baby_Food_Feeding.webp",
+        "stock": 18,
+        "tag": [
+          "[]"
+        ],
+        "isCombination": false,
+        "average_rating": 0,
+        "total_reviews": 0,
+        "status": "show",
+        "createdAt": "2026-02-21T08:27:34.162Z",
+        "updatedAt": "2026-03-09T21:01:40.914Z",
+        "__v": 0,
+        "sales": 2,
+        "id": "69996c76c23ada0972b8e4d2",
+        "price": 330,
+        "originalPrice": 380,
+        "quantity": 1,
+        "itemTotal": 330
+      }
+    ],
+    "user_info": {
+      "name": "Demo Customer 11",
+      "email": "order11@example.com",
+      "contact": "+88019000011",
+      "address": "Demo Address 11, Dhaka",
+      "city": "Dhaka",
+      "country": "Bangladesh",
+      "zipCode": "1200"
+    },
+    "subTotal": 330,
+    "shippingCost": 80,
+    "discount": 0,
+    "total": 410,
+    "shippingOption": "Inside Dhaka",
+    "paymentMethod": "Cash",
+    "status": "pending"
   },
-  "updatedAt": {
-    "$date": "2023-04-16T05:17:18.113Z"
+  {
+    "_id": "69b27198ed9245cbe6eec5d1",
+    "user": "69b265a2ed9245cbe6eebf5d",
+    "invoice": 10012,
+    "cart": [
+      {
+        "prices": {
+          "originalPrice": 399,
+          "price": 350,
+          "discount": 49
+        },
+        "_id": "69996df6c23ada0972b8e538",
+        "productId": "69996df6c23ada0972b8e537",
+        "sku": "",
+        "barcode": "",
+        "title": "18pcs Baby Girl Headwear Elastic Hair Bands Clips",
+        "slug": "18pcs-baby-girl-headwear-elastic-hair-bands-clips",
+        "category": {
+          "_id": "632ac9864d87ff2494210b49",
+          "name": {
+            "en": "Girls Fashion"
+          }
+        },
+        "image": "https://res.cloudinary.com/dlr7mzrne/image/upload/v1771662826/product/18pcs_Elastic_Hair_Bands.webp",
+        "stock": 15,
+        "tag": [
+          "[]"
+        ],
+        "isCombination": false,
+        "average_rating": 0,
+        "total_reviews": 0,
+        "status": "show",
+        "createdAt": "2026-02-21T08:33:58.472Z",
+        "updatedAt": "2026-02-21T08:33:58.472Z",
+        "__v": 0,
+        "id": "69996df6c23ada0972b8e538",
+        "price": 350,
+        "originalPrice": 399,
+        "quantity": 1,
+        "itemTotal": 350
+      },
+      {
+        "prices": {
+          "originalPrice": 499,
+          "price": 450,
+          "discount": 49
+        },
+        "_id": "69996dc5c23ada0972b8e527",
+        "productId": "69996dc5c23ada0972b8e526",
+        "sku": "",
+        "barcode": "",
+        "title": "24pcs Baby Girl Headwear Elastic Hair Bands Clips",
+        "slug": "24pcs-baby-girl-headwear-elastic-hair-bands-clips",
+        "category": {
+          "_id": "632ac9864d87ff2494210b49",
+          "name": {
+            "en": "Girls Fashion"
+          }
+        },
+        "image": "https://res.cloudinary.com/dlr7mzrne/image/upload/v1771662777/product/Elastic_Hair_Bands.png",
+        "stock": 20,
+        "tag": [
+          "[]"
+        ],
+        "isCombination": false,
+        "average_rating": 0,
+        "total_reviews": 0,
+        "status": "show",
+        "createdAt": "2026-02-21T08:33:09.755Z",
+        "updatedAt": "2026-02-21T08:33:09.755Z",
+        "__v": 0,
+        "id": "69996dc5c23ada0972b8e527",
+        "price": 450,
+        "originalPrice": 499,
+        "quantity": 1,
+        "itemTotal": 450
+      },
+      {
+        "prices": {
+          "originalPrice": 200,
+          "price": 180,
+          "discount": 20
+        },
+        "_id": "699976fac23ada0972b8e5be",
+        "productId": "699976fac23ada0972b8e5bd",
+        "sku": "",
+        "barcode": "",
+        "title": "1 Pc Cute Bear Baby Water Thermometer",
+        "slug": "1-pc-cute-bear-baby-water-thermometer",
+        "category": {
+          "_id": "632ab4434d87ff2494210b0e",
+          "name": {
+            "en": "Health and Safety "
+          }
+        },
+        "image": "https://res.cloudinary.com/dlr7mzrne/image/upload/v1771665131/product/Water__Thermometer.webp",
+        "stock": 22,
+        "tag": [
+          "[]"
+        ],
+        "isCombination": false,
+        "average_rating": 0,
+        "total_reviews": 0,
+        "status": "show",
+        "createdAt": "2026-02-21T09:12:26.950Z",
+        "updatedAt": "2026-02-21T09:12:26.950Z",
+        "__v": 0,
+        "id": "699976fac23ada0972b8e5be",
+        "price": 180,
+        "originalPrice": 200,
+        "quantity": 1,
+        "itemTotal": 180
+      },
+      {
+        "prices": {
+          "originalPrice": 170,
+          "price": 160,
+          "discount": 10
+        },
+        "_id": "699971d8c23ada0972b8e57d",
+        "productId": "699971d8c23ada0972b8e57c",
+        "sku": "",
+        "barcode": "",
+        "title": "1PC Baby Children Kids Soft Silicone Training Toothbrush",
+        "slug": "1pc-baby-children-kids-soft-silicone-training-toothbrush",
+        "category": {
+          "_id": "632ab4434d87ff2494210b0e",
+          "name": {
+            "en": "Health and Safety "
+          }
+        },
+        "image": "https://res.cloudinary.com/dlr7mzrne/image/upload/v1771663830/product/Feeding_Long_Sleeve.webp",
+        "stock": 20,
+        "tag": [
+          "[]"
+        ],
+        "isCombination": false,
+        "average_rating": 0,
+        "total_reviews": 0,
+        "status": "show",
+        "createdAt": "2026-02-21T08:50:32.267Z",
+        "updatedAt": "2026-02-21T08:50:32.267Z",
+        "__v": 0,
+        "id": "699971d8c23ada0972b8e57d",
+        "price": 160,
+        "originalPrice": 170,
+        "quantity": 1,
+        "itemTotal": 160
+      },
+      {
+        "prices": {
+          "originalPrice": 120,
+          "price": 100,
+          "discount": 20
+        },
+        "_id": "699970b7c23ada0972b8e55b",
+        "productId": "699970b7c23ada0972b8e55a",
+        "sku": "",
+        "barcode": "",
+        "title": "Baby Finger Toothbrush and Box Silicone Baby Brush",
+        "slug": "baby-finger-toothbrush-and-box-silicone-baby-brush",
+        "category": {
+          "_id": "632ab4434d87ff2494210b0e",
+          "name": {
+            "en": "Health and Safety "
+          }
+        },
+        "image": "https://res.cloudinary.com/dlr7mzrne/image/upload/v1771663538/product/Finger_Toothbrush.webp",
+        "stock": 21,
+        "tag": [
+          "[]"
+        ],
+        "isCombination": false,
+        "average_rating": 0,
+        "total_reviews": 0,
+        "status": "show",
+        "createdAt": "2026-02-21T08:45:43.737Z",
+        "updatedAt": "2026-02-21T08:45:43.737Z",
+        "__v": 0,
+        "id": "699970b7c23ada0972b8e55b",
+        "price": 100,
+        "originalPrice": 120,
+        "quantity": 1,
+        "itemTotal": 100
+      },
+      {
+        "prices": {
+          "originalPrice": 2800,
+          "price": 2450,
+          "discount": 350
+        },
+        "_id": "644500c2839a5e0c2f5c16cf",
+        "productId": "639dc0f5c2fce72b697282af",
+        "sku": "",
+        "barcode": "",
+        "title": "Baby Diaper Bag ",
+        "slug": "baby-diaper-bag",
+        "category": {
+          "_id": "632ab4434d87ff2494210b0e",
+          "name": {
+            "en": "Health and Safety "
+          }
+        },
+        "image": "https://res.cloudinary.com/dlr7mzrne/image/upload/v1771582425/product/Baby_diaper_bag.webp",
+        "stock": 5,
+        "tag": [
+          "[]"
+        ],
+        "isCombination": false,
+        "average_rating": 0,
+        "total_reviews": 0,
+        "status": "show",
+        "createdAt": "2023-04-23T09:56:18.435Z",
+        "updatedAt": "2026-02-20T10:20:57.542Z",
+        "__v": 1,
+        "id": "644500c2839a5e0c2f5c16cf",
+        "price": 2450,
+        "originalPrice": 2800,
+        "quantity": 1,
+        "itemTotal": 2450
+      },
+      {
+        "prices": {
+          "originalPrice": 350,
+          "price": 340,
+          "discount": 10
+        },
+        "_id": "699977e5c23ada0972b8e5f1",
+        "productId": "699977e5c23ada0972b8e5f0",
+        "sku": "",
+        "barcode": "",
+        "title": "1 Set ABS Kids Bath Toy Water Beach Toys Plastic Watering",
+        "slug": "1-set-abs-kids-bath-toy-water-beach-toys-plastic-watering",
+        "category": {
+          "_id": "632ab2864d87ff2494210a8a",
+          "name": {
+            "en": "Mom"
+          }
+        },
+        "image": "https://res.cloudinary.com/dlr7mzrne/image/upload/v1771665368/product/Water_Beach_Toys.webp",
+        "stock": 10,
+        "tag": [
+          "[]"
+        ],
+        "isCombination": false,
+        "average_rating": 0,
+        "total_reviews": 0,
+        "status": "show",
+        "createdAt": "2026-02-21T09:16:21.232Z",
+        "updatedAt": "2026-02-21T09:16:21.232Z",
+        "__v": 0,
+        "id": "699977e5c23ada0972b8e5f1",
+        "price": 340,
+        "originalPrice": 350,
+        "quantity": 1,
+        "itemTotal": 340
+      },
+      {
+        "prices": {
+          "originalPrice": 450,
+          "price": 430,
+          "discount": 20
+        },
+        "_id": "69997778c23ada0972b8e5e0",
+        "productId": "69997778c23ada0972b8e5df",
+        "sku": "",
+        "barcode": "",
+        "title": "Silicone Electric Face Cleansing & Massage Brush",
+        "slug": "silicone-electric-face-cleansing-massage-brush",
+        "category": {
+          "_id": "632ab2864d87ff2494210a8a",
+          "name": {
+            "en": "Mom"
+          }
+        },
+        "image": "https://res.cloudinary.com/dlr7mzrne/image/upload/v1771665269/product/Electric_Face_CleansingBaloon.png",
+        "stock": 10,
+        "tag": [
+          "[]"
+        ],
+        "isCombination": false,
+        "average_rating": 0,
+        "total_reviews": 0,
+        "status": "show",
+        "createdAt": "2026-02-21T09:14:32.040Z",
+        "updatedAt": "2026-02-21T09:14:32.040Z",
+        "__v": 0,
+        "id": "69997778c23ada0972b8e5e0",
+        "price": 430,
+        "originalPrice": 450,
+        "quantity": 1,
+        "itemTotal": 430
+      },
+      {
+        "prices": {
+          "originalPrice": 1550,
+          "price": 1500.03,
+          "discount": 49.97000000000003
+        },
+        "_id": "69997740c23ada0972b8e5cf",
+        "productId": "69997740c23ada0972b8e5ce",
+        "sku": "",
+        "barcode": "",
+        "title": "Women Pregnancy Clothes Lace Dress For Pregnant Photo Shoot Clothing",
+        "slug": "women-pregnancy-clothes-lace-dress-for-pregnant-photo-shoot-clothing",
+        "category": {
+          "_id": "632ab2864d87ff2494210a8a",
+          "name": {
+            "en": "Mom"
+          }
+        },
+        "image": "https://res.cloudinary.com/dlr7mzrne/image/upload/v1771665210/product/Half_Sleeve_Gown_.webp",
+        "stock": 5,
+        "tag": [
+          "[]"
+        ],
+        "isCombination": false,
+        "average_rating": 0,
+        "total_reviews": 0,
+        "status": "show",
+        "createdAt": "2026-02-21T09:13:36.695Z",
+        "updatedAt": "2026-02-21T09:13:36.695Z",
+        "__v": 0,
+        "id": "69997740c23ada0972b8e5cf",
+        "price": 1500.03,
+        "originalPrice": 1550,
+        "quantity": 1,
+        "itemTotal": 1500.03
+      },
+      {
+        "prices": {
+          "originalPrice": 150,
+          "price": 0,
+          "discount": 150
+        },
+        "_id": "6999781cc23ada0972b8e602",
+        "productId": "6999781cc23ada0972b8e601",
+        "sku": "",
+        "barcode": "",
+        "title": "Funny Baby Educational Toys Little Loud Bell Ball",
+        "slug": "funny-baby-educational-toys-little-loud-bell-ball",
+        "category": {
+          "_id": "632ab1e04d87ff2494210a6a",
+          "name": {
+            "en": "Toys and Gear "
+          }
+        },
+        "image": "https://res.cloudinary.com/dlr7mzrne/image/upload/v1771665426/product/Cloth_Educational__Book_2.webp",
+        "stock": 20,
+        "tag": [
+          "[]"
+        ],
+        "isCombination": false,
+        "average_rating": 0,
+        "total_reviews": 0,
+        "status": "show",
+        "createdAt": "2026-02-21T09:17:16.229Z",
+        "updatedAt": "2026-02-23T18:05:40.003Z",
+        "__v": 1,
+        "id": "6999781cc23ada0972b8e602",
+        "price": 0,
+        "originalPrice": 150,
+        "quantity": 1,
+        "itemTotal": 0
+      },
+      {
+        "prices": {
+          "originalPrice": 200,
+          "price": 180,
+          "discount": 20
+        },
+        "_id": "69995ebcc23ada0972b8e388",
+        "productId": "69995ebcc23ada0972b8e387",
+        "sku": "",
+        "barcode": "",
+        "title": "Baby BPA Free Silicone Training Toothbrush",
+        "slug": "baby-bpa-free-silicone-training-toothbrush",
+        "category": {
+          "_id": "632aca6d4d87ff2494210c24",
+          "name": {
+            "en": "Baby care"
+          }
+        },
+        "image": "https://res.cloudinary.com/dlr7mzrne/image/upload/v1771658936/product/Face_Mask_3.webp",
+        "stock": 20,
+        "tag": [
+          "[]"
+        ],
+        "isCombination": false,
+        "average_rating": 0,
+        "total_reviews": 0,
+        "status": "show",
+        "createdAt": "2026-02-21T07:29:00.200Z",
+        "updatedAt": "2026-02-21T07:29:00.200Z",
+        "__v": 0,
+        "id": "69995ebcc23ada0972b8e388",
+        "price": 180,
+        "originalPrice": 200,
+        "quantity": 1,
+        "itemTotal": 180
+      },
+      {
+        "prices": {
+          "originalPrice": 450,
+          "price": 450,
+          "discount": 0
+        },
+        "_id": "69995a36c23ada0972b8e32d",
+        "productId": "69995a36c23ada0972b8e32c",
+        "sku": "",
+        "barcode": "",
+        "title": "Safe keeper baby harness sling boy girls learning walking",
+        "slug": "safe-keeper-baby-harness-sling-boy-girls-learning-walking",
+        "category": {
+          "_id": "62c827b5a427b63741da9175",
+          "name": {
+            "en": "Home"
+          }
+        },
+        "image": "https://res.cloudinary.com/dlr7mzrne/image/upload/v1771657742/product/learning_walking.webp",
+        "stock": 22,
+        "tag": [
+          "[]"
+        ],
+        "isCombination": false,
+        "average_rating": 0,
+        "total_reviews": 0,
+        "status": "show",
+        "createdAt": "2026-02-21T07:09:42.127Z",
+        "updatedAt": "2026-02-21T07:09:42.127Z",
+        "__v": 0,
+        "id": "69995a36c23ada0972b8e32d",
+        "price": 450,
+        "originalPrice": 450,
+        "quantity": 1,
+        "itemTotal": 450
+      }
+    ],
+    "user_info": {
+      "name": "Demo Customer 12",
+      "email": "order12@example.com",
+      "contact": "+88019000012",
+      "address": "Demo Address 12, Dhaka",
+      "city": "Dhaka",
+      "country": "Bangladesh",
+      "zipCode": "1200"
+    },
+    "subTotal": 6590.03,
+    "shippingCost": 80,
+    "discount": 0,
+    "total": 6670.03,
+    "shippingOption": "Inside Dhaka",
+    "paymentMethod": "Cash",
+    "status": "pending"
   },
-  "invoice": 10004,
-  "__v": 0
-}]
+  {
+    "_id": "69b27966ed9245cbe6eec910",
+    "user": "69b265a2ed9245cbe6eebf5d",
+    "invoice": 10013,
+    "cart": [
+      {
+        "prices": {
+          "originalPrice": 100,
+          "price": 80,
+          "discount": 20
+        },
+        "_id": "6999580a567f01fdca5e05bb",
+        "productId": "6999580a567f01fdca5e05ba",
+        "sku": " babys_661414",
+        "barcode": "",
+        "title": "Child Baby Safety Silicone Protector Table Corner",
+        "slug": "child-baby-safety-silicone-protector-table-corner",
+        "category": {
+          "_id": "632aca6d4d87ff2494210c24",
+          "name": {
+            "en": "Baby care"
+          }
+        },
+        "image": "https://res.cloudinary.com/dlr7mzrne/image/upload/v1771656691/product/Corner_Guards.webp",
+        "stock": 80,
+        "tag": [
+          "[]"
+        ],
+        "isCombination": false,
+        "average_rating": 0,
+        "total_reviews": 0,
+        "status": "show",
+        "createdAt": "2026-02-21T07:00:26.778Z",
+        "updatedAt": "2026-02-21T07:01:07.485Z",
+        "__v": 0,
+        "id": "6999580a567f01fdca5e05bb",
+        "price": 80,
+        "originalPrice": 100,
+        "quantity": 1,
+        "itemTotal": 80
+      },
+      {
+        "prices": {
+          "originalPrice": 180,
+          "price": 170,
+          "discount": 10
+        },
+        "_id": "69996b53c23ada0972b8e446",
+        "productId": "69996b53c23ada0972b8e445",
+        "sku": "",
+        "barcode": "",
+        "title": "Baby kids smart medicine dispenser Needle Feeder",
+        "slug": "baby-kids-smart-medicine-dispenser-needle-feeder",
+        "category": {
+          "_id": "632aca0b4d87ff2494210bc4",
+          "name": {
+            "en": "Feeding"
+          }
+        },
+        "image": "https://res.cloudinary.com/dlr7mzrne/image/upload/v1771662140/product/Needle_Feeder.webp",
+        "stock": 20,
+        "tag": [
+          "[]"
+        ],
+        "isCombination": false,
+        "average_rating": 0,
+        "total_reviews": 0,
+        "status": "show",
+        "createdAt": "2026-02-21T08:22:43.094Z",
+        "updatedAt": "2026-02-21T08:22:43.094Z",
+        "__v": 0,
+        "id": "69996b53c23ada0972b8e446",
+        "price": 170,
+        "originalPrice": 180,
+        "quantity": 1,
+        "itemTotal": 170
+      },
+      {
+        "prices": {
+          "originalPrice": 499,
+          "price": 450,
+          "discount": 49
+        },
+        "_id": "69996dc5c23ada0972b8e527",
+        "productId": "69996dc5c23ada0972b8e526",
+        "sku": "",
+        "barcode": "",
+        "title": "24pcs Baby Girl Headwear Elastic Hair Bands Clips",
+        "slug": "24pcs-baby-girl-headwear-elastic-hair-bands-clips",
+        "category": {
+          "_id": "632ac9864d87ff2494210b49",
+          "name": {
+            "en": "Girls Fashion"
+          }
+        },
+        "image": "https://res.cloudinary.com/dlr7mzrne/image/upload/v1771662777/product/Elastic_Hair_Bands.png",
+        "stock": 19,
+        "tag": [
+          "[]"
+        ],
+        "isCombination": false,
+        "average_rating": 0,
+        "total_reviews": 0,
+        "status": "show",
+        "createdAt": "2026-02-21T08:33:09.755Z",
+        "updatedAt": "2026-03-12T07:56:08.986Z",
+        "__v": 0,
+        "sales": 1,
+        "id": "69996dc5c23ada0972b8e527",
+        "price": 450,
+        "originalPrice": 499,
+        "quantity": 1,
+        "itemTotal": 450
+      },
+      {
+        "prices": {
+          "originalPrice": 590,
+          "price": 550,
+          "discount": 40
+        },
+        "_id": "69996cc9c23ada0972b8e4f4",
+        "productId": "69996cc9c23ada0972b8e4f3",
+        "sku": "",
+        "barcode": "",
+        "title": "Newborn Baby Head Shaping Pillow",
+        "slug": "newborn-baby-head-shaping-pillow",
+        "category": {
+          "_id": "632ac9e94d87ff2494210ba0",
+          "name": {
+            "en": "Baby Furniture "
+          }
+        },
+        "image": "https://res.cloudinary.com/dlr7mzrne/image/upload/v1771662531/product/Baby_Head_Shaping_Pillow.webp",
+        "stock": 12,
+        "tag": [
+          "[]"
+        ],
+        "isCombination": false,
+        "average_rating": 0,
+        "total_reviews": 0,
+        "status": "show",
+        "createdAt": "2026-02-21T08:28:57.493Z",
+        "updatedAt": "2026-02-21T08:28:57.493Z",
+        "__v": 0,
+        "id": "69996cc9c23ada0972b8e4f4",
+        "price": 550,
+        "originalPrice": 590,
+        "quantity": 1,
+        "itemTotal": 550
+      },
+      {
+        "prices": {
+          "originalPrice": 180,
+          "price": 150,
+          "discount": 30
+        },
+        "_id": "69995e59c23ada0972b8e377",
+        "productId": "69995e59c23ada0972b8e376",
+        "sku": "",
+        "barcode": "",
+        "title": "Baby Cotton Bibs Cartoon Cute Saliva Towel Infant Burp",
+        "slug": "baby-cotton-bibs-cartoon-cute-saliva-towel-infant-burp",
+        "category": {
+          "_id": "632aca6d4d87ff2494210c24",
+          "name": {
+            "en": "Baby care"
+          }
+        },
+        "image": "https://res.cloudinary.com/dlr7mzrne/image/upload/v1771658826/product/Cotton_Bibs.webp",
+        "stock": 100,
+        "tag": [
+          "[]"
+        ],
+        "isCombination": false,
+        "average_rating": 0,
+        "total_reviews": 0,
+        "status": "show",
+        "createdAt": "2026-02-21T07:27:21.973Z",
+        "updatedAt": "2026-02-21T07:27:21.973Z",
+        "__v": 0,
+        "id": "69995e59c23ada0972b8e377",
+        "price": 150,
+        "originalPrice": 180,
+        "quantity": 1,
+        "itemTotal": 150
+      }
+    ],
+    "user_info": {
+      "name": "Demo Customer 13",
+      "email": "order13@example.com",
+      "contact": "+88019000013",
+      "address": "Demo Address 13, Dhaka",
+      "city": "Dhaka",
+      "country": "Bangladesh",
+      "zipCode": "1200"
+    },
+    "subTotal": 1400,
+    "shippingCost": 80,
+    "discount": 0,
+    "total": 1480,
+    "shippingOption": "Inside Dhaka",
+    "paymentMethod": "Cash",
+    "status": "pending"
+  },
+  {
+    "_id": "69b29b4ced9245cbe6eecf6d",
+    "user": "69b265a2ed9245cbe6eebf5d",
+    "invoice": 10014,
+    "cart": [
+      {
+        "prices": {
+          "originalPrice": 550,
+          "price": 500,
+          "discount": 50
+        },
+        "_id": "699966cec23ada0972b8e413",
+        "productId": "699966cec23ada0972b8e412",
+        "sku": "babys_354849",
+        "barcode": "",
+        "title": "Canvas Casual Shoes for First Walkers Newborn Baby | Girls | Boys",
+        "slug": "canvas-casual-shoes-for-first-walkers-newborn-baby-girls-boys",
+        "category": {
+          "_id": "632aca2b4d87ff2494210be8",
+          "name": {
+            "en": "Boy Fashion"
+          }
+        },
+        "image": "https://res.cloudinary.com/dlr7mzrne/image/upload/v1771660973/product/Canvas_Casual_ShoesToothbrush.webp",
+        "stock": 7,
+        "tag": [
+          "[]"
+        ],
+        "isCombination": false,
+        "average_rating": 0,
+        "total_reviews": 0,
+        "status": "show",
+        "createdAt": "2026-02-21T08:03:26.814Z",
+        "updatedAt": "2026-03-09T21:01:40.842Z",
+        "__v": 0,
+        "sales": 2,
+        "id": "699966cec23ada0972b8e413",
+        "price": 500,
+        "originalPrice": 550,
+        "quantity": 1,
+        "itemTotal": 500
+      }
+    ],
+    "user_info": {
+      "name": "Demo Customer 14",
+      "email": "order14@example.com",
+      "contact": "+88019000014",
+      "address": "Demo Address 14, Dhaka",
+      "city": "Dhaka",
+      "country": "Bangladesh",
+      "zipCode": "1200"
+    },
+    "subTotal": 500,
+    "shippingCost": 80,
+    "discount": 0,
+    "total": 580,
+    "shippingOption": "Inside Dhaka",
+    "paymentMethod": "Cash",
+    "status": "pending"
+  },
+  {
+    "_id": "69b29babed9245cbe6eed086",
+    "user": "69b265a2ed9245cbe6eebf5d",
+    "invoice": 10015,
+    "cart": [
+      {
+        "prices": {
+          "originalPrice": 180,
+          "price": 160,
+          "discount": 20
+        },
+        "_id": "69995ca5c23ada0972b8e33e",
+        "productId": "69995ca5c23ada0972b8e33d",
+        "sku": "babys_689116",
+        "barcode": "",
+        "title": "Baby Smile Kids Non Slip Crawling Elbow Infants Toddlers",
+        "slug": "baby-smile-kids-non-slip-crawling-elbow-infants-toddlers",
+        "category": {
+          "_id": "632aca6d4d87ff2494210c24",
+          "name": {
+            "en": "Baby care"
+          }
+        },
+        "image": "https://res.cloudinary.com/dlr7mzrne/image/upload/v1771658374/product/bAbys_Knee_PadEducational__Book.webp",
+        "stock": 10,
+        "tag": [
+          "[]"
+        ],
+        "isCombination": false,
+        "average_rating": 0,
+        "total_reviews": 0,
+        "status": "show",
+        "createdAt": "2026-02-21T07:20:05.181Z",
+        "updatedAt": "2026-02-21T07:20:05.181Z",
+        "__v": 0,
+        "id": "69995ca5c23ada0972b8e33e",
+        "price": 160,
+        "originalPrice": 180,
+        "quantity": 6,
+        "itemTotal": 960
+      }
+    ],
+    "user_info": {
+      "name": "Demo Customer 15",
+      "email": "order15@example.com",
+      "contact": "+88019000015",
+      "address": "Demo Address 15, Dhaka",
+      "city": "Dhaka",
+      "country": "Bangladesh",
+      "zipCode": "1200"
+    },
+    "subTotal": 960,
+    "shippingCost": 80,
+    "discount": 0,
+    "total": 1040,
+    "shippingOption": "Inside Dhaka",
+    "paymentMethod": "Cash",
+    "status": "pending"
+  },
+  {
+    "_id": "69b511b761380701a0ced580",
+    "user": null,
+    "invoice": 10016,
+    "cart": [
+      {
+        "_id": "6999781cc23ada0972b8e602",
+        "title": "Funny Baby Educational Toys Little Loud Bell Ball",
+        "quantity": 2,
+        "price": 150,
+        "isCombination": false
+      },
+      {
+        "_id": "699977e5c23ada0972b8e5f1",
+        "title": "1 Set ABS Kids Bath Toy Water Beach Toys Plastic Watering",
+        "quantity": 1,
+        "price": 340,
+        "isCombination": false
+      },
+      {
+        "_id": "69997778c23ada0972b8e5e0",
+        "title": "Silicone Electric Face Cleansing & Massage Brush",
+        "quantity": 1,
+        "price": 430,
+        "isCombination": false
+      },
+      {
+        "_id": "69997740c23ada0972b8e5cf",
+        "title": "Women Pregnancy Clothes Lace Dress For Pregnant Photo Shoot Clothing",
+        "quantity": 1,
+        "price": 1500.03,
+        "isCombination": false
+      }
+    ],
+    "user_info": {
+      "name": "Demo Customer 16",
+      "email": "order16@example.com",
+      "contact": "+88019000016",
+      "address": "Demo Address 16, Dhaka",
+      "city": "Dhaka",
+      "country": "Bangladesh",
+      "zipCode": "1200"
+    },
+    "subTotal": 2570.0299999999997,
+    "shippingCost": 0,
+    "discount": 0,
+    "total": 2570.0299999999997,
+    "paymentMethod": "cash",
+    "source": "pos",
+    "channel": "counter",
+    "createdByAdmin": "699b2b90c23ada0972b8e731",
+    "posSessionId": "69b511b061380701a0ced573",
+    "paymentStatus": "paid",
+    "amountPaid": 2570.0299999999997,
+    "dueAmount": 0,
+    "payments": [
+      {
+        "method": "cash",
+        "amount": 2570.0299999999997,
+        "_id": "69b511b761380701a0ced581",
+        "paidAt": "2026-03-14T07:43:51.098Z"
+      }
+    ],
+    "meta": {
+      "counterName": "Counter-1",
+      "note": "Cancelled from POS orders page"
+    },
+    "status": "cancel"
+  },
+  {
+    "_id": "69b514434e01bc0df8ecdc3b",
+    "user": null,
+    "invoice": 10017,
+    "cart": [
+      {
+        "cartKey": "699966cec23ada0972b8e413::base",
+        "_id": "699966cec23ada0972b8e413",
+        "title": "Canvas Casual Shoes for First Walkers Newborn Baby | Girls | Boys",
+        "quantity": 2,
+        "price": 500,
+        "isCombination": false,
+        "variantLabel": "",
+        "image": "https://res.cloudinary.com/dlr7mzrne/image/upload/v1771660973/product/Canvas_Casual_ShoesToothbrush.webp",
+        "maxStock": 6
+      }
+    ],
+    "user_info": {
+      "name": "Demo Customer 17",
+      "email": "order17@example.com",
+      "contact": "+88019000017",
+      "address": "Demo Address 17, Dhaka",
+      "city": "Dhaka",
+      "country": "Bangladesh",
+      "zipCode": "1200"
+    },
+    "subTotal": 1000,
+    "shippingCost": 0,
+    "discount": 0,
+    "total": 1000,
+    "paymentMethod": "cash",
+    "source": "pos",
+    "channel": "counter",
+    "createdByAdmin": "699b2b90c23ada0972b8e731",
+    "posSessionId": "69b511b061380701a0ced573",
+    "paymentStatus": "paid",
+    "amountPaid": 1000,
+    "dueAmount": 0,
+    "payments": [
+      {
+        "method": "cash",
+        "amount": 1000,
+        "_id": "69b514434e01bc0df8ecdc3c",
+        "paidAt": "2026-03-14T07:54:43.559Z"
+      }
+    ],
+    "meta": {
+      "counterName": "Counter-1",
+      "note": "Cancelled from POS orders page"
+    },
+    "status": "cancel"
+  },
+  {
+    "_id": "69b5144d4e01bc0df8ecdc42",
+    "user": null,
+    "invoice": 10018,
+    "cart": [
+      {
+        "cartKey": "699966cec23ada0972b8e413::base",
+        "_id": "699966cec23ada0972b8e413",
+        "title": "Canvas Casual Shoes for First Walkers Newborn Baby | Girls | Boys",
+        "quantity": 1,
+        "price": 500,
+        "isCombination": false,
+        "variantLabel": "",
+        "image": "https://res.cloudinary.com/dlr7mzrne/image/upload/v1771660973/product/Canvas_Casual_ShoesToothbrush.webp",
+        "maxStock": 6
+      }
+    ],
+    "user_info": {
+      "name": "Demo Customer 18",
+      "email": "order18@example.com",
+      "contact": "+88019000018",
+      "address": "Demo Address 18, Dhaka",
+      "city": "Dhaka",
+      "country": "Bangladesh",
+      "zipCode": "1200"
+    },
+    "subTotal": 500,
+    "shippingCost": 0,
+    "discount": 0,
+    "total": 500,
+    "paymentMethod": "cash",
+    "source": "pos",
+    "channel": "counter",
+    "createdByAdmin": "699b2b90c23ada0972b8e731",
+    "posSessionId": "69b511b061380701a0ced573",
+    "paymentStatus": "paid",
+    "amountPaid": 500,
+    "dueAmount": 0,
+    "payments": [
+      {
+        "method": "cash",
+        "amount": 500,
+        "_id": "69b5144d4e01bc0df8ecdc43",
+        "paidAt": "2026-03-14T07:54:53.544Z"
+      }
+    ],
+    "meta": {
+      "counterName": "Counter-1",
+      "note": "Cancelled from POS orders page"
+    },
+    "status": "cancel"
+  },
+  {
+    "_id": "69b514514e01bc0df8ecdc4a",
+    "user": null,
+    "invoice": 10019,
+    "cart": [
+      {
+        "cartKey": "6999781cc23ada0972b8e602::base",
+        "_id": "6999781cc23ada0972b8e602",
+        "title": "Funny Baby Educational Toys Little Loud Bell Ball",
+        "quantity": 1,
+        "price": 150,
+        "isCombination": false,
+        "variantLabel": "",
+        "image": "https://res.cloudinary.com/dlr7mzrne/image/upload/v1771665426/product/Cloth_Educational__Book_2.webp",
+        "maxStock": 19
+      },
+      {
+        "cartKey": "699977e5c23ada0972b8e5f1::base",
+        "_id": "699977e5c23ada0972b8e5f1",
+        "title": "1 Set ABS Kids Bath Toy Water Beach Toys Plastic Watering",
+        "quantity": 1,
+        "price": 340,
+        "isCombination": false,
+        "variantLabel": "",
+        "image": "https://res.cloudinary.com/dlr7mzrne/image/upload/v1771665368/product/Water_Beach_Toys.webp",
+        "maxStock": 9
+      }
+    ],
+    "user_info": {
+      "name": "Demo Customer 19",
+      "email": "order19@example.com",
+      "contact": "+88019000019",
+      "address": "Demo Address 19, Dhaka",
+      "city": "Dhaka",
+      "country": "Bangladesh",
+      "zipCode": "1200"
+    },
+    "subTotal": 490,
+    "shippingCost": 0,
+    "discount": 0,
+    "total": 490,
+    "paymentMethod": "cash",
+    "source": "pos",
+    "channel": "counter",
+    "createdByAdmin": "699b2b90c23ada0972b8e731",
+    "posSessionId": "69b511b061380701a0ced573",
+    "paymentStatus": "paid",
+    "amountPaid": 490,
+    "dueAmount": 0,
+    "payments": [
+      {
+        "method": "cash",
+        "amount": 490,
+        "_id": "69b514514e01bc0df8ecdc4b",
+        "paidAt": "2026-03-14T07:54:57.700Z"
+      }
+    ],
+    "meta": {
+      "counterName": "Counter-1",
+      "note": "Cancelled from POS orders page"
+    },
+    "status": "cancel"
+  },
+  {
+    "_id": "69b514584e01bc0df8ecdc5e",
+    "user": null,
+    "invoice": 10020,
+    "cart": [
+      {
+        "cartKey": "6999781cc23ada0972b8e602::base",
+        "_id": "6999781cc23ada0972b8e602",
+        "title": "Funny Baby Educational Toys Little Loud Bell Ball",
+        "quantity": 1,
+        "price": 150,
+        "isCombination": false,
+        "variantLabel": "",
+        "image": "https://res.cloudinary.com/dlr7mzrne/image/upload/v1771665426/product/Cloth_Educational__Book_2.webp",
+        "maxStock": 18
+      }
+    ],
+    "user_info": {
+      "name": "Demo Customer 20",
+      "email": "order20@example.com",
+      "contact": "+88019000020",
+      "address": "Demo Address 20, Dhaka",
+      "city": "Dhaka",
+      "country": "Bangladesh",
+      "zipCode": "1200"
+    },
+    "subTotal": 150,
+    "shippingCost": 0,
+    "discount": 0,
+    "total": 150,
+    "paymentMethod": "cash",
+    "source": "pos",
+    "channel": "counter",
+    "createdByAdmin": "699b2b90c23ada0972b8e731",
+    "posSessionId": "69b511b061380701a0ced573",
+    "paymentStatus": "paid",
+    "amountPaid": 150,
+    "dueAmount": 0,
+    "payments": [
+      {
+        "method": "cash",
+        "amount": 150,
+        "_id": "69b514584e01bc0df8ecdc5f",
+        "paidAt": "2026-03-14T07:55:04.820Z"
+      }
+    ],
+    "meta": {
+      "counterName": "Counter-1",
+      "note": "Cancelled from POS orders page"
+    },
+    "status": "cancel"
+  },
+  {
+    "_id": "69b516524e01bc0df8ecdce9",
+    "user": null,
+    "invoice": 10021,
+    "cart": [
+      {
+        "_id": "6999781cc23ada0972b8e602",
+        "title": "Funny Baby Educational Toys Little Loud Bell Ball",
+        "quantity": 1,
+        "price": 150,
+        "isCombination": false
+      }
+    ],
+    "user_info": {
+      "name": "Demo Customer 21",
+      "email": "order21@example.com",
+      "contact": "+88019000021",
+      "address": "Demo Address 21, Dhaka",
+      "city": "Dhaka",
+      "country": "Bangladesh",
+      "zipCode": "1200"
+    },
+    "subTotal": 150,
+    "shippingCost": 0,
+    "discount": 0,
+    "total": 150,
+    "paymentMethod": "bank",
+    "source": "pos",
+    "channel": "counter",
+    "createdByAdmin": "699b2b90c23ada0972b8e731",
+    "posSessionId": "69b511b061380701a0ced573",
+    "paymentStatus": "paid",
+    "amountPaid": 150,
+    "dueAmount": 0,
+    "payments": [
+      {
+        "method": "bank",
+        "amount": 150,
+        "_id": "69b516524e01bc0df8ecdcea",
+        "paidAt": "2026-03-14T08:03:30.139Z"
+      }
+    ],
+    "meta": {
+      "counterName": "Counter-1",
+      "note": "Cancelled from POS orders page"
+    },
+    "status": "cancel"
+  },
+  {
+    "_id": "69b51e23ed9245cbe6ef4c7d",
+    "user": "69b51b9eed9245cbe6ef48d9",
+    "invoice": 10022,
+    "cart": [
+      {
+        "prices": {
+          "originalPrice": 2800,
+          "price": 2450,
+          "discount": 350
+        },
+        "_id": "644500c2839a5e0c2f5c16cf",
+        "productId": "639dc0f5c2fce72b697282af",
+        "sku": "",
+        "barcode": "",
+        "title": "Baby Diaper Bag ",
+        "slug": "baby-diaper-bag",
+        "category": {
+          "_id": "632ab4434d87ff2494210b0e",
+          "name": {
+            "en": "Health and Safety "
+          }
+        },
+        "image": "https://res.cloudinary.com/dlr7mzrne/image/upload/v1771582425/product/Baby_diaper_bag.webp",
+        "stock": 4,
+        "tag": [
+          "[]"
+        ],
+        "isCombination": false,
+        "average_rating": 0,
+        "total_reviews": 0,
+        "status": "show",
+        "createdAt": "2023-04-23T09:56:18.435Z",
+        "updatedAt": "2026-03-12T07:56:09.286Z",
+        "__v": 1,
+        "sales": 1,
+        "id": "644500c2839a5e0c2f5c16cf",
+        "price": 2450,
+        "originalPrice": 2800,
+        "quantity": 1,
+        "itemTotal": 2450
+      },
+      {
+        "prices": {
+          "originalPrice": 200,
+          "price": 180,
+          "discount": 20
+        },
+        "_id": "699976fac23ada0972b8e5be",
+        "productId": "699976fac23ada0972b8e5bd",
+        "sku": "",
+        "barcode": "",
+        "title": "1 Pc Cute Bear Baby Water Thermometer",
+        "slug": "1-pc-cute-bear-baby-water-thermometer",
+        "category": {
+          "_id": "632ab4434d87ff2494210b0e",
+          "name": {
+            "en": "Health and Safety "
+          }
+        },
+        "image": "https://res.cloudinary.com/dlr7mzrne/image/upload/v1771665131/product/Water__Thermometer.webp",
+        "stock": 21,
+        "tag": [
+          "[]"
+        ],
+        "isCombination": false,
+        "average_rating": 0,
+        "total_reviews": 0,
+        "status": "show",
+        "createdAt": "2026-02-21T09:12:26.950Z",
+        "updatedAt": "2026-03-12T07:56:09.061Z",
+        "__v": 0,
+        "sales": 1,
+        "id": "699976fac23ada0972b8e5be",
+        "price": 180,
+        "originalPrice": 200,
+        "quantity": 3,
+        "itemTotal": 540
+      },
+      {
+        "prices": {
+          "originalPrice": 550,
+          "price": 500,
+          "discount": 50
+        },
+        "_id": "699966cec23ada0972b8e413",
+        "productId": "699966cec23ada0972b8e412",
+        "sku": "babys_354849",
+        "barcode": "",
+        "title": "Canvas Casual Shoes for First Walkers Newborn Baby | Girls | Boys",
+        "slug": "canvas-casual-shoes-for-first-walkers-newborn-baby-girls-boys",
+        "category": {
+          "_id": "632aca2b4d87ff2494210be8",
+          "name": {
+            "en": "Boy Fashion"
+          }
+        },
+        "image": "https://res.cloudinary.com/dlr7mzrne/image/upload/v1771660973/product/Canvas_Casual_ShoesToothbrush.webp",
+        "stock": 6,
+        "tag": [
+          "[]"
+        ],
+        "isCombination": false,
+        "average_rating": 0,
+        "total_reviews": 0,
+        "status": "show",
+        "createdAt": "2026-02-21T08:03:26.814Z",
+        "updatedAt": "2026-03-14T08:06:48.727Z",
+        "__v": 0,
+        "sales": 3,
+        "id": "699966cec23ada0972b8e413",
+        "price": 500,
+        "originalPrice": 550,
+        "quantity": 1,
+        "itemTotal": 500
+      },
+      {
+        "prices": {
+          "originalPrice": 500,
+          "price": 450,
+          "discount": 50
+        },
+        "_id": "69996723c23ada0972b8e424",
+        "productId": "69996723c23ada0972b8e423",
+        "sku": "babys_293752",
+        "barcode": "",
+        "title": "Character style Toddlers Baby Canvas shoes",
+        "slug": "character-style-toddlers-baby-canvas-shoes",
+        "category": {
+          "_id": "632aca2b4d87ff2494210be8",
+          "name": {
+            "en": "Boy Fashion"
+          }
+        },
+        "image": "https://res.cloudinary.com/dlr7mzrne/image/upload/v1771661050/product/Baby_Canvas_shoes.webp",
+        "stock": 20,
+        "tag": [
+          "[]"
+        ],
+        "isCombination": false,
+        "average_rating": 0,
+        "total_reviews": 0,
+        "status": "show",
+        "createdAt": "2026-02-21T08:04:51.478Z",
+        "updatedAt": "2026-02-21T08:04:51.478Z",
+        "__v": 0,
+        "id": "69996723c23ada0972b8e424",
+        "price": 450,
+        "originalPrice": 500,
+        "quantity": 1,
+        "itemTotal": 450
+      },
+      {
+        "prices": {
+          "originalPrice": 120,
+          "price": 100,
+          "discount": 20
+        },
+        "_id": "699970b7c23ada0972b8e55b",
+        "productId": "699970b7c23ada0972b8e55a",
+        "sku": "",
+        "barcode": "",
+        "title": "Baby Finger Toothbrush and Box Silicone Baby Brush",
+        "slug": "baby-finger-toothbrush-and-box-silicone-baby-brush",
+        "category": {
+          "_id": "632ab4434d87ff2494210b0e",
+          "name": {
+            "en": "Health and Safety "
+          }
+        },
+        "image": "https://res.cloudinary.com/dlr7mzrne/image/upload/v1771663538/product/Finger_Toothbrush.webp",
+        "stock": 20,
+        "tag": [
+          "[]"
+        ],
+        "isCombination": false,
+        "average_rating": 0,
+        "total_reviews": 0,
+        "status": "show",
+        "createdAt": "2026-02-21T08:45:43.737Z",
+        "updatedAt": "2026-03-12T07:56:09.212Z",
+        "__v": 0,
+        "sales": 1,
+        "id": "699970b7c23ada0972b8e55b",
+        "price": 100,
+        "originalPrice": 120,
+        "quantity": 1,
+        "itemTotal": 100
+      }
+    ],
+    "user_info": {
+      "name": "Demo Customer 22",
+      "email": "order22@example.com",
+      "contact": "+88019000022",
+      "address": "Demo Address 22, Dhaka",
+      "city": "Dhaka",
+      "country": "Bangladesh",
+      "zipCode": "1200"
+    },
+    "subTotal": 4040,
+    "shippingCost": 80,
+    "discount": 0,
+    "total": 4120,
+    "shippingOption": "Inside Dhaka",
+    "paymentMethod": "Cash",
+    "status": "cancel"
+  },
+  {
+    "_id": "69b5202fed9245cbe6ef4efc",
+    "user": "69b51b9eed9245cbe6ef48d9",
+    "invoice": 10023,
+    "cart": [
+      {
+        "prices": {
+          "originalPrice": 499,
+          "price": 450,
+          "discount": 49
+        },
+        "_id": "69996dc5c23ada0972b8e527",
+        "productId": "69996dc5c23ada0972b8e526",
+        "sku": "",
+        "barcode": "",
+        "title": "24pcs Baby Girl Headwear Elastic Hair Bands Clips",
+        "slug": "24pcs-baby-girl-headwear-elastic-hair-bands-clips",
+        "category": {
+          "_id": "632ac9864d87ff2494210b49",
+          "name": {
+            "en": "Girls Fashion"
+          }
+        },
+        "image": "https://res.cloudinary.com/dlr7mzrne/image/upload/v1771662777/product/Elastic_Hair_Bands.png",
+        "stock": 18,
+        "tag": [
+          "[]"
+        ],
+        "isCombination": false,
+        "average_rating": 0,
+        "total_reviews": 0,
+        "status": "show",
+        "createdAt": "2026-02-21T08:33:09.755Z",
+        "updatedAt": "2026-03-12T08:29:26.400Z",
+        "__v": 0,
+        "sales": 2,
+        "id": "69996dc5c23ada0972b8e527",
+        "price": 450,
+        "originalPrice": 499,
+        "quantity": 1,
+        "itemTotal": 450
+      }
+    ],
+    "user_info": {
+      "name": "Demo Customer 23",
+      "email": "order23@example.com",
+      "contact": "+88019000023",
+      "address": "Demo Address 23, Dhaka",
+      "city": "Dhaka",
+      "country": "Bangladesh",
+      "zipCode": "1200"
+    },
+    "subTotal": 450,
+    "shippingCost": 80,
+    "discount": 0,
+    "total": 530,
+    "shippingOption": "Inside Dhaka",
+    "paymentMethod": "Cash",
+    "status": "pending"
+  },
+  {
+    "_id": "69b520524739d908dc4fbe75",
+    "user": null,
+    "invoice": 10022,
+    "cart": [
+      {
+        "_id": "6999781cc23ada0972b8e602",
+        "title": "Funny Baby Educational Toys Little Loud Bell Ball",
+        "quantity": 4,
+        "price": 150,
+        "isCombination": false
+      }
+    ],
+    "user_info": {
+      "name": "Demo Customer 24",
+      "email": "order24@example.com",
+      "contact": "+88019000024",
+      "address": "Demo Address 24, Dhaka",
+      "city": "Dhaka",
+      "country": "Bangladesh",
+      "zipCode": "1200"
+    },
+    "subTotal": 600,
+    "shippingCost": 80,
+    "discount": 0,
+    "total": 680,
+    "paymentMethod": "mixed",
+    "source": "pos",
+    "channel": "facebook",
+    "createdByAdmin": "699b2b90c23ada0972b8e731",
+    "posSessionId": "69b511b061380701a0ced573",
+    "paymentStatus": "paid",
+    "amountPaid": 680,
+    "dueAmount": 0,
+    "payments": [
+      {
+        "method": "cod",
+        "amount": 1,
+        "_id": "69b524404739d908dc4fbf89",
+        "paidAt": "2026-03-14T09:02:56.309Z"
+      },
+      {
+        "method": "cash",
+        "amount": 679,
+        "note": "Settled from POS orders page",
+        "_id": "69b524404739d908dc4fbf8a",
+        "paidAt": "2026-03-14T09:02:56.309Z"
+      }
+    ],
+    "meta": {
+      "orderType": "online",
+      "onlineSource": "facebook",
+      "counterName": "Counter-1",
+      "courier": {
+        "provider": "steadfast",
+        "trackingNumber": "",
+        "consignmentId": "",
+        "status": "booked",
+        "note": ""
+      }
+    },
+    "status": "pending"
+  },
+  {
+    "_id": "69b522f74739d908dc4fbf08",
+    "user": "69aefa820415c443adea038d",
+    "invoice": 10023,
+    "cart": [
+      {
+        "_id": "69997740c23ada0972b8e5cf",
+        "title": "Women Pregnancy Clothes Lace Dress For Pregnant Photo Shoot Clothing",
+        "quantity": 3,
+        "price": 1500.03,
+        "isCombination": false
+      },
+      {
+        "_id": "699976fac23ada0972b8e5be",
+        "title": "1 Pc Cute Bear Baby Water Thermometer",
+        "quantity": 3,
+        "price": 180,
+        "isCombination": false
+      }
+    ],
+    "user_info": {
+      "name": "Demo Customer 25",
+      "email": "order25@example.com",
+      "contact": "+88019000025",
+      "address": "Demo Address 25, Dhaka",
+      "city": "Dhaka",
+      "country": "Bangladesh",
+      "zipCode": "1200"
+    },
+    "subTotal": 5040.09,
+    "shippingCost": 80,
+    "discount": 0,
+    "total": 5120.09,
+    "paymentMethod": "cash",
+    "source": "pos",
+    "channel": "facebook",
+    "createdByAdmin": "699b2b90c23ada0972b8e731",
+    "posSessionId": "69b511b061380701a0ced573",
+    "paymentStatus": "paid",
+    "amountPaid": 5120.09,
+    "dueAmount": 0,
+    "payments": [
+      {
+        "method": "cash",
+        "amount": 5120.09,
+        "note": "Settled from POS orders page",
+        "_id": "69b524494739d908dc4fbfa7",
+        "paidAt": "2026-03-14T09:03:05.152Z"
+      }
+    ],
+    "meta": {
+      "orderType": "online",
+      "onlineSource": "facebook",
+      "counterName": "Counter-1",
+      "courier": {
+        "provider": "steadfast",
+        "trackingNumber": "",
+        "consignmentId": "",
+        "status": "booked",
+        "note": ""
+      }
+    },
+    "status": "pending"
+  },
+  {
+    "_id": "69b523ef4739d908dc4fbf54",
+    "user": "69aefa820415c443adea038d",
+    "invoice": 10024,
+    "cart": [
+      {
+        "_id": "69997778c23ada0972b8e5e0",
+        "title": "Silicone Electric Face Cleansing & Massage Brush",
+        "quantity": 1,
+        "price": 430,
+        "isCombination": false
+      },
+      {
+        "_id": "699977e5c23ada0972b8e5f1",
+        "title": "1 Set ABS Kids Bath Toy Water Beach Toys Plastic Watering",
+        "quantity": 1,
+        "price": 340,
+        "isCombination": false
+      }
+    ],
+    "user_info": {
+      "name": "Demo Customer 26",
+      "email": "order26@example.com",
+      "contact": "+88019000026",
+      "address": "Demo Address 26, Dhaka",
+      "city": "Dhaka",
+      "country": "Bangladesh",
+      "zipCode": "1200"
+    },
+    "subTotal": 770,
+    "shippingCost": 80,
+    "discount": 0,
+    "total": 850,
+    "paymentMethod": "cash",
+    "source": "pos",
+    "channel": "facebook",
+    "createdByAdmin": "699b2b90c23ada0972b8e731",
+    "posSessionId": "69b511b061380701a0ced573",
+    "paymentStatus": "paid",
+    "amountPaid": 850,
+    "dueAmount": 0,
+    "payments": [
+      {
+        "method": "cash",
+        "amount": 850,
+        "note": "Settled from POS orders page",
+        "_id": "69b524464739d908dc4fbf98",
+        "paidAt": "2026-03-14T09:03:02.537Z"
+      }
+    ],
+    "meta": {
+      "orderType": "online",
+      "onlineSource": "facebook",
+      "counterName": "Counter-1",
+      "courier": {
+        "provider": "",
+        "trackingNumber": "",
+        "consignmentId": "",
+        "status": "pending",
+        "note": ""
+      }
+    },
+    "status": "pending"
+  },
+  {
+    "_id": "69b52a15722c901553ad220a",
+    "user": "69b52824ed9245cbe6ef50b8",
+    "invoice": 10025,
+    "cart": [
+      {
+        "prices": {
+          "originalPrice": 200,
+          "price": 180,
+          "discount": 20
+        },
+        "_id": "699976fac23ada0972b8e5be",
+        "productId": "699976fac23ada0972b8e5bd",
+        "sku": "",
+        "barcode": "",
+        "title": "1 Pc Cute Bear Baby Water Thermometer",
+        "category": {
+          "_id": "632ab4434d87ff2494210b0e",
+          "name": {
+            "en": "Health and Safety "
+          }
+        },
+        "image": [
+          "https://res.cloudinary.com/dlr7mzrne/image/upload/v1771665131/product/Water__Thermometer.webp"
+        ],
+        "stock": 15,
+        "tag": [
+          "[]"
+        ],
+        "isCombination": false,
+        "average_rating": 0,
+        "total_reviews": 0,
+        "status": "show",
+        "createdAt": "2026-02-21T09:12:26.950Z",
+        "updatedAt": "2026-03-14T08:57:27.545Z",
+        "__v": 0,
+        "sales": 7,
+        "id": "699976fac23ada0972b8e5be",
+        "variant": {
+          "originalPrice": 200,
+          "price": 180,
+          "discount": 20
+        },
+        "price": 180,
+        "originalPrice": 200,
+        "quantity": 1,
+        "itemTotal": 180
+      },
+      {
+        "prices": {
+          "originalPrice": 180,
+          "price": 160,
+          "discount": 20
+        },
+        "_id": "69995ca5c23ada0972b8e33e",
+        "productId": "69995ca5c23ada0972b8e33d",
+        "sku": "babys_689116",
+        "barcode": "",
+        "title": "Baby Smile Kids Non Slip Crawling Elbow Infants Toddlers",
+        "category": {
+          "_id": "632aca6d4d87ff2494210c24",
+          "name": {
+            "en": "Baby care"
+          }
+        },
+        "image": [
+          "https://res.cloudinary.com/dlr7mzrne/image/upload/v1771658374/product/bAbys_Knee_PadEducational__Book.webp"
+        ],
+        "stock": 4,
+        "tag": [
+          "[]"
+        ],
+        "isCombination": false,
+        "average_rating": 0,
+        "total_reviews": 0,
+        "status": "show",
+        "createdAt": "2026-02-21T07:20:05.181Z",
+        "updatedAt": "2026-03-12T10:55:39.244Z",
+        "__v": 0,
+        "sales": 6,
+        "id": "69995ca5c23ada0972b8e33e",
+        "variant": {
+          "originalPrice": 180,
+          "price": 160,
+          "discount": 20
+        },
+        "price": 160,
+        "originalPrice": 180,
+        "quantity": 1,
+        "itemTotal": 160
+      }
+    ],
+    "user_info": {
+      "name": "Demo Customer 27",
+      "email": "order27@example.com",
+      "contact": "+88019000027",
+      "address": "Demo Address 27, Dhaka",
+      "city": "Dhaka",
+      "country": "Bangladesh",
+      "zipCode": "1200"
+    },
+    "subTotal": 340,
+    "shippingCost": 80,
+    "discount": 0,
+    "total": 420,
+    "shippingOption": "Inside Dhaka",
+    "paymentMethod": "Cash",
+    "source": "store",
+    "channel": "web",
+    "paymentStatus": "paid",
+    "amountPaid": 0,
+    "dueAmount": 0,
+    "status": "pending",
+    "payments": []
+  },
+  {
+    "_id": "69b52bf6722c901553ad2271",
+    "user": "69b52824ed9245cbe6ef50b8",
+    "invoice": 10026,
+    "cart": [
+      {
+        "prices": {
+          "originalPrice": 200,
+          "price": 180,
+          "discount": 20
+        },
+        "_id": "699976fac23ada0972b8e5be",
+        "productId": "699976fac23ada0972b8e5bd",
+        "sku": "",
+        "barcode": "",
+        "title": "1 Pc Cute Bear Baby Water Thermometer",
+        "category": {
+          "_id": "632ab4434d87ff2494210b0e",
+          "name": {
+            "en": "Health and Safety "
+          }
+        },
+        "image": [
+          "https://res.cloudinary.com/dlr7mzrne/image/upload/v1771665131/product/Water__Thermometer.webp"
+        ],
+        "stock": 14,
+        "tag": [
+          "[]"
+        ],
+        "isCombination": false,
+        "average_rating": 0,
+        "total_reviews": 0,
+        "status": "show",
+        "createdAt": "2026-02-21T09:12:26.950Z",
+        "updatedAt": "2026-03-14T09:27:49.680Z",
+        "__v": 0,
+        "sales": 8,
+        "id": "699976fac23ada0972b8e5be",
+        "variant": {
+          "originalPrice": 200,
+          "price": 180,
+          "discount": 20
+        },
+        "price": 180,
+        "originalPrice": 200,
+        "quantity": 1,
+        "itemTotal": 180
+      },
+      {
+        "prices": {
+          "originalPrice": 180,
+          "price": 160,
+          "discount": 20
+        },
+        "_id": "69995ca5c23ada0972b8e33e",
+        "productId": "69995ca5c23ada0972b8e33d",
+        "sku": "babys_689116",
+        "barcode": "",
+        "title": "Baby Smile Kids Non Slip Crawling Elbow Infants Toddlers",
+        "category": {
+          "_id": "632aca6d4d87ff2494210c24",
+          "name": {
+            "en": "Baby care"
+          }
+        },
+        "image": [
+          "https://res.cloudinary.com/dlr7mzrne/image/upload/v1771658374/product/bAbys_Knee_PadEducational__Book.webp"
+        ],
+        "stock": 3,
+        "tag": [
+          "[]"
+        ],
+        "isCombination": false,
+        "average_rating": 0,
+        "total_reviews": 0,
+        "status": "show",
+        "createdAt": "2026-02-21T07:20:05.181Z",
+        "updatedAt": "2026-03-14T09:27:49.778Z",
+        "__v": 0,
+        "sales": 7,
+        "id": "69995ca5c23ada0972b8e33e",
+        "variant": {
+          "originalPrice": 180,
+          "price": 160,
+          "discount": 20
+        },
+        "price": 160,
+        "originalPrice": 180,
+        "quantity": 1,
+        "itemTotal": 160
+      }
+    ],
+    "user_info": {
+      "name": "Demo Customer 28",
+      "email": "order28@example.com",
+      "contact": "+88019000028",
+      "address": "Demo Address 28, Dhaka",
+      "city": "Dhaka",
+      "country": "Bangladesh",
+      "zipCode": "1200"
+    },
+    "subTotal": 340,
+    "shippingCost": 80,
+    "discount": 0,
+    "total": 420,
+    "shippingOption": "Inside Dhaka",
+    "paymentMethod": "Cash",
+    "source": "store",
+    "channel": "web",
+    "paymentStatus": "paid",
+    "amountPaid": 0,
+    "dueAmount": 0,
+    "status": "pending",
+    "payments": []
+  },
+  {
+    "_id": "69b532da9826a7a1217049d7",
+    "user": "69b52824ed9245cbe6ef50b8",
+    "invoice": 10027,
+    "cart": [
+      {
+        "prices": {
+          "originalPrice": 200,
+          "price": 180,
+          "discount": 20
+        },
+        "_id": "699976fac23ada0972b8e5be",
+        "productId": "699976fac23ada0972b8e5bd",
+        "sku": "",
+        "barcode": "",
+        "title": "1 Pc Cute Bear Baby Water Thermometer",
+        "category": {
+          "_id": "632ab4434d87ff2494210b0e",
+          "name": {
+            "en": "Health and Safety "
+          }
+        },
+        "image": [
+          "https://res.cloudinary.com/dlr7mzrne/image/upload/v1771665131/product/Water__Thermometer.webp"
+        ],
+        "stock": 13,
+        "tag": [
+          "[]"
+        ],
+        "isCombination": false,
+        "average_rating": 0,
+        "total_reviews": 0,
+        "status": "show",
+        "createdAt": "2026-02-21T09:12:26.950Z",
+        "updatedAt": "2026-03-14T09:35:51.085Z",
+        "__v": 0,
+        "sales": 9,
+        "id": "699976fac23ada0972b8e5be",
+        "variant": {
+          "originalPrice": 200,
+          "price": 180,
+          "discount": 20
+        },
+        "price": 180,
+        "originalPrice": 200,
+        "quantity": 1,
+        "itemTotal": 180
+      },
+      {
+        "prices": {
+          "originalPrice": 180,
+          "price": 160,
+          "discount": 20
+        },
+        "_id": "69995ca5c23ada0972b8e33e",
+        "productId": "69995ca5c23ada0972b8e33d",
+        "sku": "babys_689116",
+        "barcode": "",
+        "title": "Baby Smile Kids Non Slip Crawling Elbow Infants Toddlers",
+        "category": {
+          "_id": "632aca6d4d87ff2494210c24",
+          "name": {
+            "en": "Baby care"
+          }
+        },
+        "image": [
+          "https://res.cloudinary.com/dlr7mzrne/image/upload/v1771658374/product/bAbys_Knee_PadEducational__Book.webp"
+        ],
+        "stock": 2,
+        "tag": [
+          "[]"
+        ],
+        "isCombination": false,
+        "average_rating": 0,
+        "total_reviews": 0,
+        "status": "show",
+        "createdAt": "2026-02-21T07:20:05.181Z",
+        "updatedAt": "2026-03-14T09:35:51.202Z",
+        "__v": 0,
+        "sales": 8,
+        "id": "69995ca5c23ada0972b8e33e",
+        "variant": {
+          "originalPrice": 180,
+          "price": 160,
+          "discount": 20
+        },
+        "price": 160,
+        "originalPrice": 180,
+        "quantity": 1,
+        "itemTotal": 160
+      }
+    ],
+    "user_info": {
+      "name": "Demo Customer 29",
+      "email": "order29@example.com",
+      "contact": "+88019000029",
+      "address": "Demo Address 29, Dhaka",
+      "city": "Dhaka",
+      "country": "Bangladesh",
+      "zipCode": "1200"
+    },
+    "subTotal": 340,
+    "shippingCost": 80,
+    "discount": 0,
+    "total": 420,
+    "shippingOption": "Inside Dhaka",
+    "paymentMethod": "Cash",
+    "source": "store",
+    "channel": "web",
+    "paymentStatus": "paid",
+    "amountPaid": 0,
+    "dueAmount": 0,
+    "status": "pending",
+    "payments": []
+  },
+  {
+    "_id": "69b534509826a7a121704a1c",
+    "user": "69b52824ed9245cbe6ef50b8",
+    "invoice": 10028,
+    "cart": [
+      {
+        "prices": {
+          "originalPrice": 2800,
+          "price": 2450,
+          "discount": 350
+        },
+        "_id": "644500c2839a5e0c2f5c16cf",
+        "productId": "639dc0f5c2fce72b697282af",
+        "sku": "",
+        "barcode": "",
+        "title": "Baby Diaper Bag ",
+        "category": {
+          "_id": "632ab4434d87ff2494210b0e",
+          "name": {
+            "en": "Health and Safety "
+          }
+        },
+        "image": [
+          "https://res.cloudinary.com/dlr7mzrne/image/upload/v1771582425/product/Baby_diaper_bag.webp",
+          "https://res.cloudinary.com/dlr7mzrne/image/upload/v1771582429/product/Screenshot_3.jpg"
+        ],
+        "stock": 3,
+        "tag": [
+          "[]"
+        ],
+        "isCombination": false,
+        "average_rating": 0,
+        "total_reviews": 0,
+        "status": "show",
+        "createdAt": "2023-04-23T09:56:18.435Z",
+        "updatedAt": "2026-03-14T08:36:51.747Z",
+        "__v": 1,
+        "sales": 2,
+        "id": "644500c2839a5e0c2f5c16cf",
+        "variant": {
+          "originalPrice": 2800,
+          "price": 2450,
+          "discount": 350
+        },
+        "price": 2450,
+        "originalPrice": 2800,
+        "quantity": 1,
+        "itemTotal": 2450
+      },
+      {
+        "prices": {
+          "originalPrice": 160,
+          "price": 134.99,
+          "discount": 25.00999999999999
+        },
+        "_id": "644500c2839a5e0c2f5c16d0",
+        "productId": "639dc0f5c2fce72b697282ae",
+        "sku": "babys_264433",
+        "barcode": "babys_264433",
+        "title": "Baby Shampoo Waterproof Ear Protection Cap Wash Hair Kids Bath Visor Hats-Red",
+        "slug": "baby-shampoo-waterproof-ear-protection-cap-wash-hair-kids-bath-visor-hats",
+        "category": {
+          "_id": "632aca6d4d87ff2494210c24",
+          "name": {
+            "en": "Baby care"
+          }
+        },
+        "image": "https://res.cloudinary.com/dlr7mzrne/image/upload/v1771582242/product/Ear_Protection.webp",
+        "stock": 1440,
+        "tag": [
+          "[\"babys\"]"
+        ],
+        "isCombination": true,
+        "average_rating": 0,
+        "total_reviews": 0,
+        "status": "show",
+        "createdAt": "2023-04-23T09:56:18.435Z",
+        "updatedAt": "2026-02-20T10:11:15.423Z",
+        "__v": 1,
+        "id": "644500c2839a5e0c2f5c16d0-63f078f54b86ed26b05281b3",
+        "variant": {
+          "63f078f54b86ed26b05281b2": "63f078f54b86ed26b05281b3",
+          "originalPrice": "209.63",
+          "price": "209.63",
+          "quantity": 720,
+          "discount": "0.00",
+          "productId": "639dc0f5c2fce72b697282ae-0",
+          "barcode": "",
+          "sku": "",
+          "image": "https://res.cloudinary.com/dlr7mzrne/image/upload/v1771582242/product/Ear_Protection.webp"
+        },
+        "price": 209.63,
+        "originalPrice": 209.63,
+        "quantity": 1,
+        "itemTotal": 209.63
+      }
+    ],
+    "user_info": {
+      "name": "Demo Customer 30",
+      "email": "order30@example.com",
+      "contact": "+88019000030",
+      "address": "Demo Address 30, Dhaka",
+      "city": "Dhaka",
+      "country": "Bangladesh",
+      "zipCode": "1200"
+    },
+    "subTotal": 2659.63,
+    "shippingCost": 80,
+    "discount": 0,
+    "total": 2739.63,
+    "shippingOption": "Inside Dhaka",
+    "paymentMethod": "Cash",
+    "source": "store",
+    "channel": "web",
+    "paymentStatus": "paid",
+    "amountPaid": 0,
+    "dueAmount": 0,
+    "status": "pending",
+    "payments": []
+  }
+]

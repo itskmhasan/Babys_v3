@@ -56,13 +56,16 @@ const CheckoutForm = ({ shippingAddress, hasShippingAddress }) => {
     shippingOne,
     shippingTwo,
     isCheckoutSubmit,
+    isOrderConfirmed,
     useExistingAddress,
+    saveAsDefaultAddress,
     isCouponAvailable,
     globalSetting,
     storeSetting,
     storeCustomization,
     showingTranslateValue,
     handleDefaultShippingAddress,
+    handleSaveAsDefaultAddress,
   } = useCheckoutSubmit({ shippingAddress });
   const checkout = storeCustomization?.checkout;
   const codEnabled = isGatewayEnabled(storeSetting?.cod_status);
@@ -71,10 +74,10 @@ const CheckoutForm = ({ shippingAddress, hasShippingAddress }) => {
   const hasAnyGatewayEnabled = codEnabled || stripeEnabled || razorpayEnabled;
 
   useEffect(() => {
-    if (mounted && isEmpty) {
+    if (mounted && isEmpty && !isOrderConfirmed) {
       router.replace("/shop");
     }
-  }, [mounted, isEmpty, router]);
+  }, [mounted, isEmpty, isOrderConfirmed, router]);
 
   if (!mounted) return null; // or a skeleton loader
   if (isEmpty) return null;
@@ -93,6 +96,17 @@ const CheckoutForm = ({ shippingAddress, hasShippingAddress }) => {
                   title="Use Default Shipping Address"
                   processOption={useExistingAddress}
                   handleProcess={handleDefaultShippingAddress}
+                />
+              </div>
+            )}
+
+            {!hasShippingAddress && (
+              <div className="flex justify-end my-2">
+                <SwitchToggle
+                  id="save-default-shipping-address"
+                  title="Save Shipping Details as Default"
+                  processOption={saveAsDefaultAddress}
+                  handleProcess={handleSaveAsDefaultAddress}
                 />
               </div>
             )}
@@ -174,17 +188,6 @@ const CheckoutForm = ({ shippingAddress, hasShippingAddress }) => {
                     placeholder="Los Angeles"
                   />
                   <Error errorMessage={errors.city} />
-                </div>
-
-                <div className="col-span-6 sm:col-span-3 lg:col-span-2">
-                  <InputArea
-                    register={register}
-                    label={showingTranslateValue(checkout?.country)}
-                    name="country"
-                    type="text"
-                    placeholder="United States"
-                  />
-                  <Error errorMessage={errors.country} />
                 </div>
 
                 <div className="col-span-6 sm:col-span-3 lg:col-span-2">

@@ -1,28 +1,67 @@
 [
   {
+    "_id": "696680aaace7998e64dbd0a8",
+    "setting": {
+      "cod_status": true,
+      "fb_pixel_key": "",
+      "fb_pixel_status": false,
+      "google_analytic_key": "G-CH5REHX1F6",
+      "google_analytic_status": true,
+      "google_login_status": true,
+      "github_login_status": false,
+      "facebook_login_status": false,
+      "google_id": "[REDACTED]",
+      "google_secret": "[REDACTED]",
+      "github_id": "[REDACTED]",
+      "github_secret": "[REDACTED]",
+      "facebook_id": "[REDACTED]",
+      "facebook_secret": "[REDACTED]",
+      "nextauth_secret": "[REDACTED]",
+      "next_api_base_url": "http://localhost:5055/api",
+      "stripe_key": "[REDACTED]",
+      "stripe_secret": "[REDACTED]",
+      "stripe_status": false,
+      "razorpay_status": false,
+      "razorpay_id": "[REDACTED]",
+      "razorpay_secret": "[REDACTED]",
+      "meta_url": "https://kachabazar-store-nine.vercel.app/",
+      "tawk_chat_property_id": "",
+      "tawk_chat_status": false,
+      "tawk_chat_widget_id": ""
+    },
+    "name": "storeSetting"
+  },
+  {
+    "_id": "696680aaace7998e64dbd0a6",
     "setting": {
       "number_of_image_per_product": "5",
-      "shop_name": "KachaBazar",
-      "address": "59 Station Rd, Purls Bridge, United Kingdom",
-      "company_name": "HtmlLover ltd",
+      "shop_name": "Baby's",
+      "address": "752/2, Begum Rokeya Ave, Shewrapara, Dhaka 1216, Bangladesh",
+      "company_name": "Baby's",
       "vat_number": "47589",
-      "post_code": "2030",
-      "contact": "019579034",
-      "email": "kachabazar@gmail.com",
-      "website": "kachabazar-admin.vercel.app",
-      "default_currency": "€",
-      "default_time_zone": "Europe/London",
+      "post_code": "1216",
+      "contact": "01973404971",
+      "email": "info@babys.com.bd",
+      "website": "babys.com.bd",
+      "default_currency": "৳",
+      "default_time_zone": "Asia/Dhaka",
       "default_date_format": "MMM D, YYYY",
-      "receipt_size": "57-mm"
+      "receipt_size": "57-mm",
+      "allow_auto_trans": false,
+      "default_language": "en",
+      "email_to_customer": true,
+      "enable_guest_order": false,
+      "from_email": "info@babys.com.bd"
     },
     "name": "globalSetting"
   },
   {
+    "_id": "696680aaace7998e64dbd0a7",
     "setting": {
       "navbar": {
         "categories_menu_status": true,
-        "about_menu_status": true,
-        "contact_menu_status": true,
+        "about_menu_status": false,
+        "contact_menu_status": false,
         "offers_menu_status": true,
         "term_and_condition_status": true,
         "privacy_policy_status": true,
@@ -36,12 +75,12 @@
           "de": "Kategorien"
         },
         "about_us": {
-          "en": "About Us",
-          "de": "Uber Uns"
+          "de": "Uber Uns",
+          "en": "About us"
         },
         "contact_us": {
-          "en": "Contact Us",
-          "de": "Kontaktiere Uns"
+          "de": "Kontaktiere Uns",
+          "en": "Contact us"
         },
         "offers": {
           "en": "Offers",
@@ -60,8 +99,8 @@
           "de": "Terms & Bedingungen"
         },
         "pages": {
-          "en": "Pages",
-          "de": "Seiten"
+          "de": "Seiten",
+          "en": "Pages"
         },
         "my_account": {
           "en": "My Account",
@@ -76,31 +115,39 @@
           "de": "Ausloggen"
         },
         "checkout": {
-          "en": "Checkout",
-          "de": "Kasse"
+          "de": "Kasse",
+          "en": "Checkout"
         },
-        "phone": "+965 505 631288",
-        "logo": "https://res.cloudinary.com/ahossain/image/upload/v1697687802/settings/logo-light_hls14v.svg"
+        "phone": "+8801973404971",
+        "logo": "https://res.cloudinary.com/dlr7mzrne/image/upload/v1772878163/babys/Babys_3D_Bright_1772878161878_5dqpo0.png"
       },
       "home": {
         "coupon_status": true,
         "featured_status": true,
+        "discount_status": true,
         "daily_needs_status": true,
         "slider_width_status": false,
         "promotion_banner_status": true,
         "delivery_status": true,
         "popular_products_status": true,
         "discount_product_status": true,
-        "feature_promo_status": true,
-        "discount_coupon_code": ["WINTER21", "OCTOBER21"],
+        "discount_coupon_code": [
+          "AUGUST24",
+          "SUMMER24",
+          "WINTER25",
+          "SUMMER26"
+        ],
         "place_holder_img": "",
+        "feature_promo_status": true,
+        "quick_delivery_link": "#",
+        "quick_delivery_img": "https://res.cloudinary.com/ahossain/image/upload/v1697688032/settings/delivery-boy_rluuoq.webp",
         "discount_title": {
           "en": "Latest Super Discount Active Coupon Code",
           "de": "Neuester aktiver Super-Rabatt-Gutscheincode"
         },
         "promotion_title": {
-          "en": "100% Natural Quality Organic Product",
-          "de": "100 % natürliches Bio-Qualitätsprodukt"
+          "de": "100 % natürliches Bio-Qualitätsprodukt",
+          "en": "100% Authentic Baby Products in Bangladesh"
         },
         "promotion_description": {
           "en": "See Our latest discounted products from here and get a special discount product",
@@ -116,7 +163,6 @@
           "de": "Beliebte Kategorien"
         },
         "feature_description": {
-          "en": "Choose your necessary products from this feature categories.",
           "de": "Wählen Sie aus diesen Funktionskategorien die gewünschten Produkte aus."
         },
         "feature_product_limit": 18,
@@ -130,7 +176,7 @@
         },
         "popular_product_limit": 18,
         "quick_delivery_subtitle": {
-          "en": "Organic Products and Food",
+          "en": "Best Shop for Moms and Babies",
           "de": "Bio-Produkte und Lebensmittel"
         },
         "quick_delivery_title": {
@@ -142,11 +188,9 @@
           "de": "Es gibt viele Produkte, die Sie in unserem Shop finden. Wählen Sie Ihr täglich benötigtes Produkt aus unserem KachaBazar-Shop und erhalten Sie einige Sonderangebote. Sehen Sie sich hier unsere neuesten reduzierten Produkte an und sichern Sie sich einen Sonderrabatt."
         },
         "quick_delivery_button": {
-          "en": "Download App",
+          "en": "Shop Now",
           "de": "Lade App herunter"
         },
-        "quick_delivery_link": "#",
-        "quick_delivery_img": "https://res.cloudinary.com/ahossain/image/upload/v1697688032/settings/delivery-boy_rluuoq.webp",
         "latest_discount_title": {
           "en": "Latest Discounted Products",
           "de": "Neueste reduzierte Produkte"
@@ -155,31 +199,31 @@
           "en": "See Our latest discounted products below. Choose your daily needs from here and get a special discount with free shipping.",
           "de": "Sehen Sie sich unten unsere neuesten reduzierten Produkte an. Wählen Sie hier Ihren täglichen Bedarf und erhalten Sie einen Sonderrabatt mit kostenlosem Versand."
         },
-        "latest_discount_product_limit": 18,
+        "latest_discount_product_limit": "18",
         "daily_need_title": {
-          "en": "Get Your Daily Needs From Our KachaBazar Store",
+          "en": "Get Your Baby Needs from Our Babys Store",
           "de": "Holen Sie sich Ihren täglichen Bedarf in Ihrem CloudCleaver-Shop"
         },
         "daily_need_description": {
-          "en": "There are many products you will find in our shop, Choose your daily necessary product from our KachaBazar shop and get some special offers.",
-          "de": "Es gibt viele Produkte, die Sie in unserem Shop finden. Wählen Sie Ihr täglich benötigtes Produkt aus unserem KachaBazar-Shop und erhalten Sie einige Sonderangebote."
+          "de": "Es gibt viele Produkte, die Sie in unserem Shop finden. Wählen Sie Ihr täglich benötigtes Produkt aus unserem KachaBazar-Shop und erhalten Sie einige Sonderangebote.",
+          "en": "Baby’s® is one of the most trusted e-commerce baby shops."
         },
-        "daily_need_app_link": "https://www.apple.com/app-store/",
-        "daily_need_google_link": "https://play.google.com/store/games?utm_source=apac_med&utm_medium=hasem&utm_content=Jun0122&utm_campaign=Evergreen&pcampaignid=MKT-EDR-apac-lk-1003227-med-hasem-py-Evergreen-Jun0122-Text_Search_BKWS-BKWS%7CONSEM_kwid_43700071429441653_creativeid_600975795576_device_c&gclid=CjwKCAjwwo-WBhAMEiwAV4dybdy60tnQqCSnQ-cXShNnEcxmaBx2I6iwwc_WEqoA5sN9YSLJEXh9fBoC3u4QAvD_BwE&gclsrc=aw.ds",
+        "daily_need_app_link": "",
+        "daily_need_google_link": "",
         "daily_need_img_left": "https://res.cloudinary.com/ahossain/image/upload/v1697688091/settings/app-download-img-left_s5n2zf.webp",
         "daily_need_img_right": "https://res.cloudinary.com/ahossain/image/upload/v1697688091/settings/app-download-img_c7xqg4.webp",
-        "button1_img": "https://res.cloudinary.com/ahossain/image/upload/v1697688165/settings/app-store_cyyc0f.svg",
-        "button2_img": "https://res.cloudinary.com/ahossain/image/upload/v1697688167/settings/play-store_cavwua.svg"
+        "button1_img": "",
+        "button2_img": ""
       },
       "about_us": {
         "header_status": true,
         "content_left_status": true,
         "content_right_status": true,
+        "content_right_img": "https://res.cloudinary.com/dlr7mzrne/image/upload/v1773156299/babys/Babys_about_us_1773156285611_71bppg.png",
         "content_middle_status": true,
-        "founder_status": true,
-        "header_bg": "https://res.cloudinary.com/ahossain/image/upload/v1697439245/settings/yw3cd2xupqwqpqcbxv9l.jpg",
-        "content_right_img": "https://res.cloudinary.com/ahossain/image/upload/v1697439245/settings/v7g6gowiju0wanpwx70f.jpg",
-        "content_middle_Img": "https://res.cloudinary.com/ahossain/image/upload/v1697439195/settings/sl8vzvzm54jgzq6sphn2.jpg",
+        "founder_status": false,
+        "header_bg": "https://res.cloudinary.com/dlr7mzrne/image/upload/v1768834370/kachabazar/Babys_meta_image.png",
+        "content_middle_Img": "https://res.cloudinary.com/dlr7mzrne/image/upload/v1773157150/babys/about_us_1773157147952_y70fl0.png",
         "founder_one_img": "https://res.cloudinary.com/ahossain/image/upload/v1697439688/settings/team-1_acjmv7.webp",
         "founder_two_img": "https://res.cloudinary.com/ahossain/image/upload/v1697439689/settings/team-2_dw7zs1.webp",
         "founder_three_img": "https://res.cloudinary.com/ahossain/image/upload/v1697439689/settings/team-3_ld3323.webp",
@@ -191,15 +235,15 @@
           "de": "Über uns"
         },
         "top_title": {
-          "en": "Welcome to our KachaBazar shop",
+          "en": "Welcome to Baby's® (babys.com.bd) – a trusted online store for moms and babies.",
           "de": "Willkommen in unserem KachaBazar-Shop"
         },
         "top_description": {
-          "en": "Holisticly seize parallel metrics and functional ROI.Seamlessly revolutionize error-free internal or organic sources before effective scenarios. Progressively incentivize state of the art applications for efficient intellectual capital. Credibly leverage existing distinctive mindshare through cutting-edge schemas. Proactively procrastinate team building paradigms coordinate client-centric total transparent internal.\n\nDynamically embrace diverse customer service and installed base paradigms. Credibly seize enterprise-wide experiences for end-to-end data. Professionally brand flexible alignments and cost effective architectures. Enthusiastically incentivize seamless communities with seamlessly facilitate revolutionary metrics with strategic theme areas.",
+          "en": "At Baby's®, we understand the love and care every mother wants to give her child. Every parent wants the best for their newborn, infant, or growing child, even for the smallest needs. That is why we are committed to providing a wide range of safe, reliable, and high-quality baby and maternity products all in one convenient place.\n\nOur goal is to make shopping for baby and mom essentials easy, affordable, and hassle-free. From newborn care to kids’ daily needs, we offer carefully selected products that support both babies and parents.",
           "de": "Erfassen Sie parallele Metriken und funktionalen ROI ganzheitlich. Revolutionieren Sie nahtlos fehlerfreie interne oder organische Quellen vor effektiven Szenarien. Fördern Sie nach und nach hochmoderne Anwendungen für effizientes intellektuelles Kapital. Nutzen Sie glaubwürdig vorhandenes unverwechselbares Mindshare durch hochmoderne Schemata. Teambuilding-Paradigmen proaktiv aufschieben koordinieren kundenzentriert total transparent intern. Umfassen Sie dynamisch unterschiedliche Kundendienst- und Installed-Base-Paradigmen. Nutzen Sie glaubwürdig unternehmensweite Erfahrungen für End-to-End-Daten. Professionelles Branding flexibler Ausrichtungen und kostengünstiger Architekturen. Schaffen Sie enthusiastische Anreize für nahtlose Gemeinschaften, indem Sie revolutionäre Metriken mit strategischen Themenbereichen nahtlos erleichtern."
         },
         "card_one_title": {
-          "en": "10K",
+          "en": "1K",
           "de": "10K"
         },
         "card_one_sub": {
@@ -211,7 +255,7 @@
           "de": "Verwandeln Sie teamorientierte Partnerschaften dynamisch nach der Vertikalen"
         },
         "card_two_title": {
-          "en": "8K",
+          "en": "5K",
           "de": "8 TAUSEND"
         },
         "card_two_sub": {
@@ -223,11 +267,11 @@
           "de": "Virtuelle Modelle ohne Performance kompetent produzieren."
         },
         "middle_description_one": {
-          "en": "Holisticly seize parallel metrics and functional ROI. Seamlessly revolutionize error-free internal or organic sources before effective scenarios. Progressively incentivize state of the art applications for efficient intellectual capital. Credibly leverage existing distinctive mindshare through cutting-edge schemas. Proactively procrastinate team building paradigms coordinate client-centric total transparent internal. Energistically reconceptualize global leadership for high-quality networks. Credibly restore an expanded array of systems rather than accurate results. Collaboratively synergize backend bandwidth without 24/7 functionalities. Credibly utilize proactive ideas whereas cross-media core competencies. Uniquely maximize professional best practices through resource maximizing services. Conveniently architect cross-unit web services for e-business imperatives.",
+          "en": "Our goal is to make shopping for baby and mom essentials easy, affordable, and hassle-free. From newborn care to kids’ daily needs, we offer carefully selected products that support both babies and parents.\n\nAt Baby's®, you can find a variety of products including:\n\n1. Baby clothing and kids wear\n2. Diapering essentials\n3. Feeding and nursing products\n4. Baby skincare and health care items\n5. Toys and learning products\n6. Baby gear and nursery essentials\n7. Footwear and fashion accessories\n8. Gifts, school supplies, and more",
           "de": "Erfassen Sie parallele Metriken und funktionalen ROI ganzheitlich. Revolutionieren Sie nahtlos fehlerfreie interne oder organische Quellen vor effektiven Szenarien. Fördern Sie nach und nach hochmoderne Anwendungen für effizientes intellektuelles Kapital. Nutzen Sie glaubwürdig vorhandenes unverwechselbares Mindshare durch hochmoderne Schemata. Teambuilding-Paradigmen proaktiv aufschieben koordinieren kundenzentriert total transparent intern. Globale Führung für qualitativ hochwertige Netzwerke energisch neu konzipieren. Stellen Sie statt genauer Ergebnisse eine größere Anzahl von Systemen glaubwürdig wieder her. Synergisieren Sie gemeinsam Backend-Bandbreite ohne 24/7-Funktionalitäten. Proaktive Ideen glaubhaft nutzen und crossmediale Kernkompetenzen nutzen. Maximieren Sie auf einzigartige Weise professionelle Best Practices durch ressourcenoptimierende Services. Entwickeln Sie bequem bereichsübergreifende Webservices für E-Business-Anforderungen."
         },
         "middle_description_two": {
-          "en": "Appropriately visualize market-driven data before one-to-one scenarios. Collaboratively productize multifunctional ROI through intuitive supply chains. Enthusiastically seize revolutionary value and process-centric services. Competently harness intuitive information after interoperable markets. Interactively revolutionize future-proof value before granular sources. Dynamically embrace diverse customer service and installed base paradigms. Credibly seize enterprise-wide experiences for end-to-end data. Professionally brand flexible alignments and cost effective architectures. Enthusiastically incentivize seamless communities with seamlessly facilitate revolutionary metrics with strategic theme areas.",
+          "en": "We bring together trusted brands such as Pampers, Mamypoko, Huggies, Baby Dove, Sebamed, Himalaya, Philips Avent, Medela, Fisher-Price, Carter's, and many more to ensure the best quality for your little one.\n\nWith great discounts, reliable service, and a smooth online shopping experience, Baby's® aims to become a trusted destination for parents who want the very best for their babies.\n\nAt Baby's®, we believe every baby deserves comfort, care, and the best start in life.",
           "de": "Visualisieren Sie marktgesteuerte Daten angemessen vor Eins-zu-eins-Szenarien. Erzielen Sie gemeinsam multifunktionale Renditen durch intuitive Lieferketten. Nutzen Sie mit Begeisterung revolutionäre Mehrwert- und prozessorientierte Services. Nutzen Sie intuitive Informationen kompetent nach interoperablen Märkten. Revolutionieren Sie interaktiv zukunftssichere Werte vor granularen Quellen. Umfassen Sie dynamisch unterschiedliche Kundendienst- und Installed-Base-Paradigmen. Nutzen Sie glaubwürdig unternehmensweite Erfahrungen für End-to-End-Daten. Professionelles Branding flexibler Ausrichtungen und kostengünstiger Architekturen. Schaffen Sie enthusiastische Anreize für nahtlose Gemeinschaften, indem Sie revolutionäre Metriken mit strategischen Themenbereichen nahtlos erleichtern."
         },
         "founder_title": {
@@ -294,7 +338,7 @@
         "address_box_status": true,
         "left_col_status": true,
         "form_status": true,
-        "header_bg": "https://res.cloudinary.com/ahossain/image/upload/v1697439245/settings/yw3cd2xupqwqpqcbxv9l.jpg",
+        "header_bg": "https://res.cloudinary.com/dlr7mzrne/image/upload/v1768834370/kachabazar/Babys_meta_image.png",
         "left_col_img": "https://res.cloudinary.com/ahossain/image/upload/v1697472924/settings/contact-us_zvwn2n.png",
         "title": {
           "en": "Contact Us",
@@ -305,7 +349,7 @@
           "de": "Schreiben Sie uns eine E-Mail"
         },
         "email_box_email": {
-          "en": "info@kachabazar.com ",
+          "en": "info@babys.com.bd",
           "de": "info@kachabazar.com"
         },
         "email_box_text": {
@@ -317,7 +361,7 @@
           "de": "Rufen Sie uns an"
         },
         "call_box_phone": {
-          "en": "029-00124667",
+          "en": "+8801973404971",
           "de": "029-00124667"
         },
         "call_box_text": {
@@ -329,7 +373,7 @@
           "de": "Ort"
         },
         "address_box_address_one": {
-          "en": "Boho One, Bridge Street West, Middlesbrough, North Yorkshire, TS2 1AE.",
+          "en": "752/2, Begum Rokeya Ave, Shewrapara, Dhaka 1216, Bangladesh",
           "de": "Cecilia Chapman"
         },
         "address_box_address_two": {
@@ -356,17 +400,22 @@
           "en": "Mega Offer",
           "de": "Mega Angebot"
         },
-        "coupon_code": ["SUMMER21", "WINTER21", "AUGUST21", "OCTOBER21"]
+        "coupon_code": [
+          "SUMMER21",
+          "WINTER21",
+          "AUGUST21",
+          "OCTOBER21"
+        ]
       },
       "privacy_policy": {
         "status": true,
-        "header_bg": "https://res.cloudinary.com/ahossain/image/upload/v1697439245/settings/yw3cd2xupqwqpqcbxv9l.jpg",
+        "header_bg": "https://res.cloudinary.com/dlr7mzrne/image/upload/v1768834370/kachabazar/Babys_meta_image.png",
         "title": {
           "en": "Privacy Policy",
           "de": "Datenschutz-Bestimmungen"
         },
         "description": {
-          "en": "<h1><strong>Last updated: February 15, 2022</strong></h1>\n<p>At KachaBazar, accessible from kachabazar dot com, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by KachaBazar and how we use it. If you have additional questions or require more information about our Privacy Policy, do not hesitate to contact us.we may receive additional information about you such as your name, email address, phone number, the contents of the message and/or attachments you may send us, and any other information you may choose to provide. When you register for an Account, we may ask for your contact information, including items such as name, company name, address, email address, and telephone number.</p>\n<p>This Privacy Policy applies only to our online activities and is valid for visitors to our website with regards to the information that they shared and/or collect in KachaBazar.we may receive additional information about you such as your name, email address, phone number, the contents of the message and/or attachments you may send us, we may ask for your contact information, including items such as name, company name, address, email address, and telephone number. This policy is not applicable to any information collected offline or via channels other than this website. Our Privacy Policy was created with the help of the Free Privacy Policy Generator.</p>\n<h1><strong>Consent</strong></h1>\n<p>By using our website, you hereby consent to our Privacy Policy and agree to its terms.</p>\n<h1><strong>Information we collect</strong></h1>\n<p>The personal information that you are asked to provide, and the reasons why you are asked to provide it, will be made clear to you at the point we ask you to provide your personal information. If you contact us directly, we may receive additional information about you such may choose to provide. When you register for an Account, we may ask for your contact information, including items such as name, company name, address, email address, and telephone number.</p>\n<p>Please note that the Company will not ask you to share any sensitive data or information via email or telephone. If you receive any such request by email or telephone, please do not respond/divulge any sensitive data or information and forward the information relating to the same to</p>\n<h1><strong>How we use your information</strong></h1>\n<p>We use the information we collect in various ways, including to:</p>\n<ol>\n<li>1. Provide, operate, and maintain our website, to provide you with updates and other information.</li>\n<li>2. Improve, personalize, and expand our website,and other information relating to the website.</li>\n<li>3. Understand and analyze how you use our website, to provide you with updates and other information relating to the website.</li>\n<li>4. Develop new products, services, features, and functionality,and other information relating to the website.</li>\n<li>5. Communicate with you, either directly or through one of our partners, including for customer service, to provide you with updates.</li>\n<li>6. Send you emails. To provide you with updates and other information relating to the website, and for marketing and promotional purposes</li>\n<li>7. Find and prevent fraud. To provide you with updates and other information relating to the website, and for marketing and promotional purposes</li>\n</ol>\n<h1><strong>Log Files</strong></h1>\n<p>KachaBazar follows a standard procedure of using log files. These files log visitors when they visit websites. All hosting companies do this and a part of hosting. The information collected by log files include internet protocol (IP) addresses, browser type, Internet Service Provider (ISP), date and time stamp, referring/exit pages, and possibly the number of clicks. These are not linked to any information that is personally identifiable. The purpose of the information is for analyzing trends, administering the site, tracking users' movement on the website, and gathering demographic information.</p>\n<h1><strong>Advertising Partners Privacy Policies</strong></h1>\n<p>You may consult this list to find the Privacy Policy for each of the advertising partners of KachaBazar. Third-party ad servers or ad networks uses technologies like cookies, JavaScript, or Web Beacons that are used in their respective advertisements and links that appear on KachaBazar, which are sent directly to users' browser. They automatically receive your IP address when this occurs. These technologies are used to measure the effectiveness of their advertising campaigns and/or to personalize the advertising content that you see on websites that you visit. Note that KachaBazar has no access to or control over these cookies that are used by third-party advertisers.</p>\n<h1><strong>Third Party Privacy Policies</strong></h1>\n<p>Third-party ad servers or ad networks uses technologies like cookies, JavaScript, or Web Beacons that are used in their respective advertisements and links that appear on KachaBazar, which are sent directly to users' browser. They automatically receive your IP address when this occurs. These technologies are used to measure the effectiveness of their advertising campaigns and/or to personalize the advertising content that you see on websites that you visit. Note that KachaBazar has no access to or control over these cookies that are used by third-party advertisers.</p>\n<p>KachaBazar's Privacy Policy does not apply to other advertisers or websites. Thus, we are advising you to consult the respective Privacy Policies of these third-party ad servers for more detailed information. It may include their practices and instructions about how to opt-out of certain options. You can choose to disable cookies through your individual browser options. To know more detailed information about cookie management with specific web browsers, it can be found at the browsers' respective websites.</p>\n<h1><strong>CCPA Privacy Rights</strong></h1>\n<p>Under the CCPA, among other rights, California consumers have the right to: Request that a business that collects a consumer's personal data disclose the categories and specific pieces of personal data that a business has collected about consumers. Request that a business delete any personal data about the consumer that a business has collected. Request that a business that sells a consumer's personal data, not sell the consumer's personal data. If you make a request, we have one month to respond to you. If you would like to exercise any of these rights, please contact us.</p>\n<h1><strong>Children's Information</strong></h1>\n<p>Another part of our priority is adding protection for children while using the internet. We encourage parents and guardians to observe, participate in, and/or monitor and guide their online activity.Request that a business delete any personal data about the consumer that a business has collected. If you make a request, we have one month to respond to you. If you would like to exercise any of these rights, please contact us.</p>\n<p>KachaBazar does not knowingly collect any Personal Identifiable Information from children under the age of 13. If you think that your child provided this kind of information on our website, we strongly encourage you to contact us immediately and we will do our best efforts to promptly remove such information from our records.</p>\n"
+          "en": "<p>At <strong>Baby's®</strong>, we value your privacy and are committed to protecting your personal information.</p>\n<p><strong>Information We Collect</strong></p>\n<p>When you visit or make a purchase from our website, we may collect the following information:</p>\n<ul>\n<li>Name</li>\n<li>Email address</li>\n<li>Phone number</li>\n<li>Shipping and billing address</li>\n<li>Order details</li>\n</ul>\n<p>This information helps us process orders, deliver products, and improve our services.</p>\n<p><strong>How We Use Your Information</strong></p>\n<p>We use your information to:</p>\n<ul>\n<li>Process and deliver your orders</li>\n<li>Communicate with you about your purchase</li>\n<li>Improve our website and customer experience</li>\n<li>Provide customer support</li>\n</ul>\n<p><strong>Data Protection</strong></p>\n<p>We take appropriate security measures to protect your personal information from unauthorized access, misuse, or disclosure.</p>\n<p><strong>Third-Party Services</strong></p>\n<p>Our website may use trusted third-party services such as <strong>payment gateways, analytics tools, and delivery partners</strong> to operate efficiently.</p>\n<h2><strong>Cookies</strong></h2>\n<p>Our website may use cookies to improve your browsing experience and understand how visitors use our site.</p>\n<p><strong>Your Consent</strong></p>\n<p>By using our website, you consent to our <strong>Privacy Policy</strong>. </p>\n"
         }
       },
       "term_and_condition": {
@@ -377,14 +426,14 @@
           "de": "Terms & Bedingungen"
         },
         "description": {
-          "en": "<h1><strong>Welcome to KachaBazar!</strong></h1>\n<p>These terms and conditions outline the rules and regulations for the use of KachaBazar's Website, located at https://kachabazar.com/. By accessing this website we assume you accept these terms and conditions. Do not continue to use KachaBazar if you do not agree to take all of the terms and conditions stated on this page.</p>\n<p>The following terminology applies to these Terms and Conditions, Privacy Statement and Disclaimer Notice and all Agreements: Client, You and Your refers to you, the person log on this website and compliant to the Company’s terms and conditions. The Company, refers to our CompanyPartParties or Us refers to both the Client and ourselves. All terms refer to the offer, acceptance and consideration of payment necessary to undertake the process of our assistance to the Client in the most appropriate manner for the express purpose of meeting the Client’s needs in respect of provision of the Company’s stated services, in accordance with and subject to, prevailing law of Netherlands. Any use of the above terminology or other words in the singular, plural, capitalization and/or he/she or they, are taken as interchangeable and therefore as referring to same.</p>\n<h1><strong>Cookies</strong></h1>\n<p>We employ the use of cookies. By accessing KachaBazar, you agreed to use cookies in agreement with the KachaBazar's Privacy Policy. Most interactive websites use cookies to let us retrieve the user’s details for each visit. Cookies are used by our website to enable the functionality of certain areas to make it easier for people visiting our website. Some of our affiliate/advertising partners may also use cookies.</p>\n<h1><strong>License</strong></h1>\n<p>Unless otherwise stated, KachaBazar and/or its licensors own the intellectual property rights for all material on KachaBazar. All intellectual property rights are reserved. You may access this from KachaBazar for your own personal use subjected to restrictions set in these terms and conditions.This Agreement shall begin on the date hereof. Our Terms and Conditions were created with the help of the Terms And Conditions Generator.<strong>You must not:</strong></p>\n<ul>\n<li>1. Identifiers (e.g. name, mailing address, email address, phone number, credit/debit card number)</li>\n<li>2. Characteristics of protected classifications (e.g. gender, age)</li>\n<li>3. Commercial information (e.g. products or services purchased, purchase history)</li>\n<li>4. Internet or other electronic network activity (e.g. browse or search history)</li>\n<li>5. Geo location data (e.g. latitude or longitude)</li>\n<li>6. Audio, electronic, visual, or similar information (e.g. recording of Guest service calls)</li>\n<li>7. Inferences drawn from any of the above (e.g. preferences or characteristics)</li>\n</ul>\n<p>Parts of this website offer an opportunity for users to post and exchange opinions and information in certain areas of the website. KachaBazar does not filter, edit, publish or review Comments prior to their presence on the website. Comments do not reflect the views and opinions of KachaBazar,its agents and/or affiliates. Comments reflect the views and opinions of the person who post their views and opinions. To the extent permitted by applicable laws, KachaBazar shall not be liable for the Comments or for any liability, damages or expenses caused and/or suffered as a result of any use of and/or posting of and/or appearance of the Comments on this website.</p>\n<h1><strong>Content Liability</strong></h1>\n<p>We shall not be hold responsible for any content that appears on your Website. You agree to protect and defend us against all claims that is rising on your Website. No link(s) should appear on any Website that may be interpreted as libelous, obscene or criminal, or which infringes, otherwise violates, or advocates the infringement or other violation of, any third party rights.Without prior approval and written permission, you may not create frames around our Webpages that alter in any way the visual presentation or appearance of our Website.</p>\n<h1><strong>Your Privacy</strong></h1>\n<p>Please read <a href=\"https://kachabazar-store.vercel.app/privacy-policy\" target=\"_self\">Privacy Policy</a></p>\n<h1><strong>Reservation of Rights</strong></h1>\n<p>We reserve the right to request that you remove all links or any particular link to our Website. You approve to immediately remove all links to our Website upon request. We also reserve the right to amen these terms and conditions and it’s linking policy at any time. By continuously linking to our Website, you agree to be bound to and follow these linking terms and conditions.</p>\n<h1><strong>Disclaimer</strong></h1>\n<p>To the maximum extent permitted by applicable law, we exclude all representations, warranties and conditions relating to our website and the use of this website. Nothing in this disclaimer will:</p>\n<ul>\n<li>1. limit or exclude our or your liability for death or personal injury;</li>\n<li>2. limit or exclude our or your liability for fraud or fraudulent misrepresentation;</li>\n<li>3. limit any of our or your liabilities in any way that is not permitted under applicable law; or</li>\n<li>4. exclude any of our or your liabilities that may not be excluded under applicable law.</li>\n</ul>\n<p>The limitations and prohibitions of liability set in this Section and elsewhere in this disclaimer: (a) are subject to the preceding paragraph; and (b) govern all liabilities arising under the disclaimer, including liabilities arising in contract, in tort and for breach of statutory duty. As long as the website and the information and services on the website are provided free of charge, we will not be liable for any loss or damage of any nature.</p>\n"
+          "en": "<p>Welcome to <strong>Baby's®</strong>. By using our website, you agree to follow the terms and conditions outlined below.</p>\n<p><strong>Use of Website</strong></p>\n<p>By accessing our website, you agree to use it only for lawful purposes and in a way that does not harm the website or other users.</p>\n<p><strong>Product Information</strong></p>\n<p>We try our best to ensure that all product descriptions, prices, and images are accurate. However, slight variations may occur.</p>\n<p><strong>Orders and Payments</strong></p>\n<p>When you place an order on <strong>Baby's®</strong>, you agree to provide accurate information for delivery and payment. Orders may be canceled if incorrect or incomplete information is provided.</p>\n<h2><strong>Pricing</strong></h2>\n<p>All prices listed on our website are subject to change without prior notice.</p>\n<h2><strong>Delivery</strong></h2>\n<p>Delivery times may vary depending on location, product availability, and courier services.</p>\n<p><strong>Intellectual Property</strong></p>\n<p>All content on the <strong>Baby's®</strong> website including logos, images, text, and design belongs to <strong>Baby's®</strong> and may not be copied or used without permission.</p>\n<p><strong>Changes to Terms</strong></p>\n<p>Baby's® reserves the right to update or change these Terms &amp; Conditions at any time. </p>\n"
         }
       },
       "faq": {
-        "page_status": true,
-        "leftcol_status": true,
-        "rightcol_status": true,
+        "page_status": false,
         "header_bg": "https://res.cloudinary.com/ahossain/image/upload/v1697439245/settings/yw3cd2xupqwqpqcbxv9l.jpg",
+        "leftcol_status": false,
+        "rightcol_status": false,
         "left_img": "https://res.cloudinary.com/ahossain/image/upload/v1697687955/settings/faq_qr1y1h.svg",
         "title": {
           "en": "FAQs",
@@ -459,79 +508,69 @@
         "left_right_arrow": false,
         "bottom_dots": true,
         "both_slider": false,
-        "first_img": "https://res.cloudinary.com/ahossain/image/upload/v1697688491/settings/slider-1_rl8qdc.jpg",
+        "first_img": "https://res.cloudinary.com/dlr7mzrne/image/upload/v1772277688/babys/babys-clothings_1772277685259_bf8biz.png",
         "first_title": {
-          "en": "The Best Quality Products Guaranteed!",
           "de": "Die besten Qualitätsprodukte garantiert!"
         },
         "first_description": {
-          "en": "The Best Quality Products Guaranteed!",
           "de": "Die besten Qualitätsprodukte garantiert!"
         },
         "first_button": {
-          "en": "Shop Now",
-          "de": "Jetzt einkaufen"
+          "de": "Jetzt einkaufen",
+          "en": "Shop Now"
         },
-        "first_link": "/search?category=milk-dairy",
-        "second_img": "https://res.cloudinary.com/ahossain/image/upload/v1697688491/settings/slider-2_o6aezc.jpg",
+        "first_link": "/",
+        "second_img": "https://res.cloudinary.com/dlr7mzrne/image/upload/v1772277694/babys/BabyStroller_1772277693768_0537p2.png",
         "second_title": {
-          "en": "Best Different Type of Grocery Store",
           "de": "Bestes anderes Lebensmittelgeschäft"
         },
         "second_description": {
-          "en": "Quickly aggregate empowered networks after emerging products...",
           "de": "Schnelle Bündelung leistungsstarker Netzwerke nach neuen Produkten ..."
         },
         "second_button": {
-          "en": "Shop Now",
-          "de": "Jetzt einkaufen"
+          "de": "Jetzt einkaufen",
+          "en": "Shop Now"
         },
-        "second_link": "/search?category=fish-meat",
-        "third_img": "https://res.cloudinary.com/ahossain/image/upload/v1697688492/settings/slider-3_iw4nnf.jpg",
+        "second_link": "/",
+        "third_img": "https://res.cloudinary.com/dlr7mzrne/image/upload/v1772277698/babys/baby-gift_1772277697755_u8wqiw.png",
         "third_title": {
-          "en": "Quality Freshness Guaranteed!",
           "de": "Qualitätsfrische garantiert!"
         },
         "third_description": {
-          "en": "Intrinsicly fashion performance based products rather than accurate benefits...",
           "de": "Gestalten Sie Produkte grundsätzlich auf Leistung und nicht auf konkrete Vorteile ..."
         },
         "third_button": {
-          "en": "Shop Now",
-          "de": "Jetzt einkaufen"
+          "de": "Jetzt einkaufen",
+          "en": "Shop Now"
         },
-        "third_link": "/search?category=fruits-vegetable",
-        "four_img": "https://i.postimg.cc/rscqZJNz/slider-1.webp",
+        "third_link": "/",
+        "four_img": "https://res.cloudinary.com/dlr7mzrne/image/upload/v1772277706/babys/BabysShopforMoms_1772277704870_65xdhb.png",
         "four_title": {
-          "en": "The Best Quality Products Guaranteed!",
           "de": "Die besten Qualitätsprodukte garantiert!"
         },
         "four_description": {
-          "en": "Dramatically facilitate effective total linkage for go forward processes...",
           "de": "Ermöglichen Sie eine effektive Gesamtverknüpfung für weitere Prozesse erheblich."
         },
         "four_button": {
-          "en": "Shop Now",
-          "de": "Jetzt einkaufen"
+          "de": "Jetzt einkaufen",
+          "en": "Shop Now"
         },
-        "four_link": "/search?category=fruits-vegetable",
-        "five_img": "https://res.cloudinary.com/ahossain/image/upload/v1697688491/settings/slider-2_o6aezc.jpg",
+        "four_link": "/",
+        "five_img": "https://res.cloudinary.com/dlr7mzrne/image/upload/v1772277740/babys/moms_1772277739594_6qroto.png",
         "five_title": {
-          "en": "Best Different Type of Grocery Store",
           "de": "Bestes anderes Lebensmittelgeschäft"
         },
         "five_description": {
-          "en": "Quickly aggregate empowered networks after emerging products...",
           "de": "Schnelle Bündelung leistungsstarker Netzwerke nach neuen Produkten ..."
         },
         "five_button": {
-          "en": "Shop Now",
-          "de": "Jetzt einkaufen"
+          "de": "Jetzt einkaufen",
+          "en": "Shop Now"
         },
-        "five_link": "/search?category=fish-meat",
-        "mini_img_one": "https://res.cloudinary.com/ahossain/image/upload/v1697688491/settings/slider-2_o6aezc.jpg",
-        "mini_img_two": "https://res.cloudinary.com/ahossain/image/upload/v1697688492/settings/slider-3_iw4nnf.jpg",
-        "mini_img_three": "https://res.cloudinary.com/ahossain/image/upload/v1697688491/settings/slider-1_rl8qdc.jpg"
+        "five_link": "/",
+        "mini_img_one": "https://res.cloudinary.com/dlr7mzrne/image/upload/v1772286077/babys/mini_Slider1_1772286068137_v168gq.png",
+        "mini_img_two": "https://res.cloudinary.com/dlr7mzrne/image/upload/v1772286089/babys/baby_cloths_1772286087634_ixii38.png",
+        "mini_img_three": "https://res.cloudinary.com/dlr7mzrne/image/upload/v1772286165/babys/boy_fashion_1772286164724_rky5rr.png"
       },
       "checkout": {
         "personal_details": {
@@ -579,23 +618,23 @@
           "de": "Versandkosten"
         },
         "shipping_name_one": {
-          "en": "FedEx",
+          "en": "Inside Dhaka",
           "de": "FedEx"
         },
-        "shipping_one_cost": 60,
         "shipping_one_desc": {
-          "en": "Delivery: Today Cost :",
+          "en": "Delivery: Cost:",
           "de": "Lieferung: Heute Kosten :"
         },
+        "shipping_one_cost": "80",
         "shipping_name_two": {
-          "en": "UPS",
+          "en": "Outside Dhaka",
           "de": "UPS"
         },
         "shipping_two_desc": {
           "en": "Delivery: 7 Days Cost :",
           "de": "Lieferung: 7 Tage. Kosten :"
         },
-        "shipping_two_cost": 20,
+        "shipping_two_cost": "150",
         "payment_method": {
           "en": "Payment Method",
           "de": "Bezahlverfahren"
@@ -698,30 +737,21 @@
           "en": "Update Profile",
           "de": "Profil aktualisieren"
         },
-        "current_password": {
-          "en": "Current Password",
-          "de": "Aktuelles Passwort"
-        },
-        "new_password": {
-          "en": "New Password",
-          "de": "Neues Kennwort"
-        },
-        "change_password": {
-          "en": "Change Password",
-          "de": "Kennwort ändern"
-        }
+        "current_password": "[REDACTED]",
+        "new_password": "[REDACTED]",
+        "change_password": "[REDACTED]"
       },
       "footer": {
         "promo_status": true,
         "block1_status": true,
-        "block2_status": true,
+        "block2_status": false,
         "block3_status": true,
         "block4_status": true,
         "payment_method_status": true,
         "bottom_contact_status": true,
         "social_links_status": true,
         "shipping_card": {
-          "en": "Free Shipping From €500.00",
+          "en": "Free Shipping From BDT 500.00",
           "de": "Kostenloser Versand ab 500,00 €"
         },
         "support_card": {
@@ -760,11 +790,6 @@
           "de": "BMI-Rechner"
         },
         "block1_sub_link4": "/bmi-calculator",
-        "block1_sub_title5": {
-          "en": "Sitemap",
-          "de": "Sitemap"
-        },
-        "block1_sub_link5": "/site-map",
         "block2_title": {
           "en": "Latest News",
           "de": "Neueste Nachrichten"
@@ -813,20 +838,25 @@
           "de": "Profil aktualisieren"
         },
         "block3_sub_link4": "/user/update-profile",
-        "block4_logo": "https://res.cloudinary.com/ahossain/image/upload/v1697688576/settings/logo-color_el4zmy.svg",
+        "block4_logo": "https://res.cloudinary.com/dlr7mzrne/image/upload/v1772199249/babys/Babys_logo_footer_1772199249305_qhd2bi.png",
         "block4_address": {
-          "en": "987 Andre Plain Suite High Street 838, Lake Hestertown, USA",
-          "de": "987 Andre Plain Suite High Street 838, Lake Hestertown, USA"
+          "de": "987 Andre Plain Suite High Street 838, Lake Hestertown, USA",
+          "en": "Baby's ® is a one of the trusted e-commerce-based baby shop."
         },
-        "block4_phone": "02.356.1666",
-        "block4_email": "ccruidk@test.com",
         "social_facebook": "https://www.facebook.com/",
         "social_twitter": "https://twitter.com/",
         "social_pinterest": "https://www.pinterest.com/",
         "social_linkedin": "https://www.linkedin.com/",
         "social_whatsapp": "https://web.whatsapp.com/",
-        "payment_method_img": "https://res.cloudinary.com/ahossain/image/upload/v1697688607/settings/payment-logo_qhslgz.webp",
-        "bottom_contact": "+6599887766"
+        "payment_method_img": "https://res.cloudinary.com/dlr7mzrne/image/upload/v1772199929/babys/SSLCommerz-Pay-With-logo-All-Size-04_1772199921713_ygb726.png",
+        "block4_phone": "+8801973404971",
+        "block4_email": "info@babys.com.bd",
+        "bottom_contact": "+8801973404971",
+        "block1_sub_link5": "/site-map",
+        "block1_sub_title5": {
+          "en": "Sitemap",
+          "de": "Sitemap"
+        }
       },
       "slug": {
         "right_box_status": true,
@@ -860,46 +890,14 @@
         }
       },
       "seo": {
-        "favicon": "https://res.cloudinary.com/ahossain/image/upload/v1700903173/undefined/favicon.png",
-        "meta_description": "React Grocery & Organic Food Store e-commerce Template",
-        "meta_img": "https://res.cloudinary.com/ahossain/image/upload/v1636729752/facebook-page_j7alju.png",
-        "meta_keywords": "e-commerce, online store",
-        "meta_title": "KachaBazar - React Grocery & Organic Food Store e-commerce Template",
-        "meta_url": "https://kachabazar-store-nine.vercel.app/"
+        "meta_img": "https://res.cloudinary.com/dlr7mzrne/image/upload/v1768834370/kachabazar/Babys_meta_image.png",
+        "favicon": "https://res.cloudinary.com/dlr7mzrne/image/upload/v1768834286/kachabazar/babys_fav.png",
+        "meta_title": "Baby's | Best Mom's and Baby Shop in Bangladesh",
+        "meta_description": "Baby’s® is one of the most trusted e-commerce baby shops.",
+        "meta_url": "https://babys.com.bd/",
+        "meta_keywords": "e-commerce, online store"
       }
     },
     "name": "storeCustomizationSetting"
-  },
-  {
-    "setting": {
-      "cod_status": true,
-      "fb_pixel_key": "",
-      "fb_pixel_status": false,
-      "google_analytic_key": "",
-      "google_analytic_status": false,
-
-      "google_login_status": false,
-      "github_login_status": false,
-      "facebook_login_status": false,
-      "google_id": "",
-      "google_secret": "",
-      "github_id": "",
-      "github_secret": "",
-      "facebook_id": "",
-      "facebook_secret": "",
-      "nextauth_secret": "",
-      "next_api_base_url": "http://localhost:5055/api",
-      "stripe_key": "",
-      "stripe_secret": "",
-      "stripe_status": false,
-      "razorpay_status": false,
-      "razorpay_id": "",
-      "razorpay_secret": "",
-      "meta_url": "https://kachabazar-store-nine.vercel.app/",
-      "tawk_chat_property_id": "",
-      "tawk_chat_status": false,
-      "tawk_chat_widget_id": ""
-    },
-    "name": "storeSetting"
   }
 ]

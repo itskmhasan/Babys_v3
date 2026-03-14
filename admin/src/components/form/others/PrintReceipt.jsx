@@ -10,10 +10,14 @@ import OrderServices from "@/services/OrderServices";
 import useUtilsFunction from "@/hooks/useUtilsFunction";
 import InvoiceForPrint from "@/components/invoice/InvoiceForPrint";
 
+const DEFAULT_INVOICE_LOGO = "https://babys.com.bd/logo/Babys_3D_Bright.png";
+
 const PrintReceipt = ({ orderId, order }) => {
   const printRef = useRef(null);
   const [orderData, setOrderData] = useState({});
+  const [isPreparingPrint, setIsPreparingPrint] = useState(false);
   const { globalSetting } = useUtilsFunction();
+  const printableOrder = orderData?._id ? orderData : order;
 
   const pageStyle = `
     @media print {
@@ -56,17 +60,32 @@ const PrintReceipt = ({ orderId, order }) => {
 
   const handlePrintReceipt = async (id) => {
     try {
+      setIsPreparingPrint(true);
       const res = await OrderServices.getOrderById(id);
-      setOrderData(res);
-      if (res) {
-        handlePrint();
+      if (res?._id) {
+        setOrderData(res);
+      } else {
+        setIsPreparingPrint(false);
+        notifyError("Unable to load order details for printing.");
       }
     } catch (err) {
+      setIsPreparingPrint(false);
       // console.log("order by user id error", err);
       notifyError(err ? err?.response?.data?.message : err?.message);
     }
     // console.log('id', id);
   };
+
+  useEffect(() => {
+    if (!isPreparingPrint || !orderData?._id) return;
+
+    const timer = setTimeout(() => {
+      handlePrint();
+      setIsPreparingPrint(false);
+    }, 120);
+
+    return () => clearTimeout(timer);
+  }, [isPreparingPrint, orderData?._id, handlePrint]);
 
   // console.log("orderData", orderData);
 
@@ -74,7 +93,16 @@ const PrintReceipt = ({ orderId, order }) => {
     <>
       <div style={{ display: "none" }}>
         <InvoiceForPrint
-          data={order}
+          data={{
+            ...printableOrder,
+            company_info: {
+              ...(printableOrder?.company_info || {}),
+              logo:
+                printableOrder?.company_info?.logo ||
+                globalSetting?.logo ||
+                DEFAULT_INVOICE_LOGO,
+            },
+          }}
           printRef={printRef}
           globalSetting={globalSetting}
         />

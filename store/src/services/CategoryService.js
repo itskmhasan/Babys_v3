@@ -1,10 +1,16 @@
-import { baseURL, handleResponse } from "@services/CommonService";
+import {
+  baseURL,
+  handleResponse,
+  fetchWithRetry,
+  PUBLIC_FETCH_OPTIONS,
+} from "@services/CommonService";
 
 const getShowingCategory = async () => {
   try {
-    const response = await fetch(`${baseURL}/category/show`, {
-      cache: "no-store",
-    });
+    const response = await fetchWithRetry(
+      `${baseURL}/category/show`,
+      PUBLIC_FETCH_OPTIONS
+    );
 
     const categories = await handleResponse(response);
     return { categories, error: null, loading: false };

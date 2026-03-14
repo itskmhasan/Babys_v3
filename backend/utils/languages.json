@@ -1,0 +1,44 @@
+[
+  {
+    "_id": "69667fa2bd817acb3803b54f",
+    "name": "German",
+    "code": "de",
+    "flag": "🇩🇪",
+    "status": "hide"
+  },
+  {
+    "_id": "69667fa2bd817acb3803b552",
+    "name": "Urdu",
+    "code": "ur",
+    "flag": "🇵🇰",
+    "status": "hide"
+  },
+  {
+    "_id": "69667fa2bd817acb3803b54d",
+    "name": "Bengali",
+    "code": "bn",
+    "flag": "🇧🇩",
+    "status": "hide"
+  },
+  {
+    "_id": "69667fa2bd817acb3803b551",
+    "name": "Hindi",
+    "code": "hi",
+    "flag": "🇮🇳",
+    "status": "hide"
+  },
+  {
+    "_id": "69667fa2bd817acb3803b550",
+    "name": "Arabic",
+    "code": "ar",
+    "flag": "🇸🇦",
+    "status": "hide"
+  },
+  {
+    "_id": "69667fa2bd817acb3803b54e",
+    "name": "English",
+    "code": "en",
+    "flag": "🇺🇸",
+    "status": "show"
+  }
+]

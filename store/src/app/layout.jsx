@@ -14,12 +14,15 @@ import {
   getGlobalSetting,
   getStoreCustomizationSetting,
 } from "@services/SettingServices";
+import { storeCustomization as fallbackStoreCustomization } from "@utils/storeCustomizationSetting";
 
 import { SettingProvider } from "@context/SettingContext";
 
 export async function generateMetadata() {
   const { storeCustomizationSetting } = await getStoreCustomizationSetting();
-  const favicon = storeCustomizationSetting?.seo?.favicon || "/favicon.png";
+  const resolvedStoreCustomization =
+    storeCustomizationSetting || fallbackStoreCustomization;
+  const favicon = resolvedStoreCustomization?.seo?.favicon || "/favicon.png";
 
   return {
     title: "Babys | Best Shop for Moms and Babies - e-commerce Store",
@@ -45,6 +48,8 @@ export default async function RootLayout({ children }) {
   // Fetch all customization data at once (adjust your API to return full data)
   const { storeCustomizationSetting, error } =
     await getStoreCustomizationSetting();
+  const resolvedStoreCustomization =
+    storeCustomizationSetting || fallbackStoreCustomization;
 
   return (
     <html lang="en" className="" suppressHydrationWarning>
@@ -74,12 +79,12 @@ export default async function RootLayout({ children }) {
           <SettingProvider
             initialGlobalSetting={globalSetting}
             initialStoreSetting={storeSetting}
-            initialCustomizationSetting={storeCustomizationSetting}
+            initialCustomizationSetting={resolvedStoreCustomization}
           >
             <Providers storeSetting={storeSetting}>
               <Navbar
                 globalSetting={globalSetting}
-                storeCustomization={storeCustomizationSetting}
+                storeCustomization={resolvedStoreCustomization}
               />
               <main className="bg-gray-50 dark:bg-zinc-900 z-10">
                 {children}
@@ -88,19 +93,19 @@ export default async function RootLayout({ children }) {
               {/* <MobileFooter globalSetting={globalSetting} /> */}
               <div className="w-full">
                 <FooterTop
-                  error={error}
-                  storeCustomizationSetting={storeCustomizationSetting}
+                  error={resolvedStoreCustomization ? null : error}
+                  storeCustomizationSetting={resolvedStoreCustomization}
                 />
                 <div className="hidden relative  lg:block mx-auto max-w-screen-2xl py-6 px-3 sm:px-10">
                   <FeatureCard
-                    storeCustomizationSetting={storeCustomizationSetting}
+                    storeCustomizationSetting={resolvedStoreCustomization}
                   />
                 </div>
                 <hr className="hr-line"></hr>
                 <div className="border-t border-gray-100 w-full">
                   <Footer
-                    error={error}
-                    storeCustomizationSetting={storeCustomizationSetting}
+                    error={resolvedStoreCustomization ? null : error}
+                    storeCustomizationSetting={resolvedStoreCustomization}
                   />
                 </div>
               </div>

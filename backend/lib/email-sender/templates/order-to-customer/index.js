@@ -1,9 +1,10 @@
 const customerInvoiceEmailBody = (option) => {
+  const invoiceCurrency = "BDT ";
   const companyName = option?.company_name || "Babys";
   const companyLogo =
     option?.company_logo ||
-    "https://dummyimage.com/80x80/ffffff/ffffff.png&text=.";
-  const money = (amount) => `${option?.currency || ""}${Number(amount || 0).toFixed(2)}`;
+    "https://babys.com.bd/logo/Babys_3D_Bright.png";
+  const money = (amount) => `${invoiceCurrency}${Number(amount || 0).toFixed(2)}`;
 
   return `<html
   xmlns='http://www.w3.org/1999/xhtml'
@@ -12,7 +13,6 @@ const customerInvoiceEmailBody = (option) => {
 >
 
   <head>
-    <title>${companyName}</title>
     <!--[if !mso]><!-->
     <meta http-equiv='X-UA-Compatible' content='IE=edge' />
     <!--<![endif]-->
@@ -381,7 +381,7 @@ const customerInvoiceEmailBody = (option) => {
                                     id='common_table'
                                     style='padding: 2px 4px;text-align:end'
                                   >
-                                    ${option.currency}${item.price}
+                                    ${money(item.price)}
                                   </td>
                                   <td
                                     id='common_table'

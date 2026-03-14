@@ -1,5 +1,4 @@
 import { Suspense } from "react";
-import { unstable_noStore as noStore } from "next/cache";
 
 //internal import
 import Banner from "@components/banner/Banner";
@@ -21,13 +20,16 @@ import {
   getStoreCustomizationSetting,
 } from "@services/SettingServices";
 import DiscountedCard from "@components/product/DiscountedCard";
+import { storeCustomization as fallbackStoreCustomization } from "@utils/storeCustomizationSetting";
+
+export const revalidate = 300;
 
 const Home = async () => {
-  noStore();
-
   const { attributes } = await getShowingAttributes();
   const { storeCustomizationSetting, error: storeCustomizationError } =
     await getStoreCustomizationSetting();
+  const resolvedStoreCustomization =
+    storeCustomizationSetting || fallbackStoreCustomization;
   const { popularProducts, discountedProducts, error } =
     await getShowingStoreProducts({
       category: "",
@@ -48,7 +50,7 @@ const Home = async () => {
       <FirstVisitOfferPopup
         categories={categories?.[0]?.children || []}
         coupons={coupons || []}
-        couponTitle={storeCustomizationSetting?.home?.discount_title}
+        couponTitle={resolvedStoreCustomization?.home?.discount_title}
       />
 
       {/* sticky cart section */}
@@ -60,26 +62,26 @@ const Home = async () => {
             {/* Home page main carousel */}
             <div className="flex-shrink-0 lg:block w-full lg:w-2/3">
               <Suspense fallback={<p>Loading carousel...</p>}>
-                <MainCarousel />
+                <MainCarousel storeCustomizationSetting={resolvedStoreCustomization} />
               </Suspense>
             </div>
             {/* mini carousel */}
             <div className="hidden lg:flex lg:w-1/3">
               <Suspense fallback={<p>Loading mini carousel...</p>}>
-                <MiniOfferCarousel slider={storeCustomizationSetting?.slider} />
+                <MiniOfferCarousel slider={resolvedStoreCustomization?.slider} />
               </Suspense>
             </div>
           </div>
 
           {/* Banner */}
           <div className="bg-gradient-to-r from-slate-50 via-white to-slate-50 px-6 md:px-8 py-6 md:py-8 rounded-2xl mt-6 border border-slate-200 dark:from-slate-800 dark:via-slate-800 dark:to-slate-900 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow">
-            <Banner storeCustomizationSetting={storeCustomizationSetting} />
+            <Banner storeCustomizationSetting={resolvedStoreCustomization} />
           </div>
         </div>
       </div>
 
       {/* feature category's */}
-      {storeCustomizationSetting?.home?.featured_status && (
+      {resolvedStoreCustomization?.home?.featured_status && (
         <div className="bg-gradient-to-b from-white to-gray-50 dark:from-zinc-800 dark:to-zinc-900 lg:py-20 py-12 border-y-4 border-transparent bg-clip-padding [border-image:linear-gradient(90deg,#ec4899,#a855f7,#06b6d4)_1] shadow-[0_0_0_1px_rgba(236,72,153,0.2)]">
           <div className="mx-auto max-w-screen-2xl px-3 sm:px-10">
             <div className="mb-12 flex justify-center">
@@ -89,8 +91,8 @@ const Home = async () => {
                     count={1}
                     height={30}
                     loading={false}
-                    error={storeCustomizationError}
-                    data={storeCustomizationSetting?.home?.feature_title}
+                    error={resolvedStoreCustomization ? null : storeCustomizationError}
+                    data={resolvedStoreCustomization?.home?.feature_title}
                   />
                 </h2>
                 <div className="h-1 w-16 bg-gradient-to-r from-emerald-400 to-teal-400 mx-auto mb-6 rounded-full"></div>
@@ -99,8 +101,8 @@ const Home = async () => {
                     count={4}
                     height={10}
                     loading={false}
-                    error={storeCustomizationError}
-                    data={storeCustomizationSetting?.home?.feature_description}
+                    error={resolvedStoreCustomization ? null : storeCustomizationError}
+                    data={resolvedStoreCustomization?.home?.feature_description}
                   />
                 </p>
               </div>
@@ -114,7 +116,7 @@ const Home = async () => {
       )}
 
       {/* popular products */}
-      {storeCustomizationSetting?.home?.popular_products_status && (
+      {resolvedStoreCustomization?.home?.popular_products_status && (
         <div className="bg-gray-50 dark:bg-zinc-900 lg:py-16 py-10 mx-auto max-w-screen-2xl px-3 sm:px-10">
           <div className="mb-10 flex justify-center">
             <div className="text-center w-full lg:w-3/5 bg-gradient-to-r from-pink-50 via-white to-rose-50 dark:from-pink-900/20 dark:via-transparent dark:to-rose-900/20 p-8 md:p-10 rounded-2xl border border-pink-200/50 dark:border-pink-800/30 shadow-lg hover:shadow-xl transition-shadow">
@@ -123,8 +125,8 @@ const Home = async () => {
                   count={1}
                   height={30}
                   loading={false}
-                  error={storeCustomizationError}
-                  data={storeCustomizationSetting?.home?.popular_title}
+                  error={resolvedStoreCustomization ? null : storeCustomizationError}
+                  data={resolvedStoreCustomization?.home?.popular_title}
                 />
               </h2>
               <div className="h-1 w-16 bg-gradient-to-r from-pink-400 to-rose-400 mx-auto mb-6 rounded-full"></div>
@@ -133,8 +135,8 @@ const Home = async () => {
                   count={5}
                   height={10}
                   loading={false}
-                  error={storeCustomizationError}
-                  data={storeCustomizationSetting?.home?.popular_description}
+                  error={resolvedStoreCustomization ? null : storeCustomizationError}
+                  data={resolvedStoreCustomization?.home?.popular_description}
                 />
               </p>
             </div>
@@ -153,7 +155,7 @@ const Home = async () => {
                   {popularProducts
                     ?.slice(
                       0,
-                      storeCustomizationSetting?.home
+                      resolvedStoreCustomization?.home
                         ?.latest_discount_product_limit
                     )
                     .map((product) => (
@@ -172,10 +174,10 @@ const Home = async () => {
       )}
 
       {/* promotional banner card */}
-      {storeCustomizationSetting?.home?.delivery_status && (
+      {resolvedStoreCustomization?.home?.delivery_status && (
         <div className="block mx-auto max-w-screen-2xl mt-10 lg:mt-16">
           <div className="mx-auto max-w-screen-2xl px-3 sm:px-10">
-            <CardTwo />
+            <CardTwo storeCustomizationSetting={resolvedStoreCustomization} />
           </div>
         </div>
       )}
@@ -201,7 +203,7 @@ const Home = async () => {
       )}
 
       {/* discounted products */}
-      {storeCustomizationSetting?.home?.discount_product_status &&
+      {resolvedStoreCustomization?.home?.discount_product_status &&
         discountedProducts?.length > 0 && (
           <div
             id="discount"
@@ -214,10 +216,8 @@ const Home = async () => {
                     count={1}
                     height={30}
                     loading={false}
-                    error={storeCustomizationError}
-                    data={
-                      storeCustomizationSetting?.home?.latest_discount_title
-                    }
+                    error={resolvedStoreCustomization ? null : storeCustomizationError}
+                    data={resolvedStoreCustomization?.home?.latest_discount_title}
                   />
                 </h2>
                 <div className="h-1 w-16 bg-gradient-to-r from-amber-400 to-orange-400 mx-auto mb-6 rounded-full"></div>
@@ -226,11 +226,8 @@ const Home = async () => {
                     count={5}
                     height={20}
                     loading={false}
-                    error={storeCustomizationError}
-                    data={
-                      storeCustomizationSetting?.home
-                        ?.latest_discount_description
-                    }
+                    error={resolvedStoreCustomization ? null : storeCustomizationError}
+                    data={resolvedStoreCustomization?.home?.latest_discount_description}
                   />
                 </p>
               </div>
@@ -241,7 +238,7 @@ const Home = async () => {
                   {discountedProducts
                     ?.slice(
                       0,
-                      storeCustomizationSetting?.home?.popular_product_limit
+                      resolvedStoreCustomization?.home?.popular_product_limit
                     )
                     .map((product) => (
                       <DiscountedCard

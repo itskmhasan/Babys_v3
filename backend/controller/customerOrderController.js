@@ -14,6 +14,8 @@ const { handleCreateInvoice } = require("../lib/email-sender/create");
 const { handleProductQuantity } = require("../lib/stock-controller/others");
 const customerInvoiceEmailBody = require("../lib/email-sender/templates/order-to-customer");
 
+const INVOICE_CURRENCY = "BDT ";
+
 const addOrder = async (req, res) => {
   // console.log("addOrder", req.body);
   // console.log("req.user._id", req.user._id);
@@ -269,6 +271,7 @@ const getOrderById = async (req, res) => {
 
 const sendEmailInvoiceToCustomer = async (req, res) => {
   try {
+    const defaultInvoiceLogo = "https://babys.com.bd/logo/Babys_3D_Bright.png";
     const user = req.body.user_info;
     // Validate email using MailChecker
     // Validate email using MailChecker
@@ -291,9 +294,9 @@ const sendEmailInvoiceToCustomer = async (req, res) => {
       total: req.body.total,
       discount: req.body.discount,
       shipping: req.body.shippingCost,
-      currency: req.body.company_info.currency,
+      currency: INVOICE_CURRENCY,
       company_name: req.body.company_info.company,
-      company_logo: req.body.company_info.logo,
+      company_logo: req.body.company_info.logo || defaultInvoiceLogo,
       company_address: req.body.company_info.address,
       company_phone: req.body.company_info.phone,
       company_email: req.body.company_info.email,
