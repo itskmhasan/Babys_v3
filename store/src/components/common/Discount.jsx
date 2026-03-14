@@ -1,20 +1,22 @@
 import useUtilsFunction from "@hooks/useUtilsFunction";
+import { getDiscountPercentage, normalizePricePair } from "@utils/price";
 
 const Discount = ({ discount, product, slug, modal }) => {
   const { getNumber } = useUtilsFunction();
 
-  const price = product?.isCombination
+  const rawPrice = product?.isCombination
     ? getNumber(product?.variants?.[0]?.price)
     : getNumber(product?.prices?.price);
 
-  const originalPrice = product?.isCombination
+  const rawOriginalPrice = product?.isCombination
     ? getNumber(product?.variants?.[0]?.originalPrice)
     : getNumber(product?.prices?.originalPrice);
 
-  const discountPercentage =
-    originalPrice > 0
-      ? Math.round(((originalPrice - price) / originalPrice) * 100)
-      : 0;
+  const normalized = normalizePricePair(rawPrice, rawOriginalPrice);
+  const discountPercentage = getDiscountPercentage(
+    normalized.price,
+    normalized.originalPrice
+  );
 
   return (
     <>

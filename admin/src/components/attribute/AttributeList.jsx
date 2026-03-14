@@ -1,13 +1,20 @@
 import { TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import useUtilsFunction from "@/hooks/useUtilsFunction";
+import { normalizePricePair } from "@/utils/price";
 
 const AttributeList = ({ variants, variantTitle }) => {
   const { showingTranslateValue, currency, getNumberTwo } = useUtilsFunction();
   return (
     <>
       <TableBody>
-        {variants?.map((variant, i) => (
+        {variants?.map((variant, i) => {
+          const normalizedPrice = normalizePricePair(
+            variant?.price,
+            variant?.originalPrice
+          );
+
+          return (
           <TableRow key={i + 1}>
             <TableCell className="font-semibold uppercase text-xs">
               {i + 1}
@@ -65,18 +72,19 @@ const AttributeList = ({ variants, variantTitle }) => {
 
             <TableCell className="font-semibold uppercase text-xs">
               {currency}
-              {getNumberTwo(variant.originalPrice)}
+              {getNumberTwo(normalizedPrice.originalPrice)}
             </TableCell>
             <TableCell className="font-semibold uppercase text-xs">
               {currency}
-              {getNumberTwo(variant.price)}
+              {getNumberTwo(normalizedPrice.price)}
             </TableCell>
 
             <TableCell className="font-semibold uppercase text-xs">
               {variant.quantity}
             </TableCell>
           </TableRow>
-        ))}
+          );
+        })}
       </TableBody>
     </>
   );

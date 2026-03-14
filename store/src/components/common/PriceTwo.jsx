@@ -1,8 +1,13 @@
 import useUtilsFunction from "@hooks/useUtilsFunction";
+import { normalizePricePair } from "@utils/price";
 
 const Price = ({ product, price, card, currency, originalPrice }) => {
   // console.log("price", price, "originalPrice", originalPrice, "card", card);
   const { getNumberTwo } = useUtilsFunction();
+  const normalized = normalizePricePair(
+    price ?? product?.prices?.price,
+    originalPrice ?? product?.prices?.originalPrice
+  );
 
   return (
     <div className="product-price font-bold">
@@ -16,9 +21,9 @@ const Price = ({ product, price, card, currency, originalPrice }) => {
             }
           >
             {currency}
-            {getNumberTwo(price)}
+            {getNumberTwo(normalized.price)}
           </span>
-          {originalPrice > price ? (
+          {normalized.hasDiscount ? (
             <>
               <del
                 className={
@@ -28,7 +33,7 @@ const Price = ({ product, price, card, currency, originalPrice }) => {
                 }
               >
                 {currency}
-                {getNumberTwo(originalPrice)}
+                {getNumberTwo(normalized.originalPrice)}
               </del>
             </>
           ) : null}
@@ -39,7 +44,7 @@ const Price = ({ product, price, card, currency, originalPrice }) => {
             <div className="flex items-center justify-between">
               <div className="text-xs text-gray-500">Originally:</div>
               <div className="text-xs text-gray-500 font-semibold">
-                {originalPrice > price ? (
+                {normalized.hasDiscount ? (
                   <>
                     <del
                       className={
@@ -49,7 +54,7 @@ const Price = ({ product, price, card, currency, originalPrice }) => {
                       }
                     >
                       {currency}
-                      {getNumberTwo(originalPrice)}
+                      {getNumberTwo(normalized.originalPrice)}
                     </del>
                   </>
                 ) : null}
@@ -71,7 +76,7 @@ const Price = ({ product, price, card, currency, originalPrice }) => {
                   }
                 >
                   {currency}
-                  {getNumberTwo(product?.prices?.price)}
+                  {getNumberTwo(normalized.price)}
                 </span>
               </div>
             </div>

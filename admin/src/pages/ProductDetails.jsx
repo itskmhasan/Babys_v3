@@ -27,6 +27,7 @@ import ProductDrawer from "@/components/drawer/ProductDrawer";
 import Loading from "@/components/preloader/Loading";
 import PageTitle from "@/components/Typography/PageTitle";
 import { SidebarContext } from "@/context/SidebarContext";
+import { normalizePricePair } from "@/utils/price";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -42,6 +43,10 @@ const ProductDetails = () => {
 
   const { handleChangePage, totalResults, resultsPerPage, dataTable } =
     useFilter(data?.variants);
+  const normalizedMainPrice = normalizePricePair(
+    data?.prices?.price,
+    data?.prices?.originalPrice
+  );
   // console.log('data',data)
 
   useEffect(() => {
@@ -116,11 +121,11 @@ const ProductDetails = () => {
               <div className="font-serif product-price font-bold dark:text-gray-400">
                 <span className="inline-block text-2xl">
                   {currency}
-                  {getNumberTwo(data?.prices?.price)}
-                  {data?.prices?.discount >= 1 && (
+                  {getNumberTwo(normalizedMainPrice.price)}
+                  {normalizedMainPrice.hasDiscount && (
                     <del className="text-gray-400 dark:text-gray-500 text-lg pl-2">
                       {currency}
-                      {getNumberTwo(data?.prices?.originalPrice)}
+                      {getNumberTwo(normalizedMainPrice.originalPrice)}
                     </del>
                   )}
                 </span>

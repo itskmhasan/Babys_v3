@@ -14,6 +14,7 @@ import Tooltip from "@/components/tooltip/Tooltip";
 import useToggleDrawer from "@/hooks/useToggleDrawer";
 import useUtilsFunction from "@/hooks/useUtilsFunction";
 import { useAction } from "@/context/ActionContext";
+import { normalizePricePair } from "@/utils/price";
 
 //internal import
 
@@ -25,7 +26,17 @@ const ProductTable = ({ products }) => {
   return (
     <>
       <TableBody>
-        {products?.map((product, i) => (
+        {products?.map((product, i) => {
+          const normalizedPrice = normalizePricePair(
+            product?.isCombination
+              ? product?.variants?.[0]?.price
+              : product?.prices?.price,
+            product?.isCombination
+              ? product?.variants?.[0]?.originalPrice
+              : product?.prices?.originalPrice
+          );
+
+          return (
           <TableRow key={i + 1}>
             <TableCell>
               <CheckBox
@@ -74,18 +85,14 @@ const ProductTable = ({ products }) => {
             <TableCell>
               <span className="text-sm font-semibold">
                 {currency}
-                {product?.isCombination
-                  ? getNumberTwo(product?.variants[0]?.originalPrice)
-                  : getNumberTwo(product?.prices?.originalPrice)}
+                {getNumberTwo(normalizedPrice.originalPrice)}
               </span>
             </TableCell>
 
             <TableCell>
               <span className="text-sm font-semibold">
                 {currency}
-                {product?.isCombination
-                  ? getNumberTwo(product?.variants[0]?.price)
-                  : getNumberTwo(product?.prices?.price)}
+                {getNumberTwo(normalizedPrice.price)}
               </span>
             </TableCell>
 
@@ -127,7 +134,8 @@ const ProductTable = ({ products }) => {
               />
             </TableCell>
           </TableRow>
-        ))}
+          );
+        })}
       </TableBody>
     </>
   );

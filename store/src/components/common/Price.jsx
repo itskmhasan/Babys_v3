@@ -1,19 +1,12 @@
 import useUtilsFunction from "@hooks/useUtilsFunction";
+import { normalizePricePair } from "@utils/price";
 
 const Price = ({ product, price, card, originalPrice, currency }) => {
   const { getNumberTwo } = useUtilsFunction();
-
-  // From "second design" logic
-  const isCombo = product?.isCombination;
-  const finalPrice = isCombo
-    ? getNumberTwo(price)
-    : getNumberTwo(product?.prices?.price);
-  const baseOriginalPrice = getNumberTwo(originalPrice);
-  const discountAmount = originalPrice > price ? originalPrice - price : 0;
-  const discountPercent =
-    originalPrice > price
-      ? ((discountAmount / originalPrice) * 100).toFixed(2)
-      : 0;
+  const normalized = normalizePricePair(
+    price ?? product?.prices?.price,
+    originalPrice ?? product?.prices?.originalPrice
+  );
 
   return (
     <>
@@ -26,9 +19,9 @@ const Price = ({ product, price, card, originalPrice, currency }) => {
           }`}
         >
           {currency}
-          {finalPrice}
+          {getNumberTwo(normalized.price)}
         </span>
-        {discountAmount > 0 && (
+        {normalized.hasDiscount && (
           <span
             className={
               card
@@ -37,17 +30,10 @@ const Price = ({ product, price, card, originalPrice, currency }) => {
             }
           >
             {currency}
-            {baseOriginalPrice}
+            {getNumberTwo(normalized.originalPrice)}
           </span>
         )}
       </div>
-
-      {/* {discountAmount > 0 && !card && (
-        <p className="text-xs text-emerald-600">
-          Save {currency}
-          {getNumberTwo(discountAmount)} ({discountPercent}% off)
-        </p>
-      )} */}
     </>
   );
 };

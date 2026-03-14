@@ -17,6 +17,7 @@ import Rating from "@components/common/Rating";
 import useUtilsFunction from "@hooks/useUtilsFunction";
 import ProductModal from "@components/modal/ProductModal";
 import ImageWithFallback from "@components/common/ImageWithFallBack";
+import { normalizePricePair } from "@utils/price";
 
 const DiscountedCard = ({ product, attributes, currency }) => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -35,13 +36,17 @@ const DiscountedCard = ({ product, attributes, currency }) => {
     }
     const { slug, variants, categories, description, ...updatedProduct } =
       product;
+    const normalizedPrice = normalizePricePair(
+      p?.prices?.price,
+      p?.prices?.originalPrice
+    );
     const newItem = {
       ...updatedProduct,
       title: showingTranslateValue(p?.title),
       id: p._id,
       variant: p.prices,
-      price: p.prices.price,
-      originalPrice: product.prices?.originalPrice,
+      price: normalizedPrice.price,
+      originalPrice: normalizedPrice.originalPrice,
     };
     addItem(newItem);
   };

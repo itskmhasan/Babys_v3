@@ -4,6 +4,7 @@ import { SidebarContext } from "@context/SidebarContext";
 import useAddToCart from "@hooks/useAddToCart";
 import { notifyError } from "@utils/toast";
 import useUtilsFunction from "@hooks/useUtilsFunction";
+import { getDiscountPercentage, normalizePricePair } from "@utils/price";
 
 export default function useProductAction({
   product,
@@ -79,14 +80,20 @@ export default function useProductAction({
       setSelectVa(result2);
       setSelectedImage(result2?.image);
       setStock(result2?.quantity);
-      const price = getNumber(result2?.price);
-      const originalPrice = getNumber(result2?.originalPrice);
-      const discountPercentage = getNumber(
-        ((originalPrice - price) / originalPrice) * 100
+      const normalizedPrice = normalizePricePair(
+        result2?.price,
+        result2?.originalPrice
       );
-      setDiscount(getNumber(discountPercentage));
-      setPrice(price);
-      setOriginalPrice(originalPrice);
+      setDiscount(
+        getNumber(
+          getDiscountPercentage(
+            normalizedPrice.price,
+            normalizedPrice.originalPrice
+          )
+        )
+      );
+      setPrice(normalizedPrice.price);
+      setOriginalPrice(normalizedPrice.originalPrice);
     } else if (product?.variants?.length > 0) {
       const result = product?.variants?.filter((variant) =>
         Object.keys(selectVa).every((k) => selectVa[k] === variant[k])
@@ -97,25 +104,37 @@ export default function useProductAction({
       setSelectVariant(product.variants[0]);
       setSelectVa(product.variants[0]);
       setSelectedImage(product.variants[0]?.image);
-      const price = getNumber(product.variants[0]?.price);
-      const originalPrice = getNumber(product.variants[0]?.originalPrice);
-      const discountPercentage = getNumber(
-        ((originalPrice - price) / originalPrice) * 100
+      const normalizedPrice = normalizePricePair(
+        product.variants[0]?.price,
+        product.variants[0]?.originalPrice
       );
-      setDiscount(getNumber(discountPercentage));
-      setPrice(price);
-      setOriginalPrice(originalPrice);
+      setDiscount(
+        getNumber(
+          getDiscountPercentage(
+            normalizedPrice.price,
+            normalizedPrice.originalPrice
+          )
+        )
+      );
+      setPrice(normalizedPrice.price);
+      setOriginalPrice(normalizedPrice.originalPrice);
     } else {
       setStock(product?.stock);
       setSelectedImage(product?.image[0]);
-      const price = getNumber(product?.prices?.price);
-      const originalPrice = getNumber(product?.prices?.originalPrice);
-      const discountPercentage = getNumber(
-        ((originalPrice - price) / originalPrice) * 100
+      const normalizedPrice = normalizePricePair(
+        product?.prices?.price,
+        product?.prices?.originalPrice
       );
-      setDiscount(getNumber(discountPercentage));
-      setPrice(price);
-      setOriginalPrice(originalPrice);
+      setDiscount(
+        getNumber(
+          getDiscountPercentage(
+            normalizedPrice.price,
+            normalizedPrice.originalPrice
+          )
+        )
+      );
+      setPrice(normalizedPrice.price);
+      setOriginalPrice(normalizedPrice.originalPrice);
     }
   }, [
     product?.prices?.discount,
@@ -156,6 +175,10 @@ export default function useProductAction({
       )
     ) {
       const { variants, categories, description, ...updatedProduct } = product;
+      const basePrice = normalizePricePair(
+        product.prices.price,
+        product.prices.originalPrice
+      );
       const newItem = {
         ...updatedProduct,
         id:
@@ -172,11 +195,11 @@ export default function useProductAction({
         variant: selectVariant || {},
         price:
           product.variants.length === 0
-            ? getNumber(product.prices.price)
+            ? getNumber(basePrice.price)
             : getNumber(price),
         originalPrice:
           product.variants.length === 0
-            ? getNumber(product.prices.originalPrice)
+            ? getNumber(basePrice.originalPrice)
             : getNumber(originalPrice),
       };
 
