@@ -25,7 +25,33 @@ export async function generateMetadata() {
   const resolvedStoreCustomization =
     storeCustomizationSetting || fallbackStoreCustomization;
   const resolvedSeo = resolvedStoreCustomization?.seo || seoSetting?.seo || {};
-  const favicon = resolvedSeo?.favicon || "/favicon.png";
+  const resolveFavicon = (value) => {
+    const fallback = "/favicon.png";
+
+    if (!value || typeof value !== "string") {
+      return fallback;
+    }
+
+    const normalized = value.trim();
+
+    if (!normalized || normalized.includes("/undefined/") || normalized.includes("/null/")) {
+      return fallback;
+    }
+
+    if (normalized.startsWith("/")) {
+      return normalized;
+    }
+
+    try {
+      const parsed = new URL(normalized);
+      const isHttp = parsed.protocol === "https:" || parsed.protocol === "http:";
+      return isHttp ? normalized : fallback;
+    } catch (error) {
+      return fallback;
+    }
+  };
+
+  const favicon = resolveFavicon(resolvedSeo?.favicon);
   const metaUrl = resolvedSeo?.meta_url || "https://babys.com.bd";
   const metaTitle =
     resolvedSeo?.meta_title ||
