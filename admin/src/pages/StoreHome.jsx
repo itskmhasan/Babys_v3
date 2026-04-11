@@ -19,6 +19,7 @@ import SinglePage from "@/components/store-home/SinglePage";
 import Checkout from "@/components/store-home/Checkout";
 import SeoSetting from "@/components/settings/SeoSetting";
 import DashboardSetting from "@/components/store-home/DashboardSetting";
+import NavbarSetting from "@/components/store-home/NavbarSetting";
 import SelectLanguageTwo from "@/components/form/selectOption/SelectLanguageTwo";
 import AnimatedContent from "@/components/common/AnimatedContent";
 import { languages } from "@/utils/data";
@@ -235,6 +236,8 @@ const StoreHome = () => {
       setTabIndex(3);
     } else if (tabName === "about-us-setting") {
       setTabIndex(2);
+    } else if (tabName === "navbar-setting") {
+      setTabIndex(1);
     } else if (tabName === "single-setting") {
       setTabIndex(1);
     } else {
@@ -303,6 +306,24 @@ const StoreHome = () => {
                 {tabName === "home-settings" || location.search === ""
                   ? "Home"
                   : "Home"}
+              </span>
+            </Link>
+          </li>
+
+          <li>
+            <Link
+              to={"/store/customization?storeTab=navbar-setting"}
+              className={`inline-block w-full py-3 px-4 shadow-md ${
+                tabName === "navbar-setting"
+                  ? "bg-emerald-500 text-white dark:bg-emerald-500 dark:text-white"
+                  : "bg-gray-200 text-gray-800 font-medium dark:bg-gray-600 dark:text-gray-300"
+              } hover:text-white hover:bg-emerald-500 focus:outline-none dark:hover:text-white dark:hover:bg-emerald-500`}
+            >
+              <span className="text-sm font-medium font-serif xl:inline-block hidden">
+                Navbar
+              </span>
+              <span className="text-sm font-medium font-serif xl:hidden">
+                Navbar
               </span>
             </Link>
           </li>
@@ -581,6 +602,43 @@ const StoreHome = () => {
         {/************ TabPanel 1 END************/}
 
         {/************* TabPanel 2*************/}
+        {tabName === "navbar-setting" && (
+          <AnimatedContent>
+            <div className="sm:container md:p-6 p-4 mx-auto bg-white dark:bg-gray-800 dark:text-gray-200 rounded-lg">
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <NavbarSetting
+                  register={register}
+                  errors={errors}
+                  footerLogo={footerLogo}
+                  setFooterLogo={setFooterLogo}
+                  footerTopImageOne={footerTopImageOne}
+                  setFooterTopImageOne={setFooterTopImageOne}
+                  footerTopImageTwo={footerTopImageTwo}
+                  setFooterTopImageTwo={setFooterTopImageTwo}
+                  footerTopImageThree={footerTopImageThree}
+                  setFooterTopImageThree={setFooterTopImageThree}
+                  paymentImage={paymentImage}
+                  setPaymentImage={setPaymentImage}
+                  footerBlock1={footerBlock1}
+                  setFooterBlock1={setFooterBlock1}
+                  footerBlock2={footerBlock2}
+                  setFooterBlock2={setFooterBlock2}
+                  footerBlock3={footerBlock3}
+                  setFooterBlock3={setFooterBlock3}
+                  footerBlock4={footerBlock4}
+                  setFooterBlock4={setFooterBlock4}
+                  footerSocialLinks={footerSocialLinks}
+                  setFooterSocialLinks={setFooterSocialLinks}
+                  footerPaymentMethod={footerPaymentMethod}
+                  setFooterPaymentMethod={setFooterPaymentMethod}
+                  footerBottomContact={footerBottomContact}
+                  setFooterBottomContact={setFooterBottomContact}
+                />
+              </form>
+            </div>
+          </AnimatedContent>
+        )}
+
         {tabName === "single-setting" && (
           <AnimatedContent>
             <div className="sm:container w-full md:p-6 p-4 mx-auto bg-white dark:bg-gray-800 dark:text-gray-200 rounded-lg">

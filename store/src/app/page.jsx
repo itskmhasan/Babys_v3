@@ -22,7 +22,8 @@ import {
 import DiscountedCard from "@components/product/DiscountedCard";
 import { storeCustomization as fallbackStoreCustomization } from "@utils/storeCustomizationSetting";
 
-export const revalidate = 300;
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 const Home = async () => {
   const { attributes } = await getShowingAttributes();

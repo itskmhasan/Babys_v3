@@ -1509,7 +1509,7 @@ const HomePage = ({
         </div>
 
         {/*  ====================================================== Latest Discounted Products ====================================================== */}
-        <div className="col-span-12 md:col-span-12 lg:col-span-12 md:mt-0 mt-10">
+        <div className="hidden col-span-12 md:col-span-12 lg:col-span-12 md:mt-0 mt-10">
           <div className="inline-flex md:text-lg text-base text-gray-800 font-semibold dark:text-gray-400 mb-3">
             <FiSettings className="mt-1 mr-2" />{" "}
             {t("LatestDiscountedProductsTitle")}
