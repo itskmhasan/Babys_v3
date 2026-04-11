@@ -13,6 +13,7 @@ dns.setDefaultResultOrder("verbatim");
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), "");
   const configuredBasePath = env.VITE_APP_BASE_PATH || "/";
+  const enableAdminPwa = env.VITE_ENABLE_ADMIN_PWA === "true";
   const basePath = configuredBasePath.endsWith("/")
     ? configuredBasePath
     : `${configuredBasePath}/`;
@@ -32,6 +33,7 @@ export default defineConfig(({ mode }) => {
       cssInjectedByJsPlugin(),
 
       VitePWA({
+        disable: !enableAdminPwa,
         registerType: "autoUpdate",
         devOptions: {
           // enabled: process.env.SW_DEV === "true",

@@ -60,8 +60,23 @@ instance.interceptors.request.use(
 const responseBody = (response) => response.data;
 
 const requests = {
-  get: (url, body, headers) =>
-    instance.get(url, body, headers).then(responseBody),
+  get: (url, config = {}) => {
+    const mergedConfig = {
+      ...config,
+      headers: {
+        ...(config.headers || {}),
+        "Cache-Control": "no-cache, no-store, must-revalidate",
+        Pragma: "no-cache",
+        Expires: "0",
+      },
+      params: {
+        ...(config.params || {}),
+        _t: Date.now(),
+      },
+    };
+
+    return instance.get(url, mergedConfig).then(responseBody);
+  },
 
   post: (url, body) => instance.post(url, body).then(responseBody),
 

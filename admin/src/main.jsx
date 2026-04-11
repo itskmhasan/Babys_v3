@@ -1,6 +1,5 @@
 import React, { Suspense } from "react";
 import ReactDOM from "react-dom/client";
-import { registerSW } from "virtual:pwa-register";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { persistStore } from "redux-persist";
@@ -22,13 +21,19 @@ import { ThemeProvider } from "./context/ThemeContext";
 
 // this is version 3
 
-const updateSW = registerSW({
-  onNeedRefresh() {
-    if (confirm("New content available. Reload?")) {
-      updateSW(true);
-    }
-  },
-});
+// Admin should always serve the latest dashboard bundle, so remove old SW caches.
+if (typeof window !== "undefined" && "serviceWorker" in navigator) {
+  navigator.serviceWorker.getRegistrations().then((registrations) => {
+    registrations.forEach((registration) => registration.unregister());
+  });
+
+  if (window.caches?.keys) {
+    window.caches.keys().then((cacheNames) => {
+      cacheNames.forEach((cacheName) => window.caches.delete(cacheName));
+    });
+  }
+}
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
