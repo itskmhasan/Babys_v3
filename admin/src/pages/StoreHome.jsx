@@ -236,7 +236,7 @@ const StoreHome = () => {
       setTabIndex(3);
     } else if (tabName === "about-us-setting") {
       setTabIndex(2);
-    } else if (tabName === "navbar-setting") {
+    } else if (tabName === "footer-setting") {
       setTabIndex(1);
     } else if (tabName === "single-setting") {
       setTabIndex(1);
@@ -312,18 +312,18 @@ const StoreHome = () => {
 
           <li>
             <Link
-              to={"/store/customization?storeTab=navbar-setting"}
+              to={"/store/customization?storeTab=footer-setting"}
               className={`inline-block w-full py-3 px-4 shadow-md ${
-                tabName === "navbar-setting"
+                tabName === "footer-setting"
                   ? "bg-emerald-500 text-white dark:bg-emerald-500 dark:text-white"
                   : "bg-gray-200 text-gray-800 font-medium dark:bg-gray-600 dark:text-gray-300"
               } hover:text-white hover:bg-emerald-500 focus:outline-none dark:hover:text-white dark:hover:bg-emerald-500`}
             >
               <span className="text-sm font-medium font-serif xl:inline-block hidden">
-                Navbar
+                Footer
               </span>
               <span className="text-sm font-medium font-serif xl:hidden">
-                Navbar
+                Footer
               </span>
             </Link>
           </li>
@@ -602,7 +602,7 @@ const StoreHome = () => {
         {/************ TabPanel 1 END************/}
 
         {/************* TabPanel 2*************/}
-        {tabName === "navbar-setting" && (
+        {tabName === "footer-setting" && (
           <AnimatedContent>
             <div className="sm:container md:p-6 p-4 mx-auto bg-white dark:bg-gray-800 dark:text-gray-200 rounded-lg">
               <form onSubmit={handleSubmit(onSubmit)}>
@@ -633,6 +633,8 @@ const StoreHome = () => {
                   setFooterPaymentMethod={setFooterPaymentMethod}
                   footerBottomContact={footerBottomContact}
                   setFooterBottomContact={setFooterBottomContact}
+                  isSave={isSave}
+                  isSubmitting={isSubmitting}
                 />
               </form>
             </div>

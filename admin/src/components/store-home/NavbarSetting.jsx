@@ -1,10 +1,13 @@
 import { FiSettings } from "react-icons/fi";
+import { useTranslation } from "react-i18next";
 
 //internal import
 import Error from "@/components/form/others/Error";
 import Uploader from "@/components/image-uploader/Uploader";
 import InputAreaTwo from "@/components/form/input/InputAreaTwo";
 import SwitchToggle from "@/components/form/switch/SwitchToggle";
+import spinnerLoadingImage from "@/assets/img/spinner.gif";
+import { Button } from "../ui/button";
 
 const NavbarSetting = ({
   register,
@@ -33,7 +36,11 @@ const NavbarSetting = ({
   setFooterPaymentMethod,
   footerBottomContact,
   setFooterBottomContact,
+  isSave,
+  isSubmitting,
 }) => {
+  const { t } = useTranslation();
+
   const renderField = (label, name, placeholder) => (
     <div className="grid md:grid-cols-5 sm:grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 md:mb-6 mb-3">
       <label className="block md:text-sm md:col-span-1 sm:col-span-2 text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1">
@@ -65,8 +72,26 @@ const NavbarSetting = ({
 
   return (
     <div className="col-span-12 md:col-span-12 lg:col-span-12 md:mt-0 mt-10">
+      <div className="sticky top-0 z-20 flex justify-end">
+        {isSubmitting ? (
+          <Button disabled={true} type="button" className="h-10 px-6">
+            <img
+              src={spinnerLoadingImage}
+              alt="Loading"
+              width={20}
+              height={10}
+            />{" "}
+            <span className="font-serif ml-2 font-light">{t("Processing")}</span>
+          </Button>
+        ) : (
+          <Button type="submit" className="h-10 px-6 ">
+            {isSave ? t("SaveBtn") : t("UpdateBtn")}
+          </Button>
+        )}
+      </div>
+
       <div className="inline-flex md:text-lg text-base text-gray-800 font-semibold dark:text-gray-400 mb-3">
-        <FiSettings className="mt-1 mr-2" /> Navbar Settings
+        <FiSettings className="mt-1 mr-2" /> Footer Settings
       </div>
 
       <hr className="md:mb-12 mb-3" />
