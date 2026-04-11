@@ -277,7 +277,12 @@ const NavbarSetting = ({
               PaymentMethod
             </label>
             <div className="sm:col-span-4">
-              <Uploader imageUrl={paymentImage} setImageUrl={setPaymentImage} />
+              <Uploader
+                imageUrl={paymentImage}
+                setImageUrl={setPaymentImage}
+                targetWidth={1055}
+                targetHeight={140}
+              />
             </div>
           </div>
         </div>

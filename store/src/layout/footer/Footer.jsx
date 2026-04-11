@@ -84,7 +84,7 @@ const Footer = async ({ error, storeCustomizationSetting }) => {
 
         {showPaymentMethod && (
           <div className="mb-6">
-            <div className="relative mx-auto w-full max-w-4xl h-20 sm:h-24 lg:h-28">
+            <div className="relative mx-auto w-full max-w-[1055px] aspect-[1055/140]">
               <Image
                 fill
                 className="object-contain"
