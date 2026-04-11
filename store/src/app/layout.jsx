@@ -26,6 +26,7 @@ export async function generateMetadata() {
     storeCustomizationSetting || fallbackStoreCustomization;
   const resolvedSeo = resolvedStoreCustomization?.seo || seoSetting?.seo || {};
   const favicon = resolvedSeo?.favicon || "/favicon.png";
+  const metaUrl = resolvedSeo?.meta_url || "https://babys.com.bd";
   const metaTitle =
     resolvedSeo?.meta_title ||
     "Babys | Best Shop for Moms and Babies - e-commerce Store";
@@ -34,7 +35,24 @@ export async function generateMetadata() {
     "Babys - Best Shop for Moms and Babies. Premium products for mothers and babies with fast delivery and special offers.";
   const metaImage = resolvedSeo?.meta_img || "/og-image.jpg";
 
+  const metadataBase = (() => {
+    try {
+      return new URL(metaUrl);
+    } catch (error) {
+      return new URL("https://babys.com.bd");
+    }
+  })();
+
+  const resolvedMetaImage = (() => {
+    try {
+      return new URL(metaImage, metadataBase).toString();
+    } catch (error) {
+      return new URL("/og-image.jpg", metadataBase).toString();
+    }
+  })();
+
   return {
+    metadataBase,
     title: {
       default: metaTitle,
       template: `%s | ${metaTitle}`,
@@ -44,13 +62,14 @@ export async function generateMetadata() {
     openGraph: {
       title: metaTitle,
       description: metaDescription,
-      images: [{ url: metaImage }],
+      url: metadataBase.toString(),
+      images: [{ url: resolvedMetaImage }],
     },
     twitter: {
       card: "summary_large_image",
       title: metaTitle,
       description: metaDescription,
-      images: [metaImage],
+      images: [resolvedMetaImage],
     },
     icons: {
       icon: [{ url: favicon }],
