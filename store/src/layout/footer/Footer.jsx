@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { FiMail } from "react-icons/fi";
+import { cookies } from "next/headers";
 import {
   FaFacebookF,
   FaXTwitter,
@@ -18,6 +19,18 @@ import { getUserServerSession } from "@lib/auth-server";
 const Footer = async ({ error, storeCustomizationSetting }) => {
   const footer = storeCustomizationSetting?.footer;
   const userInfo = await getUserServerSession();
+  const cookieStore = await cookies();
+  const lang = cookieStore.get("_lang")?.value || "en";
+  const copyrightYear = new Date().getFullYear();
+  const copyrightTextRaw =
+    footer?.copyright_text?.[lang] ||
+    footer?.copyright_text?.en ||
+    "Copyright {{year}} @";
+  const copyrightTextTemplate =
+    copyrightTextRaw.replace(
+      "{{year}}",
+      String(copyrightYear)
+    );
 
   // console.log("userInfo", userInfo);
 
@@ -192,14 +205,21 @@ const Footer = async ({ error, storeCustomizationSetting }) => {
           )}
 
           <div>
-            <h3 className="text-2xl font-semibold text-gray-900 mb-5">Get in touch</h3>
+            <h3 className="text-2xl font-semibold text-gray-900 mb-5">
+              <CMSkeletonTwo
+                count={1}
+                height={20}
+                loading={false}
+                data={footer?.contact_title || { en: "Get in touch" }}
+              />
+            </h3>
             {footer?.block4_email && (
               <Link
                 href={`mailto:${footer?.block4_email}`}
                 className="inline-flex items-center gap-2 text-lg text-gray-800 hover:text-gray-600"
               >
                 <FiMail className="w-5 h-5" />
-                <span>Email us</span>
+                <span>{footer?.block4_email}</span>
               </Link>
             )}
 
@@ -226,7 +246,14 @@ const Footer = async ({ error, storeCustomizationSetting }) => {
                 footer?.social_linkedin ||
                 footer?.social_whatsapp)) && (
               <div className="mt-8">
-                <h4 className="text-xl font-semibold text-gray-900 mb-4">Follow us</h4>
+                <h4 className="text-xl font-semibold text-gray-900 mb-4">
+                  <CMSkeletonTwo
+                    count={1}
+                    height={16}
+                    loading={false}
+                    data={footer?.follow_title || { en: "Follow us" }}
+                  />
+                </h4>
                 <ul className="flex items-center gap-4 text-gray-800">
                   {footer?.social_facebook && (
                     <li>
@@ -299,7 +326,14 @@ const Footer = async ({ error, storeCustomizationSetting }) => {
           </div>
 
           <div>
-            <h3 className="text-2xl font-semibold text-gray-900 mb-5">We accept</h3>
+            <h3 className="text-2xl font-semibold text-gray-900 mb-5">
+              <CMSkeletonTwo
+                count={1}
+                height={20}
+                loading={false}
+                data={footer?.payment_title || { en: "We accept" }}
+              />
+            </h3>
             {footer?.payment_method_status && (
               <div className="relative w-full h-44 sm:h-48 lg:h-52 p-3">
                 <Image
@@ -317,14 +351,19 @@ const Footer = async ({ error, storeCustomizationSetting }) => {
 
         <div className="py-6 text-center">
           <p className="text-sm leading-7 text-gray-800">
-            Copyright {new Date().getFullYear()} @{" "}
+            {copyrightTextTemplate}{" "}
             <Link
-              href="#"
+              href={footer?.copyright_link || "#"}
               target="_blank"
               rel="noopener noreferrer"
               className="font-semibold"
             >
-              Baby's
+              <CMSkeletonTwo
+                count={1}
+                height={10}
+                loading={false}
+                data={footer?.copyright_label || { en: "Baby's" }}
+              />
             </Link>
             , All rights reserved.
           </p>

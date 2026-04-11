@@ -2393,6 +2393,54 @@ const HomePage = ({
                   <Error errorName={errors.footer_block_four_email} />
                 </div>
               </div>
+
+              <div className="grid md:grid-cols-5 sm:grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 md:mb-6 mb-3">
+                <label className="block md:text-sm md:col-span-1 sm:col-span-2 text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1">
+                  Footer Contact Title
+                </label>
+                <div className="sm:col-span-4">
+                  <InputAreaTwo
+                    register={register}
+                    label="Title"
+                    name="footer_contact_title"
+                    type="text"
+                    placeholder="Get in touch"
+                  />
+                  <Error errorName={errors.footer_contact_title} />
+                </div>
+              </div>
+
+              <div className="grid md:grid-cols-5 sm:grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 md:mb-6 mb-3">
+                <label className="block md:text-sm md:col-span-1 sm:col-span-2 text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1">
+                  Footer Follow Title
+                </label>
+                <div className="sm:col-span-4">
+                  <InputAreaTwo
+                    register={register}
+                    label="Title"
+                    name="footer_follow_title"
+                    type="text"
+                    placeholder="Follow us"
+                  />
+                  <Error errorName={errors.footer_follow_title} />
+                </div>
+              </div>
+
+              <div className="grid md:grid-cols-5 sm:grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 md:mb-6 mb-3">
+                <label className="block md:text-sm md:col-span-1 sm:col-span-2 text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1">
+                  Footer Payment Title
+                </label>
+                <div className="sm:col-span-4">
+                  <InputAreaTwo
+                    register={register}
+                    label="Title"
+                    name="footer_payment_title"
+                    type="text"
+                    placeholder="We accept"
+                  />
+                  <Error errorName={errors.footer_payment_title} />
+                </div>
+              </div>
             </div>
 
             <div className="inline-flex md:text-base text-sm mb-3 text-gray-500 dark:text-gray-400 relative mt-24 md:mt-0">
@@ -2595,6 +2643,54 @@ const HomePage = ({
                   placeholder={t("FooterBottomContact")}
                 />
                 <Error errorName={errors.footer_Bottom_Contact} />
+              </div>
+            </div>
+
+            <div className="grid md:grid-cols-5 sm:grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 md:mb-6 mb-3">
+              <label className="block md:text-sm md:col-span-1 sm:col-span-2 text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1">
+                Footer Copyright Text
+              </label>
+              <div className="sm:col-span-4">
+                <InputAreaTwo
+                  register={register}
+                  label="Title"
+                  name="footer_copyright_text"
+                  type="text"
+                  placeholder="Copyright {{year}} @"
+                />
+                <Error errorName={errors.footer_copyright_text} />
+              </div>
+            </div>
+
+            <div className="grid md:grid-cols-5 sm:grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 md:mb-6 mb-3">
+              <label className="block md:text-sm md:col-span-1 sm:col-span-2 text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1">
+                Footer Copyright Label
+              </label>
+              <div className="sm:col-span-4">
+                <InputAreaTwo
+                  register={register}
+                  label="Title"
+                  name="footer_copyright_label"
+                  type="text"
+                  placeholder="Baby's"
+                />
+                <Error errorName={errors.footer_copyright_label} />
+              </div>
+            </div>
+
+            <div className="grid md:grid-cols-5 sm:grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 md:mb-6 mb-3">
+              <label className="block md:text-sm md:col-span-1 sm:col-span-2 text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1">
+                Footer Copyright Link
+              </label>
+              <div className="sm:col-span-4">
+                <InputAreaTwo
+                  register={register}
+                  label="Title"
+                  name="footer_copyright_link"
+                  type="text"
+                  placeholder="https://babys.com.bd"
+                />
+                <Error errorName={errors.footer_copyright_link} />
               </div>
             </div>
           </div>

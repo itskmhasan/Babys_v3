@@ -830,6 +830,18 @@ export const storeCustomization = {
     },
     block4_phone: "02.356.1666",
     block4_email: "ccruidk@test.com",
+    contact_title: {
+      en: "Get in touch",
+      de: "Kontakt aufnehmen",
+    },
+    follow_title: {
+      en: "Follow us",
+      de: "Folgen Sie uns",
+    },
+    payment_title: {
+      en: "We accept",
+      de: "Wir akzeptieren",
+    },
     social_facebook: "https://www.facebook.com/",
     social_twitter: "https://twitter.com/",
     social_pinterest: "https://www.pinterest.com/",
@@ -838,6 +850,15 @@ export const storeCustomization = {
     payment_method_img:
       "https://res.cloudinary.com/ahossain/image/upload/v1697688607/settings/payment-logo_qhslgz.webp",
     bottom_contact: "+6599887766",
+    copyright_text: {
+      en: "Copyright {{year}} @",
+      de: "Urheberrecht {{year}} @",
+    },
+    copyright_label: {
+      en: "Baby's",
+      de: "Baby's",
+    },
+    copyright_link: "#",
   },
   slug: {
     right_box_status: true,

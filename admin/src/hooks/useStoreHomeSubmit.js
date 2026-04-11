@@ -1019,6 +1019,27 @@ const useStoreHomeSubmit = () => {
             payment_method_img: paymentImage,
             block4_phone: data.footer_block_four_phone,
             block4_email: data.footer_block_four_email,
+            contact_title: handleRemoveEmptyKey({
+              ...resData?.footer?.contact_title,
+              [language]: data.footer_contact_title || "",
+            }),
+            follow_title: handleRemoveEmptyKey({
+              ...resData?.footer?.follow_title,
+              [language]: data.footer_follow_title || "",
+            }),
+            payment_title: handleRemoveEmptyKey({
+              ...resData?.footer?.payment_title,
+              [language]: data.footer_payment_title || "",
+            }),
+            copyright_text: handleRemoveEmptyKey({
+              ...resData?.footer?.copyright_text,
+              [language]: data.footer_copyright_text || "",
+            }),
+            copyright_label: handleRemoveEmptyKey({
+              ...resData?.footer?.copyright_label,
+              [language]: data.footer_copyright_label || "",
+            }),
+            copyright_link: data.footer_copyright_link,
             bottom_contact: data.footer_Bottom_Contact,
           },
           slug: {
@@ -1613,6 +1634,27 @@ const useStoreHomeSubmit = () => {
           setValue("social_pinterest", res?.footer?.social_pinterest);
           setValue("social_linkedin", res?.footer?.social_linkedin);
           setValue("social_whatsapp", res?.footer?.social_whatsapp);
+          setValue(
+            "footer_contact_title",
+            res?.footer?.contact_title?.[language || "en"]
+          );
+          setValue(
+            "footer_follow_title",
+            res?.footer?.follow_title?.[language || "en"]
+          );
+          setValue(
+            "footer_payment_title",
+            res?.footer?.payment_title?.[language || "en"]
+          );
+          setValue(
+            "footer_copyright_text",
+            res?.footer?.copyright_text?.[language || "en"]
+          );
+          setValue(
+            "footer_copyright_label",
+            res?.footer?.copyright_label?.[language || "en"]
+          );
+          setValue("footer_copyright_link", res?.footer?.copyright_link);
           setValue("footer_Bottom_Contact", res?.footer?.bottom_contact);
 
           // slug
