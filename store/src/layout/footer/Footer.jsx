@@ -98,30 +98,30 @@ const Footer = async ({ error, storeCustomizationSetting }) => {
         {showBlock4 && (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
             <div className="rounded-xl bg-white p-4 shadow-sm">
-              <div className="relative w-full h-24 sm:h-28">
+              <div className="relative w-full aspect-square min-h-[180px] sm:min-h-[220px] lg:min-h-[240px]">
                 <Image
                   fill
-                  className="object-contain"
+                  className="object-contain p-2"
                   src={footer?.top_image_one || footer?.block4_logo || "/logo/logo-color.svg"}
                   alt="footer support"
                 />
               </div>
             </div>
             <div className="rounded-xl bg-white p-4 shadow-sm">
-              <div className="relative w-full h-24 sm:h-28">
+              <div className="relative w-full aspect-square min-h-[180px] sm:min-h-[220px] lg:min-h-[240px]">
                 <Image
                   fill
-                  className="object-contain"
+                  className="object-contain p-2"
                   src={footer?.top_image_two || footer?.payment_method_img || "/payment-method/payment-logo.png"}
                   alt="footer payment"
                 />
               </div>
             </div>
             <div className="rounded-xl bg-white p-4 shadow-sm">
-              <div className="relative w-full h-24 sm:h-28">
+              <div className="relative w-full aspect-square min-h-[180px] sm:min-h-[220px] lg:min-h-[240px]">
                 <Image
                   fill
-                  className="object-contain"
+                  className="object-contain p-2"
                   src={footer?.top_image_three || footer?.block4_logo || "/logo/logo-color.svg"}
                   alt="footer contact"
                 />
