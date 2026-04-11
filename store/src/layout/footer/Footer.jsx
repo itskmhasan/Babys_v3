@@ -18,6 +18,16 @@ import { getUserServerSession } from "@lib/auth-server";
 
 const Footer = async ({ error, storeCustomizationSetting }) => {
   const footer = storeCustomizationSetting?.footer;
+  const isEnabled = (value) => value === true || value === "true";
+
+  const showBlock1 = isEnabled(footer?.block1_status);
+  const showBlock2 = isEnabled(footer?.block2_status);
+  const showBlock3 = isEnabled(footer?.block3_status);
+  const showBlock4 = isEnabled(footer?.block4_status);
+  const showPaymentMethod = isEnabled(footer?.payment_method_status);
+  const showSocialLinks = isEnabled(footer?.social_links_status);
+  const showBottomContact = isEnabled(footer?.bottom_contact_status);
+
   const userInfo = await getUserServerSession();
   const cookieStore = await cookies();
   const lang = cookieStore.get("_lang")?.value || "en";
@@ -59,18 +69,20 @@ const Footer = async ({ error, storeCustomizationSetting }) => {
   return (
     <div className="bg-slate-100 border-t border-slate-200">
       <div className="mx-auto max-w-screen-2xl px-4 sm:px-10 py-10 lg:py-14">
-        <div className="text-center mb-5">
-          <h3 className="text-xl font-semibold text-slate-900">
-            <CMSkeletonTwo
-              count={1}
-              height={16}
-              loading={false}
-              data={footer?.payment_title || { en: "We Accept EMI" }}
-            />
-          </h3>
-        </div>
+        {showPaymentMethod && (
+          <div className="text-center mb-5">
+            <h3 className="text-xl font-semibold text-slate-900">
+              <CMSkeletonTwo
+                count={1}
+                height={16}
+                loading={false}
+                data={footer?.payment_title || { en: "We Accept EMI" }}
+              />
+            </h3>
+          </div>
+        )}
 
-        {footer?.payment_method_status && (
+        {showPaymentMethod && (
           <div className="mb-6">
             <div className="relative mx-auto w-full max-w-4xl h-20 sm:h-24 lg:h-28">
               <Image
@@ -83,41 +95,44 @@ const Footer = async ({ error, storeCustomizationSetting }) => {
           </div>
         )}
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-          <div className="rounded-xl bg-white p-4 shadow-sm">
-            <div className="relative w-full h-24 sm:h-28">
-              <Image
-                fill
-                className="object-contain"
-                src={footer?.top_image_one || footer?.block4_logo || "/logo/logo-color.svg"}
-                alt="footer support"
-              />
+        {showBlock4 && (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+            <div className="rounded-xl bg-white p-4 shadow-sm">
+              <div className="relative w-full h-24 sm:h-28">
+                <Image
+                  fill
+                  className="object-contain"
+                  src={footer?.top_image_one || footer?.block4_logo || "/logo/logo-color.svg"}
+                  alt="footer support"
+                />
+              </div>
+            </div>
+            <div className="rounded-xl bg-white p-4 shadow-sm">
+              <div className="relative w-full h-24 sm:h-28">
+                <Image
+                  fill
+                  className="object-contain"
+                  src={footer?.top_image_two || footer?.payment_method_img || "/payment-method/payment-logo.png"}
+                  alt="footer payment"
+                />
+              </div>
+            </div>
+            <div className="rounded-xl bg-white p-4 shadow-sm">
+              <div className="relative w-full h-24 sm:h-28">
+                <Image
+                  fill
+                  className="object-contain"
+                  src={footer?.top_image_three || footer?.block4_logo || "/logo/logo-color.svg"}
+                  alt="footer contact"
+                />
+              </div>
             </div>
           </div>
-          <div className="rounded-xl bg-white p-4 shadow-sm">
-            <div className="relative w-full h-24 sm:h-28">
-              <Image
-                fill
-                className="object-contain"
-                src={footer?.top_image_two || footer?.payment_method_img || "/payment-method/payment-logo.png"}
-                alt="footer payment"
-              />
-            </div>
-          </div>
-          <div className="rounded-xl bg-white p-4 shadow-sm">
-            <div className="relative w-full h-24 sm:h-28">
-              <Image
-                fill
-                className="object-contain"
-                src={footer?.top_image_three || footer?.block4_logo || "/logo/logo-color.svg"}
-                alt="footer contact"
-              />
-            </div>
-          </div>
-        </div>
+        )}
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 lg:gap-8">
-          <div className="lg:col-span-4">
+          {showBlock4 && (
+            <div className="lg:col-span-4">
             <h5 className="text-lg font-bold text-slate-900 mb-4">
               <CMSkeletonTwo
                 count={1}
@@ -141,19 +156,25 @@ const Footer = async ({ error, storeCustomizationSetting }) => {
                 loading={false}
                 data={footer?.block4_address}
               />
-              <br />
-              <Link href={footer?.block1_sub_link1 || "/about-us"} className="text-emerald-700 font-medium hover:underline">
-                <CMSkeletonTwo
-                  count={1}
-                  height={10}
-                  loading={false}
-                  data={footer?.block1_sub_title1 || { en: "Know more..." }}
-                />
-              </Link>
+              {showBlock1 && (
+                <>
+                  <br />
+                  <Link href={footer?.block1_sub_link1 || "/about-us"} className="text-emerald-700 font-medium hover:underline">
+                    <CMSkeletonTwo
+                      count={1}
+                      height={10}
+                      loading={false}
+                      data={footer?.block1_sub_title1 || { en: "Know more..." }}
+                    />
+                  </Link>
+                </>
+              )}
             </p>
-          </div>
+            </div>
+          )}
 
-          <div className="lg:col-span-2">
+          {showBlock1 && (
+            <div className="lg:col-span-2">
             <h5 className="text-lg font-bold text-slate-900 mb-3">
               <CMSkeletonTwo count={1} height={14} loading={false} data={footer?.block1_title || { en: "LET'S GROW!" }} />
             </h5>
@@ -164,9 +185,11 @@ const Footer = async ({ error, storeCustomizationSetting }) => {
                 </Link>
               ))}
             </div>
-          </div>
+            </div>
+          )}
 
-          <div className="lg:col-span-2">
+          {showBlock2 && (
+            <div className="lg:col-span-2">
             <h5 className="text-lg font-bold text-slate-900 mb-3">
               <CMSkeletonTwo count={1} height={14} loading={false} data={footer?.block2_title || { en: "MORE SERVICES" }} />
             </h5>
@@ -177,9 +200,11 @@ const Footer = async ({ error, storeCustomizationSetting }) => {
                 </Link>
               ))}
             </div>
-          </div>
+            </div>
+          )}
 
-          <div className="lg:col-span-2">
+          {showBlock3 && (
+            <div className="lg:col-span-2">
             <h5 className="text-lg font-bold text-slate-900 mb-3">
               <CMSkeletonTwo count={1} height={14} loading={false} data={footer?.block3_title || { en: "TRAINING" }} />
             </h5>
@@ -194,9 +219,11 @@ const Footer = async ({ error, storeCustomizationSetting }) => {
                 </Link>
               ))}
             </div>
-          </div>
+            </div>
+          )}
 
-          <div className="lg:col-span-2">
+          {showBlock4 && (
+            <div className="lg:col-span-2">
             <h5 className="text-lg font-bold text-slate-900 mb-3">
               <CMSkeletonTwo
                 count={1}
@@ -214,11 +241,12 @@ const Footer = async ({ error, storeCustomizationSetting }) => {
               {footer?.block4_phone && (
                 <p className="block text-sm text-slate-700">{footer?.block4_phone}</p>
               )}
-              {footer?.bottom_contact_status && footer?.bottom_contact && (
+              {showBottomContact && footer?.bottom_contact && (
                 <p className="block text-sm text-slate-700">{footer?.bottom_contact}</p>
               )}
             </div>
-          </div>
+            </div>
+          )}
         </div>
       </div>
 
@@ -243,6 +271,8 @@ const Footer = async ({ error, storeCustomizationSetting }) => {
             </div>
 
             <div className="flex items-center justify-center md:justify-end gap-4 text-slate-800">
+              {showSocialLinks && (
+                <>
               {footer?.social_twitter && (
                 <Link href={footer?.social_twitter} target="_blank" rel="noreferrer" aria-label="Twitter" className="hover:text-emerald-700">
                   <FaXTwitter size={18} />
@@ -267,6 +297,8 @@ const Footer = async ({ error, storeCustomizationSetting }) => {
                 <Link href={footer?.social_whatsapp} target="_blank" rel="noreferrer" aria-label="WhatsApp" className="hover:text-emerald-700">
                   <FaWhatsapp size={18} />
                 </Link>
+              )}
+                </>
               )}
             </div>
           </div>
