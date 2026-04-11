@@ -110,9 +110,8 @@ const InvoicePDF = ({ data, globalSetting }) => {
 
           <View style={tw("text-right")}>
             <Image src={invoiceLogo} style={tw("w-36 h-12 mb-2")} />
-            <Text style={tw("font-bold")}>
-              {globalSetting?.company_name || "Company Name"}
-            </Text>
+            <br />
+            <br />
             <Text style={tw("text-xs")}>{globalSetting?.address}</Text>
             <Text style={tw("text-xs")}>
               {globalSetting?.contact} • {globalSetting?.email}

@@ -186,7 +186,9 @@ const customerInvoiceEmailBody = (option) => {
                           style='padding: 2px 4px;text-align:end;font-size:12px;'
                         >
 
-                        <br />
+                          <p style='margin:0px; font-size:14; text-transform: uppercase'>${
+                            option.company_name || ""
+                          }</p>
                     
                           <p style='margin:0px;'>${
                             option.company_address || ""
@@ -259,7 +261,6 @@ const customerInvoiceEmailBody = (option) => {
                         >
                           ${option.date}
                         </td>
-                        &nbsp; &nbsp; &nbsp; &nbsp;
                         <td
                           style='padding: 2px 4px;text-align:justify;font-size:12px'
                         >
