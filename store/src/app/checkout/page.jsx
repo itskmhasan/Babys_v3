@@ -4,25 +4,10 @@ import CheckoutForm from "@components/checkout/CheckoutForm";
 import { getShippingAddress } from "@services/CustomerServices";
 
 export const metadata = {
-  title: "Checkout | Babys",
+  title: "Checkout",
   description:
     "Complete your purchase securely and quickly with our checkout process.",
   keywords: ["checkout", "payment", "shipping", "order"],
-  // You can also add more advanced metadata here
-  openGraph: {
-    title: "Checkout | Babys | Best Shop for Moms and Babies",
-    description:
-      "Complete your purchase securely and quickly with our checkout process.",
-    url: "https://babys.com.bd/checkout",
-    images: [
-      {
-        url: "https://babys.com.bd/og-image.jpg",
-        width: 800,
-        height: 600,
-        alt: "Checkout Page",
-      },
-    ],
-  },
 };
 
 const Checkout = async () => {

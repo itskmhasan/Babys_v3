@@ -20,12 +20,9 @@ export async function generateMetadata({ searchParams }) {
   const product = products[0];
 
   return {
-    title: `${product?.title?.en || "Search"} | Babys | Best Shop for Moms and Babies`,
+    title: product?.title?.en || "Search",
     description: product?.description?.en,
     keywords: [product?.tags],
-    openGraph: {
-      images: [product?.image],
-    },
   };
 }
 

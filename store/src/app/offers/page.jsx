@@ -6,25 +6,10 @@ import PageHeader from "@components/header/PageHeader";
 import { getStoreCustomizationSetting } from "@services/SettingServices";
 
 export const metadata = {
-  title: "Offers | Babys | Best Shop for Moms and Babies",
+  title: "Offers",
   description:
     "Discover the latest offers and discounts available at Kachabazar.",
   keywords: ["offers", "discounts", "promotions", "sales"],
-  // You can also add more advanced metadata here
-  openGraph: {
-    title: "Offers | Babys | Best Shop for Moms and Babies",
-    description:
-      "Discover the latest offers and discounts available at Babys | Best Shop for Moms and Babies.",
-    url: "https://kachabazar-store-nine.vercel.app/offers",
-    images: [
-      {
-        url: "https://kachabazar-store-nine.vercel.app/og-image.jpg",
-        width: 800,
-        height: 600,
-        alt: "Offers Page",
-      },
-    ],
-  },
 };
 
 const Offers = async () => {

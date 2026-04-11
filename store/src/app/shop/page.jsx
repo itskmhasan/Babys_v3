@@ -5,7 +5,7 @@ import { getShowingProductsPaginated } from "@services/ProductServices";
 import { getGlobalSetting } from "@services/SettingServices";
 
 export const metadata = {
-  title: "Shop | Babys | Best Shop for Moms and Babies",
+  title: "Shop",
   description:
     "Browse all products in one place and discover essentials for moms and babies.",
 };

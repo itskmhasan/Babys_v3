@@ -3,7 +3,7 @@ import Link from "next/link";
 import PageHeader from "@components/header/PageHeader";
 
 export const metadata = {
-  title: "Sitemap | Babys | Best Shop for Moms and Babies",
+  title: "Sitemap",
   description: "Browse the main pages and shopping destinations across the Babys store.",
 };
 

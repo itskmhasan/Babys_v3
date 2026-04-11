@@ -13,6 +13,7 @@ import {
   getStoreSetting,
   getGlobalSetting,
   getStoreCustomizationSetting,
+  getStoreSeoSetting,
 } from "@services/SettingServices";
 import { storeCustomization as fallbackStoreCustomization } from "@utils/storeCustomizationSetting";
 
@@ -20,14 +21,37 @@ import { SettingProvider } from "@context/SettingContext";
 
 export async function generateMetadata() {
   const { storeCustomizationSetting } = await getStoreCustomizationSetting();
+  const { seoSetting } = await getStoreSeoSetting();
   const resolvedStoreCustomization =
     storeCustomizationSetting || fallbackStoreCustomization;
-  const favicon = resolvedStoreCustomization?.seo?.favicon || "/favicon.png";
+  const resolvedSeo = resolvedStoreCustomization?.seo || seoSetting?.seo || {};
+  const favicon = resolvedSeo?.favicon || "/favicon.png";
+  const metaTitle =
+    resolvedSeo?.meta_title ||
+    "Babys | Best Shop for Moms and Babies - e-commerce Store";
+  const metaDescription =
+    resolvedSeo?.meta_description ||
+    "Babys - Best Shop for Moms and Babies. Premium products for mothers and babies with fast delivery and special offers.";
+  const metaImage = resolvedSeo?.meta_img || "/og-image.jpg";
 
   return {
-    title: "Babys | Best Shop for Moms and Babies - e-commerce Store",
-    description:
-      "Babys - Best Shop for Moms and Babies. Premium products for mothers and babies with fast delivery and special offers.",
+    title: {
+      default: metaTitle,
+      template: `%s | ${metaTitle}`,
+    },
+    description: metaDescription,
+    keywords: resolvedSeo?.meta_keywords || "",
+    openGraph: {
+      title: metaTitle,
+      description: metaDescription,
+      images: [{ url: metaImage }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: metaTitle,
+      description: metaDescription,
+      images: [metaImage],
+    },
     icons: {
       icon: [{ url: favicon }],
       shortcut: [{ url: favicon }],

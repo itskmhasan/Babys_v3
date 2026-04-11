@@ -7,16 +7,11 @@ import PageHeader from "@components/header/PageHeader";
 import CMSkeletonTwo from "@components/preloader/CMSkeleton";
 import {
   getStoreCustomizationSetting,
-  getStoreSeoSetting,
 } from "@services/SettingServices";
 
 export async function generateMetadata() {
-  const pageName = "About Us";
-  const { seoSetting } = await getStoreSeoSetting();
-  const metaTitle = seoSetting?.seo?.meta_title;
-
   return {
-    title: metaTitle ? `${pageName} | ${metaTitle}` : pageName,
+    title: "About Us",
   };
 }
 

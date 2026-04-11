@@ -12,25 +12,10 @@ import CMSkeletonTwo from "@components/preloader/CMSkeleton";
 import { getStoreCustomizationSetting } from "@services/SettingServices";
 
 export const metadata = {
-  title: "Contact Us | Babys | Best Shop for Moms and Babies",
+  title: "Contact Us",
   description:
     "Get in touch with us! Find our contact information and fill out our contact form.",
   keywords: ["contact", "email", "phone", "location"],
-  // You can also add more advanced metadata here
-  openGraph: {
-    title: "Contact Us | Babys | Best Shop for Moms and Babies",
-    description:
-      "Get in touch with us! Find our contact information and fill out our contact form.",
-    url: "https://kachabazar-store-nine.vercel.app/contact-us",
-    images: [
-      {
-        url: "https://kachabazar-store-nine.vercel.app/og-image.jpg",
-        width: 800,
-        height: 600,
-        alt: "Contact Us Page",
-      },
-    ],
-  },
 };
 
 const ContactUs = async () => {

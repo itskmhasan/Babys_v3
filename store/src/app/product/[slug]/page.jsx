@@ -17,12 +17,9 @@ export async function generateMetadata({ params }) {
   const product = products?.find((p) => p.slug === slug);
 
   return {
-    title: `${product?.title?.en} | Babys | Best Shop for Moms and Babies`,
+    title: product?.title?.en || "Product",
     description: product?.description?.en,
     keywords: [product?.tags],
-    openGraph: {
-      images: [product?.image],
-    },
   };
 }
 
