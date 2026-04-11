@@ -135,9 +135,6 @@ const generateHeader = (doc, invoice, logoSource) => {
     .text(invoice?.company_info?.vat_number, 120, 85)
 
     // .fillColor('#4C4F54')
-    .fontSize(12)
-    .font("Helvetica-Bold")
-    .text(invoice?.company_info?.company, 200, 50, { align: "right" })
     .fontSize(10)
     .font("Helvetica")
     .text(invoice?.company_info?.address, 200, 65, { align: "right" })

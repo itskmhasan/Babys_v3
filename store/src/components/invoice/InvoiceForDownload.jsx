@@ -149,7 +149,7 @@ const InvoicePDF = ({ data, globalSetting }) => {
           <View style={tw("text-right")}>
             <View style={tw("flex flex-row mb-1")}>
               <Text style={tw("w-28 text-sm font-bold text-dark text-left")}>
-                Invoice #:
+                Invoice:
               </Text>
               <Text style={tw("text-sm")}>#{data?.invoice || "N/A"}</Text>
             </View>
