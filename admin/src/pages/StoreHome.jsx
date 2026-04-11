@@ -72,6 +72,12 @@ const StoreHome = () => {
     setGetYourDailyNeedImageRight,
     footerLogo,
     setFooterLogo,
+    footerTopImageOne,
+    setFooterTopImageOne,
+    footerTopImageTwo,
+    setFooterTopImageTwo,
+    footerTopImageThree,
+    setFooterTopImageThree,
     paymentImage,
     setPaymentImage,
     isSave,
@@ -475,6 +481,12 @@ const StoreHome = () => {
                   headerLogo={headerLogo}
                   footerLogo={footerLogo}
                   setFooterLogo={setFooterLogo}
+                  footerTopImageOne={footerTopImageOne}
+                  setFooterTopImageOne={setFooterTopImageOne}
+                  footerTopImageTwo={footerTopImageTwo}
+                  setFooterTopImageTwo={setFooterTopImageTwo}
+                  footerTopImageThree={footerTopImageThree}
+                  setFooterTopImageThree={setFooterTopImageThree}
                   paymentImage={paymentImage}
                   setPaymentImage={setPaymentImage}
                   setHeaderLogo={setHeaderLogo}

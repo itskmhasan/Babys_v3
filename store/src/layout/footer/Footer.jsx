@@ -32,343 +32,254 @@ const Footer = async ({ error, storeCustomizationSetting }) => {
       String(copyrightYear)
     );
 
+  const blockOneLinks = [
+    { title: footer?.block1_sub_title1, href: footer?.block1_sub_link1 },
+    { title: footer?.block1_sub_title2, href: footer?.block1_sub_link2 },
+    { title: footer?.block1_sub_title3, href: footer?.block1_sub_link3 },
+    { title: footer?.block1_sub_title4, href: footer?.block1_sub_link4 },
+    { title: footer?.block1_sub_title5, href: footer?.block1_sub_link5 },
+  ].filter((item) => item?.title && item?.href);
+
+  const blockTwoLinks = [
+    { title: footer?.block2_sub_title1, href: footer?.block2_sub_link1 },
+    { title: footer?.block2_sub_title2, href: footer?.block2_sub_link2 },
+    { title: footer?.block2_sub_title3, href: footer?.block2_sub_link3 },
+    { title: footer?.block2_sub_title4, href: footer?.block2_sub_link4 },
+  ].filter((item) => item?.title && item?.href);
+
+  const blockThreeLinks = [
+    { title: footer?.block3_sub_title1, href: footer?.block3_sub_link1 },
+    { title: footer?.block3_sub_title2, href: footer?.block3_sub_link2 },
+    { title: footer?.block3_sub_title3, href: footer?.block3_sub_link3 },
+    { title: footer?.block3_sub_title4, href: footer?.block3_sub_link4 },
+  ].filter((item) => item?.title && item?.href);
+
   // console.log("userInfo", userInfo);
 
   return (
-    <div className="bg-gray-100 border-t border-gray-200">
-      <div className="mx-auto max-w-screen-2xl px-4 sm:px-10 py-12 lg:py-14">
-        {footer?.block4_status && (
-          <div className="pb-8 mb-8 border-b border-gray-300">
-            <Link href="/" className="inline-block" rel="noreferrer">
-              <div className="relative w-44 h-14">
-                <Image
-                  width={176}
-                  height={56}
-                  className="w-full h-auto object-contain"
-                  src={footer?.block4_logo || "/logo/logo-color.svg"}
-                  alt="logo"
-                />
-                <br></br>
-              </div>
-            </Link>
+    <div className="bg-slate-100 border-t border-slate-200">
+      <div className="mx-auto max-w-screen-2xl px-4 sm:px-10 py-10 lg:py-14">
+        <div className="text-center mb-5">
+          <h3 className="text-xl font-semibold text-slate-900">
+            <CMSkeletonTwo
+              count={1}
+              height={16}
+              loading={false}
+              data={footer?.payment_title || { en: "We Accept EMI" }}
+            />
+          </h3>
+        </div>
 
-            <h3 className="mt-4 text-base text-gray-800 max-w-3xl leading-8">
-              <CMSkeletonTwo
-                count={1}
-                height={12}
-                loading={false}
-                data={footer?.block4_address}
+        {footer?.payment_method_status && (
+          <div className="mb-6">
+            <div className="relative mx-auto w-full max-w-4xl h-20 sm:h-24 lg:h-28">
+              <Image
+                fill
+                className="object-contain"
+                src={footer?.payment_method_img || "/payment-method/payment-logo.png"}
+                alt="payment method"
               />
-            </h3>
+            </div>
           </div>
         )}
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12">
-          {footer?.block1_status && (
-            <div>
-              <h3 className="text-2xl font-semibold text-gray-900 mb-5">
-                <CMSkeletonTwo count={1} height={20} loading={false} data={footer?.block1_title} />
-              </h3>
-              <ul className="space-y-3 text-lg text-gray-800">
-                <li>
-                  <Link href={`${footer?.block1_sub_link1}`} className="hover:text-gray-600">
-                    <CMSkeletonTwo count={1} height={10} loading={false} data={footer?.block1_sub_title1} />
-                  </Link>
-                </li>
-                <li>
-                  <Link href={`${footer?.block1_sub_link2}`} className="hover:text-gray-600">
-                    <CMSkeletonTwo count={1} height={10} loading={false} data={footer?.block1_sub_title2} />
-                  </Link>
-                </li>
-                <li>
-                  <Link href={`${footer?.block1_sub_link3}`} className="hover:text-gray-600">
-                    <CMSkeletonTwo count={1} height={10} loading={false} data={footer?.block1_sub_title3} />
-                  </Link>
-                </li>
-                <li>
-                  <Link href={`${footer?.block1_sub_link4}`} className="hover:text-gray-600">
-                    <CMSkeletonTwo count={1} height={10} loading={false} data={footer?.block1_sub_title4} />
-                  </Link>
-                </li>
-                {footer?.block1_sub_title5 && footer?.block1_sub_link5 && (
-                  <li>
-                    <Link href={`${footer?.block1_sub_link5}`} className="hover:text-gray-600">
-                      <CMSkeletonTwo count={1} height={10} loading={false} data={footer?.block1_sub_title5} />
-                    </Link>
-                  </li>
-                )}
-              </ul>
-            </div>
-          )}
-
-          {(footer?.block2_status || footer?.block3_status) && (
-            <div>
-              {footer?.block2_status && (
-                <>
-                  <h3 className="text-2xl font-semibold text-gray-900 mb-5">
-                    <CMSkeletonTwo count={1} height={20} loading={false} data={footer?.block2_title} />
-                  </h3>
-                  <ul className="space-y-3 text-lg text-gray-800">
-                    <li>
-                      <Link href={`${footer?.block2_sub_link1}`} className="hover:text-gray-600">
-                        <CMSkeletonTwo count={1} height={10} loading={false} data={footer?.block2_sub_title1} />
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href={`${footer?.block2_sub_link2}`} className="hover:text-gray-600">
-                        <CMSkeletonTwo count={1} height={10} loading={false} data={footer?.block2_sub_title2} />
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href={`${footer?.block2_sub_link3}`} className="hover:text-gray-600">
-                        <CMSkeletonTwo count={1} height={10} loading={false} data={footer?.block2_sub_title3} />
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href={`${footer?.block2_sub_link4}`} className="hover:text-gray-600">
-                        <CMSkeletonTwo count={1} height={10} loading={false} data={footer?.block2_sub_title4} />
-                      </Link>
-                    </li>
-                  </ul>
-                </>
-              )}
-
-              {footer?.block3_status && (
-                <div className={`${footer?.block2_status ? "mt-6" : ""}`}>
-                  {!footer?.block2_status && (
-                    <h3 className="text-2xl font-semibold text-gray-900 mb-5">
-                      <CMSkeletonTwo
-                        count={1}
-                        height={20}
-                        loading={false}
-                        data={footer?.block3_title}
-                      />
-                    </h3>
-                  )}
-                  <ul className="space-y-3 text-lg text-gray-800">
-                    <li>
-                      <Link
-                        href={`${userInfo?.email ? footer?.block3_sub_link1 : "#"}`}
-                        className="hover:text-gray-600"
-                      >
-                        <CMSkeletonTwo
-                          count={1}
-                          height={10}
-                          loading={false}
-                          data={footer?.block3_sub_title1}
-                        />
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href={`${userInfo?.email ? footer?.block3_sub_link2 : "#"}`}
-                        className="hover:text-gray-600"
-                      >
-                        <CMSkeletonTwo
-                          count={1}
-                          height={10}
-                          loading={false}
-                          data={footer?.block3_sub_title2}
-                        />
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href={`${userInfo?.email ? footer?.block3_sub_link3 : "#"}`}
-                        className="hover:text-gray-600"
-                      >
-                        <CMSkeletonTwo
-                          count={1}
-                          height={10}
-                          loading={false}
-                          data={footer?.block3_sub_title3}
-                        />
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href={`${userInfo?.email ? footer?.block3_sub_link4 : "#"}`}
-                        className="hover:text-gray-600"
-                      >
-                        <CMSkeletonTwo
-                          count={1}
-                          height={10}
-                          loading={false}
-                          data={footer?.block3_sub_title4}
-                        />
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-              )}
-            </div>
-          )}
-
-          <div>
-            <h3 className="text-2xl font-semibold text-gray-900 mb-5">
-              <CMSkeletonTwo
-                count={1}
-                height={20}
-                loading={false}
-                data={footer?.contact_title || { en: "Get in touch" }}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+          <div className="rounded-xl bg-white p-4 shadow-sm">
+            <div className="relative w-full h-24 sm:h-28">
+              <Image
+                fill
+                className="object-contain"
+                src={footer?.top_image_one || footer?.block4_logo || "/logo/logo-color.svg"}
+                alt="footer support"
               />
-            </h3>
-            {footer?.block4_email && (
-              <Link
-                href={`mailto:${footer?.block4_email}`}
-                className="inline-flex items-center gap-2 text-lg text-gray-800 hover:text-gray-600"
-              >
-                <FiMail className="w-5 h-5" />
-                <span>{footer?.block4_email}</span>
-              </Link>
-            )}
-
-            {(footer?.block4_address || footer?.block4_phone) && (
-              <div className="mt-4 text-sm leading-7 text-gray-700 max-w-sm">
-                {footer?.block4_address && (
-                  <p>
-                    <CMSkeletonTwo
-                      count={1}
-                      height={10}
-                      loading={false}
-                      data={footer?.block4_address}
-                    />
-                  </p>
-                )}
-                {footer?.block4_phone && <p className="mt-1">{footer?.block4_phone}</p>}
-              </div>
-            )}
-
-            {(footer?.social_links_status &&
-              (footer?.social_facebook ||
-                footer?.social_twitter ||
-                footer?.social_pinterest ||
-                footer?.social_linkedin ||
-                footer?.social_whatsapp)) && (
-              <div className="mt-8">
-                <h4 className="text-xl font-semibold text-gray-900 mb-4">
-                  <CMSkeletonTwo
-                    count={1}
-                    height={16}
-                    loading={false}
-                    data={footer?.follow_title || { en: "Follow us" }}
-                  />
-                </h4>
-                <ul className="flex items-center gap-4 text-gray-800">
-                  {footer?.social_facebook && (
-                    <li>
-                      <Link
-                        href={`${footer?.social_facebook}`}
-                        aria-label="Facebook"
-                        rel="noreferrer"
-                        target="_blank"
-                        className="hover:text-gray-600"
-                      >
-                        <FaFacebookF size={28} />
-                      </Link>
-                    </li>
-                  )}
-                  {footer?.social_twitter && (
-                    <li>
-                      <Link
-                        href={`${footer?.social_twitter}`}
-                        aria-label="Twitter"
-                        rel="noreferrer"
-                        target="_blank"
-                        className="hover:text-gray-600"
-                      >
-                        <FaXTwitter size={28} />
-                      </Link>
-                    </li>
-                  )}
-                  {footer?.social_pinterest && (
-                    <li>
-                      <Link
-                        href={`${footer?.social_pinterest}`}
-                        aria-label="Pinterest"
-                        rel="noreferrer"
-                        target="_blank"
-                        className="hover:text-gray-600"
-                      >
-                        <FaPinterestP size={28} />
-                      </Link>
-                    </li>
-                  )}
-                  {footer?.social_linkedin && (
-                    <li>
-                      <Link
-                        href={`${footer?.social_linkedin}`}
-                        aria-label="LinkedIn"
-                        rel="noreferrer"
-                        target="_blank"
-                        className="hover:text-gray-600"
-                      >
-                        <FaLinkedinIn size={28} />
-                      </Link>
-                    </li>
-                  )}
-                  {footer?.social_whatsapp && (
-                    <li>
-                      <Link
-                        href={`${footer?.social_whatsapp}`}
-                        aria-label="Whatsapp"
-                        rel="noreferrer"
-                        target="_blank"
-                        className="hover:text-gray-600"
-                      >
-                        <FaWhatsapp size={28} />
-                      </Link>
-                    </li>
-                  )}
-                </ul>
-              </div>
-            )}
+            </div>
           </div>
-
-          <div>
-            <h3 className="text-2xl font-semibold text-gray-900 mb-5">
-              <CMSkeletonTwo
-                count={1}
-                height={20}
-                loading={false}
-                data={footer?.payment_title || { en: "We accept" }}
+          <div className="rounded-xl bg-white p-4 shadow-sm">
+            <div className="relative w-full h-24 sm:h-28">
+              <Image
+                fill
+                className="object-contain"
+                src={footer?.top_image_two || footer?.payment_method_img || "/payment-method/payment-logo.png"}
+                alt="footer payment"
               />
-            </h3>
-            {footer?.payment_method_status && (
-              <div className="relative w-full h-44 sm:h-48 lg:h-52 p-3">
-                <Image
-                  fill
-                  className="object-contain object-left"
-                  src={footer?.payment_method_img || "/payment-method/payment-logo.png"}
-                  alt="payment method"
-                />
-              </div>
-            )}
+            </div>
+          </div>
+          <div className="rounded-xl bg-white p-4 shadow-sm">
+            <div className="relative w-full h-24 sm:h-28">
+              <Image
+                fill
+                className="object-contain"
+                src={footer?.top_image_three || footer?.block4_logo || "/logo/logo-color.svg"}
+                alt="footer contact"
+              />
+            </div>
           </div>
         </div>
 
-        <div className="border-t border-gray-300 mt-10" />
-
-        <div className="py-6 text-center">
-          <p className="text-sm leading-7 text-gray-800">
-            {copyrightTextTemplate}{" "}
-            <Link
-              href={footer?.copyright_link || "#"}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-semibold"
-            >
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 lg:gap-8">
+          <div className="lg:col-span-4">
+            <h5 className="text-lg font-bold text-slate-900 mb-4">
+              <CMSkeletonTwo
+                count={1}
+                height={14}
+                loading={false}
+                data={footer?.about_title || { en: "ABOUT US" }}
+              />
+            </h5>
+            <div className="relative w-48 h-10 mb-3">
+              <Image
+                fill
+                className="object-contain object-left"
+                src={footer?.block4_logo || "/logo/logo-color.svg"}
+                alt="about logo"
+              />
+            </div>
+            <p className="text-sm leading-7 text-slate-700 text-justify">
               <CMSkeletonTwo
                 count={1}
                 height={10}
                 loading={false}
-                data={footer?.copyright_label || { en: "Baby's" }}
+                data={footer?.block4_address}
               />
-            </Link>
-            , All rights reserved.
-          </p>
+              <br />
+              <Link href={footer?.block1_sub_link1 || "/about-us"} className="text-emerald-700 font-medium hover:underline">
+                <CMSkeletonTwo
+                  count={1}
+                  height={10}
+                  loading={false}
+                  data={footer?.block1_sub_title1 || { en: "Know more..." }}
+                />
+              </Link>
+            </p>
+          </div>
+
+          <div className="lg:col-span-2">
+            <h5 className="text-lg font-bold text-slate-900 mb-3">
+              <CMSkeletonTwo count={1} height={14} loading={false} data={footer?.block1_title || { en: "LET'S GROW!" }} />
+            </h5>
+            <div className="space-y-1">
+              {blockOneLinks.map((item, idx) => (
+                <Link key={`b1-${idx}`} href={item.href || "#"} className="block text-sm text-slate-700 hover:text-emerald-700">
+                  <CMSkeletonTwo count={1} height={10} loading={false} data={item.title} />
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          <div className="lg:col-span-2">
+            <h5 className="text-lg font-bold text-slate-900 mb-3">
+              <CMSkeletonTwo count={1} height={14} loading={false} data={footer?.block2_title || { en: "MORE SERVICES" }} />
+            </h5>
+            <div className="space-y-1">
+              {blockTwoLinks.map((item, idx) => (
+                <Link key={`b2-${idx}`} href={item.href || "#"} className="block text-sm text-slate-700 hover:text-emerald-700">
+                  <CMSkeletonTwo count={1} height={10} loading={false} data={item.title} />
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          <div className="lg:col-span-2">
+            <h5 className="text-lg font-bold text-slate-900 mb-3">
+              <CMSkeletonTwo count={1} height={14} loading={false} data={footer?.block3_title || { en: "TRAINING" }} />
+            </h5>
+            <div className="space-y-1">
+              {blockThreeLinks.map((item, idx) => (
+                <Link
+                  key={`b3-${idx}`}
+                  href={userInfo?.email ? item.href || "#" : "#"}
+                  className="block text-sm text-slate-700 hover:text-emerald-700"
+                >
+                  <CMSkeletonTwo count={1} height={10} loading={false} data={item.title} />
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          <div className="lg:col-span-2">
+            <h5 className="text-lg font-bold text-slate-900 mb-3">
+              <CMSkeletonTwo
+                count={1}
+                height={14}
+                loading={false}
+                data={footer?.contact_title || { en: "EXTRA LINKS" }}
+              />
+            </h5>
+            <div className="space-y-1">
+              {footer?.block4_email && (
+                <Link href={`mailto:${footer?.block4_email}`} className="block text-sm text-slate-700 hover:text-emerald-700">
+                  {footer?.block4_email}
+                </Link>
+              )}
+              {footer?.block4_phone && (
+                <p className="block text-sm text-slate-700">{footer?.block4_phone}</p>
+              )}
+              {footer?.bottom_contact_status && footer?.bottom_contact && (
+                <p className="block text-sm text-slate-700">{footer?.bottom_contact}</p>
+              )}
+            </div>
+          </div>
         </div>
       </div>
+
+      <div className="border-t border-slate-300 bg-slate-200/50">
+        <div className="mx-auto max-w-screen-2xl px-4 sm:px-10 py-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
+            <div className="text-center md:text-left text-sm text-slate-700">
+              {copyrightTextTemplate}{" "}
+              <Link
+                href={footer?.copyright_link || "#"}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold hover:text-emerald-700"
+              >
+                <CMSkeletonTwo
+                  count={1}
+                  height={10}
+                  loading={false}
+                  data={footer?.copyright_label || { en: "Baby's" }}
+                />
+              </Link>
+            </div>
+
+            <div className="flex items-center justify-center md:justify-end gap-4 text-slate-800">
+              {footer?.social_twitter && (
+                <Link href={footer?.social_twitter} target="_blank" rel="noreferrer" aria-label="Twitter" className="hover:text-emerald-700">
+                  <FaXTwitter size={18} />
+                </Link>
+              )}
+              {footer?.social_facebook && (
+                <Link href={footer?.social_facebook} target="_blank" rel="noreferrer" aria-label="Facebook" className="hover:text-emerald-700">
+                  <FaFacebookF size={18} />
+                </Link>
+              )}
+              {footer?.social_pinterest && (
+                <Link href={footer?.social_pinterest} target="_blank" rel="noreferrer" aria-label="Youtube" className="hover:text-emerald-700">
+                  <FaPinterestP size={18} />
+                </Link>
+              )}
+              {footer?.social_linkedin && (
+                <Link href={footer?.social_linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn" className="hover:text-emerald-700">
+                  <FaLinkedinIn size={18} />
+                </Link>
+              )}
+              {footer?.social_whatsapp && (
+                <Link href={footer?.social_whatsapp} target="_blank" rel="noreferrer" aria-label="WhatsApp" className="hover:text-emerald-700">
+                  <FaWhatsapp size={18} />
+                </Link>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <a
+        href="#"
+        className="fixed left-5 bottom-5 z-40 h-11 w-11 rounded-full bg-emerald-600 text-white shadow-lg hover:bg-emerald-700 flex items-center justify-center"
+        title="Back to Top"
+      >
+        ↑
+      </a>
     </div>
   );
 };

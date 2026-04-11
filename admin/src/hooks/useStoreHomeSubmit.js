@@ -89,6 +89,9 @@ const useStoreHomeSubmit = () => {
   const [metaImg, setMetaImg] = useState("");
   const [favicon, setFavicon] = useState("");
   const [footerLogo, setFooterLogo] = useState("");
+  const [footerTopImageOne, setFooterTopImageOne] = useState("");
+  const [footerTopImageTwo, setFooterTopImageTwo] = useState("");
+  const [footerTopImageThree, setFooterTopImageThree] = useState("");
   const [headerLogo, setHeaderLogo] = useState("");
   const [sliderImage, setSliderImage] = useState("");
   const [paymentImage, setPaymentImage] = useState("");
@@ -1007,6 +1010,13 @@ const useStoreHomeSubmit = () => {
 
             footer_block_four_link_one: data.footer_block_four_link_one,
             block4_logo: footerLogo,
+            top_image_one: footerTopImageOne,
+            top_image_two: footerTopImageTwo,
+            top_image_three: footerTopImageThree,
+            about_title: handleRemoveEmptyKey({
+              ...resData?.footer?.about_title,
+              [language]: data.footer_about_title || "",
+            }),
             block4_address: handleRemoveEmptyKey({
               ...resData?.footer?.block4_address,
               [language]: data.footer_block_four_address || "",
@@ -1507,6 +1517,9 @@ const useStoreHomeSubmit = () => {
           setFooterBlock3(res?.footer?.block3_status);
           setFooterBlock4(res?.footer?.block4_status);
           setFooterLogo(res?.footer?.block4_logo);
+          setFooterTopImageOne(res?.footer?.top_image_one);
+          setFooterTopImageTwo(res?.footer?.top_image_two);
+          setFooterTopImageThree(res?.footer?.top_image_three);
           setPaymentImage(res?.footer?.payment_method_img);
           setFooterSocialLinks(res?.footer?.social_links_status);
           setFooterPaymentMethod(res?.footer?.payment_method_status);
@@ -1625,6 +1638,10 @@ const useStoreHomeSubmit = () => {
           setValue(
             "footer_block_four_address",
             res?.footer?.block4_address[language || "en"]
+          );
+          setValue(
+            "footer_about_title",
+            res?.footer?.about_title?.[language || "en"]
           );
           setValue("footer_block_four_phone", res?.footer?.block4_phone);
           setValue("footer_block_four_email", res?.footer?.block4_email);
@@ -2064,6 +2081,12 @@ const useStoreHomeSubmit = () => {
     setGetYourDailyNeedImageRight,
     footerLogo,
     setFooterLogo,
+    footerTopImageOne,
+    setFooterTopImageOne,
+    footerTopImageTwo,
+    setFooterTopImageTwo,
+    footerTopImageThree,
+    setFooterTopImageThree,
     paymentImage,
     setPaymentImage,
     allowDiscount,

@@ -53,6 +53,12 @@ const HomePage = ({
   setGetYourDailyNeedImageRight,
   footerLogo,
   setFooterLogo,
+  footerTopImageOne,
+  setFooterTopImageOne,
+  footerTopImageTwo,
+  setFooterTopImageTwo,
+  footerTopImageThree,
+  setFooterTopImageThree,
   paymentImage,
   setPaymentImage,
   isSave,
@@ -2359,6 +2365,58 @@ const HomePage = ({
                     placeholder="Address"
                   />
                   <Error errorName={errors.footer_block_four_address} />
+                </div>
+              </div>
+
+              <div className="grid md:grid-cols-5 sm:grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 md:mb-6 mb-3">
+                <label className="block md:text-sm md:col-span-1 sm:col-span-2 text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1">
+                  Footer About Title
+                </label>
+                <div className="sm:col-span-4">
+                  <InputAreaTwo
+                    register={register}
+                    label="Title"
+                    name="footer_about_title"
+                    type="text"
+                    placeholder="ABOUT US"
+                  />
+                  <Error errorName={errors.footer_about_title} />
+                </div>
+              </div>
+
+              <div className="grid md:grid-cols-5 sm:grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 md:mb-6 mb-3">
+                <label className="block md:text-sm md:col-span-1 sm:col-span-2 text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1">
+                  Footer Top Image 1
+                </label>
+                <div className="sm:col-span-4">
+                  <Uploader
+                    imageUrl={footerTopImageOne}
+                    setImageUrl={setFooterTopImageOne}
+                  />
+                </div>
+              </div>
+
+              <div className="grid md:grid-cols-5 sm:grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 md:mb-6 mb-3">
+                <label className="block md:text-sm md:col-span-1 sm:col-span-2 text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1">
+                  Footer Top Image 2
+                </label>
+                <div className="sm:col-span-4">
+                  <Uploader
+                    imageUrl={footerTopImageTwo}
+                    setImageUrl={setFooterTopImageTwo}
+                  />
+                </div>
+              </div>
+
+              <div className="grid md:grid-cols-5 sm:grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 md:mb-6 mb-3">
+                <label className="block md:text-sm md:col-span-1 sm:col-span-2 text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1">
+                  Footer Top Image 3
+                </label>
+                <div className="sm:col-span-4">
+                  <Uploader
+                    imageUrl={footerTopImageThree}
+                    setImageUrl={setFooterTopImageThree}
+                  />
                 </div>
               </div>
 

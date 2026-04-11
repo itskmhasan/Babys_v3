@@ -824,6 +824,16 @@ export const storeCustomization = {
     block3_sub_link4: "/user/update-profile",
     block4_logo:
       "https://res.cloudinary.com/ahossain/image/upload/v1697688576/settings/logo-color_el4zmy.svg",
+    top_image_one:
+      "https://res.cloudinary.com/ahossain/image/upload/v1697688576/settings/logo-color_el4zmy.svg",
+    top_image_two:
+      "https://res.cloudinary.com/ahossain/image/upload/v1697688607/settings/payment-logo_qhslgz.webp",
+    top_image_three:
+      "https://res.cloudinary.com/ahossain/image/upload/v1697688576/settings/logo-color_el4zmy.svg",
+    about_title: {
+      en: "ABOUT US",
+      de: "UEBER UNS",
+    },
     block4_address: {
       en: "987 Andre Plain Suite High Street 838, Lake Hestertown, USA",
       de: "987 Andre Plain Suite High Street 838, Lake Hestertown, USA",
