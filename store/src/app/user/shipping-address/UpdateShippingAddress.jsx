@@ -22,11 +22,9 @@ const UpdateShippingAddress = ({ shippingAddress, error }) => {
   );
 
   const [cities, setCities] = useState([]);
-  const [areas, setAreas] = useState([]);
   const [selectedValue, setSelectedValue] = useState({
     country: shippingAddress?.country || "",
     city: shippingAddress?.city || "",
-    area: shippingAddress?.area || "",
   });
 
   //   console.log("shippingAddress", shippingAddress);
@@ -41,11 +39,6 @@ const UpdateShippingAddress = ({ shippingAddress, error }) => {
         (country) => country?.name === value
       ).cities;
       setCities(result);
-      setAreas([]);
-    }
-    if (name === "city") {
-      const result = cities?.find((city) => city?.name === value).areas;
-      setAreas(result);
     }
   };
 
@@ -57,10 +50,6 @@ const UpdateShippingAddress = ({ shippingAddress, error }) => {
         (country) => country?.name === shippingAddress?.country
       )?.cities;
       setCities(element);
-      const result = element?.find(
-        (city) => city?.name === shippingAddress?.city
-      )?.areas;
-      setAreas(result);
     }
   }, [shippingAddress]);
 
@@ -180,28 +169,7 @@ const UpdateShippingAddress = ({ shippingAddress, error }) => {
                           />
                         </div>
                       </div>
-                      <div className="col-span-6 sm:col-span-3">
-                        <SelectOption
-                          name="area"
-                          label="Area"
-                          options={areas}
-                          onChange={handleInputChange}
-                          value={selectedValue?.area || ""}
-                        />
-                        <Error errorName={state?.errors?.area?.join(" ")} />
 
-                        {/* passing area value */}
-                        <div className="form-group hidden">
-                          <InputAreaTwo
-                            label="area"
-                            name="area"
-                            type="text"
-                            defaultValue={selectedValue.country}
-                            placeholder="area"
-                            readOnly={true}
-                          />
-                        </div>
-                      </div>
                     </div>
                     {/* passing update shipping id value */}
                     <div className="form-group hidden">

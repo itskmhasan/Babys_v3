@@ -214,7 +214,6 @@ const addShippingAddress = async (userInfo, currentState, formState) => {
       contact: formState.get("contact"),
       country: formState.get("country"),
       city: formState.get("city"),
-      area: formState.get("area"),
       zipCode: formState.get("zipCode") || undefined,
       email: formState.get("email") || userInfo?.email || undefined,
     });
@@ -247,7 +246,7 @@ const addShippingAddress = async (userInfo, currentState, formState) => {
       {
         cache: "no-cache",
         method: "POST",
-        headers: getHeaders(),
+        headers: getHeaders(userInfo),
         body: JSON.stringify(validatedFields.data),
       }
     );

@@ -107,7 +107,6 @@ const shippingAddressFormSchema = z.object({
     .trim(),
   country: z.string().min(2, { message: "Country is required." }).trim(),
   city: z.string().min(2, { message: "City is required." }).trim(),
-  area: z.string().min(2, { message: "Area is required." }).trim(),
   email: z
     .string()
     .email({ message: "Please enter a valid email." })
