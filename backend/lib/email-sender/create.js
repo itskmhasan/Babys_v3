@@ -61,6 +61,13 @@ const handleCreateInvoice = async (invoice, path) => {
     // doc.end();
     if (hasRemoteLogo) {
       getImage(doc, invoiceWithLogo)
+        .catch(() =>
+          getImage(doc, {
+            company_info: {
+              logo: DEFAULT_INVOICE_LOGO,
+            },
+          })
+        )
         .then((logoBuffer) => {
           generateHeader(doc, invoiceWithLogo, logoBuffer);
           generateCustomerInformation(doc, invoiceWithLogo);
@@ -144,8 +151,8 @@ const generateHeader = (doc, invoice, logoSource) => {
     .moveDown();
 
   if (logoSource) {
-    doc.image(logoSource, doc.page.width - 90, 50, {
-      width: 40,
+    doc.image(logoSource, doc.page.width - 125, 45, {
+      width: 70,
     });
   }
   
@@ -165,7 +172,7 @@ function generateCustomerInformation(doc, invoice) {
   generateTableRow(
     doc,
     customerInformationTopDetail,
-    invoice?.date,
+    formatInvoiceDateOnly(invoice?.date),
     "#" + invoice.invoice,
     invoice?.paymentMethod
   );
@@ -360,6 +367,28 @@ function formatDate(date) {
   const year = date.getFullYear();
 
   return year + "/" + month + "/" + day;
+}
+
+function formatInvoiceDateOnly(value) {
+  if (!value) return "";
+
+  if (value instanceof Date && !Number.isNaN(value.getTime())) {
+    return formatDate(value);
+  }
+
+  const parsed = new Date(value);
+  if (!Number.isNaN(parsed.getTime())) {
+    return formatDate(parsed);
+  }
+
+  const asText = String(value);
+  if (asText.includes("T")) {
+    return asText.split("T")[0];
+  }
+  if (asText.includes(",")) {
+    return asText.split(",")[0].trim();
+  }
+  return asText;
 }
 
 module.exports = {
