@@ -421,9 +421,9 @@ const useCheckoutSubmit = ({ shippingAddress }) => {
 
       setValue("address", address.address);
       setValue("contact", address.contact);
-      setValue("email", address.email);
+      setValue("email", address?.email || userInfo?.email || "");
       setValue("city", address.city);
-      setValue("zipCode", address.zipCode);
+      setValue("zipCode", address?.zipCode || address?.zip || "");
     } else {
       setValue("firstName");
       setValue("lastName");

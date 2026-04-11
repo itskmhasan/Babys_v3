@@ -125,6 +125,18 @@ const UpdateShippingAddress = ({ shippingAddress, error }) => {
                       </div>
 
                       <div className="col-span-6 sm:col-span-3">
+                        <InputAreaTwo
+                          label="Zip Code"
+                          name="zipCode"
+                          type="text"
+                          defaultValue={shippingAddress?.zipCode || ""}
+                          placeholder="Input zip code"
+                        />
+
+                        <Error errorName={state?.errors?.zipCode?.join(" ")} />
+                      </div>
+
+                      <div className="col-span-6 sm:col-span-3">
                         <SelectOption
                           name="country"
                           label="Country"
@@ -199,6 +211,16 @@ const UpdateShippingAddress = ({ shippingAddress, error }) => {
                         type="text"
                         defaultValue={shippingAddress?._id || ""}
                         placeholder="area"
+                        readOnly={true}
+                      />
+                    </div>
+                    <div className="form-group hidden">
+                      <InputAreaTwo
+                        label="email"
+                        name="email"
+                        type="text"
+                        defaultValue={shippingAddress?.email || userInfo?.email || ""}
+                        placeholder="email"
                         readOnly={true}
                       />
                     </div>

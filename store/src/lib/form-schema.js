@@ -108,6 +108,17 @@ const shippingAddressFormSchema = z.object({
   country: z.string().min(2, { message: "Country is required." }).trim(),
   city: z.string().min(2, { message: "City is required." }).trim(),
   area: z.string().min(2, { message: "Area is required." }).trim(),
+  email: z
+    .string()
+    .email({ message: "Please enter a valid email." })
+    .trim()
+    .optional(),
+  zipCode: z
+    .string()
+    .min(3, { message: "Zip code must be at least 3 characters long." })
+    .max(10, { message: "Zip code must be at most 10 characters long." })
+    .trim()
+    .optional(),
 });
 
 const checkoutFormSchema = (shippingOptions) => {

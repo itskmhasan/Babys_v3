@@ -215,6 +215,8 @@ const addShippingAddress = async (userInfo, currentState, formState) => {
       country: formState.get("country"),
       city: formState.get("city"),
       area: formState.get("area"),
+      zipCode: formState.get("zipCode") || undefined,
+      email: formState.get("email") || userInfo?.email || undefined,
     });
 
     // revalidatePath("/");
