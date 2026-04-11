@@ -5,11 +5,15 @@ import {
   PUBLIC_FETCH_OPTIONS,
 } from "@services/CommonService";
 
+const LIVE_FETCH_OPTIONS = {
+  cache: "no-store",
+};
+
 const getStoreCustomizationSetting = async () => {
   try {
     const response = await fetchWithRetry(
       `${baseURL}/setting/store/customization`,
-      PUBLIC_FETCH_OPTIONS
+      LIVE_FETCH_OPTIONS
     );
 
     const storeCustomizationSetting = await handleResponse(response);
@@ -86,7 +90,7 @@ const getStoreSeoSetting = async () => {
   try {
     const response = await fetchWithRetry(
       `${baseURL}/setting/store-setting/seo`,
-      PUBLIC_FETCH_OPTIONS
+      LIVE_FETCH_OPTIONS
     );
 
     const seoSetting = await handleResponse(response);
