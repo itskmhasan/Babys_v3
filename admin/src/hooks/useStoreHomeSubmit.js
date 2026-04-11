@@ -950,6 +950,12 @@ const useStoreHomeSubmit = () => {
             }),
             block1_sub_link4: data.footer_block_one_link_four,
 
+            block1_sub_title5: handleRemoveEmptyKey({
+              ...resData?.footer?.block1_sub_title5,
+              [language]: data.footer_block_one_link_five_title || "",
+            }),
+            block1_sub_link5: data.footer_block_one_link_five,
+
             block2_title: handleRemoveEmptyKey({
               ...resData?.footer?.block2_title,
               [language]: data.footer_block_two_title || "",
@@ -1566,6 +1572,11 @@ const useStoreHomeSubmit = () => {
           setValue(
             "footer_block_one_link_four_title",
             res?.footer?.block1_sub_title4[language || "en"]
+          );
+          setValue("footer_block_one_link_five", res?.footer?.block1_sub_link5);
+          setValue(
+            "footer_block_one_link_five_title",
+            res?.footer?.block1_sub_title5[language || "en"]
           );
 
           setValue(

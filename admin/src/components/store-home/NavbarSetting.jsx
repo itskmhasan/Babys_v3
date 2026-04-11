@@ -119,6 +119,8 @@ const NavbarSetting = ({
           {renderField("Link 3 URL", "footer_block_one_link_three", "Link")}
           {renderField("Link 4", "footer_block_one_link_four_title", "Latest News")}
           {renderField("Link 4 URL", "footer_block_one_link_four", "Link")}
+          {renderField("Link 5", "footer_block_one_link_five_title", "Sitemap")}
+          {renderField("Link 5 URL", "footer_block_one_link_five", "Link")}
         </div>
 
         <div className="inline-flex md:text-base text-sm mb-3 text-gray-500 dark:text-gray-400 relative md:mt-0 mt-24">
