@@ -203,9 +203,7 @@ const AboutUs = ({
                     type="text"
                     placeholder="About Us Top Description"
                   />
-                  <Error
-                    errorName={(errors.name = "about_us_top_description")}
-                  />
+                  <Error errorName={errors.about_us_top_description} />
                 </div>
               </div>
 
@@ -257,11 +255,7 @@ const AboutUs = ({
                     type="text"
                     placeholder={t("BoxOneDescription")}
                   />
-                  <Error
-                    errorName={
-                      (errors.name = "about_us_top_box_one_description")
-                    }
-                  />
+                  <Error errorName={errors.about_us_top_box_one_description} />
                 </div>
               </div>
 
@@ -277,11 +271,7 @@ const AboutUs = ({
                     type="text"
                     placeholder={t("BoxTwoTitle")}
                   />
-                  <Error
-                    errorName={
-                      (errors.name = "about_page_Top_left_box_two_title")
-                    }
-                  />
+                  <Error errorName={errors.about_page_Top_left_box_two_title} />
                 </div>
               </div>
 
@@ -317,11 +307,7 @@ const AboutUs = ({
                     type="text"
                     placeholder={t("BoxTwoDescription")}
                   />
-                  <Error
-                    errorName={
-                      (errors.name = "about_us_top_box_two_description")
-                    }
-                  />
+                  <Error errorName={errors.about_us_top_box_two_description} />
                 </div>
               </div>
             </div>
@@ -407,11 +393,7 @@ const AboutUs = ({
                     type="text"
                     placeholder={t("MiddleDescriptionOne")}
                   />
-                  <Error
-                    errorName={
-                      (errors.name = "about_us_middle_description_one")
-                    }
-                  />
+                  <Error errorName={errors.about_us_middle_description_one} />
                 </div>
               </div>
 
@@ -429,11 +411,7 @@ const AboutUs = ({
                     type="text"
                     placeholder={t("MiddleDescriptionTwo")}
                   />
-                  <Error
-                    errorName={
-                      (errors.name = "about_us_middle_description_two")
-                    }
-                  />
+                  <Error errorName={errors.about_us_middle_description_two} />
                 </div>
               </div>
 
@@ -509,11 +487,7 @@ const AboutUs = ({
                     type="text"
                     placeholder={t("OurFounderDescription")}
                   />
-                  <Error
-                    errorName={
-                      (errors.name = "about_us_ourfounder_description")
-                    }
-                  />
+                  <Error errorName={errors.about_us_ourfounder_description} />
                 </div>
               </div>
 
