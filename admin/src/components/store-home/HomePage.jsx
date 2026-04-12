@@ -126,6 +126,24 @@ const HomePage = ({
 
   const { t } = useTranslation();
 
+  const sectionLinks = [
+    { id: "header", label: t("Header") },
+    { id: "menu-editor", label: t("MenuEditor") },
+    { id: "main-slider", label: t("MainSlider") },
+    { id: "discount-coupon-code-box", label: t("DiscountCouponCodeBox") },
+    { id: "promotion-banner", label: t("PromotionBanner") },
+    { id: "featured-categories", label: t("FeaturedCategories") },
+    { id: "popular-products", label: t("PopularProductsTitle") },
+    { id: "quick-delivery-section", label: t("QuickDeliverySectionTitle") },
+    {
+      id: "latest-discounted-products",
+      label: t("LatestDiscountedProductsTitle"),
+    },
+    { id: "get-your-daily-needs", label: t("GetYourDailyNeedsTitle") },
+    { id: "feature-promo-section", label: t("FeaturePromoSectionTitle") },
+    { id: "footer", label: t("FooterTitle") },
+  ];
+
   return (
     <>
       <div className="sticky top-0 z-20 flex justify-end">
@@ -149,9 +167,31 @@ const HomePage = ({
           </Button>
         )}
       </div>
-      <div className="grid grid-cols-12 font-sans pr-4">
+      <div className="grid grid-cols-12 gap-4 font-sans">
+        <div className="col-span-12 lg:col-span-3">
+          <div className="lg:sticky lg:top-20 rounded-lg border border-gray-200 bg-white p-3 dark:border-gray-700 dark:bg-gray-800">
+            <ul className="space-y-1">
+              {sectionLinks.map((section) => (
+                <li key={section.id}>
+                  <a
+                    href={`#${section.id}`}
+                    className="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-emerald-50 hover:text-emerald-600 dark:text-gray-300 dark:hover:bg-gray-700"
+                  >
+                    {section.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <div className="col-span-12 lg:col-span-9">
+          <div className="grid grid-cols-12 font-sans pr-4">
         {/*  ====================================================== Header ====================================================== */}
-        <div className="col-span-12 md:col-span-12 lg:col-span-12">
+        <div
+          id="header"
+          className="col-span-12 md:col-span-12 lg:col-span-12 scroll-mt-24"
+        >
           <div className="inline-flex md:text-lg text-base text-gray-800 font-semibold dark:text-gray-400 mb-3">
             <FiSettings className="mt-1 mr-2" />
             {t("Header")}
@@ -213,7 +253,10 @@ const HomePage = ({
           </div>
 
           {/*  ================= Menu Editor ======================== */}
-          <div className="grid md:grid-cols-5 sm:grid-cols-6 scrollbar-hide w-full max-h-full pb-0">
+          <div
+            id="menu-editor"
+            className="grid md:grid-cols-5 sm:grid-cols-6 scrollbar-hide w-full max-h-full pb-0 scroll-mt-24"
+          >
             <div className="md:col-span-1 sm:col-span-2"></div>
             <div className="sm:col-span-4 md:pl-3 sm:pl-2">
               <div className="inline-flex md:text-base text-sm mb-3 text-gray-500 dark:text-gray-400 relative">
@@ -467,7 +510,10 @@ const HomePage = ({
         </div>
 
         {/*  ====================================================== Main Slider ====================================================== */}
-        <div className="col-span-12 md:col-span-12 lg:col-span-12 mt-5">
+        <div
+          id="main-slider"
+          className="col-span-12 md:col-span-12 lg:col-span-12 mt-5 scroll-mt-24"
+        >
           <div className="inline-flex md:text-lg text-base text-gray-800 font-semibold dark:text-gray-400 mb-3">
             <FiSettings className="mt-1 mr-2" /> {t("MainSlider")}
           </div>
@@ -980,7 +1026,10 @@ const HomePage = ({
         </div>
 
         {/*  ======================================================Discount Coupon Code Box ====================================================== */}
-        <div className="col-span-12 md:col-span-12 lg:col-span-12 mt-5">
+        <div
+          id="discount-coupon-code-box"
+          className="col-span-12 md:col-span-12 lg:col-span-12 mt-5 scroll-mt-24"
+        >
           <div className="inline-flex md:text-lg text-base text-gray-800 font-semibold dark:text-gray-400 mb-3">
             <FiSettings className="mt-1 mr-2" />
             {t("DiscountCouponTitle1")}
@@ -1108,7 +1157,10 @@ const HomePage = ({
         </div>
 
         {/*  ====================================================== Promotion Banner ===================================================== */}
-        <div className="col-span-12 md:col-span-12 lg:col-span-12">
+        <div
+          id="promotion-banner"
+          className="col-span-12 md:col-span-12 lg:col-span-12 scroll-mt-24"
+        >
           <div className="inline-flex md:text-lg text-base text-gray-800 font-semibold dark:text-gray-400 mb-3 md:mt-0 mt-10">
             <FiSettings className="mt-1 mr-2" /> {t("PromotionBanner")}
           </div>
@@ -1207,7 +1259,10 @@ const HomePage = ({
         </div>
 
         {/*  ====================================================== Featured Categories ====================================================== */}
-        <div className="col-span-12 md:col-span-12 lg:col-span-12 md:mt-0 mt-15">
+        <div
+          id="featured-categories"
+          className="col-span-12 md:col-span-12 lg:col-span-12 md:mt-0 mt-15 scroll-mt-24"
+        >
           <div className="inline-flex md:text-lg text-base text-gray-800 font-semibold dark:text-gray-400 mb-3 relative">
             <FiSettings className="mt-1 mr-2" /> {t("FeaturedCategories")}
           </div>
@@ -1295,7 +1350,10 @@ const HomePage = ({
         </div>
 
         {/*  ====================================================== Popular Products ====================================================== */}
-        <div className="col-span-12 md:col-span-12 lg:col-span-12 md:mt-0 mt-15">
+        <div
+          id="popular-products"
+          className="col-span-12 md:col-span-12 lg:col-span-12 md:mt-0 mt-15 scroll-mt-24"
+        >
           <div className="inline-flex md:text-lg text-base text-gray-800 font-semibold dark:text-gray-400 mb-3 relative">
             <FiSettings className="mt-1 mr-2" />
             {t("PopularProductsTitle")}
@@ -1383,7 +1441,10 @@ const HomePage = ({
         </div>
 
         {/*  ====================================================== Quick Delivery Section ====================================================== */}
-        <div className="col-span-12 md:col-span-12 lg:col-span-12 mt-15">
+        <div
+          id="quick-delivery-section"
+          className="col-span-12 md:col-span-12 lg:col-span-12 mt-15 scroll-mt-24"
+        >
           <div className="inline-flex md:text-lg text-base text-gray-800 font-semibold dark:text-gray-400 mb-3">
             <FiSettings className="mt-1 mr-2" />{" "}
             {t("QuickDeliverySectionTitle")}
@@ -1509,7 +1570,10 @@ const HomePage = ({
         </div>
 
         {/*  ====================================================== Latest Discounted Products ====================================================== */}
-        <div className="col-span-12 md:col-span-12 lg:col-span-12 md:mt-0 mt-10">
+        <div
+          id="latest-discounted-products"
+          className="col-span-12 md:col-span-12 lg:col-span-12 md:mt-0 mt-10 scroll-mt-24"
+        >
           <div className="inline-flex md:text-lg text-base text-gray-800 font-semibold dark:text-gray-400 mb-3">
             <FiSettings className="mt-1 mr-2" />{" "}
             {t("LatestDiscountedProductsTitle")}
@@ -1598,9 +1662,10 @@ const HomePage = ({
 
         {/*  ====================================================== Get Your Daily Needs Banner Section ====================================================== */}
         <div
+          id="get-your-daily-needs"
           className={`col-span-12 md:col-span-12 lg:col-span-12 ${
             window.innerWidth < 400 ? "md:my-0 my-24" : "md:my-0 my-24"
-          }`}
+          } scroll-mt-24`}
         >
           <div className="inline-flex md:text-lg text-base text-gray-800 font-semibold dark:text-gray-400 mb-3">
             <FiSettings className="mt-1 mr-2" /> {t("GetYourDailyNeedsTitle")}
@@ -1748,9 +1813,10 @@ const HomePage = ({
 
         {/*  ====================================================== Feature Promo Section ====================================================== */}
         <div
+          id="feature-promo-section"
           className={`col-span-12 md:col-span-12 lg:col-span-12 ${
             window.innerWidth < 400 ? "md:mt-0 mt-40" : "md:mt-0 mt-10"
-          }`}
+          } scroll-mt-24`}
         >
           <div className="inline-flex md:text-lg text-base text-gray-800 font-semibold dark:text-gray-400 mb-3">
             <FiSettings className="mt-1 mr-2" /> {t("FeaturePromoSectionTitle")}
@@ -1849,7 +1915,10 @@ const HomePage = ({
         </div>
 
         {/*  ====================================================== Footer Section ====================================================== */}
-        <div className="col-span-12 md:col-span-12 lg:col-span-12 md:mt-0 mt-10">
+        <div
+          id="footer"
+          className="col-span-12 md:col-span-12 lg:col-span-12 md:mt-0 mt-10 scroll-mt-24"
+        >
           <div className="inline-flex md:text-lg text-base text-gray-800 font-semibold dark:text-gray-400 mb-3">
             <FiSettings className="mt-1 mr-2" /> {t("FooterTitle")}
           </div>
@@ -2751,6 +2820,8 @@ const HomePage = ({
                 <Error errorName={errors.footer_copyright_link} />
               </div>
             </div>
+          </div>
+        </div>
           </div>
         </div>
       </div>
