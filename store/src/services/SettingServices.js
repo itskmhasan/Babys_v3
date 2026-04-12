@@ -29,7 +29,7 @@ const getGlobalSetting = async () => {
   try {
     const response = await fetchWithRetry(
       `${baseURL}/setting/global`,
-      LIVE_FETCH_OPTIONS
+      PUBLIC_FETCH_OPTIONS
     );
 
     const globalSetting = await handleResponse(response);
@@ -44,7 +44,7 @@ const getShowingLanguage = async () => {
   try {
     const response = await fetchWithRetry(
       `${baseURL}/language/show`,
-      LIVE_FETCH_OPTIONS
+      PUBLIC_FETCH_OPTIONS
     );
     const languages = await handleResponse(response);
     // console.log("res", response.headers);
@@ -58,7 +58,7 @@ const getStoreSetting = async () => {
   try {
     const response = await fetchWithRetry(
       `${baseURL}/setting/store-setting`,
-      LIVE_FETCH_OPTIONS
+      PUBLIC_FETCH_OPTIONS
     );
 
     const storeSetting = await handleResponse(response);
@@ -74,7 +74,7 @@ const getStoreSecretKeys = async () => {
   try {
     const response = await fetchWithRetry(
       `${baseURL}/setting/store-setting/keys`,
-      LIVE_FETCH_OPTIONS
+      PUBLIC_FETCH_OPTIONS
     );
 
     const storeSetting = await handleResponse(response);
