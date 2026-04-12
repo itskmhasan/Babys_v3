@@ -144,7 +144,12 @@ const useStoreHomeSubmit = () => {
 
   const handleRemoveEmptyKey = (obj) => {
     for (const key in obj) {
-      if (obj[key].trim() === "") {
+      if (obj[key] === null || obj[key] === undefined) {
+        delete obj[key];
+        continue;
+      }
+
+      if (typeof obj[key] === "string" && obj[key].trim() === "") {
         delete obj[key];
       }
     }
