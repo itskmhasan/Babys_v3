@@ -1,10 +1,12 @@
 const { execSync, execFile } = require("child_process");
 const path = require("path");
+const fs = require("fs");
 
 const appRoot = process.env.APP_ROOT || path.resolve(__dirname, "../..");
 const backendDir = path.join(appRoot, "backend");
 const nodeBin = process.env.HEALTHCHECK_NODE_BIN || "/usr/bin/node";
 const logPath = path.join(appRoot, "deploy/reports/healthcheck-cron.log");
+const latestStatusPath = path.join(appRoot, "deploy/reports/healthcheck-latest.json");
 const scriptPath = "script/healthcheck-report.js";
 
 const parseTime = (time = "08:00") => {
@@ -97,9 +99,23 @@ const runHealthcheckNow = () => {
   });
 };
 
+const getLatestHealthcheckStatus = () => {
+  try {
+    if (!fs.existsSync(latestStatusPath)) {
+      return null;
+    }
+
+    const raw = fs.readFileSync(latestStatusPath, "utf8");
+    return JSON.parse(raw);
+  } catch {
+    return null;
+  }
+};
+
 module.exports = {
   parseTime,
   syncHealthcheckCrontab,
   getHealthcheckCrontabStatus,
   runHealthcheckNow,
+  getLatestHealthcheckStatus,
 };

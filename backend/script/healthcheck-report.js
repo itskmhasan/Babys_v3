@@ -14,6 +14,7 @@ const API_URL =
 const EMAIL_FROM = process.env.HEALTHCHECK_EMAIL_FROM || process.env.EMAIL_USER;
 
 const reportDir = path.resolve(__dirname, "../../deploy/reports");
+const latestStatusPath = path.join(reportDir, "healthcheck-latest.json");
 
 const parseRecipientList = (value) => {
   return String(value || "")
@@ -128,6 +129,11 @@ const saveReport = (text, generatedAt) => {
   return reportPath;
 };
 
+const saveLatestStatus = (payload) => {
+  fs.mkdirSync(reportDir, { recursive: true });
+  fs.writeFileSync(latestStatusPath, JSON.stringify(payload, null, 2), "utf8");
+};
+
 const sendEmail = async (subject, text, attachmentPath, emailTo) => {
   const host = process.env.HOST;
   const port = Number(process.env.EMAIL_PORT || 465);
@@ -176,6 +182,14 @@ const sendEmail = async (subject, text, attachmentPath, emailTo) => {
   const skipEmail = process.argv.includes("--no-email");
 
   if (skipEmail) {
+    saveLatestStatus({
+      generated_at: generatedAt.toISOString(),
+      overall: summary,
+      report_path: reportPath,
+      email_sent: false,
+      email_to: "",
+      mode: "no-email",
+    });
     process.exit(summary === "PASS" ? 0 : 1);
   }
 
@@ -186,10 +200,31 @@ const sendEmail = async (subject, text, attachmentPath, emailTo) => {
   const emailTo = await resolveDynamicEmailTo();
 
   await sendEmail(subject, text, reportPath, emailTo);
+  saveLatestStatus({
+    generated_at: generatedAt.toISOString(),
+    overall: summary,
+    report_path: reportPath,
+    email_sent: true,
+    email_to: emailTo,
+    mode: "email",
+  });
   console.log(`EmailSentTo=${emailTo}`);
 
   process.exit(summary === "PASS" ? 0 : 1);
 })().catch((error) => {
+  try {
+    saveLatestStatus({
+      generated_at: new Date().toISOString(),
+      overall: "FAIL",
+      report_path: "",
+      email_sent: false,
+      email_to: "",
+      mode: "error",
+      error: error.message,
+    });
+  } catch {
+    // Swallow write errors so original failure is preserved.
+  }
   console.error("Healthcheck failed:", error.message);
   process.exit(1);
 });

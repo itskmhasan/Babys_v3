@@ -5,6 +5,7 @@ const {
   syncHealthcheckCrontab,
   getHealthcheckCrontabStatus,
   runHealthcheckNow,
+  getLatestHealthcheckStatus,
 } = require("../lib/healthcheck-manager");
 
 //global setting controller
@@ -83,6 +84,7 @@ const getHealthcheckStatus = async (req, res) => {
   try {
     const globalSetting = await Setting.findOne({ name: "globalSetting" });
     const cronStatus = getHealthcheckCrontabStatus();
+    const latestStatus = getLatestHealthcheckStatus();
 
     const setting = globalSetting?.setting || {};
 
@@ -92,6 +94,7 @@ const getHealthcheckStatus = async (req, res) => {
       email_to: setting.healthcheck_email_to || "",
       cron_enabled: cronStatus.enabled,
       cron_line: cronStatus.line,
+      last_run: latestStatus,
     });
   } catch (err) {
     res.status(500).send({
@@ -105,10 +108,12 @@ const runHealthcheckReportNow = async (req, res) => {
     const result = await runHealthcheckNow();
     const mergedOutput = `${result.stdout || ""}${result.stderr || ""}`;
     const outputPreview = mergedOutput.slice(0, 4000);
+    const latestStatus = getLatestHealthcheckStatus();
 
     res.send({
       message: "Healthcheck report executed successfully.",
       output: outputPreview,
+      last_run: latestStatus,
     });
   } catch (err) {
     res.status(500).send({

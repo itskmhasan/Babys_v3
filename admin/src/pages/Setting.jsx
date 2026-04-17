@@ -41,6 +41,7 @@ const Setting = () => {
     setEnableGuestOrder,
     healthcheckEnabled,
     setHealthcheckEnabled,
+    healthcheckStatus,
     isRunningHealthcheck,
     handleRunHealthcheckNow,
     isAllowAutoTranslation,
@@ -509,6 +510,35 @@ const Setting = () => {
                         >
                           {isRunningHealthcheck ? "Running..." : "Run & Send Report"}
                         </Button>
+                      </div>
+                    </div>
+
+                    <div className="grid md:grid-cols-5 items-start sm:grid-cols-12 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-2">
+                      <Label label="Last Run Status" />
+                      <div className="mt-2 sm:col-span-4 rounded-md border border-gray-200 dark:border-gray-700 p-4 bg-gray-50 dark:bg-gray-900">
+                        <p className="text-sm text-gray-800 dark:text-gray-200">
+                          <strong>Overall:</strong>{" "}
+                          {healthcheckStatus?.last_run?.overall || "N/A"}
+                        </p>
+                        <p className="text-sm text-gray-800 dark:text-gray-200 mt-1">
+                          <strong>Last Run At:</strong>{" "}
+                          {healthcheckStatus?.last_run?.generated_at
+                            ? new Date(
+                                healthcheckStatus.last_run.generated_at
+                              ).toLocaleString()
+                            : "N/A"}
+                        </p>
+                        <p className="text-sm text-gray-800 dark:text-gray-200 mt-1 break-all">
+                          <strong>Last Email To:</strong>{" "}
+                          {healthcheckStatus?.last_run?.email_to || "N/A"}
+                        </p>
+                        <p className="text-sm text-gray-800 dark:text-gray-200 mt-1 break-all">
+                          <strong>Last Report File:</strong>{" "}
+                          {healthcheckStatus?.last_run?.report_path || "N/A"}
+                        </p>
+                        <p className="text-xs text-gray-500 mt-2 break-all">
+                          Cron: {healthcheckStatus?.cron_enabled ? "Enabled" : "Disabled"}
+                        </p>
                       </div>
                     </div>
                   </div>

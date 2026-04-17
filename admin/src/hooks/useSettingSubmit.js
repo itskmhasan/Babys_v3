@@ -14,6 +14,7 @@ const useSettingSubmit = (id) => {
   const [enableGuestOrder, setEnableGuestOrder] = useState(false);
   const [healthcheckEnabled, setHealthcheckEnabled] = useState(true);
   const [isRunningHealthcheck, setIsRunningHealthcheck] = useState(false);
+  const [healthcheckStatus, setHealthcheckStatus] = useState(null);
   const [isAllowAutoTranslation, setIsAllowAutoTranslation] = useState(false);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -102,6 +103,9 @@ const useSettingSubmit = (id) => {
   useEffect(() => {
     (async () => {
       try {
+        const healthStatus = await SettingServices.getHealthcheckStatus();
+        setHealthcheckStatus(healthStatus);
+
         const res = await SettingServices.getGlobalSetting();
         // console.log("res>>>", res);
         if (res) {
@@ -147,6 +151,9 @@ const useSettingSubmit = (id) => {
       setIsRunningHealthcheck(true);
       const res = await SettingServices.runHealthcheckNow();
       notifySuccess(res?.message || "Healthcheck report sent successfully.");
+
+      const updatedStatus = await SettingServices.getHealthcheckStatus();
+      setHealthcheckStatus(updatedStatus);
     } catch (err) {
       notifyError(err?.response?.data?.message || err?.message);
     } finally {
@@ -170,6 +177,7 @@ const useSettingSubmit = (id) => {
     setEnableGuestOrder,
     healthcheckEnabled,
     setHealthcheckEnabled,
+    healthcheckStatus,
     isRunningHealthcheck,
     handleRunHealthcheckNow,
     isAllowAutoTranslation,
