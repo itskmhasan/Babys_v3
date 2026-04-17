@@ -65,6 +65,9 @@ const useSettingSubmit = (id) => {
           healthcheck_enabled: healthcheckEnabled,
           healthcheck_time: data.healthcheck_time || "08:00",
           healthcheck_email_to: data.healthcheck_email_to || "",
+          healthcheck_public_urls: data.healthcheck_public_urls || "",
+          healthcheck_checkout_sanity_path:
+            data.healthcheck_checkout_sanity_path || "/v1/coupon/show",
         },
       };
 
@@ -135,6 +138,11 @@ const useSettingSubmit = (id) => {
           setHealthcheckEnabled(res?.healthcheck_enabled ?? true);
           setValue("healthcheck_time", res?.healthcheck_time || "08:00");
           setValue("healthcheck_email_to", res?.healthcheck_email_to || "");
+          setValue("healthcheck_public_urls", res?.healthcheck_public_urls || "");
+          setValue(
+            "healthcheck_checkout_sanity_path",
+            res?.healthcheck_checkout_sanity_path || "/v1/coupon/show"
+          );
         }
       } catch (err) {
         notifyError(err?.response?.data?.message || err?.message);

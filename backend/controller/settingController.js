@@ -92,6 +92,9 @@ const getHealthcheckStatus = async (req, res) => {
       enabled: Boolean(setting.healthcheck_enabled),
       time: parseTime(setting.healthcheck_time).normalized,
       email_to: setting.healthcheck_email_to || "",
+      public_urls: setting.healthcheck_public_urls || "",
+      checkout_sanity_path:
+        setting.healthcheck_checkout_sanity_path || "/v1/coupon/show",
       cron_enabled: cronStatus.enabled,
       cron_line: cronStatus.line,
       last_run: latestStatus,

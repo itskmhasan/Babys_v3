@@ -498,6 +498,40 @@ const Setting = () => {
                           <Error errorName={errors.healthcheck_email_to} />
                         </div>
                       </div>
+
+                      <div className="grid md:grid-cols-5 items-center sm:grid-cols-12 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
+                        <Label label="Public Domain URLs" />
+                        <div className="mt-2 sm:col-span-4">
+                          <InputAreaTwo
+                            register={register}
+                            label="Public Domain URLs"
+                            name="healthcheck_public_urls"
+                            type="text"
+                            placeholder="https://babys.com.bd, https://www.babys.com.bd"
+                          />
+                          <p className="text-xs text-gray-500 mt-2">
+                            Optional. Multiple URLs separated by comma or semicolon.
+                          </p>
+                          <Error errorName={errors.healthcheck_public_urls} />
+                        </div>
+                      </div>
+
+                      <div className="grid md:grid-cols-5 items-center sm:grid-cols-12 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
+                        <Label label="Checkout Sanity Endpoint" />
+                        <div className="mt-2 sm:col-span-4">
+                          <InputAreaTwo
+                            register={register}
+                            label="Checkout Sanity Endpoint"
+                            name="healthcheck_checkout_sanity_path"
+                            type="text"
+                            placeholder="/v1/coupon/show"
+                          />
+                          <p className="text-xs text-gray-500 mt-2">
+                            API path used for checkout-flow sanity test.
+                          </p>
+                          <Error errorName={errors.healthcheck_checkout_sanity_path} />
+                        </div>
+                      </div>
                     </div>
 
                     <div className="grid md:grid-cols-5 items-center sm:grid-cols-12 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-2">
@@ -536,6 +570,23 @@ const Setting = () => {
                           <strong>Last Report File:</strong>{" "}
                           {healthcheckStatus?.last_run?.report_path || "N/A"}
                         </p>
+                        <p className="text-sm text-gray-800 dark:text-gray-200 mt-1">
+                          <strong>Checks Failed:</strong>{" "}
+                          {(healthcheckStatus?.last_run?.checks || []).filter(
+                            (item) => !item?.ok
+                          ).length}
+                        </p>
+                        {(healthcheckStatus?.last_run?.checks || [])
+                          .filter((item) => !item?.ok)
+                          .slice(0, 3)
+                          .map((item, idx) => (
+                            <p
+                              key={`failed-check-${idx}`}
+                              className="text-xs text-red-600 dark:text-red-400 mt-1 break-all"
+                            >
+                              {item?.name || item?.url}: {item?.error || `status ${item?.status}`}
+                            </p>
+                          ))}
                         <p className="text-xs text-gray-500 mt-2 break-all">
                           Cron: {healthcheckStatus?.cron_enabled ? "Enabled" : "Disabled"}
                         </p>

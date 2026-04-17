@@ -54,7 +54,9 @@
       "from_email": "info@babys.com.bd",
       "healthcheck_enabled": true,
       "healthcheck_time": "08:00",
-      "healthcheck_email_to": ""
+      "healthcheck_email_to": "",
+      "healthcheck_public_urls": "",
+      "healthcheck_checkout_sanity_path": "/v1/coupon/show"
     },
     "name": "globalSetting"
   },
