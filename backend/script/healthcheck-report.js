@@ -4,6 +4,9 @@ const fs = require("fs");
 const path = require("path");
 const nodemailer = require("nodemailer");
 const mongoose = require("mongoose");
+const os = require("os");
+const tls = require("tls");
+const { execSync } = require("child_process");
 const dotenv = require("dotenv");
 
 dotenv.config({ path: path.resolve(__dirname, "../.env") });
@@ -19,6 +22,8 @@ const EMAIL_FROM = process.env.HEALTHCHECK_EMAIL_FROM || process.env.EMAIL_USER;
 
 const reportDir = path.resolve(__dirname, "../../deploy/reports");
 const latestStatusPath = path.join(reportDir, "healthcheck-latest.json");
+
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const parseRecipientList = (value) => {
   return String(value || "")
@@ -46,6 +51,285 @@ const normalizeApiPath = (input = "") => {
   const raw = String(input || "").trim();
   if (!raw) return "/v1/coupon/show";
   return raw.startsWith("/") ? raw : `/${raw}`;
+};
+
+const safeNumber = (value, fallback) => {
+  const parsed = Number(value);
+  return Number.isFinite(parsed) ? parsed : fallback;
+};
+
+const getThresholds = (globalSettingData) => {
+  return {
+    sslDays: safeNumber(
+      process.env.HEALTHCHECK_SSL_EXPIRY_THRESHOLD_DAYS ||
+        globalSettingData?.healthcheck_ssl_expiry_threshold_days,
+      20
+    ),
+    cpuPercent: safeNumber(
+      process.env.HEALTHCHECK_CPU_THRESHOLD_PERCENT ||
+        globalSettingData?.healthcheck_cpu_threshold_percent,
+      85
+    ),
+    ramPercent: safeNumber(
+      process.env.HEALTHCHECK_RAM_THRESHOLD_PERCENT ||
+        globalSettingData?.healthcheck_ram_threshold_percent,
+      85
+    ),
+    diskPercent: safeNumber(
+      process.env.HEALTHCHECK_DISK_THRESHOLD_PERCENT ||
+        globalSettingData?.healthcheck_disk_threshold_percent,
+      90
+    ),
+  };
+};
+
+const getCpuTimes = () => {
+  return os.cpus().map((cpu) => {
+    const times = cpu.times || {};
+    const idle = times.idle || 0;
+    const total = Object.values(times).reduce((sum, t) => sum + t, 0);
+    return { idle, total };
+  });
+};
+
+const getCpuUsagePercent = async (sampleMs = 300) => {
+  const start = getCpuTimes();
+  await sleep(sampleMs);
+  const end = getCpuTimes();
+
+  let idleDiff = 0;
+  let totalDiff = 0;
+
+  for (let i = 0; i < Math.min(start.length, end.length); i += 1) {
+    idleDiff += Math.max(0, end[i].idle - start[i].idle);
+    totalDiff += Math.max(0, end[i].total - start[i].total);
+  }
+
+  if (!totalDiff) return 0;
+  return (1 - idleDiff / totalDiff) * 100;
+};
+
+const getRootDiskUsagePercent = () => {
+  const out = execSync("df -Pk /", {
+    encoding: "utf8",
+    stdio: ["ignore", "pipe", "ignore"],
+  });
+
+  const lines = String(out || "")
+    .trim()
+    .split("\n");
+  const target = lines[lines.length - 1] || "";
+  const cols = target.trim().split(/\s+/);
+  const useCol = cols[4] || "0%";
+  return Number(String(useCol).replace("%", "")) || 0;
+};
+
+const checkServerResources = async (thresholds) => {
+  const checks = [];
+
+  const cpuStart = Date.now();
+  try {
+    const cpu = await getCpuUsagePercent(350);
+    checks.push({
+      name: "Server CPU usage",
+      url: "local://server/cpu",
+      ok: cpu <= thresholds.cpuPercent,
+      status: cpu <= thresholds.cpuPercent ? 200 : 429,
+      elapsedMs: Date.now() - cpuStart,
+      bodyPreview: `cpu_usage=${cpu.toFixed(2)}% threshold=${thresholds.cpuPercent}%`,
+      error:
+        cpu <= thresholds.cpuPercent
+          ? null
+          : `CPU usage above threshold (${cpu.toFixed(2)}%)`,
+    });
+  } catch (error) {
+    checks.push({
+      name: "Server CPU usage",
+      url: "local://server/cpu",
+      ok: false,
+      status: 0,
+      elapsedMs: Date.now() - cpuStart,
+      bodyPreview: "",
+      error: error?.message || "CPU usage check failed",
+    });
+  }
+
+  const ramStart = Date.now();
+  try {
+    const total = os.totalmem();
+    const free = os.freemem();
+    const usedPercent = total ? ((total - free) / total) * 100 : 0;
+    checks.push({
+      name: "Server RAM usage",
+      url: "local://server/ram",
+      ok: usedPercent <= thresholds.ramPercent,
+      status: usedPercent <= thresholds.ramPercent ? 200 : 429,
+      elapsedMs: Date.now() - ramStart,
+      bodyPreview: `ram_usage=${usedPercent.toFixed(2)}% threshold=${thresholds.ramPercent}%`,
+      error:
+        usedPercent <= thresholds.ramPercent
+          ? null
+          : `RAM usage above threshold (${usedPercent.toFixed(2)}%)`,
+    });
+  } catch (error) {
+    checks.push({
+      name: "Server RAM usage",
+      url: "local://server/ram",
+      ok: false,
+      status: 0,
+      elapsedMs: Date.now() - ramStart,
+      bodyPreview: "",
+      error: error?.message || "RAM usage check failed",
+    });
+  }
+
+  const diskStart = Date.now();
+  try {
+    const diskPercent = getRootDiskUsagePercent();
+    checks.push({
+      name: "Server disk usage",
+      url: "local://server/disk",
+      ok: diskPercent <= thresholds.diskPercent,
+      status: diskPercent <= thresholds.diskPercent ? 200 : 429,
+      elapsedMs: Date.now() - diskStart,
+      bodyPreview: `disk_usage=${diskPercent}% threshold=${thresholds.diskPercent}%`,
+      error:
+        diskPercent <= thresholds.diskPercent
+          ? null
+          : `Disk usage above threshold (${diskPercent}%)`,
+    });
+  } catch (error) {
+    checks.push({
+      name: "Server disk usage",
+      url: "local://server/disk",
+      ok: false,
+      status: 0,
+      elapsedMs: Date.now() - diskStart,
+      bodyPreview: "",
+      error: error?.message || "Disk usage check failed",
+    });
+  }
+
+  return checks;
+};
+
+const checkSslExpiry = async (publicUrl, thresholdDays, timeoutMs) => {
+  const startedAt = Date.now();
+
+  let parsedUrl;
+  try {
+    parsedUrl = new URL(publicUrl);
+  } catch {
+    return {
+      name: "SSL expiry check",
+      url: publicUrl,
+      ok: false,
+      status: 0,
+      elapsedMs: Date.now() - startedAt,
+      bodyPreview: "",
+      error: "Invalid URL",
+    };
+  }
+
+  if (parsedUrl.protocol !== "https:") {
+    return {
+      name: "SSL expiry check",
+      url: publicUrl,
+      ok: false,
+      status: 0,
+      elapsedMs: Date.now() - startedAt,
+      bodyPreview: "",
+      error: "SSL check requires https URL",
+    };
+  }
+
+  const host = parsedUrl.hostname;
+  const port = Number(parsedUrl.port || 443);
+
+  return new Promise((resolve) => {
+    const socket = tls.connect(
+      {
+        host,
+        port,
+        servername: host,
+        rejectUnauthorized: true,
+      },
+      () => {
+        try {
+          const cert = socket.getPeerCertificate();
+          const validTo = cert?.valid_to ? new Date(cert.valid_to) : null;
+
+          if (!validTo || Number.isNaN(validTo.getTime())) {
+            resolve({
+              name: "SSL expiry check",
+              url: publicUrl,
+              ok: false,
+              status: 0,
+              elapsedMs: Date.now() - startedAt,
+              bodyPreview: "",
+              error: "Could not read certificate expiry",
+            });
+            socket.end();
+            return;
+          }
+
+          const daysLeft = Math.floor(
+            (validTo.getTime() - Date.now()) / (1000 * 60 * 60 * 24)
+          );
+
+          resolve({
+            name: "SSL expiry check",
+            url: publicUrl,
+            ok: daysLeft >= thresholdDays,
+            status: daysLeft >= thresholdDays ? 200 : 428,
+            elapsedMs: Date.now() - startedAt,
+            bodyPreview: `ssl_days_left=${daysLeft} threshold_days=${thresholdDays} expires=${validTo.toISOString()}`,
+            error:
+              daysLeft >= thresholdDays
+                ? null
+                : `SSL expires soon (${daysLeft} days left)`,
+          });
+          socket.end();
+        } catch (error) {
+          resolve({
+            name: "SSL expiry check",
+            url: publicUrl,
+            ok: false,
+            status: 0,
+            elapsedMs: Date.now() - startedAt,
+            bodyPreview: "",
+            error: error?.message || "SSL check failed",
+          });
+          socket.end();
+        }
+      }
+    );
+
+    socket.setTimeout(timeoutMs, () => {
+      resolve({
+        name: "SSL expiry check",
+        url: publicUrl,
+        ok: false,
+        status: 0,
+        elapsedMs: Date.now() - startedAt,
+        bodyPreview: "",
+        error: "SSL check timeout",
+      });
+      socket.destroy();
+    });
+
+    socket.on("error", (error) => {
+      resolve({
+        name: "SSL expiry check",
+        url: publicUrl,
+        ok: false,
+        status: 0,
+        elapsedMs: Date.now() - startedAt,
+        bodyPreview: "",
+        error: error?.message || "TLS error",
+      });
+    });
+  });
 };
 
 const resolveApiUrl = (base, pathName) => {
@@ -305,6 +589,7 @@ const sendEmail = async (subject, text, attachmentPath, emailTo) => {
       "/v1/coupon/show"
   );
   const checkoutUrl = resolveApiUrl(API_BASE_URL, checkoutPath);
+  const thresholds = getThresholds(globalSettingData);
 
   const baseChecks = [
     withTimeout(STORE_URL, DEFAULT_TIMEOUT_MS, {
@@ -326,7 +611,18 @@ const sendEmail = async (subject, text, attachmentPath, emailTo) => {
     })
   );
 
-  const checks = await Promise.all([...baseChecks, ...publicChecks]);
+  const sslChecks = publicUrls.map((url, index) =>
+    checkSslExpiry(url, thresholds.sslDays, DEFAULT_TIMEOUT_MS).then((result) => ({
+      ...result,
+      name: `SSL expiry check #${index + 1}`,
+    }))
+  );
+
+  const resourceChecksPromise = checkServerResources(thresholds);
+
+  const checks = await Promise.all([...baseChecks, ...publicChecks, ...sslChecks]);
+  const resourceChecks = await resourceChecksPromise;
+  checks.push(...resourceChecks);
 
   const { summary, text, generatedAt } = buildReport(checks);
   const reportPath = saveReport(text, generatedAt);
@@ -345,6 +641,7 @@ const sendEmail = async (subject, text, attachmentPath, emailTo) => {
       email_to: "",
       mode: "no-email",
       checks,
+      thresholds,
     });
     process.exit(summary === "PASS" ? 0 : 1);
   }
@@ -364,6 +661,7 @@ const sendEmail = async (subject, text, attachmentPath, emailTo) => {
     email_to: emailTo,
     mode: "email",
     checks,
+    thresholds,
   });
   console.log(`EmailSentTo=${emailTo}`);
 
@@ -379,6 +677,7 @@ const sendEmail = async (subject, text, attachmentPath, emailTo) => {
       mode: "error",
       error: error.message,
       checks: [],
+      thresholds: {},
     });
   } catch {
     // Swallow write errors so original failure is preserved.

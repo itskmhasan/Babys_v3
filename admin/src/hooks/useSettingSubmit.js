@@ -68,6 +68,14 @@ const useSettingSubmit = (id) => {
           healthcheck_public_urls: data.healthcheck_public_urls || "",
           healthcheck_checkout_sanity_path:
             data.healthcheck_checkout_sanity_path || "/v1/coupon/show",
+          healthcheck_ssl_expiry_threshold_days:
+            data.healthcheck_ssl_expiry_threshold_days || 20,
+          healthcheck_cpu_threshold_percent:
+            data.healthcheck_cpu_threshold_percent || 85,
+          healthcheck_ram_threshold_percent:
+            data.healthcheck_ram_threshold_percent || 85,
+          healthcheck_disk_threshold_percent:
+            data.healthcheck_disk_threshold_percent || 90,
         },
       };
 
@@ -142,6 +150,22 @@ const useSettingSubmit = (id) => {
           setValue(
             "healthcheck_checkout_sanity_path",
             res?.healthcheck_checkout_sanity_path || "/v1/coupon/show"
+          );
+          setValue(
+            "healthcheck_ssl_expiry_threshold_days",
+            res?.healthcheck_ssl_expiry_threshold_days || 20
+          );
+          setValue(
+            "healthcheck_cpu_threshold_percent",
+            res?.healthcheck_cpu_threshold_percent || 85
+          );
+          setValue(
+            "healthcheck_ram_threshold_percent",
+            res?.healthcheck_ram_threshold_percent || 85
+          );
+          setValue(
+            "healthcheck_disk_threshold_percent",
+            res?.healthcheck_disk_threshold_percent || 90
           );
         }
       } catch (err) {

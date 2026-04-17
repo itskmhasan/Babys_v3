@@ -95,6 +95,11 @@ const getHealthcheckStatus = async (req, res) => {
       public_urls: setting.healthcheck_public_urls || "",
       checkout_sanity_path:
         setting.healthcheck_checkout_sanity_path || "/v1/coupon/show",
+      ssl_expiry_threshold_days:
+        setting.healthcheck_ssl_expiry_threshold_days || 20,
+      cpu_threshold_percent: setting.healthcheck_cpu_threshold_percent || 85,
+      ram_threshold_percent: setting.healthcheck_ram_threshold_percent || 85,
+      disk_threshold_percent: setting.healthcheck_disk_threshold_percent || 90,
       cron_enabled: cronStatus.enabled,
       cron_line: cronStatus.line,
       last_run: latestStatus,

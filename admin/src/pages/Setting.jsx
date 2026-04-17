@@ -532,6 +532,66 @@ const Setting = () => {
                           <Error errorName={errors.healthcheck_checkout_sanity_path} />
                         </div>
                       </div>
+
+                      <div className="grid md:grid-cols-5 items-center sm:grid-cols-12 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
+                        <Label label="SSL Expiry Threshold (days)" />
+                        <div className="mt-2 sm:col-span-4">
+                          <InputArea
+                            required={healthcheckEnabled}
+                            register={register}
+                            label="SSL Expiry Threshold (days)"
+                            name="healthcheck_ssl_expiry_threshold_days"
+                            type="number"
+                            placeholder="20"
+                          />
+                          <Error errorName={errors.healthcheck_ssl_expiry_threshold_days} />
+                        </div>
+                      </div>
+
+                      <div className="grid md:grid-cols-5 items-center sm:grid-cols-12 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
+                        <Label label="CPU Threshold (%)" />
+                        <div className="mt-2 sm:col-span-4">
+                          <InputArea
+                            required={healthcheckEnabled}
+                            register={register}
+                            label="CPU Threshold (%)"
+                            name="healthcheck_cpu_threshold_percent"
+                            type="number"
+                            placeholder="85"
+                          />
+                          <Error errorName={errors.healthcheck_cpu_threshold_percent} />
+                        </div>
+                      </div>
+
+                      <div className="grid md:grid-cols-5 items-center sm:grid-cols-12 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
+                        <Label label="RAM Threshold (%)" />
+                        <div className="mt-2 sm:col-span-4">
+                          <InputArea
+                            required={healthcheckEnabled}
+                            register={register}
+                            label="RAM Threshold (%)"
+                            name="healthcheck_ram_threshold_percent"
+                            type="number"
+                            placeholder="85"
+                          />
+                          <Error errorName={errors.healthcheck_ram_threshold_percent} />
+                        </div>
+                      </div>
+
+                      <div className="grid md:grid-cols-5 items-center sm:grid-cols-12 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
+                        <Label label="Disk Threshold (%)" />
+                        <div className="mt-2 sm:col-span-4">
+                          <InputArea
+                            required={healthcheckEnabled}
+                            register={register}
+                            label="Disk Threshold (%)"
+                            name="healthcheck_disk_threshold_percent"
+                            type="number"
+                            placeholder="90"
+                          />
+                          <Error errorName={errors.healthcheck_disk_threshold_percent} />
+                        </div>
+                      </div>
                     </div>
 
                     <div className="grid md:grid-cols-5 items-center sm:grid-cols-12 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-2">
