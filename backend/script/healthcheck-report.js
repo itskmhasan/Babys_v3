@@ -488,6 +488,392 @@ const checkMongoConnection = async (timeoutMs) => {
   }
 };
 
+const escapeHtml = (value) => {
+  return String(value || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/\"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+};
+
+const toTitleCase = (value) => {
+  return String(value || "")
+    .toLowerCase()
+    .replace(/(^|\s)\S/g, (c) => c.toUpperCase());
+};
+
+const getSeverity = (check) => {
+  const name = String(check?.name || "").toLowerCase();
+  if (check?.ok) return "passed";
+
+  if (
+    name.includes("mongodb") ||
+    name.includes("storefront") ||
+    name.includes("api global")
+  ) {
+    return "high";
+  }
+
+  if (name.includes("ssl") || name.includes("checkout") || name.includes("public")) {
+    return "medium";
+  }
+
+  return "low";
+};
+
+const getRecommendation = (check) => {
+  const name = String(check?.name || "").toLowerCase();
+
+  if (name.includes("storefront")) {
+    return "Verify Next.js process, domain routing, and reverse proxy health for storefront traffic.";
+  }
+
+  if (name.includes("api global")) {
+    return "Verify backend process status, API routing, and middleware configuration for core endpoints.";
+  }
+
+  if (name.includes("mongodb")) {
+    return "Check MongoDB availability, credentials, network ACL rules, and connection pool limits.";
+  }
+
+  if (name.includes("checkout")) {
+    return "Validate coupon/checkout service dependencies and ensure response schema remains stable.";
+  }
+
+  if (name.includes("ssl")) {
+    return "Renew certificate and validate full chain on the public domain before threshold breach.";
+  }
+
+  if (name.includes("cpu")) {
+    return "Scale compute resources or optimize long-running workloads and background jobs.";
+  }
+
+  if (name.includes("ram")) {
+    return "Review memory hotspots, PM2 restart strategy, and Node.js heap usage trends.";
+  }
+
+  if (name.includes("disk")) {
+    return "Clean logs/artifacts, rotate backups, and increase storage before service degradation.";
+  }
+
+  if (name.includes("public domain")) {
+    return "Check DNS, TLS termination, firewall rules, and upstream proxy for public availability.";
+  }
+
+  return "Investigate endpoint dependencies and verify configuration, networking, and service runtime state.";
+};
+
+const getProtectionLevel = (score) => {
+  if (score >= 90) return "Very High";
+  if (score >= 75) return "High";
+  if (score >= 60) return "Medium";
+  if (score >= 40) return "Low";
+  return "Critical";
+};
+
+const formatDateTime = (dateLike) => {
+  const d = new Date(dateLike);
+  if (Number.isNaN(d.getTime())) return String(dateLike || "N/A");
+  return d.toLocaleString();
+};
+
+const buildDashboardModel = ({ summary, generatedAt, checks, thresholds }) => {
+  const total = checks.length;
+  const passed = checks.filter((item) => item.ok).length;
+  const failed = total - passed;
+  const score = total ? Math.round((passed / total) * 100) : 0;
+  const avgLatency = total
+    ? Math.round(
+        checks.reduce((sum, item) => sum + Number(item.elapsedMs || 0), 0) / total
+      )
+    : 0;
+
+  const findings = checks
+    .filter((item) => !item.ok)
+    .map((item) => ({
+      ...item,
+      severity: getSeverity(item),
+      recommendation: getRecommendation(item),
+      observed: item.error || item.bodyPreview || `HTTP ${item.status}`,
+    }));
+
+  const improvingActions = findings.slice(0, 8);
+
+  return {
+    summary,
+    generatedAt,
+    checks,
+    thresholds,
+    total,
+    passed,
+    failed,
+    score,
+    avgLatency,
+    protectionLevel: getProtectionLevel(score),
+    findings,
+    improvingActions,
+  };
+};
+
+const buildHtmlReport = (model) => {
+  const {
+    summary,
+    generatedAt,
+    total,
+    passed,
+    failed,
+    score,
+    avgLatency,
+    protectionLevel,
+    findings,
+    improvingActions,
+    thresholds,
+    checks,
+  } = model;
+
+  const scoreColor = summary === "PASS" ? "#16a34a" : "#dc2626";
+
+  const findingsRows = findings.length
+    ? findings
+        .map(
+          (item) => `
+        <tr>
+          <td><span class="sev sev-${escapeHtml(item.severity)}">${escapeHtml(
+            toTitleCase(item.severity)
+          )}</span></td>
+          <td>${escapeHtml(item.name)}</td>
+          <td>${escapeHtml(item.observed)}</td>
+          <td>${escapeHtml(item.recommendation)}</td>
+        </tr>`
+        )
+        .join("")
+    : `<tr><td colspan="4" class="ok-row">No active failures. All checks passed.</td></tr>`;
+
+  const actionRows = improvingActions.length
+    ? improvingActions
+        .map((item) => {
+          const actionScore = item.severity === "high" ? 22 : item.severity === "medium" ? 12 : 8;
+          return `
+        <div class="action-item">
+          <div class="action-top">
+            <span>${escapeHtml(item.name)}</span>
+            <span>+${actionScore}</span>
+          </div>
+          <div class="progress-wrap"><div class="progress" style="width:${Math.min(
+            100,
+            actionScore * 3
+          )}%"></div></div>
+          <p>${escapeHtml(item.recommendation)}</p>
+        </div>`;
+        })
+        .join("")
+    : `<p class="ok-row">No improvement actions required. Keep monitoring daily.</p>`;
+
+  const checkRows = checks
+    .map(
+      (item) => `
+    <tr>
+      <td>${escapeHtml(item.ok ? "PASS" : "FAIL")}</td>
+      <td>${escapeHtml(item.name)}</td>
+      <td>${escapeHtml(String(item.status))}</td>
+      <td>${escapeHtml(String(item.elapsedMs))} ms</td>
+      <td>${escapeHtml(item.error || item.bodyPreview || "-")}</td>
+    </tr>`
+    )
+    .join("");
+
+  return `<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Babys Security Health Check Report</title>
+  <style>
+    body { font-family: 'Segoe UI', Arial, sans-serif; background:#f5f6f8; color:#1f2937; margin:0; padding:24px; }
+    .wrap { max-width: 1200px; margin: 0 auto; }
+    .header { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:14px; }
+    .title { font-size:40px; font-weight:800; letter-spacing:1px; color:#f59e0b; margin:0; }
+    .sub { margin:4px 0 0; color:#6b7280; font-size:14px; }
+    .status-pill { background:${scoreColor}; color:#fff; border-radius:999px; padding:10px 16px; font-weight:700; }
+    .grid { display:grid; grid-template-columns: 1fr 1fr; gap:16px; }
+    .card { background:#fff; border:1px solid #e5e7eb; border-radius:10px; box-shadow:0 1px 2px rgba(0,0,0,.05); }
+    .card h3 { margin:0; padding:12px 14px; border-bottom:1px solid #e5e7eb; font-size:20px; }
+    .body { padding:14px; }
+    .score-grid { display:grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap:10px; }
+    .kpi { background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:12px; }
+    .kpi .k { color:#64748b; font-size:12px; text-transform:uppercase; letter-spacing:.06em; }
+    .kpi .v { font-size:28px; font-weight:800; margin-top:4px; }
+    .actions { display:flex; flex-direction:column; gap:10px; }
+    .action-item { border:1px solid #e5e7eb; border-radius:8px; padding:10px; background:#fff; }
+    .action-top { display:flex; justify-content:space-between; font-weight:700; margin-bottom:6px; }
+    .progress-wrap { height:10px; background:#e5e7eb; border-radius:999px; overflow:hidden; margin-bottom:8px; }
+    .progress { height:100%; background:#84cc16; }
+    table { width:100%; border-collapse:collapse; }
+    th, td { border:1px solid #e5e7eb; padding:8px; text-align:left; vertical-align:top; font-size:13px; }
+    th { background:#f8fafc; }
+    .sev { display:inline-block; padding:4px 8px; border-radius:999px; color:#fff; font-size:12px; font-weight:700; }
+    .sev-high { background:#dc2626; }
+    .sev-medium { background:#f59e0b; }
+    .sev-low { background:#3b82f6; }
+    .sev-passed { background:#16a34a; }
+    .meta { margin-top:14px; font-size:12px; color:#6b7280; }
+    .ok-row { text-align:center; color:#166534; font-weight:700; padding:14px; }
+    .foot { margin-top:16px; font-size:12px; color:#6b7280; }
+    @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } .title { font-size:28px; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="header">
+      <div>
+        <h1 class="title">SECURITY HEALTH CHECK REPORT</h1>
+        <p class="sub">Generated: ${escapeHtml(formatDateTime(generatedAt))}</p>
+      </div>
+      <div class="status-pill">${escapeHtml(summary)}</div>
+    </div>
+
+    <div class="grid">
+      <section class="card">
+        <h3>How You Scored</h3>
+        <div class="body">
+          <div class="score-grid">
+            <div class="kpi"><div class="k">Health Score</div><div class="v" style="color:${scoreColor}">${score}</div></div>
+            <div class="kpi"><div class="k">Protection Level</div><div class="v">${escapeHtml(protectionLevel)}</div></div>
+            <div class="kpi"><div class="k">Total Checks</div><div class="v">${total}</div></div>
+            <div class="kpi"><div class="k">Passed / Failed</div><div class="v">${passed} / ${failed}</div></div>
+            <div class="kpi"><div class="k">Avg Latency</div><div class="v">${avgLatency}ms</div></div>
+            <div class="kpi"><div class="k">Thresholds</div><div class="v" style="font-size:14px;line-height:1.5">SSL ${escapeHtml(
+              String(thresholds.sslDays)
+            )}d, CPU ${escapeHtml(String(thresholds.cpuPercent))}%, RAM ${escapeHtml(
+              String(thresholds.ramPercent)
+            )}%, Disk ${escapeHtml(String(thresholds.diskPercent))}%</div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h3>Improving Your Score</h3>
+        <div class="body actions">
+          ${actionRows}
+        </div>
+      </section>
+    </div>
+
+    <section class="card" style="margin-top:16px;">
+      <h3>Report Findings</h3>
+      <div class="body">
+        <table>
+          <thead>
+            <tr>
+              <th style="width:120px">Severity</th>
+              <th style="width:240px">We Found</th>
+              <th>Observed</th>
+              <th>We Recommend</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${findingsRows}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card" style="margin-top:16px;">
+      <h3>All Check Results</h3>
+      <div class="body">
+        <table>
+          <thead>
+            <tr>
+              <th style="width:100px">Result</th>
+              <th style="width:260px">Check</th>
+              <th style="width:90px">Status</th>
+              <th style="width:120px">Latency</th>
+              <th>Details</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${checkRows}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <p class="foot">This report is auto-generated by Babys daily monitoring. Keep thresholds tuned based on production load and risk profile.</p>
+  </div>
+</body>
+</html>`;
+};
+
+const buildEmailHtml = (model) => {
+  const { summary, score, protectionLevel, passed, failed, total, findings, generatedAt } =
+    model;
+  const topFindings = findings.slice(0, 6);
+  const summaryColor = summary === "PASS" ? "#16a34a" : "#dc2626";
+
+  const findingsHtml = topFindings.length
+    ? topFindings
+        .map(
+          (f) => `
+      <tr>
+        <td style="padding:8px;border:1px solid #e5e7eb;">${escapeHtml(
+          toTitleCase(f.severity)
+        )}</td>
+        <td style="padding:8px;border:1px solid #e5e7eb;">${escapeHtml(f.name)}</td>
+        <td style="padding:8px;border:1px solid #e5e7eb;">${escapeHtml(
+          f.observed
+        )}</td>
+      </tr>`
+        )
+        .join("")
+    : `<tr><td colspan="3" style="padding:10px;border:1px solid #e5e7eb;color:#166534;font-weight:700;">No failures found.</td></tr>`;
+
+  return `
+  <div style="font-family:Segoe UI,Arial,sans-serif;background:#f5f6f8;padding:20px;">
+    <div style="max-width:900px;margin:0 auto;background:#fff;border:1px solid #e5e7eb;border-radius:10px;overflow:hidden;">
+      <div style="padding:16px 20px;background:#111827;color:#fff;display:flex;justify-content:space-between;align-items:center;">
+        <div>
+          <h2 style="margin:0;color:#f59e0b;letter-spacing:.04em;">SECURITY HEALTH CHECK REPORT</h2>
+          <p style="margin:6px 0 0;color:#d1d5db;font-size:13px;">Generated: ${escapeHtml(
+            formatDateTime(generatedAt)
+          )}</p>
+        </div>
+        <span style="background:${summaryColor};padding:8px 12px;border-radius:999px;font-weight:700;">${escapeHtml(
+          summary
+        )}</span>
+      </div>
+      <div style="padding:16px 20px;">
+        <table style="width:100%;border-collapse:collapse;margin-bottom:16px;">
+          <tr>
+            <td style="padding:10px;border:1px solid #e5e7eb;"><strong>Health Score:</strong> ${score}</td>
+            <td style="padding:10px;border:1px solid #e5e7eb;"><strong>Protection:</strong> ${escapeHtml(
+              protectionLevel
+            )}</td>
+            <td style="padding:10px;border:1px solid #e5e7eb;"><strong>Checks:</strong> ${passed}/${total} passed</td>
+            <td style="padding:10px;border:1px solid #e5e7eb;"><strong>Failures:</strong> ${failed}</td>
+          </tr>
+        </table>
+
+        <h3 style="margin:0 0 10px;">Top Findings</h3>
+        <table style="width:100%;border-collapse:collapse;">
+          <thead>
+            <tr>
+              <th style="text-align:left;padding:8px;border:1px solid #e5e7eb;background:#f8fafc;">Severity</th>
+              <th style="text-align:left;padding:8px;border:1px solid #e5e7eb;background:#f8fafc;">Issue</th>
+              <th style="text-align:left;padding:8px;border:1px solid #e5e7eb;background:#f8fafc;">Observed</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${findingsHtml}
+          </tbody>
+        </table>
+
+        <p style="margin:14px 0 0;color:#6b7280;font-size:13px;">Detailed dashboard report is attached as HTML.</p>
+      </div>
+    </div>
+  </div>`;
+};
+
 const toLine = (result) => {
   const statusLabel = result.ok ? "PASS" : "FAIL";
   const details = result.error
@@ -521,14 +907,17 @@ const buildReport = (results) => {
   };
 };
 
-const saveReport = (text, generatedAt) => {
+const saveReport = (text, generatedAt, html) => {
   fs.mkdirSync(reportDir, { recursive: true });
 
   const stamp = generatedAt.toISOString().replace(/[:.]/g, "-");
-  const reportPath = path.join(reportDir, `healthcheck-${stamp}.txt`);
+  const reportTextPath = path.join(reportDir, `healthcheck-${stamp}.txt`);
+  const reportHtmlPath = path.join(reportDir, `healthcheck-${stamp}.html`);
 
-  fs.writeFileSync(reportPath, text, "utf8");
-  return reportPath;
+  fs.writeFileSync(reportTextPath, text, "utf8");
+  fs.writeFileSync(reportHtmlPath, html, "utf8");
+
+  return { reportTextPath, reportHtmlPath };
 };
 
 const saveLatestStatus = (payload) => {
@@ -536,7 +925,7 @@ const saveLatestStatus = (payload) => {
   fs.writeFileSync(latestStatusPath, JSON.stringify(payload, null, 2), "utf8");
 };
 
-const sendEmail = async (subject, text, attachmentPath, emailTo) => {
+const sendEmail = async ({ subject, text, html, attachments, emailTo }) => {
   const host = process.env.HOST;
   const port = Number(process.env.EMAIL_PORT || 465);
   const user = process.env.EMAIL_USER;
@@ -560,12 +949,8 @@ const sendEmail = async (subject, text, attachmentPath, emailTo) => {
     to: emailTo,
     subject,
     text,
-    attachments: [
-      {
-        filename: path.basename(attachmentPath),
-        path: attachmentPath,
-      },
-    ],
+    html,
+    attachments,
   });
 };
 
@@ -625,10 +1010,18 @@ const sendEmail = async (subject, text, attachmentPath, emailTo) => {
   checks.push(...resourceChecks);
 
   const { summary, text, generatedAt } = buildReport(checks);
-  const reportPath = saveReport(text, generatedAt);
+  const dashboardModel = buildDashboardModel({
+    summary,
+    generatedAt,
+    checks,
+    thresholds,
+  });
+  const htmlReport = buildHtmlReport(dashboardModel);
+  const { reportTextPath, reportHtmlPath } = saveReport(text, generatedAt, htmlReport);
 
   console.log(text);
-  console.log(`ReportSaved=${reportPath}`);
+  console.log(`ReportSaved=${reportTextPath}`);
+  console.log(`HtmlReportSaved=${reportHtmlPath}`);
 
   const skipEmail = process.argv.includes("--no-email");
 
@@ -636,12 +1029,15 @@ const sendEmail = async (subject, text, attachmentPath, emailTo) => {
     saveLatestStatus({
       generated_at: generatedAt.toISOString(),
       overall: summary,
-      report_path: reportPath,
+      report_path: reportTextPath,
+      report_html_path: reportHtmlPath,
       email_sent: false,
       email_to: "",
       mode: "no-email",
       checks,
       thresholds,
+      score: dashboardModel.score,
+      protection_level: dashboardModel.protectionLevel,
     });
     process.exit(summary === "PASS" ? 0 : 1);
   }
@@ -651,17 +1047,36 @@ const sendEmail = async (subject, text, attachmentPath, emailTo) => {
     .slice(0, 10)}`;
 
   const emailTo = await resolveDynamicEmailTo();
+  const emailHtml = buildEmailHtml(dashboardModel);
 
-  await sendEmail(subject, text, reportPath, emailTo);
+  await sendEmail({
+    subject,
+    text,
+    html: emailHtml,
+    emailTo,
+    attachments: [
+      {
+        filename: path.basename(reportHtmlPath),
+        path: reportHtmlPath,
+      },
+      {
+        filename: path.basename(reportTextPath),
+        path: reportTextPath,
+      },
+    ],
+  });
   saveLatestStatus({
     generated_at: generatedAt.toISOString(),
     overall: summary,
-    report_path: reportPath,
+    report_path: reportTextPath,
+    report_html_path: reportHtmlPath,
     email_sent: true,
     email_to: emailTo,
     mode: "email",
     checks,
     thresholds,
+    score: dashboardModel.score,
+    protection_level: dashboardModel.protectionLevel,
   });
   console.log(`EmailSentTo=${emailTo}`);
 

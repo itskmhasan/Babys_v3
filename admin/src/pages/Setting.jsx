@@ -630,6 +630,18 @@ const Setting = () => {
                           <strong>Last Report File:</strong>{" "}
                           {healthcheckStatus?.last_run?.report_path || "N/A"}
                         </p>
+                        <p className="text-sm text-gray-800 dark:text-gray-200 mt-1 break-all">
+                          <strong>Last HTML Report:</strong>{" "}
+                          {healthcheckStatus?.last_run?.report_html_path || "N/A"}
+                        </p>
+                        <p className="text-sm text-gray-800 dark:text-gray-200 mt-1">
+                          <strong>Health Score:</strong>{" "}
+                          {healthcheckStatus?.last_run?.score ?? "N/A"}
+                        </p>
+                        <p className="text-sm text-gray-800 dark:text-gray-200 mt-1">
+                          <strong>Protection Level:</strong>{" "}
+                          {healthcheckStatus?.last_run?.protection_level || "N/A"}
+                        </p>
                         <p className="text-sm text-gray-800 dark:text-gray-200 mt-1">
                           <strong>Checks Failed:</strong>{" "}
                           {(healthcheckStatus?.last_run?.checks || []).filter(
