@@ -14,6 +14,14 @@ const SettingServices = {
     return requests.put(`/setting/global`, body);
   },
 
+  getHealthcheckStatus: async () => {
+    return requests.get("/setting/healthcheck/status");
+  },
+
+  runHealthcheckNow: async () => {
+    return requests.post("/setting/healthcheck/run", {});
+  },
+
   // store setting all function
   addStoreSetting: async (body) => {
     return requests.post("/setting/store-setting", body);

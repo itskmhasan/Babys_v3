@@ -1,11 +1,24 @@
 //models
 const Setting = require("../models/Setting");
+const {
+  parseTime,
+  syncHealthcheckCrontab,
+  getHealthcheckCrontabStatus,
+  runHealthcheckNow,
+} = require("../lib/healthcheck-manager");
 
 //global setting controller
 const addGlobalSetting = async (req, res) => {
   try {
     const newGlobalSetting = new Setting(req.body);
-    await newGlobalSetting.save();
+    const savedGlobalSetting = await newGlobalSetting.save();
+
+    const enabled = Boolean(savedGlobalSetting?.setting?.healthcheck_enabled);
+    if (enabled || savedGlobalSetting?.setting?.healthcheck_time) {
+      const time = parseTime(savedGlobalSetting?.setting?.healthcheck_time).normalized;
+      syncHealthcheckCrontab({ enabled, time });
+    }
+
     res.send({
       message: "Global Setting Added Successfully!",
     });
@@ -45,9 +58,57 @@ const updateGlobalSetting = async (req, res) => {
       { new: true, upsert: true }
     );
 
+    const hasHealthcheckUpdate =
+      Object.prototype.hasOwnProperty.call(setting, "healthcheck_enabled") ||
+      Object.prototype.hasOwnProperty.call(setting, "healthcheck_time");
+
+    if (hasHealthcheckUpdate) {
+      const enabled = Boolean(globalSetting?.setting?.healthcheck_enabled);
+      const time = parseTime(globalSetting?.setting?.healthcheck_time).normalized;
+      syncHealthcheckCrontab({ enabled, time });
+    }
+
     res.send({
       data: globalSetting,
       message: "Global Setting Update Successfully!",
+    });
+  } catch (err) {
+    res.status(500).send({
+      message: err.message,
+    });
+  }
+};
+
+const getHealthcheckStatus = async (req, res) => {
+  try {
+    const globalSetting = await Setting.findOne({ name: "globalSetting" });
+    const cronStatus = getHealthcheckCrontabStatus();
+
+    const setting = globalSetting?.setting || {};
+
+    res.send({
+      enabled: Boolean(setting.healthcheck_enabled),
+      time: parseTime(setting.healthcheck_time).normalized,
+      email_to: setting.healthcheck_email_to || "",
+      cron_enabled: cronStatus.enabled,
+      cron_line: cronStatus.line,
+    });
+  } catch (err) {
+    res.status(500).send({
+      message: err.message,
+    });
+  }
+};
+
+const runHealthcheckReportNow = async (req, res) => {
+  try {
+    const result = await runHealthcheckNow();
+    const mergedOutput = `${result.stdout || ""}${result.stderr || ""}`;
+    const outputPreview = mergedOutput.slice(0, 4000);
+
+    res.send({
+      message: "Healthcheck report executed successfully.",
+      output: outputPreview,
     });
   } catch (err) {
     res.status(500).send({
@@ -298,6 +359,8 @@ module.exports = {
   addGlobalSetting,
   getGlobalSetting,
   updateGlobalSetting,
+  getHealthcheckStatus,
+  runHealthcheckReportNow,
   addStoreSetting,
   getStoreSetting,
   getStoreSecretKeys,

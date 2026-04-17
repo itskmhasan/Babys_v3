@@ -3,6 +3,8 @@ const { isAuth, isAdmin, isSuperAdmin } = require("../config/auth");
 const {
   addGlobalSetting,
   getGlobalSetting,
+  getHealthcheckStatus,
+  runHealthcheckReportNow,
   updateGlobalSetting,
   addStoreSetting,
   getStoreSetting,
@@ -22,6 +24,9 @@ router
   .post(isAuth, isAdmin, addGlobalSetting) // POST /global
   .get(getGlobalSetting) // GET /global
   .put(isAuth, isAdmin, updateGlobalSetting); // PUT /global
+
+router.get("/healthcheck/status", isAuth, isAdmin, getHealthcheckStatus);
+router.post("/healthcheck/run", isAuth, isAdmin, runHealthcheckReportNow);
 
 /**
  * Store Settings

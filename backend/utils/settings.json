@@ -51,7 +51,10 @@
       "default_language": "en",
       "email_to_customer": true,
       "enable_guest_order": false,
-      "from_email": "info@babys.com.bd"
+      "from_email": "info@babys.com.bd",
+      "healthcheck_enabled": true,
+      "healthcheck_time": "08:00",
+      "healthcheck_email_to": ""
     },
     "name": "globalSetting"
   },

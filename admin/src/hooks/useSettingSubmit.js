@@ -12,6 +12,8 @@ const useSettingSubmit = (id) => {
   const [isSave, setIsSave] = useState(true);
   const [enableInvoice, setEnableInvoice] = useState(false);
   const [enableGuestOrder, setEnableGuestOrder] = useState(false);
+  const [healthcheckEnabled, setHealthcheckEnabled] = useState(true);
+  const [isRunningHealthcheck, setIsRunningHealthcheck] = useState(false);
   const [isAllowAutoTranslation, setIsAllowAutoTranslation] = useState(false);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -59,6 +61,9 @@ const useSettingSubmit = (id) => {
           allow_auto_trans: isAllowAutoTranslation,
           translation_key: data.translation_key,
           enable_guest_order: enableGuestOrder,
+          healthcheck_enabled: healthcheckEnabled,
+          healthcheck_time: data.healthcheck_time || "08:00",
+          healthcheck_email_to: data.healthcheck_email_to || "",
         },
       };
 
@@ -123,12 +128,31 @@ const useSettingSubmit = (id) => {
           setValue("translation_key", res?.translation_key);
           setIsAllowAutoTranslation(res?.allow_auto_trans || false);
           setEnableGuestOrder(res?.enable_guest_order || false);
+          setHealthcheckEnabled(res?.healthcheck_enabled ?? true);
+          setValue("healthcheck_time", res?.healthcheck_time || "08:00");
+          setValue("healthcheck_email_to", res?.healthcheck_email_to || "");
         }
       } catch (err) {
         notifyError(err?.response?.data?.message || err?.message);
       }
     })();
   }, []);
+
+  const handleRunHealthcheckNow = async () => {
+    try {
+      if (handleDisableForDemo()) {
+        return;
+      }
+
+      setIsRunningHealthcheck(true);
+      const res = await SettingServices.runHealthcheckNow();
+      notifySuccess(res?.message || "Healthcheck report sent successfully.");
+    } catch (err) {
+      notifyError(err?.response?.data?.message || err?.message);
+    } finally {
+      setIsRunningHealthcheck(false);
+    }
+  };
 
   return {
     watch,
@@ -144,6 +168,10 @@ const useSettingSubmit = (id) => {
     handleSubmit,
     enableGuestOrder,
     setEnableGuestOrder,
+    healthcheckEnabled,
+    setHealthcheckEnabled,
+    isRunningHealthcheck,
+    handleRunHealthcheckNow,
     isAllowAutoTranslation,
     setIsAllowAutoTranslation,
   };

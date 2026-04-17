@@ -22,6 +22,7 @@ import SelectCurrency from "@/components/form/selectOption/SelectCurrency";
 import SelectReceiptSize from "@/components/form/selectOption/SelectPrintSize";
 import SelectLanguageThree from "@/components/form/selectOption/SelectLanguageThree";
 import { Controller } from "react-hook-form";
+import { Button } from "@/components/ui/button";
 
 const Setting = () => {
   const {
@@ -38,6 +39,10 @@ const Setting = () => {
     setEnableInvoice,
     enableGuestOrder,
     setEnableGuestOrder,
+    healthcheckEnabled,
+    setHealthcheckEnabled,
+    isRunningHealthcheck,
+    handleRunHealthcheckNow,
     isAllowAutoTranslation,
     setIsAllowAutoTranslation,
   } = useSettingSubmit();
@@ -428,6 +433,82 @@ const Setting = () => {
                           placeholder="Web Site"
                         />
                         <Error errorName={errors.website} />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Health Check Section */}
+                <div className="bg-white dark:bg-gray-800 dark:text-gray-200 rounded-lg p-6">
+                  <h2 className="text-base/7 font-semibold text-gray-900 dark:text-white">
+                    Health Check & Daily Report
+                  </h2>
+                  <p className="mt-1 text-sm/6 text-gray-600 dark:text-gray-400">
+                    Configure automated daily API/store health report and run it manually.
+                  </p>
+
+                  <div className="mt-6 space-y-8">
+                    <div className="grid md:grid-cols-5 items-center sm:grid-cols-12 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
+                      <Label label="Enable Daily Healthcheck" />
+                      <div className="mt-2 sm:col-span-4">
+                        <SwitchToggle
+                          title={""}
+                          handleProcess={setHealthcheckEnabled}
+                          processOption={healthcheckEnabled}
+                        />
+                      </div>
+                    </div>
+
+                    <div
+                      className={`transition-all duration-600 ${
+                        healthcheckEnabled
+                          ? "opacity-100 visible h-auto"
+                          : "opacity-0 invisible h-0 overflow-hidden"
+                      }`}
+                    >
+                      <div className="grid md:grid-cols-5 items-center sm:grid-cols-12 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
+                        <Label label="Daily Send Time" />
+                        <div className="mt-2 sm:col-span-4">
+                          <InputArea
+                            required={healthcheckEnabled}
+                            register={register}
+                            label="Daily Send Time"
+                            name="healthcheck_time"
+                            type="time"
+                            placeholder="08:00"
+                          />
+                          <Error errorName={errors.healthcheck_time} />
+                        </div>
+                      </div>
+
+                      <div className="grid md:grid-cols-5 items-center sm:grid-cols-12 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
+                        <Label label="Recipient Emails" />
+                        <div className="mt-2 sm:col-span-4">
+                          <InputAreaTwo
+                            register={register}
+                            label="Recipient Emails"
+                            name="healthcheck_email_to"
+                            type="text"
+                            placeholder="ops@babys.com, owner@babys.com"
+                          />
+                          <p className="text-xs text-gray-500 mt-2">
+                            Add multiple emails separated by comma or semicolon.
+                          </p>
+                          <Error errorName={errors.healthcheck_email_to} />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="grid md:grid-cols-5 items-center sm:grid-cols-12 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-2">
+                      <Label label="Run Healthcheck Now" />
+                      <div className="mt-2 sm:col-span-4">
+                        <Button
+                          type="button"
+                          onClick={handleRunHealthcheckNow}
+                          disabled={isRunningHealthcheck}
+                        >
+                          {isRunningHealthcheck ? "Running..." : "Run & Send Report"}
+                        </Button>
                       </div>
                     </div>
                   </div>

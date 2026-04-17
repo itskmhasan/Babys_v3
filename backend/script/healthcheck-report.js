@@ -11,10 +11,43 @@ const DEFAULT_TIMEOUT_MS = Number(process.env.HEALTHCHECK_TIMEOUT_MS || 10000);
 const STORE_URL = process.env.HEALTHCHECK_STORE_URL || "http://127.0.0.1:3000/";
 const API_URL =
   process.env.HEALTHCHECK_API_URL || "http://127.0.0.1:5055/v1/setting/global";
-const EMAIL_TO = process.env.HEALTHCHECK_EMAIL_TO || process.env.EMAIL_USER;
 const EMAIL_FROM = process.env.HEALTHCHECK_EMAIL_FROM || process.env.EMAIL_USER;
 
 const reportDir = path.resolve(__dirname, "../../deploy/reports");
+
+const parseRecipientList = (value) => {
+  return String(value || "")
+    .split(/[;,]/)
+    .map((item) => item.trim())
+    .filter(Boolean)
+    .join(", ");
+};
+
+const resolveDynamicEmailTo = async () => {
+  const fromEnv = parseRecipientList(process.env.HEALTHCHECK_EMAIL_TO);
+  if (fromEnv) return fromEnv;
+
+  try {
+    const res = await fetch(API_URL, {
+      method: "GET",
+      headers: {
+        "user-agent": "Babys-Healthcheck/1.0",
+      },
+    });
+
+    if (res.ok) {
+      const data = await res.json();
+      const dynamicFromApi = parseRecipientList(
+        data?.healthcheck_email_to || data?.email || data?.from_email
+      );
+      if (dynamicFromApi) return dynamicFromApi;
+    }
+  } catch {
+    // Ignore API recipient lookup failure and continue fallback chain.
+  }
+
+  return parseRecipientList(process.env.EMAIL_USER);
+};
 
 const withTimeout = async (url, timeoutMs) => {
   const controller = new AbortController();
@@ -95,15 +128,15 @@ const saveReport = (text, generatedAt) => {
   return reportPath;
 };
 
-const sendEmail = async (subject, text, attachmentPath) => {
+const sendEmail = async (subject, text, attachmentPath, emailTo) => {
   const host = process.env.HOST;
   const port = Number(process.env.EMAIL_PORT || 465);
   const user = process.env.EMAIL_USER;
   const pass = process.env.EMAIL_PASS;
 
-  if (!host || !port || !user || !pass || !EMAIL_TO || !EMAIL_FROM) {
+  if (!host || !port || !user || !pass || !emailTo || !EMAIL_FROM) {
     throw new Error(
-      "Missing email config. Ensure HOST, EMAIL_PORT, EMAIL_USER, EMAIL_PASS, and HEALTHCHECK_EMAIL_TO are set."
+      "Missing email config. Ensure HOST, EMAIL_PORT, EMAIL_USER, EMAIL_PASS, and a recipient email are available."
     );
   }
 
@@ -116,7 +149,7 @@ const sendEmail = async (subject, text, attachmentPath) => {
 
   await transporter.sendMail({
     from: EMAIL_FROM,
-    to: EMAIL_TO,
+    to: emailTo,
     subject,
     text,
     attachments: [
@@ -150,8 +183,10 @@ const sendEmail = async (subject, text, attachmentPath) => {
     .toISOString()
     .slice(0, 10)}`;
 
-  await sendEmail(subject, text, reportPath);
-  console.log(`EmailSentTo=${EMAIL_TO}`);
+  const emailTo = await resolveDynamicEmailTo();
+
+  await sendEmail(subject, text, reportPath, emailTo);
+  console.log(`EmailSentTo=${emailTo}`);
 
   process.exit(summary === "PASS" ? 0 : 1);
 })().catch((error) => {
