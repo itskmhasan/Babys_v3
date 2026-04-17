@@ -6,6 +6,7 @@ const nodemailer = require("nodemailer");
 const mongoose = require("mongoose");
 const os = require("os");
 const tls = require("tls");
+const PDFDocument = require("pdfkit");
 const { execSync } = require("child_process");
 const dotenv = require("dotenv");
 
@@ -616,10 +617,9 @@ const buildDashboardModel = ({ summary, generatedAt, checks, thresholds }) => {
   };
 };
 
-const buildHtmlReport = (model) => {
+const savePdfReport = async (model, generatedAt) => {
   const {
     summary,
-    generatedAt,
     total,
     passed,
     failed,
@@ -627,182 +627,92 @@ const buildHtmlReport = (model) => {
     avgLatency,
     protectionLevel,
     findings,
-    improvingActions,
-    thresholds,
     checks,
+    thresholds,
   } = model;
 
-  const scoreColor = summary === "PASS" ? "#16a34a" : "#dc2626";
+  fs.mkdirSync(reportDir, { recursive: true });
+  const stamp = generatedAt.toISOString().replace(/[:.]/g, "-");
+  const reportPdfPath = path.join(reportDir, `healthcheck-${stamp}.pdf`);
 
-  const findingsRows = findings.length
-    ? findings
-        .map(
-          (item) => `
-        <tr>
-          <td><span class="sev sev-${escapeHtml(item.severity)}">${escapeHtml(
-            toTitleCase(item.severity)
-          )}</span></td>
-          <td>${escapeHtml(item.name)}</td>
-          <td>${escapeHtml(item.observed)}</td>
-          <td>${escapeHtml(item.recommendation)}</td>
-        </tr>`
-        )
-        .join("")
-    : `<tr><td colspan="4" class="ok-row">No active failures. All checks passed.</td></tr>`;
+  await new Promise((resolve, reject) => {
+    const doc = new PDFDocument({ margin: 40, size: "A4" });
+    const stream = fs.createWriteStream(reportPdfPath);
+    doc.pipe(stream);
 
-  const actionRows = improvingActions.length
-    ? improvingActions
-        .map((item) => {
-          const actionScore = item.severity === "high" ? 22 : item.severity === "medium" ? 12 : 8;
-          return `
-        <div class="action-item">
-          <div class="action-top">
-            <span>${escapeHtml(item.name)}</span>
-            <span>+${actionScore}</span>
-          </div>
-          <div class="progress-wrap"><div class="progress" style="width:${Math.min(
-            100,
-            actionScore * 3
-          )}%"></div></div>
-          <p>${escapeHtml(item.recommendation)}</p>
-        </div>`;
-        })
-        .join("")
-    : `<p class="ok-row">No improvement actions required. Keep monitoring daily.</p>`;
+    const headingColor = summary === "PASS" ? "#15803d" : "#b91c1c";
 
-  const checkRows = checks
-    .map(
-      (item) => `
-    <tr>
-      <td>${escapeHtml(item.ok ? "PASS" : "FAIL")}</td>
-      <td>${escapeHtml(item.name)}</td>
-      <td>${escapeHtml(String(item.status))}</td>
-      <td>${escapeHtml(String(item.elapsedMs))} ms</td>
-      <td>${escapeHtml(item.error || item.bodyPreview || "-")}</td>
-    </tr>`
-    )
-    .join("");
+    doc.fontSize(24).fillColor("#f59e0b").text("SECURITY HEALTH CHECK REPORT");
+    doc.moveDown(0.2);
+    doc
+      .fontSize(10)
+      .fillColor("#4b5563")
+      .text(`Generated: ${formatDateTime(generatedAt)}`)
+      .text(`Overall: ${summary}`);
 
-  return `<!doctype html>
-<html>
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Babys Security Health Check Report</title>
-  <style>
-    body { font-family: 'Segoe UI', Arial, sans-serif; background:#f5f6f8; color:#1f2937; margin:0; padding:24px; }
-    .wrap { max-width: 1200px; margin: 0 auto; }
-    .header { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:14px; }
-    .title { font-size:40px; font-weight:800; letter-spacing:1px; color:#f59e0b; margin:0; }
-    .sub { margin:4px 0 0; color:#6b7280; font-size:14px; }
-    .status-pill { background:${scoreColor}; color:#fff; border-radius:999px; padding:10px 16px; font-weight:700; }
-    .grid { display:grid; grid-template-columns: 1fr 1fr; gap:16px; }
-    .card { background:#fff; border:1px solid #e5e7eb; border-radius:10px; box-shadow:0 1px 2px rgba(0,0,0,.05); }
-    .card h3 { margin:0; padding:12px 14px; border-bottom:1px solid #e5e7eb; font-size:20px; }
-    .body { padding:14px; }
-    .score-grid { display:grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap:10px; }
-    .kpi { background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:12px; }
-    .kpi .k { color:#64748b; font-size:12px; text-transform:uppercase; letter-spacing:.06em; }
-    .kpi .v { font-size:28px; font-weight:800; margin-top:4px; }
-    .actions { display:flex; flex-direction:column; gap:10px; }
-    .action-item { border:1px solid #e5e7eb; border-radius:8px; padding:10px; background:#fff; }
-    .action-top { display:flex; justify-content:space-between; font-weight:700; margin-bottom:6px; }
-    .progress-wrap { height:10px; background:#e5e7eb; border-radius:999px; overflow:hidden; margin-bottom:8px; }
-    .progress { height:100%; background:#84cc16; }
-    table { width:100%; border-collapse:collapse; }
-    th, td { border:1px solid #e5e7eb; padding:8px; text-align:left; vertical-align:top; font-size:13px; }
-    th { background:#f8fafc; }
-    .sev { display:inline-block; padding:4px 8px; border-radius:999px; color:#fff; font-size:12px; font-weight:700; }
-    .sev-high { background:#dc2626; }
-    .sev-medium { background:#f59e0b; }
-    .sev-low { background:#3b82f6; }
-    .sev-passed { background:#16a34a; }
-    .meta { margin-top:14px; font-size:12px; color:#6b7280; }
-    .ok-row { text-align:center; color:#166534; font-weight:700; padding:14px; }
-    .foot { margin-top:16px; font-size:12px; color:#6b7280; }
-    @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } .title { font-size:28px; } }
-  </style>
-</head>
-<body>
-  <div class="wrap">
-    <div class="header">
-      <div>
-        <h1 class="title">SECURITY HEALTH CHECK REPORT</h1>
-        <p class="sub">Generated: ${escapeHtml(formatDateTime(generatedAt))}</p>
-      </div>
-      <div class="status-pill">${escapeHtml(summary)}</div>
-    </div>
+    doc.moveDown(0.6);
+    doc
+      .fontSize(18)
+      .fillColor(headingColor)
+      .text(`Score: ${score} (${protectionLevel})`);
 
-    <div class="grid">
-      <section class="card">
-        <h3>How You Scored</h3>
-        <div class="body">
-          <div class="score-grid">
-            <div class="kpi"><div class="k">Health Score</div><div class="v" style="color:${scoreColor}">${score}</div></div>
-            <div class="kpi"><div class="k">Protection Level</div><div class="v">${escapeHtml(protectionLevel)}</div></div>
-            <div class="kpi"><div class="k">Total Checks</div><div class="v">${total}</div></div>
-            <div class="kpi"><div class="k">Passed / Failed</div><div class="v">${passed} / ${failed}</div></div>
-            <div class="kpi"><div class="k">Avg Latency</div><div class="v">${avgLatency}ms</div></div>
-            <div class="kpi"><div class="k">Thresholds</div><div class="v" style="font-size:14px;line-height:1.5">SSL ${escapeHtml(
-              String(thresholds.sslDays)
-            )}d, CPU ${escapeHtml(String(thresholds.cpuPercent))}%, RAM ${escapeHtml(
-              String(thresholds.ramPercent)
-            )}%, Disk ${escapeHtml(String(thresholds.diskPercent))}%</div></div>
-          </div>
-        </div>
-      </section>
+    doc.moveDown(0.3);
+    doc
+      .fontSize(11)
+      .fillColor("#111827")
+      .text(`Total Checks: ${total}`)
+      .text(`Passed: ${passed}`)
+      .text(`Failed: ${failed}`)
+      .text(`Average Latency: ${avgLatency} ms`)
+      .text(
+        `Thresholds => SSL ${thresholds.sslDays}d, CPU ${thresholds.cpuPercent}%, RAM ${thresholds.ramPercent}%, Disk ${thresholds.diskPercent}%`
+      );
 
-      <section class="card">
-        <h3>Improving Your Score</h3>
-        <div class="body actions">
-          ${actionRows}
-        </div>
-      </section>
-    </div>
+    doc.moveDown(0.8);
+    doc.fontSize(14).fillColor("#111827").text("Top Findings", { underline: true });
 
-    <section class="card" style="margin-top:16px;">
-      <h3>Report Findings</h3>
-      <div class="body">
-        <table>
-          <thead>
-            <tr>
-              <th style="width:120px">Severity</th>
-              <th style="width:240px">We Found</th>
-              <th>Observed</th>
-              <th>We Recommend</th>
-            </tr>
-          </thead>
-          <tbody>
-            ${findingsRows}
-          </tbody>
-        </table>
-      </div>
-    </section>
+    if (!findings.length) {
+      doc.moveDown(0.3).fontSize(11).fillColor("#15803d").text("No failed checks. All checks passed.");
+    } else {
+      findings.slice(0, 10).forEach((item, idx) => {
+        doc
+          .moveDown(0.3)
+          .fontSize(11)
+          .fillColor("#111827")
+          .text(`${idx + 1}. [${toTitleCase(item.severity)}] ${item.name}`)
+          .fontSize(10)
+          .fillColor("#4b5563")
+          .text(`Observed: ${item.observed}`)
+          .text(`Recommendation: ${item.recommendation}`);
+      });
+    }
 
-    <section class="card" style="margin-top:16px;">
-      <h3>All Check Results</h3>
-      <div class="body">
-        <table>
-          <thead>
-            <tr>
-              <th style="width:100px">Result</th>
-              <th style="width:260px">Check</th>
-              <th style="width:90px">Status</th>
-              <th style="width:120px">Latency</th>
-              <th>Details</th>
-            </tr>
-          </thead>
-          <tbody>
-            ${checkRows}
-          </tbody>
-        </table>
-      </div>
-    </section>
+    doc.moveDown(0.8);
+    doc.fontSize(14).fillColor("#111827").text("All Check Results", { underline: true });
 
-    <p class="foot">This report is auto-generated by Babys daily monitoring. Keep thresholds tuned based on production load and risk profile.</p>
-  </div>
-</body>
-</html>`;
+    checks.forEach((item) => {
+      if (doc.y > 760) {
+        doc.addPage();
+      }
+
+      const status = item.ok ? "PASS" : "FAIL";
+      doc
+        .moveDown(0.25)
+        .fontSize(10)
+        .fillColor(item.ok ? "#15803d" : "#b91c1c")
+        .text(`${status} | ${item.name} | status=${item.status} | latency=${item.elapsedMs}ms`)
+        .fontSize(9)
+        .fillColor("#4b5563")
+        .text(item.error || item.bodyPreview || "-");
+    });
+
+    doc.end();
+
+    stream.on("finish", resolve);
+    stream.on("error", reject);
+  });
+
+  return { reportPdfPath };
 };
 
 const buildEmailHtml = (model) => {
@@ -868,7 +778,7 @@ const buildEmailHtml = (model) => {
           </tbody>
         </table>
 
-        <p style="margin:14px 0 0;color:#6b7280;font-size:13px;">Detailed dashboard report is attached as HTML.</p>
+        <p style="margin:14px 0 0;color:#6b7280;font-size:13px;">Detailed dashboard report is attached as PDF.</p>
       </div>
     </div>
   </div>`;
@@ -905,19 +815,6 @@ const buildReport = (results) => {
     text: lines.join("\n"),
     generatedAt: now,
   };
-};
-
-const saveReport = (text, generatedAt, html) => {
-  fs.mkdirSync(reportDir, { recursive: true });
-
-  const stamp = generatedAt.toISOString().replace(/[:.]/g, "-");
-  const reportTextPath = path.join(reportDir, `healthcheck-${stamp}.txt`);
-  const reportHtmlPath = path.join(reportDir, `healthcheck-${stamp}.html`);
-
-  fs.writeFileSync(reportTextPath, text, "utf8");
-  fs.writeFileSync(reportHtmlPath, html, "utf8");
-
-  return { reportTextPath, reportHtmlPath };
 };
 
 const saveLatestStatus = (payload) => {
@@ -1016,12 +913,10 @@ const sendEmail = async ({ subject, text, html, attachments, emailTo }) => {
     checks,
     thresholds,
   });
-  const htmlReport = buildHtmlReport(dashboardModel);
-  const { reportTextPath, reportHtmlPath } = saveReport(text, generatedAt, htmlReport);
+  const { reportPdfPath } = await savePdfReport(dashboardModel, generatedAt);
 
   console.log(text);
-  console.log(`ReportSaved=${reportTextPath}`);
-  console.log(`HtmlReportSaved=${reportHtmlPath}`);
+  console.log(`PdfReportSaved=${reportPdfPath}`);
 
   const skipEmail = process.argv.includes("--no-email");
 
@@ -1029,8 +924,9 @@ const sendEmail = async ({ subject, text, html, attachments, emailTo }) => {
     saveLatestStatus({
       generated_at: generatedAt.toISOString(),
       overall: summary,
-      report_path: reportTextPath,
-      report_html_path: reportHtmlPath,
+      report_path: reportPdfPath,
+      report_pdf_path: reportPdfPath,
+      report_html_path: "",
       email_sent: false,
       email_to: "",
       mode: "no-email",
@@ -1056,20 +952,17 @@ const sendEmail = async ({ subject, text, html, attachments, emailTo }) => {
     emailTo,
     attachments: [
       {
-        filename: path.basename(reportHtmlPath),
-        path: reportHtmlPath,
-      },
-      {
-        filename: path.basename(reportTextPath),
-        path: reportTextPath,
+        filename: path.basename(reportPdfPath),
+        path: reportPdfPath,
       },
     ],
   });
   saveLatestStatus({
     generated_at: generatedAt.toISOString(),
     overall: summary,
-    report_path: reportTextPath,
-    report_html_path: reportHtmlPath,
+    report_path: reportPdfPath,
+    report_pdf_path: reportPdfPath,
+    report_html_path: "",
     email_sent: true,
     email_to: emailTo,
     mode: "email",

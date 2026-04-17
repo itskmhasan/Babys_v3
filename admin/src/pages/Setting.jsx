@@ -50,6 +50,20 @@ const Setting = () => {
 
   const { t } = useTranslation();
 
+  const lastRun = healthcheckStatus?.last_run || null;
+  const checks = Array.isArray(lastRun?.checks) ? lastRun.checks : [];
+  const totalChecks = checks.length;
+  const failedChecks = checks.filter((item) => !item?.ok);
+  const passedChecks = totalChecks - failedChecks.length;
+  const scoreValue = Math.max(0, Math.min(100, Number(lastRun?.score || 0)));
+  const scoreStrokeOffset = 282.6 - (282.6 * scoreValue) / 100;
+  const hasRunData = Boolean(lastRun?.generated_at);
+
+  const statusChipClass =
+    lastRun?.overall === "PASS"
+      ? "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300"
+      : "bg-red-100 text-red-700 dark:bg-red-900/40 dark:text-red-300";
+
   return (
     <>
       <div className="lg:flex lg:items-center lg:justify-between py-8 gap-2">
@@ -609,59 +623,144 @@ const Setting = () => {
 
                     <div className="grid md:grid-cols-5 items-start sm:grid-cols-12 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-2">
                       <Label label="Last Run Status" />
-                      <div className="mt-2 sm:col-span-4 rounded-md border border-gray-200 dark:border-gray-700 p-4 bg-gray-50 dark:bg-gray-900">
-                        <p className="text-sm text-gray-800 dark:text-gray-200">
-                          <strong>Overall:</strong>{" "}
-                          {healthcheckStatus?.last_run?.overall || "N/A"}
-                        </p>
-                        <p className="text-sm text-gray-800 dark:text-gray-200 mt-1">
-                          <strong>Last Run At:</strong>{" "}
-                          {healthcheckStatus?.last_run?.generated_at
-                            ? new Date(
-                                healthcheckStatus.last_run.generated_at
-                              ).toLocaleString()
-                            : "N/A"}
-                        </p>
-                        <p className="text-sm text-gray-800 dark:text-gray-200 mt-1 break-all">
-                          <strong>Last Email To:</strong>{" "}
-                          {healthcheckStatus?.last_run?.email_to || "N/A"}
-                        </p>
-                        <p className="text-sm text-gray-800 dark:text-gray-200 mt-1 break-all">
-                          <strong>Last Report File:</strong>{" "}
-                          {healthcheckStatus?.last_run?.report_path || "N/A"}
-                        </p>
-                        <p className="text-sm text-gray-800 dark:text-gray-200 mt-1 break-all">
-                          <strong>Last HTML Report:</strong>{" "}
-                          {healthcheckStatus?.last_run?.report_html_path || "N/A"}
-                        </p>
-                        <p className="text-sm text-gray-800 dark:text-gray-200 mt-1">
-                          <strong>Health Score:</strong>{" "}
-                          {healthcheckStatus?.last_run?.score ?? "N/A"}
-                        </p>
-                        <p className="text-sm text-gray-800 dark:text-gray-200 mt-1">
-                          <strong>Protection Level:</strong>{" "}
-                          {healthcheckStatus?.last_run?.protection_level || "N/A"}
-                        </p>
-                        <p className="text-sm text-gray-800 dark:text-gray-200 mt-1">
-                          <strong>Checks Failed:</strong>{" "}
-                          {(healthcheckStatus?.last_run?.checks || []).filter(
-                            (item) => !item?.ok
-                          ).length}
-                        </p>
-                        {(healthcheckStatus?.last_run?.checks || [])
-                          .filter((item) => !item?.ok)
-                          .slice(0, 3)
-                          .map((item, idx) => (
-                            <p
-                              key={`failed-check-${idx}`}
-                              className="text-xs text-red-600 dark:text-red-400 mt-1 break-all"
-                            >
-                              {item?.name || item?.url}: {item?.error || `status ${item?.status}`}
-                            </p>
-                          ))}
-                        <p className="text-xs text-gray-500 mt-2 break-all">
-                          Cron: {healthcheckStatus?.cron_enabled ? "Enabled" : "Disabled"}
-                        </p>
+                      <div className="mt-2 sm:col-span-4 rounded-xl border border-gray-200 dark:border-gray-700 p-5 bg-gradient-to-br from-white via-gray-50 to-sky-50 dark:from-gray-900 dark:via-gray-900 dark:to-slate-900">
+                        {!hasRunData ? (
+                          <p className="text-sm text-gray-700 dark:text-gray-300">
+                            No healthcheck run data found yet.
+                          </p>
+                        ) : (
+                          <>
+                            <div className="flex flex-wrap items-center justify-between gap-3">
+                              <h3 className="text-sm font-semibold text-gray-900 dark:text-white">
+                                Healthcheck Snapshot
+                              </h3>
+                              <span
+                                className={`text-xs font-semibold px-2.5 py-1 rounded-full ${statusChipClass}`}
+                              >
+                                {lastRun?.overall || "Unknown"}
+                              </span>
+                            </div>
+
+                            <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4">
+                              <div className="rounded-lg border border-gray-200 dark:border-gray-700 bg-white/80 dark:bg-gray-800/50 p-3 flex items-center justify-center">
+                                <div className="relative w-28 h-28">
+                                  <svg className="w-28 h-28 -rotate-90" viewBox="0 0 100 100">
+                                    <circle
+                                      cx="50"
+                                      cy="50"
+                                      r="45"
+                                      stroke="currentColor"
+                                      strokeWidth="8"
+                                      className="text-gray-200 dark:text-gray-700"
+                                      fill="none"
+                                    />
+                                    <circle
+                                      cx="50"
+                                      cy="50"
+                                      r="45"
+                                      stroke="currentColor"
+                                      strokeWidth="8"
+                                      strokeLinecap="round"
+                                      className="text-emerald-500"
+                                      fill="none"
+                                      strokeDasharray="282.6"
+                                      strokeDashoffset={scoreStrokeOffset}
+                                    />
+                                  </svg>
+                                  <div className="absolute inset-0 flex flex-col items-center justify-center">
+                                    <p className="text-2xl font-bold text-gray-900 dark:text-white">
+                                      {scoreValue}
+                                    </p>
+                                    <p className="text-xs text-gray-500 dark:text-gray-400">Score</p>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div className="rounded-lg border border-gray-200 dark:border-gray-700 bg-white/80 dark:bg-gray-800/50 p-3">
+                                <p className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                                  Protection
+                                </p>
+                                <p className="text-lg font-semibold text-gray-900 dark:text-white mt-1">
+                                  {lastRun?.protection_level || "N/A"}
+                                </p>
+                                <p className="text-xs text-gray-500 dark:text-gray-400 mt-4">
+                                  Run Time
+                                </p>
+                                <p className="text-sm text-gray-900 dark:text-white mt-1">
+                                  {new Date(lastRun.generated_at).toLocaleString()}
+                                </p>
+                                <p className="text-xs text-gray-500 dark:text-gray-400 mt-3">
+                                  Cron
+                                </p>
+                                <p className="text-sm font-medium text-gray-900 dark:text-white mt-1">
+                                  {healthcheckStatus?.cron_enabled ? "Enabled" : "Disabled"}
+                                </p>
+                              </div>
+
+                              <div className="rounded-lg border border-gray-200 dark:border-gray-700 bg-white/80 dark:bg-gray-800/50 p-3">
+                                <p className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                                  Check Results
+                                </p>
+                                <div className="mt-2 space-y-3">
+                                  <div>
+                                    <div className="flex justify-between text-xs text-gray-700 dark:text-gray-300">
+                                      <span>Passed</span>
+                                      <span>{passedChecks}</span>
+                                    </div>
+                                    <div className="h-2 mt-1 rounded-full bg-gray-200 dark:bg-gray-700 overflow-hidden">
+                                      <div
+                                        className="h-2 rounded-full bg-emerald-500"
+                                        style={{
+                                          width: `${totalChecks ? (passedChecks / totalChecks) * 100 : 0}%`,
+                                        }}
+                                      />
+                                    </div>
+                                  </div>
+                                  <div>
+                                    <div className="flex justify-between text-xs text-gray-700 dark:text-gray-300">
+                                      <span>Failed</span>
+                                      <span>{failedChecks.length}</span>
+                                    </div>
+                                    <div className="h-2 mt-1 rounded-full bg-gray-200 dark:bg-gray-700 overflow-hidden">
+                                      <div
+                                        className="h-2 rounded-full bg-red-500"
+                                        style={{
+                                          width: `${totalChecks ? (failedChecks.length / totalChecks) * 100 : 0}%`,
+                                        }}
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="mt-4 rounded-lg border border-gray-200 dark:border-gray-700 bg-white/80 dark:bg-gray-800/50 p-3">
+                              <p className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                                Top Findings
+                              </p>
+                              {failedChecks.length === 0 ? (
+                                <p className="text-sm text-emerald-600 dark:text-emerald-400 mt-2 font-medium">
+                                  No failed checks in the latest run.
+                                </p>
+                              ) : (
+                                failedChecks.slice(0, 3).map((item, idx) => (
+                                  <p
+                                    key={`failed-check-${idx}`}
+                                    className="text-xs text-red-600 dark:text-red-400 mt-2 break-all"
+                                  >
+                                    {item?.name || item?.url}: {item?.error || `status ${item?.status}`}
+                                  </p>
+                                ))
+                              )}
+                              <p className="text-xs text-gray-600 dark:text-gray-400 mt-3 break-all">
+                                Email To: {lastRun?.email_to || "N/A"}
+                              </p>
+                              <p className="text-xs text-gray-600 dark:text-gray-400 mt-1 break-all">
+                                PDF Report: {lastRun?.report_pdf_path || lastRun?.report_path || "N/A"}
+                              </p>
+                            </div>
+                          </>
+                        )}
                       </div>
                     </div>
                   </div>
