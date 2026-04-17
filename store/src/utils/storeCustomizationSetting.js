@@ -64,6 +64,7 @@ export const storeCustomization = {
   },
   home: {
     coupon_status: true,
+    first_visit_popup_status: true,
     featured_status: true,
     daily_needs_status: true,
     slider_width_status: false,
@@ -78,6 +79,16 @@ export const storeCustomization = {
       en: "Latest Super Discount Active Coupon Code",
       de: "Neuester aktiver Super-Rabatt-Gutscheincode",
     },
+    first_visit_popup_title: {
+      en: "Coupon Offer Card",
+      de: "Gutscheinangebot",
+    },
+    first_visit_popup_button_text: {
+      en: "SHOP NOW",
+      de: "JETZT KAUFEN",
+    },
+    first_visit_popup_button_link: "/",
+    first_visit_popup_storage_key: "store_first_visit_popup_seen",
     promotion_title: {
       en: "100% Natural Quality Organic Product",
       de: "100 % natürliches Bio-Qualitätsprodukt",

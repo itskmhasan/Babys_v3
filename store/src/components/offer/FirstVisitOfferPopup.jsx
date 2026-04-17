@@ -12,21 +12,27 @@ const FirstVisitOfferPopup = ({
   categories = [],
   coupons = [],
   couponTitle,
+  popupConfig = {},
 }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const popupEnabled = popupConfig?.enabled ?? true;
+  const popupStorageKey =
+    popupConfig?.storageKey || FIRST_VISIT_POPUP_KEY;
 
   useEffect(() => {
+    if (!popupEnabled) return;
+
     try {
-      const hasSeenPopup = window.localStorage.getItem(FIRST_VISIT_POPUP_KEY);
+      const hasSeenPopup = window.localStorage.getItem(popupStorageKey);
       if (!hasSeenPopup) {
         setIsOpen(true);
-        window.localStorage.setItem(FIRST_VISIT_POPUP_KEY, "true");
+        window.localStorage.setItem(popupStorageKey, "true");
       }
     } catch {
       // Fallback when storage is blocked: keep existing behavior.
       setIsOpen(true);
     }
-  }, []);
+  }, [popupEnabled, popupStorageKey]);
 
   const normalizedCategories = useMemo(() => {
     return (categories || []).map((cat) => ({
@@ -37,13 +43,20 @@ const FirstVisitOfferPopup = ({
     }));
   }, [categories]);
 
-  if (!isOpen || normalizedCategories.length === 0) return null;
+  if (!popupEnabled || !isOpen || normalizedCategories.length === 0) return null;
 
   const hero = normalizedCategories[0];
   const gridItems = normalizedCategories.slice(1, 4);
   const firstCoupon = coupons?.[0];
   const couponHeading =
-    couponTitle?.en || couponTitle || "Coupon Offer Card";
+    popupConfig?.title?.en ||
+    popupConfig?.title ||
+    couponTitle?.en ||
+    couponTitle ||
+    "Coupon Offer Card";
+  const popupButtonText =
+    popupConfig?.buttonText?.en || popupConfig?.buttonText || "SHOP NOW";
+  const popupButtonLink = popupConfig?.buttonLink || "/";
 
   const handleClose = () => {
     setIsOpen(false);
@@ -77,11 +90,11 @@ const FirstVisitOfferPopup = ({
                   {firstCoupon?.couponCode || "SAVE20"}
                 </span>
                 <Link
-                  href="/"
+                  href={popupButtonLink}
                   onClick={handleClose}
                   className="inline-flex px-2.5 sm:px-4 py-1 sm:py-2 rounded-lg bg-rose-500 text-white font-bold text-xs sm:text-base"
                 >
-                  SHOP NOW ›
+                  {popupButtonText} ›
                 </Link>
               </div>
             </div>

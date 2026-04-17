@@ -51,6 +51,16 @@ const Home = async () => {
         categories={categories?.[0]?.children || []}
         coupons={coupons || []}
         couponTitle={resolvedStoreCustomization?.home?.discount_title}
+        popupConfig={{
+          enabled: resolvedStoreCustomization?.home?.first_visit_popup_status,
+          title: resolvedStoreCustomization?.home?.first_visit_popup_title,
+          buttonText:
+            resolvedStoreCustomization?.home?.first_visit_popup_button_text,
+          buttonLink:
+            resolvedStoreCustomization?.home?.first_visit_popup_button_link,
+          storageKey:
+            resolvedStoreCustomization?.home?.first_visit_popup_storage_key,
+        }}
       />
 
       {/* sticky cart section */}

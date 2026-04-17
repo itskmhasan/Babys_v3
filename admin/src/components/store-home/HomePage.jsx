@@ -64,6 +64,8 @@ const HomePage = ({
   setPaymentImage,
   isSave,
   isCoupon,
+  firstVisitPopup,
+  setFirstVisitPopup,
   isSliderFullWidth,
   setIsCoupon,
   setIsSliderFullWidth,
@@ -1077,6 +1079,20 @@ const HomePage = ({
               </div>
             </div>
 
+            <div className="grid md:grid-cols-5 sm:grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 md:mb-6 mb-3">
+              <label className="block md:text-sm md:col-span-1 sm:col-span-2 text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1">
+                First Visit Popup
+              </label>
+              <div className="sm:col-span-4">
+                <SwitchToggle
+                  title=""
+                  handleProcess={setFirstVisitPopup}
+                  processOption={firstVisitPopup}
+                  name="firstVisitPopup"
+                />
+              </div>
+            </div>
+
             <div
               className={`grid md:grid-cols-5 sm:grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 relative transition-2`}
               style={{
@@ -1111,6 +1127,62 @@ const HomePage = ({
                   onChange={(v) => setCouponList(v)}
                   labelledBy="Select Coupon"
                 />
+              </div>
+
+              <label className="block md:text-sm md:col-span-1 sm:col-span-2 text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1">
+                Popup Heading
+              </label>
+              <div className="sm:col-span-4">
+                <InputAreaTwo
+                  register={register}
+                  label="Popup Heading"
+                  name="first_visit_popup_title"
+                  type="text"
+                  placeholder="Coupon Offer Card"
+                />
+                <Error errorName={errors.first_visit_popup_title} />
+              </div>
+
+              <label className="block md:text-sm md:col-span-1 sm:col-span-2 text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1">
+                Popup Button Text
+              </label>
+              <div className="sm:col-span-4">
+                <InputAreaTwo
+                  register={register}
+                  label="Popup Button Text"
+                  name="first_visit_popup_button_text"
+                  type="text"
+                  placeholder="SHOP NOW"
+                />
+                <Error errorName={errors.first_visit_popup_button_text} />
+              </div>
+
+              <label className="block md:text-sm md:col-span-1 sm:col-span-2 text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1">
+                Popup Button Link
+              </label>
+              <div className="sm:col-span-4">
+                <InputAreaTwo
+                  register={register}
+                  label="Popup Button Link"
+                  name="first_visit_popup_button_link"
+                  type="text"
+                  placeholder="/"
+                />
+                <Error errorName={errors.first_visit_popup_button_link} />
+              </div>
+
+              <label className="block md:text-sm md:col-span-1 sm:col-span-2 text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1">
+                Popup Storage Key
+              </label>
+              <div className="sm:col-span-4">
+                <InputAreaTwo
+                  register={register}
+                  label="Popup Storage Key"
+                  name="first_visit_popup_storage_key"
+                  type="text"
+                  placeholder="store_first_visit_popup_seen"
+                />
+                <Error errorName={errors.first_visit_popup_storage_key} />
               </div>
             </div>
 

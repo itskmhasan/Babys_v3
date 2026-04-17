@@ -123,6 +123,7 @@
       },
       "home": {
         "coupon_status": true,
+        "first_visit_popup_status": true,
         "featured_status": true,
         "discount_status": true,
         "daily_needs_status": true,
@@ -145,6 +146,16 @@
           "en": "Latest Super Discount Active Coupon Code",
           "de": "Neuester aktiver Super-Rabatt-Gutscheincode"
         },
+        "first_visit_popup_title": {
+          "en": "Coupon Offer Card",
+          "de": "Gutscheinangebot"
+        },
+        "first_visit_popup_button_text": {
+          "en": "SHOP NOW",
+          "de": "JETZT KAUFEN"
+        },
+        "first_visit_popup_button_link": "/",
+        "first_visit_popup_storage_key": "store_first_visit_popup_seen",
         "promotion_title": {
           "de": "100 % natürliches Bio-Qualitätsprodukt",
           "en": "100% Authentic Baby Products in Bangladesh"

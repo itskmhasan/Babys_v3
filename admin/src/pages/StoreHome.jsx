@@ -84,6 +84,8 @@ const StoreHome = () => {
     isCoupon,
     isSliderFullWidth,
     setIsCoupon,
+    firstVisitPopup,
+    setFirstVisitPopup,
     setIsSliderFullWidth,
     featuredCategories,
     setFeaturedCategories,
@@ -516,6 +518,8 @@ const StoreHome = () => {
                   setGetYourDailyNeedImageRight={setGetYourDailyNeedImageRight}
                   isSliderFullWidth={isSliderFullWidth}
                   setIsCoupon={setIsCoupon}
+                  firstVisitPopup={firstVisitPopup}
+                  setFirstVisitPopup={setFirstVisitPopup}
                   setIsSliderFullWidth={setIsSliderFullWidth}
                   featuredCategories={featuredCategories}
                   setFeaturedCategories={setFeaturedCategories}

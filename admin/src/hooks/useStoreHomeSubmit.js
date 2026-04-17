@@ -36,6 +36,7 @@ const useStoreHomeSubmit = () => {
   const [orderProcess, setOrderProcess] = useState(true);
   const [allowOutOfStock, setAllowOutOfStock] = useState(true);
   const [isSliderFullWidth, setIsSliderFullWidth] = useState(false);
+  const [firstVisitPopup, setFirstVisitPopup] = useState(true);
   const [isPlaceholder, setIsPlaceholder] = useState(true);
   const [promotionBanner, setPromotionBanner] = useState(true);
   const [featuredCategories, setFeaturedCategories] = useState(true);
@@ -233,6 +234,7 @@ const useStoreHomeSubmit = () => {
           },
           home: {
             coupon_status: isCoupon,
+            first_visit_popup_status: firstVisitPopup,
             featured_status: featuredCategories,
             discount_status: latestDiscounted,
             daily_needs_status: dailyNeeds,
@@ -253,6 +255,19 @@ const useStoreHomeSubmit = () => {
               ...resData?.home?.discount_title,
               [language]: data.discount_title || "",
             }),
+            first_visit_popup_title: handleRemoveEmptyKey({
+              ...resData?.home?.first_visit_popup_title,
+              [language]: data.first_visit_popup_title || "",
+            }),
+            first_visit_popup_button_text: handleRemoveEmptyKey({
+              ...resData?.home?.first_visit_popup_button_text,
+              [language]: data.first_visit_popup_button_text || "",
+            }),
+            first_visit_popup_button_link:
+              data.first_visit_popup_button_link || "/",
+            first_visit_popup_storage_key:
+              data.first_visit_popup_storage_key ||
+              "store_first_visit_popup_seen",
 
             promotion_title: handleRemoveEmptyKey({
               ...resData?.home?.promotion_title,
@@ -1218,6 +1233,7 @@ const useStoreHomeSubmit = () => {
           setGetButton1image(res?.home?.button1_img);
           setGetButton2image(res?.home?.button2_img);
           setIsCoupon(res?.home?.coupon_status);
+          setFirstVisitPopup(res?.home?.first_visit_popup_status ?? true);
           setIsSliderFullWidth(res?.home?.slider_width_status);
           setAllowPromotionBanner(res?.home?.promotion_banner_status);
           setPopularProducts(res?.home?.popular_products_status);
@@ -1241,6 +1257,25 @@ const useStoreHomeSubmit = () => {
           setValue(
             "discount_title",
             res?.home?.discount_title[language || "en"]
+          );
+          setValue(
+            "first_visit_popup_title",
+            res?.home?.first_visit_popup_title?.[language || "en"] ||
+              "Coupon Offer Card"
+          );
+          setValue(
+            "first_visit_popup_button_text",
+            res?.home?.first_visit_popup_button_text?.[language || "en"] ||
+              "SHOP NOW"
+          );
+          setValue(
+            "first_visit_popup_button_link",
+            res?.home?.first_visit_popup_button_link || "/"
+          );
+          setValue(
+            "first_visit_popup_storage_key",
+            res?.home?.first_visit_popup_storage_key ||
+              "store_first_visit_popup_seen"
           );
           setValue(
             "promotion_title",
@@ -2119,6 +2154,8 @@ const useStoreHomeSubmit = () => {
     allowOutOfStock,
     setAllowOutOfStock,
     isCoupon,
+    firstVisitPopup,
+    setFirstVisitPopup,
     isPlaceholder,
     isSliderFullWidth,
     setIsCoupon,
