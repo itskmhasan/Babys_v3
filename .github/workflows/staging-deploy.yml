@@ -1,0 +1,28 @@
+name: Staging Deploy
+
+on:
+  push:
+    branches: ["staging"]
+  workflow_dispatch:
+
+concurrency:
+  group: staging-deploy
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy over SSH
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.VPS_HOST_STAGING }}
+          username: ${{ secrets.VPS_USER_STAGING }}
+          key: ${{ secrets.VPS_SSH_KEY_STAGING }}
+          port: ${{ secrets.VPS_PORT_STAGING }}
+          script_stop: true
+          script: |
+            cd /var/www/Babys_v3-staging
+            chmod +x deploy/deploy.sh
+            ./deploy/deploy.sh staging /var/www/Babys_v3-staging
