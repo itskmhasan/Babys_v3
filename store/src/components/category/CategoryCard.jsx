@@ -8,6 +8,7 @@ import {
 } from "react-icons/io5";
 
 import useUtilsFunction from "@hooks/useUtilsFunction";
+import { slugifyCategoryName } from "@utils/categorySlug";
 
 const CategoryCard = ({ title, icon, nested, id, onClose }) => {
   const router = useRouter();
@@ -20,9 +21,11 @@ const CategoryCard = ({ title, icon, nested, id, onClose }) => {
   });
 
   // ✅ Search only when clicking on the category name
-  const handleSearch = (id, categoryName) => {
-    const name = categoryName.toLowerCase().replace(/[^A-Z0-9]+/gi, "-");
-    router.push(`/search?category=${name}&_id=${id}`);
+  const handleSearch = (categoryName) => {
+    const name = slugifyCategoryName(categoryName);
+    if (!name) return;
+
+    router.push(`/${name}`);
     if (onClose) {
       onClose();
     }
@@ -56,7 +59,7 @@ const CategoryCard = ({ title, icon, nested, id, onClose }) => {
 
         {/* ✅ Clicking name = search */}
         <div
-          onClick={() => handleSearch(id, title)}
+          onClick={() => handleSearch(title)}
           className="ml-3 text-sm font-medium flex-1 cursor-pointer hover:text-emerald-600"
         >
           {title}
@@ -84,12 +87,7 @@ const CategoryCard = ({ title, icon, nested, id, onClose }) => {
                     <IoRemoveSharp />
                   </span>
                   <div
-                    onClick={() =>
-                      handleSearch(
-                        children._id,
-                        showingTranslateValue(children.name)
-                      )
-                    }
+                    onClick={() => handleSearch(showingTranslateValue(children.name))}
                     className="flex-1 text-sm text-gray-600 hover:text-emerald-600 cursor-pointer"
                   >
                     {showingTranslateValue(children.name)}
@@ -108,12 +106,7 @@ const CategoryCard = ({ title, icon, nested, id, onClose }) => {
                 </div>
               ) : (
                 <div
-                  onClick={() =>
-                    handleSearch(
-                      children._id,
-                      showingTranslateValue(children.name)
-                    )
-                  }
+                  onClick={() => handleSearch(showingTranslateValue(children.name))}
                   className="flex items-center py-1 text-sm text-gray-600 hover:text-emerald-600 cursor-pointer"
                 >
                   <span className="text-xs text-gray-500 pr-2">
@@ -129,12 +122,7 @@ const CategoryCard = ({ title, icon, nested, id, onClose }) => {
                   {children.children.map((subChildren) => (
                     <li
                       key={subChildren._id}
-                      onClick={() =>
-                        handleSearch(
-                          subChildren._id,
-                          showingTranslateValue(subChildren.name)
-                        )
-                      }
+                      onClick={() => handleSearch(showingTranslateValue(subChildren.name))}
                       className="flex items-center py-1 text-sm text-gray-600 hover:text-emerald-600 cursor-pointer"
                     >
                       <span className="text-xs text-gray-500 pr-2">

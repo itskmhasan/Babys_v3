@@ -15,6 +15,7 @@ import Price from "@components/common/Price";
 import Tags from "@components/common/Tags";
 import useAddToCart from "@hooks/useAddToCart";
 import Discount from "@components/common/Discount";
+import { slugifyCategoryName } from "@utils/categorySlug";
 import VariantList from "@components/variants/VariantList";
 import useUtilsFunction from "@hooks/useUtilsFunction";
 import Rating from "@components/common/Rating";
@@ -224,7 +225,7 @@ const ProductModal = ({
                     <span className=" font-semibold py-1 text-sm d-block">
                       <span className="text-gray-700">Category</span>{" "}
                       <Link
-                        href={`/search?category=${category_name}&_id=${product?.category?._id}`}
+                          href={`/${slugifyCategoryName(category_name)}`}
                         className="cursor-pointer"
                       >
                         <button

@@ -5,6 +5,8 @@ import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
 
+import { slugifyCategoryName } from "@utils/categorySlug";
+
 const SearchInput = () => {
   const router = useRouter();
   const [searchText, setSearchText] = useState("");
@@ -101,7 +103,10 @@ const SearchInput = () => {
 
   const handleCategoryClick = (category) => {
     const name = category?.name?.en || category?.name || "";
-    router.push(`/search?category=${encodeURIComponent(name)}&_id=${category._id}`);
+    const slug = slugifyCategoryName(name);
+    if (!slug) return;
+
+    router.push(`/${slug}`);
     setOpen(false);
     setSearchText("");
   };

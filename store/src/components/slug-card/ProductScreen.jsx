@@ -11,6 +11,7 @@ import Price from "@components/common/Price";
 import Stock from "@components/common/Stock";
 import Tags from "@components/common/Tags";
 import Card from "@components/slug-card/Card";
+import { slugifyCategoryName } from "@utils/categorySlug";
 import useAddToCart from "@hooks/useAddToCart";
 import Discount from "@components/common/Discount";
 import ProductCard from "@components/product/ProductCard";
@@ -226,7 +227,7 @@ const ProductScreen = ({ product, reviews, attributes, relatedProducts }) => {
                       <span className=" font-semibold py-1 text-sm d-block">
                         <span className="text-gray-700">Category:</span>{" "}
                         <Link
-                          href={`/search?category=${category_name}&_id=${product?.category?._id}`}
+                          href={`/${slugifyCategoryName(category_name)}`}
                           className="cursor-pointer"
                         >
                           <button

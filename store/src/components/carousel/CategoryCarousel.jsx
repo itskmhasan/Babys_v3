@@ -11,6 +11,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 //internal import
 
 import useUtilsFunction from "@hooks/useUtilsFunction";
+import { slugifyCategoryName } from "@utils/categorySlug";
 
 const CategoryCarousel = ({ categories }) => {
   const router = useRouter();
@@ -20,12 +21,11 @@ const CategoryCarousel = ({ categories }) => {
 
   const { showingTranslateValue } = useUtilsFunction();
 
-  const handleCategoryClick = (id, category) => {
-    const category_name = showingTranslateValue(category)
-      ?.toLowerCase()
-      .replace(/[^A-Z0-9]+/gi, "-");
+  const handleCategoryClick = (category) => {
+    const category_name = slugifyCategoryName(showingTranslateValue(category));
+    if (!category_name) return;
 
-    router.push(`/search?category=${category_name}&_id=${id}`);
+    router.push(`/${category_name}`);
   };
 
   return (
@@ -99,9 +99,7 @@ const CategoryCarousel = ({ categories }) => {
           {categories[0]?.children?.map((category, i) => (
             <SwiperSlide key={i + 1} className="group">
               <div
-                onClick={() =>
-                  handleCategoryClick(category?._id, category.name)
-                }
+                onClick={() => handleCategoryClick(category.name)}
                 className="text-center cursor-pointer p-3 bg-white rounded-lg"
               >
                 <div className="bg-white p-2 mx-auto my-auto text-center w-10 h-10 rounded-full shadow-md">

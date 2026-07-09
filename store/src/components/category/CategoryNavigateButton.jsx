@@ -6,6 +6,7 @@ import { IoChevronForwardSharp } from "react-icons/io5";
 //internal import
 
 import useUtilsFunction from "@hooks/useUtilsFunction";
+import { slugifyCategoryName } from "@utils/categorySlug";
 
 const CategoryNavigateButton = ({ category }) => {
   const router = useRouter();
@@ -13,14 +14,13 @@ const CategoryNavigateButton = ({ category }) => {
 
   // console.log("category", category);
 
-  const handleCategoryClick = (id, categoryName) => {
+  const handleCategoryClick = (categoryName) => {
     // console.log("handleCategoryClick", categoryName);
 
-    const category_name = categoryName
-      .toLowerCase()
-      .replace(/[^A-Z0-9]+/gi, "-");
-    const url = `/search?category=${category_name}&_id=${id}`;
-    router.push(url);
+    const category_name = slugifyCategoryName(categoryName);
+    if (!category_name) return;
+
+    router.push(`/${category_name}`);
   };
 
   return (
@@ -28,10 +28,7 @@ const CategoryNavigateButton = ({ category }) => {
       <div className="pl-4">
         <h3
           onClick={() =>
-            handleCategoryClick(
-              category._id,
-              showingTranslateValue(category?.name)
-            )
+            handleCategoryClick(showingTranslateValue(category?.name))
           }
           className="text-sm text-gray-600 dark:text-gray-300 hover:text-orange-400 font-medium leading-tight line-clamp-1  group-hover"
         >
@@ -42,10 +39,7 @@ const CategoryNavigateButton = ({ category }) => {
             <li key={child._id} className="pt-1">
               <a
                 onClick={() =>
-                  handleCategoryClick(
-                    child._id,
-                    showingTranslateValue(child?.name)
-                  )
+                  handleCategoryClick(showingTranslateValue(child?.name))
                 }
                 className="flex hover:translate-x-2 transition-transform duration-300 items-center  text-xs text-gray-400 cursor-pointer"
               >

@@ -4,6 +4,8 @@ import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
+import { slugifyCategoryName } from "@utils/categorySlug";
+
 const PLACEHOLDER_IMAGE =
   "https://res.cloudinary.com/ahossain/image/upload/v1655097002/placeholder_kvepfp.png";
 const FIRST_VISIT_POPUP_KEY = "store_first_visit_popup_seen";
@@ -39,7 +41,7 @@ const FirstVisitOfferPopup = ({
       ...cat,
       title: cat?.name?.en || cat?.name || "Category",
       image: cat?.bannerImage || cat?.image || PLACEHOLDER_IMAGE,
-      href: `/search?category=${encodeURIComponent(cat?.name?.en || cat?.name || "category")}&_id=${cat?._id}`,
+      href: `/${slugifyCategoryName(cat?.name?.en || cat?.name || "category")}`,
     }));
   }, [categories]);
 
