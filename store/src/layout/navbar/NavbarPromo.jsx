@@ -1,12 +1,10 @@
 "use client";
 
-import { Fragment, useContext } from "react";
+import { Fragment, useContext, useState } from "react";
 import Link from "next/link";
 import {
   Transition,
   Popover,
-  PopoverButton,
-  PopoverPanel,
 } from "@headlessui/react";
 
 //internal import
@@ -32,6 +30,7 @@ import { useSetting } from "@context/SettingContext";
 const NavbarPromo = ({ languages, categories, categoryError }) => {
   const { isLoading, setIsLoading } = useContext(SidebarContext);
   const { storeCustomization } = useSetting();
+  const [isCategoryOpen, setIsCategoryOpen] = useState(false);
 
   const { showingTranslateValue } = useUtilsFunction();
   const navbar = storeCustomization?.navbar;
@@ -46,8 +45,15 @@ const NavbarPromo = ({ languages, categories, categoryError }) => {
                 <div className="flex justify-between items-center md:justify-start md:space-x-10">
                   <Popover as="nav" className="md:flex space-x-10 items-center">
                     {navbar?.categories_menu_status && (
-                      <Popover className="relative ">
-                        <PopoverButton className="group inline-flex items-center py-2 primary-hover focus:outline-none">
+                      <div
+                        className="relative"
+                        onMouseEnter={() => setIsCategoryOpen(true)}
+                        onMouseLeave={() => setIsCategoryOpen(false)}
+                      >
+                        <button
+                          type="button"
+                          className="group inline-flex items-center py-2 primary-hover focus:outline-none"
+                        >
                           <span className=" text-sm font-medium">
                             {showingTranslateValue(navbar?.categories)}
                           </span>
@@ -56,10 +62,11 @@ const NavbarPromo = ({ languages, categories, categoryError }) => {
                             className="ml-1 h-3 w-3 group-primary-hover"
                             aria-hidden="true"
                           />
-                        </PopoverButton>
+                        </button>
 
                         <Transition
                           as={Fragment}
+                          show={isCategoryOpen}
                           enter="transition ease-out duration-200"
                           enterFrom="opacity-0 translate-y-1"
                           enterTo="opacity-100 translate-y-0"
@@ -67,16 +74,16 @@ const NavbarPromo = ({ languages, categories, categoryError }) => {
                           leaveFrom="opacity-100 translate-y-0"
                           leaveTo="opacity-0 translate-y-1"
                         >
-                          <PopoverPanel className="absolute z-10 -ml-1 mt-1 transform w-screen max-w-xs c-h-65vh bg-white">
+                          <div className="absolute z-10 -ml-1 mt-1 transform w-screen max-w-xs c-h-65vh bg-white">
                             <div className="rounded-md shadow-lg  overflow-y-scroll flex-grow scrollbar-hide w-full h-full">
                               <Category
                                 categories={categories}
                                 categoryError={categoryError}
                               />
                             </div>
-                          </PopoverPanel>
+                          </div>
                         </Transition>
-                      </Popover>
+                      </div>
                     )}
                     <Link
                       onClick={() => setIsLoading(!isLoading)}
