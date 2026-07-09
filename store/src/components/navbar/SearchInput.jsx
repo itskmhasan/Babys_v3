@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
 
 import { slugifyCategoryName } from "@utils/categorySlug";
+import { getProductRoute } from "@utils/productRoute";
 
 const SearchInput = () => {
   const router = useRouter();
@@ -96,7 +97,7 @@ const SearchInput = () => {
   };
 
   const handleProductClick = (product) => {
-    router.push(`/product/${product.slug}`);
+    router.push(getProductRoute(product));
     setOpen(false);
     setSearchText("");
   };

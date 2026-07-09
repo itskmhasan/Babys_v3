@@ -5,6 +5,7 @@ import { FiPlus, FiMinus, FiTrash2 } from "react-icons/fi";
 //internal import
 import useAddToCart from "@hooks/useAddToCart";
 import ImageWithFallback from "@components/common/ImageWithFallBack";
+import { getProductRoute } from "@utils/productRoute";
 
 const CartItem = ({ item, currency }) => {
   const { updateItemQuantity, removeItem } = useCart();
@@ -28,7 +29,7 @@ const CartItem = ({ item, currency }) => {
         <div className="flex">
           <div className="min-w-0 flex-1">
             <Link
-              href={`/product/${item.slug}`}
+              href={getProductRoute(item)}
               // onClick={closeCartDrawer}
               className="truncate text-sm font-medium text-gray-700 text-heading line-clamp-1"
             >

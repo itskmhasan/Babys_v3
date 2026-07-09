@@ -16,6 +16,7 @@ import Tags from "@components/common/Tags";
 import useAddToCart from "@hooks/useAddToCart";
 import Discount from "@components/common/Discount";
 import { slugifyCategoryName } from "@utils/categorySlug";
+import { getProductRoute } from "@utils/productRoute";
 import VariantList from "@components/variants/VariantList";
 import useUtilsFunction from "@hooks/useUtilsFunction";
 import Rating from "@components/common/Rating";
@@ -88,7 +89,7 @@ const ProductModal = ({
         <div className="inline-block overflow-y-auto h-full align-middle transition-all transform">
           <div className="lg:flex flex-col lg:flex-row md:flex-row w-full max-w-4xl overflow-hidden">
             <Link
-              href={`/product/${product.slug}`}
+              href={getProductRoute(product)}
               passHref
               className="w-full lg:w-[40%]"
             >
@@ -123,7 +124,7 @@ const ProductModal = ({
                 >
                   <Stock In stock={stock} />
                 </div>
-                <Link href={`/product/${product.slug}`}>
+                <Link href={getProductRoute(product)}>
                   <h2
                     onClick={() => setModalOpen(false)}
                     className="text-heading text-lg md:text-xl lg:text-xl font-medium hover:text-black cursor-pointer"
@@ -210,7 +211,7 @@ const ProductModal = ({
                     Add to cart
                   </button>
                   <Link
-                    href={`/product/${product.slug}`}
+                    href={getProductRoute(product)}
                     passHref
                     className="w-full relative h-auto flex items-center font-semibold text-sm text-gray-600 justify-center rounded transition-colors py-2 px-4 bg-gray-100 hover:bg-gray-200"
                   >

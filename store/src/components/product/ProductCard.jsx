@@ -25,6 +25,7 @@ import useUtilsFunction from "@hooks/useUtilsFunction";
 import ProductModal from "@components/modal/ProductModal";
 import ImageWithFallback from "@components/common/ImageWithFallBack";
 import { normalizePricePair } from "@utils/price";
+import { getProductRoute } from "@utils/productRoute";
 
 const ProductCard = ({ product, attributes }) => {
   const modalRef = useRef(null);
@@ -98,7 +99,7 @@ const ProductCard = ({ product, attributes }) => {
         </div>
         <div className="relative w-full min-h-48 lg:h-48 xl:h-52">
           <Link
-            href={`/product/${product?.slug}`}
+            href={getProductRoute(product)}
             className="relative block w-full h-full overflow-hidden bg-gray-100"
           >
             <ImageWithFallback
@@ -181,7 +182,7 @@ const ProductCard = ({ product, attributes }) => {
         <div className="flex flex-1 flex-col space-y-2 px-4 pt-2 pb-4">
           <div className="relative mb-1">
             <Link
-              href={`/product/${product?.slug}`}
+              href={getProductRoute(product)}
               className="text-sm font-medium text-gray-800 line-clamp-1 hover:text-emerald-500"
             >
               {showingTranslateValue(product?.title)}

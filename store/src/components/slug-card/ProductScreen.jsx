@@ -12,6 +12,7 @@ import Stock from "@components/common/Stock";
 import Tags from "@components/common/Tags";
 import Card from "@components/slug-card/Card";
 import { slugifyCategoryName } from "@utils/categorySlug";
+import { getProductRoute } from "@utils/productRoute";
 import useAddToCart from "@hooks/useAddToCart";
 import Discount from "@components/common/Discount";
 import ProductCard from "@components/product/ProductCard";
@@ -73,7 +74,7 @@ const ProductScreen = ({ product, reviews, attributes, relatedProducts }) => {
               </li>
               <li className="text-sm pl-1 transition duration-200 ease-in cursor-pointer hover:text-emerald-500 font-semibold ">
                 <Link
-                  href={`/search?category=${category_name}&_id=${product?.category?._id}`}
+                  href={`/${slugifyCategoryName(category_name)}`}
                 >
                   <button
                     type="button"
@@ -276,7 +277,7 @@ const ProductScreen = ({ product, reviews, attributes, relatedProducts }) => {
                   <ul role="list" className="mt-4 flex items-center space-x-6">
                     <li>
                       <FacebookShareButton
-                        url={`https://kachabazar-store-nine.vercel.app/product/${product?.slug}`}
+                        url={`https://babys.com.bd${getProductRoute(product)}`}
                       >
                         <a
                           href="#"
@@ -320,7 +321,7 @@ const ProductScreen = ({ product, reviews, attributes, relatedProducts }) => {
                     </li>
                     <li>
                       <TwitterShareButton
-                        url={`https://kachabazar-store-nine.vercel.app/product/${product?.slug}`}
+                        url={`https://babys.com.bd${getProductRoute(product)}`}
                       >
                         <a
                           href="#"

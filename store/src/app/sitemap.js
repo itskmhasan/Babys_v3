@@ -4,6 +4,14 @@ const siteUrl =
     ""
   );
 
+const slugify = (value) =>
+  String(value || "")
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+
 const publicRoutes = [
   "/",
   "/about-us",
@@ -46,7 +54,7 @@ export default async function sitemap() {
     const productEntries = (Array.isArray(products) ? products : [])
       .filter((item) => item?.slug)
       .map((item) => ({
-        url: `${siteUrl}/product/${item.slug}`,
+        url: `${siteUrl}/${slugify(item?.category?.name?.en || item?.category?.name || "product")}/${item.slug}`,
         lastModified: item.updatedAt || item.createdAt || new Date(),
         changeFrequency: "daily",
         priority: 0.8,

@@ -1,9 +1,8 @@
 //internal import
 
-import ProductScreen from "@components/slug-card/ProductScreen";
-import { showingTranslateValue } from "@lib/translate";
-import { getShowingAttributes } from "@services/AttributeServices";
+import { redirect } from "next/navigation";
 import { getShowingStoreProducts } from "@services/ProductServices";
+import { getProductRoute } from "@utils/productRoute";
 
 // This async function generates the metadata
 export async function generateMetadata({ params }) {
@@ -26,32 +25,18 @@ export async function generateMetadata({ params }) {
 const ProductSlug = async ({ params }) => {
   const { slug } = await params;
 
-  const { attributes } = await getShowingAttributes();
+  const { products } = await getShowingStoreProducts({
+    category: "",
+    slug: slug,
+  });
 
-  const { relatedProducts, products, reviews, error } =
-    await getShowingStoreProducts({
-      category: "",
-      slug: slug,
-    });
+  const product = products?.find((p) => p.slug === slug);
 
-  let product = {};
-
-  // console.log("products", products);
-
-  if (slug) {
-    product = products?.find((p) => p.slug === slug);
+  if (!product) {
+    redirect("/shop");
   }
 
-  return (
-    <>
-      <ProductScreen
-        product={product}
-        reviews={reviews}
-        attributes={attributes}
-        relatedProducts={relatedProducts}
-      />
-    </>
-  );
+  redirect(getProductRoute(product));
 };
 
 export default ProductSlug;

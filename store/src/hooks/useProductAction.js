@@ -5,6 +5,7 @@ import useAddToCart from "@hooks/useAddToCart";
 import { notifyError } from "@utils/toast";
 import useUtilsFunction from "@hooks/useUtilsFunction";
 import { getDiscountPercentage, normalizePricePair } from "@utils/price";
+import { getProductRoute } from "@utils/productRoute";
 
 export default function useProductAction({
   product,
@@ -213,7 +214,7 @@ export default function useProductAction({
   const handleMoreInfo = (slug) => {
     if (!withRouter) return;
     if (onCloseModal) onCloseModal();
-    router.push(`/product/${slug}`);
+    router.push(getProductRoute(product));
     setIsLoading?.(!isLoading);
   };
 
