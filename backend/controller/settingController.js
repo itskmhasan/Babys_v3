@@ -8,6 +8,35 @@ const {
   getLatestHealthcheckStatus,
 } = require("../lib/healthcheck-manager");
 
+const isPlainObject = (value) =>
+  value !== null && typeof value === "object" && !Array.isArray(value);
+
+const mergeSettingValues = (existingValue, incomingValue) => {
+  if (incomingValue === undefined || incomingValue === null) {
+    return existingValue;
+  }
+
+  if (typeof incomingValue === "string" && incomingValue.trim() === "") {
+    return existingValue;
+  }
+
+  if (Array.isArray(incomingValue)) {
+    return incomingValue;
+  }
+
+  if (isPlainObject(existingValue) && isPlainObject(incomingValue)) {
+    const merged = { ...existingValue };
+
+    Object.keys(incomingValue).forEach((key) => {
+      merged[key] = mergeSettingValues(existingValue[key], incomingValue[key]);
+    });
+
+    return merged;
+  }
+
+  return incomingValue;
+};
+
 //global setting controller
 const addGlobalSetting = async (req, res) => {
   try {
@@ -345,15 +374,19 @@ const updateStoreCustomizationSetting = async (req, res) => {
   try {
     const { setting } = req.body;
 
-    // Dynamically build the update fields
-    const updateFields = Object.keys(setting).reduce((acc, key) => {
-      acc[`setting.${key}`] = setting[key];
-      return acc;
-    }, {});
+    const existingStoreCustomizationSetting = await Setting.findOne({
+      name: "storeCustomizationSetting",
+    });
+
+    const mergedSetting = mergeSettingValues(
+      existingStoreCustomizationSetting?.setting || {},
+      setting || {}
+    );
+
     // Update the online store setting document
     const storeCustomizationSetting = await Setting.findOneAndUpdate(
       { name: "storeCustomizationSetting" },
-      { $set: updateFields },
+      { $set: { setting: mergedSetting } },
       { new: true, upsert: true } // upsert to create the document if it doesn't exist
     );
 
