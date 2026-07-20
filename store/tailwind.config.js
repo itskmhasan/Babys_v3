@@ -28,6 +28,14 @@ const config = {
     require("@tailwindcss/forms"),
     require("@tailwindcss/aspect-ratio"),
   ],
+  theme: {
+  extend: {
+    colors: {
+      'sg-black': '#649DD7', // swap to your dark bg color
+      'sg-pink': '#EE76C6',  // swap to your accent color
+    }
+  }
+}
 };
 
 module.exports = config;
