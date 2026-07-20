@@ -305,7 +305,14 @@ const Footer = async ({ error, storeCustomizationSetting }) => {
         </div>
       </div>
 
-      </div>
+      <a
+        href="#"
+        className="fixed left-5 bottom-5 z-40 h-11 w-11 rounded-full bg-emerald-600 text-white shadow-lg hover:bg-emerald-700 flex items-center justify-center"
+        title="Back to Top"
+      >
+        ↑
+      </a>
+    </div>
   );
 };
 
