@@ -31,16 +31,26 @@ const Footer = async ({ error, storeCustomizationSetting }) => {
   const userInfo = await getUserServerSession();
   const cookieStore = await cookies();
   const lang = cookieStore.get("_lang")?.value || "en";
+
+  // Helper: safely pull a plain string out of a possible {en, de} object.
+  // Use this ANYWHERE you need a raw string (href, mailto:, alt text) —
+  // never render an object like this directly in JSX.
+  const getText = (value, fallback = "") => {
+    if (!value) return fallback;
+    if (typeof value === "string") return value;
+    if (typeof value === "object") return value[lang] || value.en || fallback;
+    return fallback;
+  };
+
   const copyrightYear = new Date().getFullYear();
   const copyrightTextRaw =
     footer?.copyright_text?.[lang] ||
     footer?.copyright_text?.en ||
     "Copyright {{year}} @";
-  const copyrightTextTemplate =
-    copyrightTextRaw.replace(
-      "{{year}}",
-      String(copyrightYear)
-    );
+  const copyrightTextTemplate = copyrightTextRaw.replace(
+    "{{year}}",
+    String(copyrightYear)
+  );
 
   const blockOneLinks = [
     { title: footer?.block1_sub_title1, href: footer?.block1_sub_link1 },
@@ -63,8 +73,6 @@ const Footer = async ({ error, storeCustomizationSetting }) => {
     { title: footer?.block3_sub_title3, href: footer?.block3_sub_link3 },
     { title: footer?.block3_sub_title4, href: footer?.block3_sub_link4 },
   ].filter((item) => item?.title && item?.href);
-
-  // console.log("userInfo", userInfo);
 
   return (
     <div className="bg-slate-100 border-t border-slate-200">
@@ -130,133 +138,228 @@ const Footer = async ({ error, storeCustomizationSetting }) => {
           </div>
         )}
 
+        {/* ---------- Main footer grid ---------- */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 lg:gap-8">
           {showBlock4 && (
             <div className="lg:col-span-4">
-            <h5 className="text-lg font-bold text-slate-900 mb-4">
-              <CMSkeletonTwo
-                count={1}
-                height={14}
-                loading={false}
-                data={footer?.about_title || { en: "ABOUT US" }}
-              />
-            </h5>
-            <div className="relative w-48 h-10 mb-3">
-              <Image
-                fill
-                className="object-contain object-left"
-                src={footer?.block4_logo || "/logo/logo-color.svg"}
-                alt="about logo"
-              />
-            </div>
-            <p className="text-sm leading-7 text-slate-700 text-justify">
-              <CMSkeletonTwo
-                count={1}
-                height={10}
-                loading={false}
-                data={footer?.block4_address}
-              />
-              {showBlock1 && (
-                <>
-                  <br />
-                  <Link href={footer?.block1_sub_link1 || "/about-us"} className="text-emerald-700 font-medium hover:underline">
-                    <CMSkeletonTwo
-                      count={1}
-                      height={10}
-                      loading={false}
-                      data={footer?.block1_sub_title1 || { en: "Know more..." }}
-                    />
-                  </Link>
-                </>
+              <h5 className="text-lg font-bold text-slate-900 mb-4">
+                <CMSkeletonTwo
+                  count={1}
+                  height={14}
+                  loading={false}
+                  data={footer?.about_title || { en: "ABOUT US" }}
+                />
+              </h5>
+              <div className="relative w-48 h-10 mb-3">
+                <Image
+                  fill
+                  className="object-contain object-left"
+                  src={footer?.block4_logo || "/logo/logo-color.svg"}
+                  alt="about logo"
+                />
+              </div>
+              <p className="text-sm leading-7 text-slate-700 text-justify">
+                <CMSkeletonTwo
+                  count={1}
+                  height={10}
+                  loading={false}
+                  data={footer?.block4_address}
+                />
+                {showBlock1 && footer?.block1_sub_link1 && (
+                  <>
+                    <br />
+                    <Link
+                      href={getText(footer?.block1_sub_link1, "/about-us")}
+                      className="text-emerald-700 font-medium hover:underline"
+                    >
+                      <CMSkeletonTwo
+                        count={1}
+                        height={10}
+                        loading={false}
+                        data={footer?.block1_sub_title1 || { en: "Know more..." }}
+                      />
+                    </Link>
+                  </>
+                )}
+              </p>
+
+              {showSocialLinks && (
+                <div className="flex items-center gap-4 mt-6 text-slate-800">
+                  {footer?.social_twitter && (
+                    <Link
+                      href={getText(footer?.social_twitter)}
+                      target="_blank"
+                      rel="noreferrer"
+                      aria-label="Twitter"
+                      className="hover:text-emerald-700"
+                    >
+                      <FaXTwitter size={18} />
+                    </Link>
+                  )}
+                  {footer?.social_facebook && (
+                    <Link
+                      href={getText(footer?.social_facebook)}
+                      target="_blank"
+                      rel="noreferrer"
+                      aria-label="Facebook"
+                      className="hover:text-emerald-700"
+                    >
+                      <FaFacebookF size={18} />
+                    </Link>
+                  )}
+                  {footer?.social_pinterest && (
+                    <Link
+                      href={getText(footer?.social_pinterest)}
+                      target="_blank"
+                      rel="noreferrer"
+                      aria-label="Pinterest"
+                      className="hover:text-emerald-700"
+                    >
+                      <FaPinterestP size={18} />
+                    </Link>
+                  )}
+                  {footer?.social_linkedin && (
+                    <Link
+                      href={getText(footer?.social_linkedin)}
+                      target="_blank"
+                      rel="noreferrer"
+                      aria-label="LinkedIn"
+                      className="hover:text-emerald-700"
+                    >
+                      <FaLinkedinIn size={18} />
+                    </Link>
+                  )}
+                  {footer?.social_whatsapp && (
+                    <Link
+                      href={getText(footer?.social_whatsapp)}
+                      target="_blank"
+                      rel="noreferrer"
+                      aria-label="WhatsApp"
+                      className="hover:text-emerald-700"
+                    >
+                      <FaWhatsapp size={18} />
+                    </Link>
+                  )}
+                </div>
               )}
-            </p>
             </div>
           )}
 
           {showBlock1 && (
             <div className="lg:col-span-2">
-            <h5 className="text-lg font-bold text-slate-900 mb-3">
-              <CMSkeletonTwo count={1} height={14} loading={false} data={footer?.block1_title || { en: "LET'S GROW!" }} />
-            </h5>
-            <div className="space-y-1">
-              {blockOneLinks.map((item, idx) => (
-                <Link key={`b1-${idx}`} href={item.href || "#"} className="block text-sm text-slate-700 hover:text-emerald-700">
-                  <CMSkeletonTwo count={1} height={10} loading={false} data={item.title} />
-                </Link>
-              ))}
-            </div>
+              <h5 className="text-lg font-bold text-slate-900 mb-3">
+                <CMSkeletonTwo
+                  count={1}
+                  height={14}
+                  loading={false}
+                  data={footer?.block1_title || { en: "LET'S GROW!" }}
+                />
+              </h5>
+              <div className="space-y-1">
+                {blockOneLinks.map((item, idx) => (
+                  <Link
+                    key={`b1-${idx}`}
+                    href={getText(item.href, "#")}
+                    className="block text-sm text-slate-700 hover:text-emerald-700"
+                  >
+                    <CMSkeletonTwo count={1} height={10} loading={false} data={item.title} />
+                  </Link>
+                ))}
+              </div>
             </div>
           )}
 
           {showBlock2 && (
             <div className="lg:col-span-2">
-            <h5 className="text-lg font-bold text-slate-900 mb-3">
-              <CMSkeletonTwo count={1} height={14} loading={false} data={footer?.block2_title || { en: "MORE SERVICES" }} />
-            </h5>
-            <div className="space-y-1">
-              {blockTwoLinks.map((item, idx) => (
-                <Link key={`b2-${idx}`} href={item.href || "#"} className="block text-sm text-slate-700 hover:text-emerald-700">
-                  <CMSkeletonTwo count={1} height={10} loading={false} data={item.title} />
-                </Link>
-              ))}
-            </div>
+              <h5 className="text-lg font-bold text-slate-900 mb-3">
+                <CMSkeletonTwo
+                  count={1}
+                  height={14}
+                  loading={false}
+                  data={footer?.block2_title || { en: "MORE SERVICES" }}
+                />
+              </h5>
+              <div className="space-y-1">
+                {blockTwoLinks.map((item, idx) => (
+                  <Link
+                    key={`b2-${idx}`}
+                    href={getText(item.href, "#")}
+                    className="block text-sm text-slate-700 hover:text-emerald-700"
+                  >
+                    <CMSkeletonTwo count={1} height={10} loading={false} data={item.title} />
+                  </Link>
+                ))}
+              </div>
             </div>
           )}
 
           {showBlock3 && (
             <div className="lg:col-span-2">
-            <h5 className="text-lg font-bold text-slate-900 mb-3">
-              <CMSkeletonTwo count={1} height={14} loading={false} data={footer?.block3_title || { en: "TRAINING" }} />
-            </h5>
-            <div className="space-y-1">
-              {blockThreeLinks.map((item, idx) => (
-                <Link
-                  key={`b3-${idx}`}
-                  href={userInfo?.email ? item.href || "#" : "#"}
-                  className="block text-sm text-slate-700 hover:text-emerald-700"
-                >
-                  <CMSkeletonTwo count={1} height={10} loading={false} data={item.title} />
-                </Link>
-              ))}
-            </div>
+              <h5 className="text-lg font-bold text-slate-900 mb-3">
+                <CMSkeletonTwo
+                  count={1}
+                  height={14}
+                  loading={false}
+                  data={footer?.block3_title || { en: "TRAINING" }}
+                />
+              </h5>
+              <div className="space-y-1">
+                {blockThreeLinks.map((item, idx) => (
+                  <Link
+                    key={`b3-${idx}`}
+                    href={userInfo?.email ? getText(item.href, "#") : "#"}
+                    className="block text-sm text-slate-700 hover:text-emerald-700"
+                  >
+                    <CMSkeletonTwo count={1} height={10} loading={false} data={item.title} />
+                  </Link>
+                ))}
+              </div>
             </div>
           )}
 
           {showBlock4 && (
             <div className="lg:col-span-2">
-            <h5 className="text-lg font-bold text-slate-900 mb-3">
-              <CMSkeletonTwo
-                count={1}
-                height={14}
-                loading={false}
-                data={footer?.contact_title || { en: "EXTRA LINKS" }}
-              />
-            </h5>
-            <div className="space-y-1">
-              {footer?.block4_email && (
-                <Link href={`mailto:${footer?.block4_email}`} className="block text-sm text-slate-700 hover:text-emerald-700">
-                  {footer?.block4_email}
-                </Link>
-              )}
-              {footer?.block4_phone && (
-                <p className="block text-sm text-slate-700">{footer?.block4_phone}</p>
-              )}
-              {showBottomContact && footer?.bottom_contact && (
-                <p className="block text-sm text-slate-700">{footer?.bottom_contact}</p>
-              )}
-            </div>
+              <h5 className="text-lg font-bold text-slate-900 mb-3">
+                <CMSkeletonTwo
+                  count={1}
+                  height={14}
+                  loading={false}
+                  data={footer?.contact_title || { en: "EXTRA LINKS" }}
+                />
+              </h5>
+              <div className="space-y-1">
+                {footer?.block4_email && (
+                  <Link
+                    href={`mailto:${getText(footer?.block4_email)}`}
+                    className="block text-sm text-slate-700 hover:text-emerald-700"
+                  >
+                    {getText(footer?.block4_email)}
+                  </Link>
+                )}
+                {footer?.block4_phone && (
+                  <p className="block text-sm text-slate-700">
+                    {getText(footer?.block4_phone)}
+                  </p>
+                )}
+                {showBottomContact && footer?.bottom_contact && (
+                  <p className="block text-sm text-slate-700">
+                    {getText(footer?.bottom_contact)}
+                  </p>
+                )}
+              </div>
             </div>
           )}
         </div>
       </div>
 
+      {/* ---------- Bottom bar ---------- */}
       <div className="border-t border-slate-300 bg-slate-200/50">
         <div className="mx-auto max-w-screen-2xl px-4 sm:px-10 py-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
             <div className="text-center md:text-left text-sm text-slate-700">
               {copyrightTextTemplate}{" "}
               <Link
-                href={footer?.copyright_link || "#"}
+                href={getText(footer?.copyright_link, "#")}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="font-semibold hover:text-emerald-700"
@@ -273,39 +376,38 @@ const Footer = async ({ error, storeCustomizationSetting }) => {
             <div className="flex items-center justify-center md:justify-end gap-4 text-slate-800">
               {showSocialLinks && (
                 <>
-              {footer?.social_twitter && (
-                <Link href={footer?.social_twitter} target="_blank" rel="noreferrer" aria-label="Twitter" className="hover:text-emerald-700">
-                  <FaXTwitter size={18} />
-                </Link>
-              )}
-              {footer?.social_facebook && (
-                <Link href={footer?.social_facebook} target="_blank" rel="noreferrer" aria-label="Facebook" className="hover:text-emerald-700">
-                  <FaFacebookF size={18} />
-                </Link>
-              )}
-              {footer?.social_pinterest && (
-                <Link href={footer?.social_pinterest} target="_blank" rel="noreferrer" aria-label="Youtube" className="hover:text-emerald-700">
-                  <FaPinterestP size={18} />
-                </Link>
-              )}
-              {footer?.social_linkedin && (
-                <Link href={footer?.social_linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn" className="hover:text-emerald-700">
-                  <FaLinkedinIn size={18} />
-                </Link>
-              )}
-              {footer?.social_whatsapp && (
-                <Link href={footer?.social_whatsapp} target="_blank" rel="noreferrer" aria-label="WhatsApp" className="hover:text-emerald-700">
-                  <FaWhatsapp size={18} />
-                </Link>
-              )}
+                  {footer?.social_twitter && (
+                    <Link href={getText(footer?.social_twitter)} target="_blank" rel="noreferrer" aria-label="Twitter" className="hover:text-emerald-700">
+                      <FaXTwitter size={18} />
+                    </Link>
+                  )}
+                  {footer?.social_facebook && (
+                    <Link href={getText(footer?.social_facebook)} target="_blank" rel="noreferrer" aria-label="Facebook" className="hover:text-emerald-700">
+                      <FaFacebookF size={18} />
+                    </Link>
+                  )}
+                  {footer?.social_pinterest && (
+                    <Link href={getText(footer?.social_pinterest)} target="_blank" rel="noreferrer" aria-label="Pinterest" className="hover:text-emerald-700">
+                      <FaPinterestP size={18} />
+                    </Link>
+                  )}
+                  {footer?.social_linkedin && (
+                    <Link href={getText(footer?.social_linkedin)} target="_blank" rel="noreferrer" aria-label="LinkedIn" className="hover:text-emerald-700">
+                      <FaLinkedinIn size={18} />
+                    </Link>
+                  )}
+                  {footer?.social_whatsapp && (
+                    <Link href={getText(footer?.social_whatsapp)} target="_blank" rel="noreferrer" aria-label="WhatsApp" className="hover:text-emerald-700">
+                      <FaWhatsapp size={18} />
+                    </Link>
+                  )}
                 </>
               )}
             </div>
           </div>
         </div>
       </div>
-
-      </div>
+    </div>
   );
 };
 
