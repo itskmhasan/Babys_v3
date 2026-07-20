@@ -129,152 +129,181 @@ const Footer = async ({ error, storeCustomizationSetting }) => {
             </div>
           </div>
         )}
-        </div>
-       
-  <div className="bg-sg-black">
-    <div className="container">
-      <div className="flex justify-between flex-col md:flex-row flex-wrap text-white">
 
-        {/* Logo + About links + Social */}
-        <div className="py-6 md:py-10">
-          <a href="/">
-            <div className="relative w-[180px] h-[25px]">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 lg:gap-8">
+          {showBlock4 && (
+            <div className="lg:col-span-4">
+            <h5 className="text-lg font-bold text-slate-900 mb-4">
+              <CMSkeletonTwo
+                count={1}
+                height={14}
+                loading={false}
+                data={footer?.about_title || { en: "ABOUT US" }}
+              />
+            </h5>
+            <div className="relative w-48 h-10 mb-3">
               <Image
                 fill
                 className="object-contain object-left"
-                src="/assets/your-footer-logo.png"
-                alt="your-logo"
+                src={footer?.block4_logo || "/logo/logo-color.svg"}
+                alt="about logo"
               />
             </div>
-          </a>
+            <p className="text-sm leading-7 text-slate-700 text-justify">
+              <CMSkeletonTwo
+                count={1}
+                height={10}
+                loading={false}
+                data={footer?.block4_address}
+              />
+              {showBlock1 && (
+                <>
+                  <br />
+                  <Link href={footer?.block1_sub_link1 || "/about-us"} className="text-emerald-700 font-medium hover:underline">
+                    <CMSkeletonTwo
+                      count={1}
+                      height={10}
+                      loading={false}
+                      data={footer?.block1_sub_title1 || { en: "Know more..." }}
+                    />
+                  </Link>
+                </>
+              )}
+            </p>
+            </div>
+          )}
 
-          <div className="pt-4 flex flex-col gap-2 text-sm">
-            <a className="hover:text-sg-pink" href="/about-us">OUR STORY</a>
-            <a className="hover:text-sg-pink" href="/magazine">MAGAZINE</a>
-            <a className="hover:text-sg-pink" href="/join-our-team">JOIN OUR TEAM</a>
-            <a className="hover:text-sg-pink" href="/authenticity">AUTHENTICITY</a>
-          </div>
+          {showBlock1 && (
+            <div className="lg:col-span-2">
+            <h5 className="text-lg font-bold text-slate-900 mb-3">
+              <CMSkeletonTwo count={1} height={14} loading={false} data={footer?.block1_title || { en: "LET'S GROW!" }} />
+            </h5>
+            <div className="space-y-1">
+              {blockOneLinks.map((item, idx) => (
+                <Link key={`b1-${idx}`} href={item.href || "#"} className="block text-sm text-slate-700 hover:text-emerald-700">
+                  <CMSkeletonTwo count={1} height={10} loading={false} data={item.title} />
+                </Link>
+              ))}
+            </div>
+            </div>
+          )}
 
-          <hr className="my-2" />
+          {showBlock2 && (
+            <div className="lg:col-span-2">
+            <h5 className="text-lg font-bold text-slate-900 mb-3">
+              <CMSkeletonTwo count={1} height={14} loading={false} data={footer?.block2_title || { en: "MORE SERVICES" }} />
+            </h5>
+            <div className="space-y-1">
+              {blockTwoLinks.map((item, idx) => (
+                <Link key={`b2-${idx}`} href={item.href || "#"} className="block text-sm text-slate-700 hover:text-emerald-700">
+                  <CMSkeletonTwo count={1} height={10} loading={false} data={item.title} />
+                </Link>
+              ))}
+            </div>
+            </div>
+          )}
 
-          <div>
-            <p className="m-0 text-sm">SHARE YOUR LOVE</p>
-            <div className="flex mt-1 gap-2">
-              {footer?.social_facebook && (
-                <Link target="_blank" href={footer.social_facebook} aria-label="Facebook">
-                  <FaFacebookF size={22} />
+          {showBlock3 && (
+            <div className="lg:col-span-2">
+            <h5 className="text-lg font-bold text-slate-900 mb-3">
+              <CMSkeletonTwo count={1} height={14} loading={false} data={footer?.block3_title || { en: "TRAINING" }} />
+            </h5>
+            <div className="space-y-1">
+              {blockThreeLinks.map((item, idx) => (
+                <Link
+                  key={`b3-${idx}`}
+                  href={userInfo?.email ? item.href || "#" : "#"}
+                  className="block text-sm text-slate-700 hover:text-emerald-700"
+                >
+                  <CMSkeletonTwo count={1} height={10} loading={false} data={item.title} />
+                </Link>
+              ))}
+            </div>
+            </div>
+          )}
+
+          {showBlock4 && (
+            <div className="lg:col-span-2">
+            <h5 className="text-lg font-bold text-slate-900 mb-3">
+              <CMSkeletonTwo
+                count={1}
+                height={14}
+                loading={false}
+                data={footer?.contact_title || { en: "EXTRA LINKS" }}
+              />
+            </h5>
+            <div className="space-y-1">
+              {footer?.block4_email && (
+                <Link href={`mailto:${footer?.block4_email}`} className="block text-sm text-slate-700 hover:text-emerald-700">
+                  {footer?.block4_email}
                 </Link>
               )}
+              {footer?.block4_phone && (
+                <p className="block text-sm text-slate-700">{footer?.block4_phone}</p>
+              )}
+              {showBottomContact && footer?.bottom_contact && (
+                <p className="block text-sm text-slate-700">{footer?.bottom_contact}</p>
+              )}
+            </div>
+            </div>
+          )}
+        </div>
+      </div>
+
+      <div className="border-t border-slate-300 bg-slate-200/50">
+        <div className="mx-auto max-w-screen-2xl px-4 sm:px-10 py-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
+            <div className="text-center md:text-left text-sm text-slate-700">
+              {copyrightTextTemplate}{" "}
+              <Link
+                href={footer?.copyright_link || "#"}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold hover:text-emerald-700"
+              >
+                <CMSkeletonTwo
+                  count={1}
+                  height={10}
+                  loading={false}
+                  data={footer?.copyright_label || { en: "Baby's" }}
+                />
+              </Link>
+            </div>
+
+            <div className="flex items-center justify-center md:justify-end gap-4 text-slate-800">
+              {showSocialLinks && (
+                <>
               {footer?.social_twitter && (
-                <Link target="_blank" href={footer.social_twitter} aria-label="Twitter">
-                  <FaXTwitter size={22} />
+                <Link href={footer?.social_twitter} target="_blank" rel="noreferrer" aria-label="Twitter" className="hover:text-emerald-700">
+                  <FaXTwitter size={18} />
                 </Link>
               )}
-              {footer?.social_youtube && (
-                <Link target="_blank" href={footer.social_youtube} aria-label="YouTube">
-                  <FaYoutube size={22} />
-                </Link>
-              )}
-              {footer?.social_instagram && (
-                <Link target="_blank" href={footer.social_instagram} aria-label="Instagram">
-                  <FaInstagram size={22} />
+              {footer?.social_facebook && (
+                <Link href={footer?.social_facebook} target="_blank" rel="noreferrer" aria-label="Facebook" className="hover:text-emerald-700">
+                  <FaFacebookF size={18} />
                 </Link>
               )}
               {footer?.social_pinterest && (
-                <Link target="_blank" href={footer.social_pinterest} aria-label="Pinterest">
-                  <FaPinterestP size={22} />
+                <Link href={footer?.social_pinterest} target="_blank" rel="noreferrer" aria-label="Youtube" className="hover:text-emerald-700">
+                  <FaPinterestP size={18} />
                 </Link>
+              )}
+              {footer?.social_linkedin && (
+                <Link href={footer?.social_linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn" className="hover:text-emerald-700">
+                  <FaLinkedinIn size={18} />
+                </Link>
+              )}
+              {footer?.social_whatsapp && (
+                <Link href={footer?.social_whatsapp} target="_blank" rel="noreferrer" aria-label="WhatsApp" className="hover:text-emerald-700">
+                  <FaWhatsapp size={18} />
+                </Link>
+              )}
+                </>
               )}
             </div>
           </div>
         </div>
-
-        {/* Column 2 */}
-        <div className="py-6 md:py-10">
-          <h5 className="text-sg-pink">TOP CATEGORIES</h5>
-          <div className="pt-4 flex flex-col gap-2 text-sm">
-            {blockOneLinks.map((item, idx) => (
-              <a key={idx} className="hover:text-sg-pink" href={item.href}>
-                {item.title}
-              </a>
-            ))}
-          </div>
-        </div>
-
-        {/* Column 3 */}
-        <div className="py-6 md:py-10">
-          <h5 className="text-sg-pink">QUICK LINKS</h5>
-          <div className="pt-4 flex flex-col gap-2 text-sm">
-            {blockTwoLinks.map((item, idx) => (
-              <a key={idx} className="hover:text-sg-pink" href={item.href}>
-                {item.title}
-              </a>
-            ))}
-          </div>
-        </div>
-
-        {/* Column 4 */}
-        <div className="py-6 md:py-10">
-          <h5 className="text-sg-pink">RESOURCES</h5>
-          <div className="pt-4 flex flex-col gap-2 text-sm">
-            {blockThreeLinks.map((item, idx) => (
-              <a key={idx} target="_blank" className="hover:text-sg-pink" href={item.href}>
-                {item.title}
-              </a>
-            ))}
-          </div>
-        </div>
-
-        {/* Column 5: Help + payments */}
-        <div className="py-6 md:py-10">
-          <h5 className="text-sg-pink">HELP</h5>
-          <div className="pt-4 flex flex-col gap-2 text-sm">
-            <a className="hover:text-sg-pink" href="/contact">CONTACT US</a>
-            <a className="hover:text-sg-pink" href="/points">POINTS</a>
-            <a className="hover:text-sg-pink" href="/faqs">FAQS</a>
-            <a className="hover:text-sg-pink" href="/shipping-delivery">SHIPPING &amp; DELIVERY</a>
-            <a className="hover:text-sg-pink" href="/terms-conditions">TERMS &amp; CONDITIONS</a>
-            <a className="hover:text-sg-pink" href="/refund-and-return-policy">REFUND &amp; RETURN POLICY</a>
-            <a className="hover:text-sg-pink" href="/trade-licence.pdf" target="_blank">TRADE LICENSE</a>
-            <a className="hover:text-sg-pink" href="/privacy-policy">PRIVACY POLICY</a>
-          </div>
-
-          <hr className="my-5 md:my-2" />
-
-          <div>
-            <p className="m-0 mb-1 text-sm">PAYMENTS ACCEPTED</p>
-            <div className="flex items-center">
-              <div className="relative w-[160px] h-[30px]">
-                <Image
-                  fill
-                  className="object-contain object-left"
-                  src="/assets/payment-system.png"
-                  alt="payment-systems"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
-
-      <hr />
-
-      {/* Bottom bar */}
-      <div className="pb-7">
-        <div className="flex flex-wrap justify-center text-white text-sm">
-          <a className="hover:text-sg-pink p-3" href="/authenticity">AUTHENTICITY</a>
-          <a className="hover:text-sg-pink p-3" href="/terms-conditions">TERMS &amp; CONDITIONS</a>
-          <a className="hover:text-sg-pink p-3" href="/privacy-policy">PRIVACY POLICY</a>
-          <a className="hover:text-sg-pink p-3" href="/refund-and-return-policy">REFUND &amp; RETURN POLICY</a>
-          <a className="hover:text-sg-pink p-3" href="/faqs">FAQS</a>
-        </div>
-        <p className="text-white text-center text-sm">
-          Copyright © {new Date().getFullYear()} Your Company Name. All Rights Reserved
-        </p>
-      </div>
-    </div>
-  </div>
-
 
       </div>
   );
