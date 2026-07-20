@@ -11,10 +11,6 @@ const config = {
       height: {
         header: "560px",
       },
-      colors: {
-      'sg-black': '#649DD7', // swap to your dark bg color
-      'sg-pink': '#EE76C6',  // swap to your accent color
-    },
       backgroundImage: {
         "page-header": "url('/page-header-bg.jpg')",
         "contact-header": "url('/page-header-bg-2.jpg')",
