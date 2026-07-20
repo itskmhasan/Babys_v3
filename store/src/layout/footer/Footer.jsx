@@ -150,7 +150,7 @@ const Footer = async ({ error, storeCustomizationSetting }) => {
                   data={footer?.about_title || { en: "ABOUT US" }}
                 />
               </h5>
-              <div className="relative w-48 h-10 mb-3">
+              <div className="relative w-80 h-48 mb-1">
                 <Image
                   fill
                   className="object-contain object-left"
