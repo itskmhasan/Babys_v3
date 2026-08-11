@@ -2,7 +2,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useRef } from "react";
 import { IoChevronBackOutline, IoChevronForward } from "react-icons/io5";
-import { Navigation } from "swiper";
+import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";

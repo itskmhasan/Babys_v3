@@ -1,7 +1,10 @@
 import { Suspense } from "react";
+import Image from "next/image";
+import Link from "next/link";
 
 //internal import
 import Banner from "@components/banner/Banner";
+import Card from "@components/cta-card/Card";
 import CardTwo from "@components/cta-card/CardTwo";
 import StickyCart from "@components/cart/StickyCart";
 import MiniOfferCarousel from "@components/offer/MiniOfferCarousel";
@@ -86,6 +89,38 @@ const Home = async () => {
           {/* Banner */}
           <div className="bg-gradient-to-r from-slate-50 via-white to-slate-50 px-6 md:px-8 py-6 md:py-8 rounded-2xl mt-6 border border-slate-200 dark:from-slate-800 dark:via-slate-800 dark:to-slate-900 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow">
             <Banner storeCustomizationSetting={resolvedStoreCustomization} />
+          </div>
+
+          <div className="mt-6 lg:mt-8">
+            <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 2xl:gap-6">
+              <Card />
+            </div>
+
+            <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-3 md:gap-4">
+              {categories?.[0]?.children?.map((category) => (
+                <Link
+                  key={category._id}
+                  href={`/search?category=${encodeURIComponent(category?.name?.en || category?.name)}&_id=${category._id}`}
+                  className="group rounded-xl border border-slate-200 bg-white px-3 py-4 text-center shadow-sm transition-all hover:border-emerald-300 hover:shadow-md dark:border-zinc-700 dark:bg-zinc-800"
+                >
+                  <div className="mx-auto mb-2 flex h-16 w-16 items-center justify-center rounded-full bg-white shadow-sm ring-1 ring-slate-100 dark:bg-zinc-700 dark:ring-zinc-600">
+                    <Image
+                      src={
+                        category?.icon ||
+                        "https://res.cloudinary.com/ahossain/image/upload/v1655097002/placeholder_kvepfp.png"
+                      }
+                      alt={category?.name?.en || category?.name || "category"}
+                      width={40}
+                      height={40}
+                      className="object-contain"
+                    />
+                  </div>
+                  <p className="inline-block rounded-md bg-emerald-50 px-2 py-1 text-sm sm:text-base font-semibold text-emerald-700 group-hover:bg-emerald-100 group-hover:text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-300 dark:group-hover:bg-emerald-900/50 line-clamp-2">
+                    {category?.name?.en || category?.name}
+                  </p>
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
       </div>

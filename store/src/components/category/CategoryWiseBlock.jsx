@@ -29,6 +29,10 @@ const CategoryWiseBlock = async ({
 
   const items = (categoryProducts || []).slice(0, 10);
 
+  if (items.length === 0) {
+    return null;
+  }
+
   return (
     <section className="mb-12">
       <div className="bg-white dark:bg-zinc-900 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-zinc-800">

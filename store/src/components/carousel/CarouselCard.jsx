@@ -4,7 +4,7 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Autoplay, Navigation } from "swiper";
+import { Pagination, Autoplay, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
@@ -15,7 +15,7 @@ const CarouselCard = ({ storeCustomizationSetting, sliderData }) => {
       spaceBetween={30}
       centeredSlides={true}
       autoplay={{
-        delay: 2000,
+        delay: 5000,
         disableOnInteraction: false,
       }}
       loop={true}
