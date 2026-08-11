@@ -43,7 +43,7 @@ import useToggleDrawer from "@/hooks/useToggleDrawer";
 const Staff = () => {
   const { state } = useContext(AdminContext);
   const { adminInfo } = state;
-  const { selectedId, toggleDrawer } = useAction();
+  const { selectedId, toggleDrawer, open, setOpen } = useAction();
   const { title } = useToggleDrawer();
 
   const { data, loading, error } = useAsync(() =>
@@ -90,7 +90,12 @@ const Staff = () => {
       <MainDrawer>
         <StaffDrawer id={selectedId} />
       </MainDrawer>
-      <DeleteModal id={selectedId} title={title} />
+      <DeleteModal
+        id={selectedId}
+        title={title}
+        open={open}
+        onOpenChange={() => setOpen(false)}
+      />
 
       <AnimatedContent>
         <Card className="min-w-0 shadow-sm overflow-hidden bg-white dark:bg-gray-800 rounded-t-lg rounded-0 mb-4">
