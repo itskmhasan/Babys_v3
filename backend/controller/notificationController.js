@@ -110,16 +110,9 @@ const updateManyStatusNotification = async (req, res) => {
 
 const deleteNotificationById = async (req, res) => {
   try {
-    Notification.deleteOne({ _id: req.params.id }, (err) => {
-      if (err) {
-        res.status(500).send({
-          message: err.message,
-        });
-      } else {
-        res.send({
-          message: "Notification deleted successfully!",
-        });
-      }
+    await Notification.deleteOne({ _id: req.params.id });
+    res.send({
+      message: "Notification deleted successfully!",
     });
   } catch (err) {
     res.status(500).send({
@@ -130,16 +123,9 @@ const deleteNotificationById = async (req, res) => {
 
 const deleteNotificationByProductId = async (req, res) => {
   try {
-    Notification.deleteOne({ productId: req.params.id }, (err) => {
-      if (err) {
-        res.status(500).send({
-          message: err.message,
-        });
-      } else {
-        res.send({
-          message: "Notification deleted successfully!",
-        });
-      }
+    await Notification.deleteOne({ productId: req.params.id });
+    res.send({
+      message: "Notification deleted successfully!",
     });
   } catch (err) {
     res.status(500).send({
