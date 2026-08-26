@@ -16,7 +16,7 @@ export async function generateMetadata({ params }) {
   const product = products?.find((p) => p.slug === slug);
 
   return {
-    title: product?.title?.en || "Product",
+    title: product?.title?.en ? `${product.title.en} | Babys` : "Product | Babys",
     description: product?.description?.en,
     keywords: [product?.tags],
   };

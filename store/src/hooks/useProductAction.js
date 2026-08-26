@@ -1,3 +1,5 @@
+'use client'; 
+
 import { useState, useEffect, useContext } from "react";
 import { useRouter } from "next/navigation";
 import { SidebarContext } from "@context/SidebarContext";
@@ -6,6 +8,7 @@ import { notifyError } from "@utils/toast";
 import useUtilsFunction from "@hooks/useUtilsFunction";
 import { getDiscountPercentage, normalizePricePair } from "@utils/price";
 import { getProductRoute } from "@utils/productRoute";
+
 
 export default function useProductAction({
   product,
@@ -210,6 +213,64 @@ export default function useProductAction({
     }
   };
 
+ // Buy Now
+  const handleBuyNow = () => {
+  // 1. REUSE EXISTING STOCK CHECKS
+  if (product?.variants?.length === 1 && product?.variants[0].quantity < 1)
+    return notifyError("Insufficient stock");
+  if (stock <= 0) return notifyError("Insufficient stock");
+
+  const selectedVariantName = variantTitle
+    ?.map((att) =>
+      att?.variants?.find((v) => v._id === selectVariant[att._id])
+    )
+    .map((el) => showingTranslateValue(el?.name));
+
+  if (
+    product?.variants.map(
+      (variant) =>
+        Object.entries(variant).sort().toString() ===
+        Object.entries(selectVariant).sort().toString()
+    )
+  ) {
+    const { variants, categories, description, ...updatedProduct } = product;
+    const basePrice = normalizePricePair(
+      product.prices.price,
+      product.prices.originalPrice
+    );
+    const newItem = {
+      ...updatedProduct,
+      id:
+        product?.variants.length <= 0
+          ? product._id
+          : product._id +
+            "-" +
+            variantTitle?.map((att) => selectVariant[att._id]).join("-"),
+      title:
+        product?.variants.length <= 0
+          ? showingTranslateValue(product.title)
+          : showingTranslateValue(product.title) + "-" + selectedVariantName,
+      image: selectedImage,
+      variant: selectVariant || {},
+      price:
+        product.variants.length === 0
+          ? getNumber(basePrice.price)
+          : getNumber(price),
+      originalPrice:
+        product.variants.length === 0
+          ? getNumber(basePrice.originalPrice)
+          : getNumber(originalPrice),
+    };
+
+    
+    handleAddItem(newItem);
+    router.push("/checkout"); // <-- Replace with your actual checkout route URL
+
+  } else {
+    return notifyError("Please select all variant first!");
+  }
+};
+
   // Optional for modal/product detail routing
   const handleMoreInfo = (slug) => {
     if (!withRouter) return;
@@ -245,6 +306,7 @@ export default function useProductAction({
 
     // actions
     handleAddToCart,
+    handleBuyNow,
     handleMoreInfo,
   };
 }

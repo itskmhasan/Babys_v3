@@ -247,10 +247,10 @@ const ProductModal = ({
                 <FiHeadphones className="mr-1 text-gray-500 text-md" />
                 Call Us for Order
                 <a
-                  href={`tel:${globalSetting?.phone || "+099949343"}`}
+                  href={`tel:${globalSetting?.phone || "+8801973404971"}`}
                   className="font-bold text-emerald-500 ml-1"
                 >
-                  {globalSetting?.phone || "+099949343"}
+                  {globalSetting?.phone || "+8801973404971"}
                 </a>
               </div>
             </div>

@@ -1,10 +1,15 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { FiMail } from "react-icons/fi";
 import { cookies } from "next/headers";
+
 import {
   FaFacebookF,
+  FaInstagram,
+  FaTiktok,
+  FaYoutube,
+  FaTelegramPlane,
+  FaX,
   FaXTwitter,
   FaPinterestP,
   FaLinkedinIn,
@@ -16,7 +21,10 @@ import {
 import CMSkeletonTwo from "@components/preloader/CMSkeleton";
 import { getUserServerSession } from "@lib/auth-server";
 
+const linkClass = "block text-sm text-neutral-600 hover:text-neutral-900 transition-colors";
+
 const Footer = async ({ error, storeCustomizationSetting }) => {
+  
   const footer = storeCustomizationSetting?.footer;
   const isEnabled = (value) => value === true || value === "true";
 
@@ -75,11 +83,13 @@ const Footer = async ({ error, storeCustomizationSetting }) => {
   ].filter((item) => item?.title && item?.href);
 
   return (
-    <div className="bg-slate-100 border-t border-slate-200">
-      <div className="mx-auto max-w-screen-2xl px-4 sm:px-10 py-10 lg:py-14">
+    <div className="bg-[#e9edf2]">
+      <div className="mx-auto max-w-screen-2xl px-6 sm:px-10 py-10 lg:py-14">
+
+        {/* ---------- Payment title + image (dynamic) ---------- */}
         {showPaymentMethod && (
           <div className="text-center mb-5">
-            <h3 className="text-xl font-semibold text-slate-900">
+            <h3 className="text-xl font-semibold text-neutral-900">
               <CMSkeletonTwo
                 count={1}
                 height={16}
@@ -103,8 +113,9 @@ const Footer = async ({ error, storeCustomizationSetting }) => {
           </div>
         )}
 
+        {/* ---------- 3-image grid (dynamic) ---------- */}
         {showBlock4 && (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
             <div className="rounded-xl bg-white p-4 shadow-sm">
               <div className="relative w-full aspect-square min-h-[180px] sm:min-h-[220px] lg:min-h-[240px]">
                 <Image
@@ -139,272 +150,107 @@ const Footer = async ({ error, storeCustomizationSetting }) => {
         )}
 
         {/* ---------- Main footer grid ---------- */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 lg:gap-8">
-          {showBlock4 && (
-            <div className="lg:col-span-4">
-              <h5 className="text-lg font-bold text-slate-900 mb-4">
-                <CMSkeletonTwo
-                  count={1}
-                  height={14}
-                  loading={false}
-                  data={footer?.about_title || { en: "ABOUT US" }}
-                />
-              </h5>
-              <div className="relative w-80 h-48 mb-1">
-                <Image
-                  fill
-                  className="object-contain object-left"
-                  src={footer?.block4_logo || "/logo/logo-color.svg"}
-                  alt="about logo"
-                />
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-y-12 lg:gap-x-8">
+
+          {/* ---------- Brand ---------- */}
+          <div className="lg:col-span-3 lg:pr-6 lg:border-r lg:border-neutral-300">
+            <div className="relative w-32 h-32 mb-6">
+              <Image
+                fill
+                className="object-contain object-left"
+                src="/logo/Babys_3D_Bright.png"
+                alt="Baby's logo"
+              />
+            </div>
+            <p className="text-sm leading-7 text-neutral-600 mb-4">
+              Baby's brings you the best of authentic baby and mother care
+              essentials, carefully curated for families across Bangladesh.
+            </p>
+            <p className="text-sm font-semibold text-neutral-800 mb-4">
+              @babys.com.bd
+            </p>
+            <div className="flex items-center gap-4 text-neutral-800">
+              <Link href="#" aria-label="Facebook" className="hover:text-neutral-500">
+                <FaFacebookF size={16} />
+              </Link>
+              <Link href="#" aria-label="Instagram" className="hover:text-neutral-500">
+                <FaInstagram size={16} />
+              </Link>
+              <Link href="#" aria-label="TikTok" className="hover:text-neutral-500">
+                <FaTiktok size={16} />
+              </Link>
+            </div>
+          </div>
+
+          {/* ---------- About us + Help & info (stacked) ---------- */}
+          <div className="lg:col-span-3 lg:px-6 lg:border-r lg:border-neutral-300">
+            <div className="mb-8">
+              <h5 className="font-serif text-xl text-neutral-900 mb-5">About us</h5>
+              <div className="space-y-3">
+                <Link href="/about-us" className={linkClass}>Our story</Link>
+                <Link href="/corporate-gifting" className={linkClass}>Corporate gifting</Link>
+                <Link href="/loyalty-programme" className={linkClass}>Loyalty programme</Link>
+                <Link href="/bulk-order" className={linkClass}>Bulk order</Link>
+                <Link href="/contact-us" className={linkClass}>Contact us</Link>
+                <Link href="/complaints" className={linkClass}>Complaints</Link>
               </div>
-              <p className="text-sm leading-7 text-slate-700 text-justify">
-                <CMSkeletonTwo
-                  count={1}
-                  height={10}
-                  loading={false}
-                  data={footer?.block4_address}
-                />
-                {showBlock1 && footer?.block1_sub_link1 && (
-                  <>
-                    <br />
-                    <Link
-                      href={getText(footer?.block1_sub_link1, "/about-us")}
-                      className="text-emerald-700 font-medium hover:underline"
-                    >
-                      <CMSkeletonTwo
-                        count={1}
-                        height={10}
-                        loading={false}
-                        data={footer?.block1_sub_title1 || { en: "Know more..." }}
-                      />
-                    </Link>
-                  </>
-                )}
+            </div>
+
+          </div>
+
+          {/* ---------- Policies ---------- */}
+          <div className="lg:col-span-3 lg:px-6 lg:border-r lg:border-neutral-300">
+            <h5 className="font-serif text-xl text-neutral-900 mb-5">Policies</h5>
+            <div className="space-y-3 mb-6">
+              <Link href="/disclaimer" className={linkClass}>Disclaimer</Link>
+              <Link href="/terms-and-conditions" className={linkClass}>Terms and conditions</Link>
+              <Link href="/privacy-policy" className={linkClass}>Privacy policy</Link>
+              <Link href="/legal-notice" className={linkClass}>Legal notice</Link>
+              <Link href="/faq" className={linkClass}>FAQs</Link>
+              <Link href="/refund-policy" className={linkClass}>Refunds</Link>
+              <Link href="/shipping-policy" className={linkClass}>Shipping</Link>
+            </div>
+                     </div>
+
+          {/* ---------- Newsletter ---------- */}
+          <div className="lg:col-span-3">
+            <div className="rounded-2xl bg-neutral-200/60 p-8 text-center">
+              <h5 className="font-serif text-2xl text-neutral-900 mb-3">Welcome!</h5>
+              <p className="text-sm text-neutral-600 mb-5">
+                Sign up for baby care tips and offers in your inbox and get
+                10% off your first order.
               </p>
-
-              {showSocialLinks && (
-                <div className="flex items-center gap-4 mt-6 text-slate-800">
-                  {footer?.social_twitter && (
-                    <Link
-                      href={getText(footer?.social_twitter)}
-                      target="_blank"
-                      rel="noreferrer"
-                      aria-label="Twitter"
-                      className="hover:text-emerald-700"
-                    >
-                      <FaXTwitter size={18} />
-                    </Link>
-                  )}
-                  {footer?.social_facebook && (
-                    <Link
-                      href={getText(footer?.social_facebook)}
-                      target="_blank"
-                      rel="noreferrer"
-                      aria-label="Facebook"
-                      className="hover:text-emerald-700"
-                    >
-                      <FaFacebookF size={18} />
-                    </Link>
-                  )}
-                  {footer?.social_pinterest && (
-                    <Link
-                      href={getText(footer?.social_pinterest)}
-                      target="_blank"
-                      rel="noreferrer"
-                      aria-label="Pinterest"
-                      className="hover:text-emerald-700"
-                    >
-                      <FaPinterestP size={18} />
-                    </Link>
-                  )}
-                  {footer?.social_linkedin && (
-                    <Link
-                      href={getText(footer?.social_linkedin)}
-                      target="_blank"
-                      rel="noreferrer"
-                      aria-label="LinkedIn"
-                      className="hover:text-emerald-700"
-                    >
-                      <FaLinkedinIn size={18} />
-                    </Link>
-                  )}
-                  {footer?.social_whatsapp && (
-                    <Link
-                      href={getText(footer?.social_whatsapp)}
-                      target="_blank"
-                      rel="noreferrer"
-                      aria-label="WhatsApp"
-                      className="hover:text-emerald-700"
-                    >
-                      <FaWhatsapp size={18} />
-                    </Link>
-                  )}
-                </div>
-              )}
-            </div>
-          )}
-
-          {showBlock1 && (
-            <div className="lg:col-span-2">
-              <h5 className="text-lg font-bold text-slate-900 mb-3">
-                <CMSkeletonTwo
-                  count={1}
-                  height={14}
-                  loading={false}
-                  data={footer?.block1_title || { en: "LET'S GROW!" }}
+              <form className="relative">
+                <input
+                  type="email"
+                  required
+                  value=""
+                  placeholder="Enter your email address"
+                  className="w-full rounded-full bg-white px-5 py-3 pr-12 text-sm text-neutral-800 placeholder:text-neutral-400 outline-none"
                 />
-              </h5>
-              <div className="space-y-1">
-                {blockOneLinks.map((item, idx) => (
-                  <Link
-                    key={`b1-${idx}`}
-                    href={getText(item.href, "#")}
-                    className="block text-sm text-slate-700 hover:text-emerald-700"
-                  >
-                    <CMSkeletonTwo count={1} height={10} loading={false} data={item.title} />
-                  </Link>
-                ))}
-              </div>
+                <button
+                  type="submit"
+                  aria-label="Subscribe"
+                  className="absolute right-1.5 top-1/2 -translate-y-1/2 flex h-9 w-9 items-center justify-center rounded-full bg-neutral-900 text-white hover:bg-neutral-700 transition-colors"
+                >
+                  →
+                </button>
+              </form>
             </div>
-          )}
+          </div>
 
-          {showBlock2 && (
-            <div className="lg:col-span-2">
-              <h5 className="text-lg font-bold text-slate-900 mb-3">
-                <CMSkeletonTwo
-                  count={1}
-                  height={14}
-                  loading={false}
-                  data={footer?.block2_title || { en: "MORE SERVICES" }}
-                />
-              </h5>
-              <div className="space-y-1">
-                {blockTwoLinks.map((item, idx) => (
-                  <Link
-                    key={`b2-${idx}`}
-                    href={getText(item.href, "#")}
-                    className="block text-sm text-slate-700 hover:text-emerald-700"
-                  >
-                    <CMSkeletonTwo count={1} height={10} loading={false} data={item.title} />
-                  </Link>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {showBlock3 && (
-            <div className="lg:col-span-2">
-              <h5 className="text-lg font-bold text-slate-900 mb-3">
-                <CMSkeletonTwo
-                  count={1}
-                  height={14}
-                  loading={false}
-                  data={footer?.block3_title || { en: "TRAINING" }}
-                />
-              </h5>
-              <div className="space-y-1">
-                {blockThreeLinks.map((item, idx) => (
-                  <Link
-                    key={`b3-${idx}`}
-                    href={userInfo?.email ? getText(item.href, "#") : "#"}
-                    className="block text-sm text-slate-700 hover:text-emerald-700"
-                  >
-                    <CMSkeletonTwo count={1} height={10} loading={false} data={item.title} />
-                  </Link>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {showBlock4 && (
-            <div className="lg:col-span-2">
-              <h5 className="text-lg font-bold text-slate-900 mb-3">
-                <CMSkeletonTwo
-                  count={1}
-                  height={14}
-                  loading={false}
-                  data={footer?.contact_title || { en: "EXTRA LINKS" }}
-                />
-              </h5>
-              <div className="space-y-1">
-                {footer?.block4_email && (
-                  <Link
-                    href={`mailto:${getText(footer?.block4_email)}`}
-                    className="block text-sm text-slate-700 hover:text-emerald-700"
-                  >
-                    {getText(footer?.block4_email)}
-                  </Link>
-                )}
-                {footer?.block4_phone && (
-                  <p className="block text-sm text-slate-700">
-                    {getText(footer?.block4_phone)}
-                  </p>
-                )}
-                {showBottomContact && footer?.bottom_contact && (
-                  <p className="block text-sm text-slate-700">
-                    {getText(footer?.bottom_contact)}
-                  </p>
-                )}
-              </div>
-            </div>
-          )}
         </div>
       </div>
 
       {/* ---------- Bottom bar ---------- */}
-      <div className="border-t border-slate-300 bg-slate-200/50">
-        <div className="mx-auto max-w-screen-2xl px-4 sm:px-10 py-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
-            <div className="text-center md:text-left text-sm text-slate-700">
-              {copyrightTextTemplate}{" "}
-              <Link
-                href={getText(footer?.copyright_link, "#")}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-semibold hover:text-emerald-700"
-              >
-                <CMSkeletonTwo
-                  count={1}
-                  height={10}
-                  loading={false}
-                  data={footer?.copyright_label || { en: "Baby's" }}
-                />
-              </Link>
-            </div>
-
-            <div className="flex items-center justify-center md:justify-end gap-4 text-slate-800">
-              {showSocialLinks && (
-                <>
-                  {footer?.social_twitter && (
-                    <Link href={getText(footer?.social_twitter)} target="_blank" rel="noreferrer" aria-label="Twitter" className="hover:text-emerald-700">
-                      <FaXTwitter size={18} />
-                    </Link>
-                  )}
-                  {footer?.social_facebook && (
-                    <Link href={getText(footer?.social_facebook)} target="_blank" rel="noreferrer" aria-label="Facebook" className="hover:text-emerald-700">
-                      <FaFacebookF size={18} />
-                    </Link>
-                  )}
-                  {footer?.social_pinterest && (
-                    <Link href={getText(footer?.social_pinterest)} target="_blank" rel="noreferrer" aria-label="Pinterest" className="hover:text-emerald-700">
-                      <FaPinterestP size={18} />
-                    </Link>
-                  )}
-                  {footer?.social_linkedin && (
-                    <Link href={getText(footer?.social_linkedin)} target="_blank" rel="noreferrer" aria-label="LinkedIn" className="hover:text-emerald-700">
-                      <FaLinkedinIn size={18} />
-                    </Link>
-                  )}
-                  {footer?.social_whatsapp && (
-                    <Link href={getText(footer?.social_whatsapp)} target="_blank" rel="noreferrer" aria-label="WhatsApp" className="hover:text-emerald-700">
-                      <FaWhatsapp size={18} />
-                    </Link>
-                  )}
-                </>
-              )}
-            </div>
-          </div>
+      <div className="border-t border-neutral-300 bg-[#669bd1] text-white">
+        <div className="mx-auto max-w-screen-2xl px-6 sm:px-10 py-6">
+          <p className="text-sm text-neutral-600 text-center text-white">
+            © {new Date().getFullYear()} Baby's. All rights reserved.
+          </p>
+          <p className="text-xs text-neutral-500 text-center mt-1 text-white">
+            Trademark no. BD-H-1-248273 | Copyright No. CRA-21243
+          </p>
         </div>
       </div>
     </div>

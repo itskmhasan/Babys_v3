@@ -24,7 +24,7 @@ import useProductAction from "@hooks/useProductAction";
 import Rating from "@components/common/Rating";
 import { Button } from "@components/ui/button";
 import ProductReviews from "./ProductReviews";
-import { FiChevronRight, FiHeadphones, FiMinus, FiPlus } from "react-icons/fi";
+import { FiChevronRight, FiHeadphones, FiMinus, FiPlus, FiPhone } from "react-icons/fi";
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from "@headlessui/react";
 import { Fragment } from "react";
 
@@ -51,6 +51,7 @@ const ProductScreen = ({ product, reviews, attributes, relatedProducts }) => {
     category_name,
     // actions
     handleAddToCart,
+    handleBuyNow,
   } = useProductAction({
     product,
     attributes,
@@ -213,12 +214,28 @@ const ProductScreen = ({ product, reviews, attributes, relatedProducts }) => {
 
                     {/* Add to Cart Button */}
                     <Button
+                      onClick={() => handleBuyNow(product)}
+                      className="text-sm bg-transparent border-2 border-[#669dd3] text-[#669dd3] hover:bg-[#669dd3]/10 leading-4 inline-flex items-center cursor-pointer transition ease-in-out duration-300 font-semibold text-center justify-center rounded-md focus-visible:outline-none focus:outline-none px-4 md:px-6 lg:px-8 py-4 md:py-3.5 lg:py-4 w-full h-11"
+                      variant="create"
+                    >
+                      Buy Now
+                    </Button>
+
+                    <Button
                       onClick={() => handleAddToCart(product)}
-                      className="text-sm leading-4 inline-flex items-center cursor-pointer transition ease-in-out duration-300 font-semibold  text-center justify-center border-0 border-transparent rounded-md focus-visible:outline-none focus:outline-none px-4 md:px-6 lg:px-8 py-4 md:py-3.5 lg:py-4 w-full h-11"
+                      className="text-sm bg-[#669dd3] leading-4 inline-flex items-center cursor-pointer transition ease-in-out duration-300 font-semibold  text-center justify-center border-0 border-transparent rounded-md focus-visible:outline-none focus:outline-none px-4 md:px-6 lg:px-8 py-4 md:py-3.5 lg:py-4 w-full h-11"
                       variant="create"
                     >
                       Add to Cart
                     </Button>
+
+                    <a
+                      href="https://api.whatsapp.com/send/?phone=8801973404971&text&type=phone_number&app_absent=0"
+                      className="text-sm leading-4 inline-flex text-white bg-green-500 items-center cursor-pointer transition ease-in-out duration-300 font-semibold  text-center justify-center border-0 border-transparent rounded-md focus-visible:outline-none focus:outline-none px-4 md:px-6 lg:px-8 py-4 md:py-3.5 lg:py-4 w-full h-11"
+                      variant="create"
+                    > 
+                      <FiPhone/> &nbsp; ORDER VIA WHATSAPP
+                    </a>
                   </div>
                 </div>
 
@@ -249,10 +266,10 @@ const ProductScreen = ({ product, reviews, attributes, relatedProducts }) => {
                   <FiHeadphones className="mr-1 text-md" />
                   Call Us for Order
                   <a
-                    href={`tel:${globalSetting?.phone || "+099949343"}`}
+                    href={`tel:${globalSetting?.phone || "+8801973404971"}`}
                     className="font-bold text-emerald-500 ml-1"
                   >
-                    {globalSetting?.phone || "+099949343"}
+                    {globalSetting?.phone || "+8801973404971"}
                   </a>
                 </div>
 
@@ -348,15 +365,25 @@ const ProductScreen = ({ product, reviews, attributes, relatedProducts }) => {
                 <div className="border-b border-gray-200">
                   <TabList className="-mb-px flex space-x-8">
                     <Tab className="cursor-pointer border-b-2 border-transparent pb-3 text-sm font-medium whitespace-nowrap text-gray-700 hover:border-gray-300 focus:outline-0 hover:text-gray-800 data-selected:border-emerald-600 data-selected:text-emerald-600">
-                      Customer Reviews
-                    </Tab>
-
-                    <Tab className="cursor-pointer border-b-2 border-transparent pb-3 text-sm font-medium whitespace-nowrap text-gray-700 hover:border-gray-300 focus:outline-0 hover:text-gray-800 data-selected:border-emerald-600 data-selected:text-emerald-600">
                       Description
                     </Tab>
-                  </TabList>
+                    <Tab className="cursor-pointer border-b-2 border-transparent pb-3 text-sm font-medium whitespace-nowrap text-gray-700 hover:border-gray-300 focus:outline-0 hover:text-gray-800 data-selected:border-emerald-600 data-selected:text-emerald-600">
+                      Customer Reviews
+                    </Tab>
+                    </TabList>
                 </div>
                 <TabPanels as={Fragment}>
+                  <TabPanel className="pt-8">
+                    <h3 className="sr-only">Product Description</h3>
+                         {isReadMore
+                        ? showingTranslateValue(product?.description)?.slice(
+                            0,
+                            150
+                          )
+                        : showingTranslateValue(product?.description)}
+                    
+                    <div className="text-sm text-gray-500 [&_h4]:mt-5 [&_h4]:font-medium [&_h4]:text-gray-900 [&_li]:pl-2 [&_li::marker]:text-gray-300 [&_p]:my-2 [&_p]:text-sm/6 [&_ul]:my-4 [&_ul]:list-disc [&_ul]:space-y-1 [&_ul]:pl-5 [&_ul]:text-sm/6 [&>:first-child]:mt-0" />
+                  </TabPanel>
                   <TabPanel className="-mb-10">
                     <h3 className="sr-only">Customer Reviews</h3>
                     <ProductReviews reviews={reviews} />
