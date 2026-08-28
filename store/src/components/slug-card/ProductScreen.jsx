@@ -387,12 +387,11 @@ const ProductScreen = ({ product, reviews, attributes, relatedProducts }) => {
                 <TabPanels as={Fragment}>
                   <TabPanel className="pt-8">
                     <h3 className="sr-only">Product Description</h3>
-                         {isReadMore
-                        ? showingTranslateValue(product?.description)?.slice(
-                            0,
-                            150
-                          )
+                    <div className="text-sm text-gray-500 leading-6 whitespace-pre-line">
+                      {isReadMore
+                        ? showingTranslateValue(product?.description)?.slice(0, 150)
                         : showingTranslateValue(product?.description)}
+                    </div>
                     
                     <div className="text-sm text-gray-500 [&_h4]:mt-5 [&_h4]:font-medium [&_h4]:text-gray-900 [&_li]:pl-2 [&_li::marker]:text-gray-300 [&_p]:my-2 [&_p]:text-sm/6 [&_ul]:my-4 [&_ul]:list-disc [&_ul]:space-y-1 [&_ul]:pl-5 [&_ul]:text-sm/6 [&>:first-child]:mt-0" />
                   </TabPanel>
