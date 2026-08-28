@@ -57,6 +57,13 @@ const ProductScreen = ({ product, reviews, attributes, relatedProducts }) => {
     attributes,
     globalSetting,
   });
+  const productUrl = typeof window !== "undefined" 
+  ? `${window.location.origin}${getProductRoute(product)}` 
+  : "";
+
+  const whatsappMessage = encodeURIComponent(
+    `Hi, I'm interested in this product: ${showingTranslateValue(product?.title)}\n${productUrl}`
+  );
 
   // console.log("discount", discount);
 
@@ -214,6 +221,7 @@ const ProductScreen = ({ product, reviews, attributes, relatedProducts }) => {
 
                     {/* Add to Cart Button */}
                     <Button
+                      type="button"
                       onClick={() => handleBuyNow(product)}
                       className="text-sm bg-transparent border-2 border-[#669dd3] text-[#669dd3] hover:bg-[#669dd3]/10 leading-4 inline-flex items-center cursor-pointer transition ease-in-out duration-300 font-semibold text-center justify-center rounded-md focus-visible:outline-none focus:outline-none px-4 md:px-6 lg:px-8 py-4 md:py-3.5 lg:py-4 w-full h-11"
                       variant="create"
@@ -230,10 +238,11 @@ const ProductScreen = ({ product, reviews, attributes, relatedProducts }) => {
                     </Button>
 
                     <a
-                      href="https://api.whatsapp.com/send/?phone=8801973404971&text&type=phone_number&app_absent=0"
+                      href={`https://api.whatsapp.com/send/?phone=8801973404971&text=${whatsappMessage}&type=phone_number&app_absent=0`}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="text-sm leading-4 inline-flex text-white bg-green-500 items-center cursor-pointer transition ease-in-out duration-300 font-semibold  text-center justify-center border-0 border-transparent rounded-md focus-visible:outline-none focus:outline-none px-4 md:px-6 lg:px-8 py-4 md:py-3.5 lg:py-4 w-full h-11"
-                      variant="create"
-                    > 
+                    >
                       <FiPhone/> &nbsp; ORDER VIA WHATSAPP
                     </a>
                   </div>

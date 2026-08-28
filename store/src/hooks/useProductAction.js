@@ -17,6 +17,7 @@ export default function useProductAction({
   onCloseModal, // optional for modal flow
   withRouter = false, // if true, enable handleMoreInfo
 }) {
+  const goRoute = useRouter();
   const router = withRouter ? useRouter() : null;
   const { setIsLoading, isLoading } = useContext(SidebarContext) || {};
   const { handleAddItem } = useAddToCart();
@@ -263,8 +264,8 @@ export default function useProductAction({
     };
 
     
-    handleAddItem(newItem);
-    router.push("/checkout"); // <-- Replace with your actual checkout route URL
+   handleAddItem(newItem);
+   goRoute.push("/checkout");
 
   } else {
     return notifyError("Please select all variant first!");
@@ -308,5 +309,6 @@ export default function useProductAction({
     handleAddToCart,
     handleBuyNow,
     handleMoreInfo,
+    withRouter: true
   };
 }
