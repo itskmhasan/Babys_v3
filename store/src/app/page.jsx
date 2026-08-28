@@ -101,21 +101,21 @@ const Home = async () => {
                 <Link
                   key={category._id}
                   href={`/search?category=${encodeURIComponent(category?.name?.en || category?.name)}&_id=${category._id}`}
-                  className="group rounded-xl border border-slate-200 bg-white px-3 py-4 text-center shadow-sm transition-all hover:border-emerald-300 hover:shadow-md dark:border-zinc-700 dark:bg-zinc-800"
+                  className="group rounded-xl border border-slate-200 bg-white px-3 py-4 text-center shadow-sm transition-all duration-300 hover:border-[#649dd7]/40 hover:shadow-[0_0_24px_rgba(100,157,215,0.35)] dark:border-zinc-700 dark:bg-zinc-800"
                 >
-                  <div className="mx-auto mb-2 flex h-16 w-16 items-center justify-center rounded-full bg-white shadow-sm ring-1 ring-slate-100 dark:bg-zinc-700 dark:ring-zinc-600">
+                  <div className="mx-auto mb-2 flex h-24 w-24 items-center justify-center rounded-full bg-white shadow-sm ring-1 ring-slate-100 dark:bg-zinc-700 dark:ring-zinc-600">
                     <Image
                       src={
                         category?.icon ||
                         "https://res.cloudinary.com/ahossain/image/upload/v1655097002/placeholder_kvepfp.png"
                       }
                       alt={category?.name?.en || category?.name || "category"}
-                      width={40}
-                      height={40}
+                      width={64}
+                      height={64}
                       className="object-contain"
                     />
                   </div>
-                  <p className="inline-block rounded-md bg-emerald-50 px-2 py-1 text-sm sm:text-base font-semibold text-emerald-700 group-hover:bg-emerald-100 group-hover:text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-300 dark:group-hover:bg-emerald-900/50 line-clamp-2">
+                  <p className="text-sm sm:text-base font-semibold text-slate-800 group-hover:text-slate-900 dark:text-zinc-200 line-clamp-2">
                     {category?.name?.en || category?.name}
                   </p>
                 </Link>

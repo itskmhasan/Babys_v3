@@ -163,8 +163,10 @@ const Footer = async ({ error, storeCustomizationSetting }) => {
               />
             </div>
             <p className="text-sm leading-7 text-neutral-600 mb-4">
-              Baby's brings you the best of authentic baby and mother care
-              essentials, carefully curated for families across Bangladesh.
+              Babys® is a thoughtfully designed baby shop brand dedicated to bringing quality, 
+              comfort, and care to little ones. Babys®, we offer authentic baby and mother care 
+              essentials, carefully curated to meet the needs of families across Bangladesh.
+
             </p>
             <p className="text-sm font-semibold text-neutral-800 mb-4">
               @babys.com.bd
