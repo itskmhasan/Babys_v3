@@ -6,7 +6,7 @@ import { FacebookShareButton, TwitterShareButton } from "react-share";
 import { ArrowDown, ArrowUp, ChevronRight, Minus, Plus } from "lucide-react";
 
 //internal import
-
+import { useState, useEffect } from "react";
 import Price from "@components/common/Price";
 import Stock from "@components/common/Stock";
 import Tags from "@components/common/Tags";
@@ -57,9 +57,12 @@ const ProductScreen = ({ product, reviews, attributes, relatedProducts }) => {
     attributes,
     globalSetting,
   });
-  const productUrl = typeof window !== "undefined" 
-  ? `${window.location.origin}${getProductRoute(product)}` 
-  : "";
+
+  const [productUrl, setProductUrl] = useState("");
+
+  useEffect(() => {
+    setProductUrl(window.location.href);
+  }, []);
 
   const whatsappMessage = encodeURIComponent(
     `Hi, I'm interested in this product: ${showingTranslateValue(product?.title)}\n${productUrl}`
